@@ -1,0 +1,33 @@
+﻿@model EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Create.Create2
+
+@{
+    ViewBag.Title = "留观室病例信息表 - 新增";
+}
+
+@*面包屑区*@
+<div class="container">
+    <ol class="breadcrumb">
+        <li>@Html.ActionLink("主界面", "Index", "Home", null, null)</li>
+        <li>@Html.ActionLink("留观室病例信息一览表", "Index")</li>
+        <li class="active">新增</li>
+    </ol>
+</div>
+
+<div class="container">
+    @*标题*@
+    <div class="row RescueRoomMainTitleRow">
+        <div class="h2 RescueRoomMainTitleCell">
+            @ViewBag.Title
+        </div>
+        <div>
+            <p>
+                选择接诊记录。
+                <br />
+                如果选择了已经创建的记录，则直接跳转到相应记录，不会新增。
+            </p>
+        </div>
+    </div>
+
+    @*列表区*@
+    @Html.Partial("Create2ListGhxx", Model.ListGhxx)
+</div>

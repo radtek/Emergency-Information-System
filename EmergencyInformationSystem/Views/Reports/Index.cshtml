@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "报表中心";
+}
+
+@*面包屑区*@
+<div class="container">
+    <ol class="breadcrumb">
+        <li>@Html.ActionLink("主界面", "Index", "Home", null, null)</li>
+        <li class="active">@ViewBag.Title</li>
+    </ol>
+</div>
+
+<div class="jumbotron">
+    <h1>
+        @ViewBag.Title
+    </h1>
+
+    <h3>抢救室</h3>
+    <p>@Html.ActionLink("交班表", "IndexHandOver", "Reports", null, new { @class = "btn btn-default" })</p>
+    <p>@Html.ActionLink("日报表", "IndexDay", "Reports", null, new { @class = "btn btn-default" })</p>
+    <p>@Html.ActionLink("月报表", "StatisticsMonth", "Reports", null, new { @class = "btn btn-default" })</p>
+
+    <h3>留观室</h3>
+    <a class="btn btn-default disabled">待添加</a>
+</div>

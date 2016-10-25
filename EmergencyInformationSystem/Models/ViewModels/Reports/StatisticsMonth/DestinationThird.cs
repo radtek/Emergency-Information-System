@@ -1,0 +1,63 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+using EmergencyInformationSystem.Models.Domains.Entities;
+
+namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsMonth
+{
+    /// <summary>
+    /// 月报表去向项第三级。
+    /// </summary>
+    public class DestinationThird
+    {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DestinationThird"/> class.
+        /// </summary>
+        /// <param name="group">The group.</param>
+        /// <param name="time">The time.</param>
+        public DestinationThird(IEnumerable<RescueRoomInfo> group, DateTime time)
+        {
+            this.DestinationId = group.First().DestinationId;
+            this.DestinationRemarks = group.First().DestinationRemarks;
+            this.Time = time;
+
+            this.DestinationRemarksForDisplay = group.First().DestinationRemarks;
+            this.Count = group.Count();
+
+            if (string.IsNullOrEmpty(this.DestinationRemarksForDisplay))
+                this.DestinationRemarksForDisplay = "--";
+        }
+
+
+
+
+
+        /// <summary>
+        /// 去向ID。
+        /// </summary>
+        public int DestinationId { get; set; }
+
+        /// <summary>
+        /// 去向明细。
+        /// </summary>
+        public string DestinationRemarks { get; set; }
+
+        /// <summary>
+        /// 统计项归属的时间点。
+        /// </summary>
+        public DateTime Time { get; set; }
+
+
+
+
+
+        public string DestinationRemarksForDisplay { get; set; }
+
+        /// <summary>
+        /// 数量。
+        /// </summary>
+        public int Count { get; set; }
+    }
+}

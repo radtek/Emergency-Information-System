@@ -1,0 +1,40 @@
+﻿@model IEnumerable<EmergencyInformationSystem.Models.Domains.Entities.RescueRoomDrugRecord>
+
+<table class="table table-bordered table-hover table-condensed">
+    <thead>
+        <tr>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.GoodsName)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.DosageQuantity)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.DosageUnit)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.PrescriptionTime)
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.GoodsName)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.DosageQuantity)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.DosageUnit)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.PrescriptionTime)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

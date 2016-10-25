@@ -1,0 +1,111 @@
+﻿@model EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsMonth.StatisticsMonth
+
+@{
+    ViewBag.Title = "月报表";
+}
+
+@*面包屑区*@
+<div class="container">
+    <ol class="breadcrumb">
+        <li>@Html.ActionLink("主界面", "Index", "Home", null, null)</li>
+        <li>@Html.ActionLink("报表中心", "Index")</li>
+        <li class="active">@ViewBag.Title</li>
+    </ol>
+</div>
+
+@*标题区*@
+<table>
+    <tr>
+        <td rowspan="2">
+            <h2>@ViewBag.Title</h2>
+        </td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>
+            <div>
+                @*<a href="javascript:printme()" target="_self" class="btn btn-default">打印</a>*@
+            </div>
+        </td>
+    </tr>
+</table>
+
+@*表单区*@
+@using (Html.BeginForm())
+{
+    <table>
+        <tr>
+            <td>
+                <input type="month" name="time" value=@Model.Time.ToString("yyyy-MM") class="form-control" />
+            </td>
+            <td>
+                <input type="submit" value="选择" class="btn btn-default" formmethod="get" />
+            </td>
+        </tr>
+    </table>
+}
+
+@*内容区*@
+<div>
+    @*总体情况*@
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.CountAll)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CountAll)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CountIsRescue)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CountIsRescue)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CountIsGreenPath)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CountIsGreenPath)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.AverageDuring)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.AverageDuring)
+            </dd>
+        </dl>
+    </div>
+
+    <hr />
+
+    @*抢救*@
+    <div>
+        @Html.Partial("StatisticsMonthRescueFirst", Model.ListRescueFirst)
+    </div>
+
+    <hr />
+
+    @*绿色通道*@
+    <div>
+        @Html.Partial("StatisticsMonthGreenPathFirst", Model.ListGreenPathFirst)
+    </div>
+
+    <hr />
+
+    @*停留时间*@
+    <div>
+        @Html.Partial("StatisticsMonthDuringFirst", Model.ListDuringFirst)
+    </div>
+
+    <hr />
+
+    @*去向*@
+    <div>
+        @Html.Partial("StatisticsMonthDestinationFirst", Model.ListDestinationFirst)
+    </div>
+</div>

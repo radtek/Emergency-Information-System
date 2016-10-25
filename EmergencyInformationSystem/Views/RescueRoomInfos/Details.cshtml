@@ -1,0 +1,202 @@
+﻿@model EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Details.Details
+
+@{
+    ViewBag.Title = "抢救室病例信息表";
+}
+
+@*面包屑区*@
+<div class="container">
+    <ol class="breadcrumb">
+        <li>@Html.ActionLink("主界面", "Index", "Home", null, null)</li>
+        <li>@Html.ActionLink("抢救室病例信息一览表", "Index")</li>
+        <li class="active">@ViewBag.Title</li>
+    </ol>
+</div>
+
+<div class="container">
+    @*标题*@
+    <div class="row RescueRoomMainTitleRow">
+        <div class="h2 RescueRoomMainTitleCell">
+            @ViewBag.Title
+        </div>
+    </div>
+
+    @*眉栏*@
+    @Html.Action("Header", new { id = Model.RescueRoomInfoId })
+
+    <hr />
+
+    @*入室*@
+    <div class="row RescueRoomSecondTitleRow">
+        <div class="col-md-12 RescueRoomSecondTitle">
+            入室
+        </div>
+
+        <div class="col-md-3 RescueRoomSecondTitleCell">
+            @Html.DisplayNameFor(model => model.InDepartmentTime)
+            :
+            @Html.DisplayFor(model => model.InDepartmentTime)
+        </div>
+
+        <div class="col-md-2 RescueRoomSecondTitleCell">
+            @Html.DisplayNameFor(model => model.BedNameFull)
+            :
+            @Html.DisplayFor(model => model.BedNameFull)
+        </div>
+
+        <div class="col-md-2 RescueRoomSecondTitleCell">
+            @Html.DisplayNameFor(model => model.FirstNurseName)
+            :
+            @Html.DisplayFor(model => model.FirstNurseName)
+        </div>
+
+        <div class="col-md-5 RescueRoomSecondTitleCell">
+            @Html.DisplayNameFor(model => model.InRescueRoomWayNameFull)
+            :
+            @Html.DisplayFor(model => model.InRescueRoomWayNameFull)
+        </div>
+    </div>
+
+    <hr />
+
+    @*处理*@
+    <div class="row RescueRoomSecondTitleRow">
+        <div class="col-md-12 RescueRoomSecondTitle">
+            处理
+        </div>
+
+        <div class="col-md-3 RescueRoomSecondTitleCell">
+            @Html.DisplayNameFor(model => model.CriticalLevelName)
+            :
+            @Html.DisplayFor(model => model.CriticalLevelName)
+        </div>
+
+        <div class="col-md-4 RescueRoomSecondTitleCell">
+            @Html.DisplayNameFor(model => model.RescueResultNameFull)
+            :
+            @Html.DisplayFor(model => model.RescueResultNameFull)
+        </div>
+
+        <div class="col-md-5 RescueRoomSecondTitleCell">
+            @Html.DisplayNameFor(model => model.GreenPathCategoryNameFull)
+            :
+            @Html.DisplayFor(model => model.GreenPathCategoryNameFull)
+
+            @* 绿色通道表单 *@
+            @{
+                if (!string.IsNullOrEmpty(Model.GreenPathActionName))
+                {
+                    <span>&nbsp;&nbsp;</span>
+
+                    if (Model.GreenPathId != null)
+                    {
+                        @Html.ActionLink("打开", Model.GreenPathActionName, "GreenPaths", new { id = Model.GreenPathId }, new { @class = "label label-info" })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("创建", Model.GreenPathActionName, "GreenPaths", new { rescueRoomInfoId = Model.RescueRoomInfoId }, new { @class = "label label-info" })
+                    }
+                }
+            }
+        </div>
+
+        <div class="col-md-3 RescueRoomSecondTitleCell">
+            @Html.DisplayNameFor(model => model.Antibiotic)
+            :
+            @Html.DisplayFor(model => model.Antibiotic)
+        </div>
+
+        <div class="col-md-9 RescueRoomSecondTitleCell">
+            @Html.DisplayNameFor(model => model.Remarks)
+            :
+            @Html.DisplayFor(model => model.Remarks)
+        </div>
+    </div>
+
+    <hr />
+
+    @*预约*@
+    <div class="row RescueRoomSecondTitleRow">
+        <div class="col-md-12 RescueRoomSecondTitle">
+            预约
+        </div>
+
+        <div class="col-md-3 RescueRoomSecondTitleCell">
+            @Html.DisplayNameFor(model => model.DestinationFirstName)
+            :
+            @Html.DisplayFor(model => model.DestinationFirstName)
+        </div>
+
+        <div class="col-md-3 RescueRoomSecondTitleCell">
+            @Html.DisplayNameFor(model => model.DestinationFirstTime)
+            :
+            @Html.DisplayFor(model => model.DestinationFirstTime)
+        </div>
+
+        <div class="col-md-3 RescueRoomSecondTitleCell">
+            @Html.DisplayNameFor(model => model.DestinationFirstContact)
+            :
+            @Html.DisplayFor(model => model.DestinationFirstContact)
+        </div>
+
+        <div class="col-md-3 RescueRoomSecondTitleCell">
+            @Html.DisplayNameFor(model => model.DestinationSecondName)
+            :
+            @Html.DisplayFor(model => model.DestinationSecondName)
+        </div>
+    </div>
+
+    <hr />
+
+    @*离室*@
+    <div class="row RescueRoomSecondTitleRow">
+        <div class="col-md-12 RescueRoomSecondTitle">
+            离室
+        </div>
+
+        <div class="col-md-3 RescueRoomSecondTitleCell">
+            @Html.DisplayNameFor(model => model.OutDepartmentTime)
+            :
+            @Html.DisplayFor(model => model.OutDepartmentTime)
+        </div>
+
+        <div class="col-md-3 RescueRoomSecondTitleCell">
+            @Html.DisplayNameFor(model => model.During)
+            :
+            @Html.DisplayFor(model => model.During)
+        </div>
+
+        <div class="col-md-3 RescueRoomSecondTitleCell">
+            @Html.DisplayNameFor(model => model.DestinationNameFull)
+            :
+            @Html.DisplayFor(model => model.DestinationNameFull)
+        </div>
+
+        <div class="col-md-3 RescueRoomSecondTitleCell">
+            @Html.DisplayNameFor(model => model.HandleNurse)
+            :
+            @Html.DisplayFor(model => model.HandleNurse)
+        </div>
+
+        <div class="col-md-9 RescueRoomSecondTitleCell">
+            @Html.DisplayNameFor(model => model.DiagnosisName)
+            :
+            @Html.DisplayFor(model => model.DiagnosisName)
+        </div>
+
+        <div class="col-md-3 RescueRoomSecondTitleCell">
+            @Html.DisplayNameFor(model => model.IsLeaveName)
+            :
+            @Html.DisplayFor(model => model.IsLeaveName)
+        </div>
+    </div>
+
+    <hr />
+
+    @*按钮*@
+    <div class="form-group RescueRoomSecondTitleSubmitBlock">
+        <div class="col-md-offset-1 col-md-9">
+            @Html.ActionLink("编辑", "Edit", new { id = Model.RescueRoomInfoId }, new { @class = "btn btn-info" })
+        </div>
+    </div>
+</div>

@@ -1,0 +1,55 @@
+﻿@model EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Index.Route
+
+@using (Html.BeginForm())
+{
+    <table class="form-group">
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.InTimeStart)
+
+                <input type="datetime-local" name="InTimeStart" class="form-inline" value=@((Model.InTimeStart)?.ToString("yyyy-MM-ddTHH:mm")) />
+                <input type="datetime-local" name="InTimeEnd" class="form-inline" value=@((Model.InTimeEnd)?.ToString("yyyy-MM-ddTHH:mm")) />
+            </td>
+            <td>
+                &nbsp;&nbsp;
+
+                @Html.DisplayNameFor(model => model.GreenPathCategoryId)
+                @Html.DropDownList("GreenPathCategoryId", null, "--", new { @class = "form-inline" })
+
+                &nbsp;&nbsp;
+
+                @Html.DisplayNameFor(model => model.IsRescue)
+                @Html.DropDownList("IsRescue", null, "--", new { @class = "form-inline" })
+
+                &nbsp;&nbsp;
+
+                @Html.DisplayNameFor(model => model.IsLeave)
+                @Html.DropDownList("IsLeave", null, "--", new { @class = "form-inline" })
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.OutTimeStart)
+
+                <input type="datetime-local" name="OutTimeStart" class="form-inline" value=@((Model.OutTimeStart)?.ToString("yyyy-MM-ddTHH:mm")) />
+                <input type="datetime-local" name="OutTimeEnd" class="form-inline" value=@((Model.OutTimeEnd)?.ToString("yyyy-MM-ddTHH:mm")) />
+            </td>
+            <td>
+                &nbsp;&nbsp;
+
+                @Html.DisplayNameFor(model => model.PatientName)
+                @Html.EditorFor(model => model.PatientName, new { htmlAttributes = new { @class = "form-inline" } })
+
+                &nbsp;&nbsp;
+
+                @Html.DisplayNameFor(model => model.OutPatientNumber)
+                @Html.EditorFor(model => model.OutPatientNumber, new { htmlAttributes = new { @class = "form-inline" } })
+            </td>
+            <td>
+                <input type="submit" formmethod="get" value="筛选" class="btn btn-default" />
+                @Html.ActionLink("清空", "index", null, new { @class = "btn btn-default" })
+            </td>
+        </tr>
+    </table>
+}

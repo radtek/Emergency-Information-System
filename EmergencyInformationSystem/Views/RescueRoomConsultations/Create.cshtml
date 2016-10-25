@@ -1,0 +1,85 @@
+﻿@model EmergencyInformationSystem.Models.Domains.Entities.RescueRoomConsultation
+
+@{
+    ViewBag.Title = "会诊信息 - 新增";
+}
+
+<div class="container">
+    <ol class="breadcrumb">
+        <li>@Html.ActionLink("主界面", "Index", "Home", null, null)</li>
+        <li>@Html.ActionLink("抢救室工作信息表", "Index")</li>
+        <li>@Html.ActionLink("抢救室病例信息表", "Details", "RescueRoomInfos", new { id = Model.RescueRoomInfoId }, null)</li>
+        <li class="active">会诊信息新增</li>
+    </ol>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(false, "", new { @class = "text-danger alert alert-danger" })
+
+    @Html.HiddenFor(c => c.RescueRoomInfoId)
+    @Html.Hidden("goToGreenPath");
+
+    <div class="container">
+        @*标题*@
+        <div class="row RescueRoomMainTitleRow">
+            <div class="h2 RescueRoomMainTitleCell">
+                @ViewBag.Title
+            </div>
+        </div>
+
+        @*眉栏*@
+        @Html.Action("Header", "RescueRoomInfos", new { id = Model.RescueRoomInfoId })
+
+        <hr />
+
+        @*会诊*@
+        <div class="row RescueRoomSecondTitleRow">
+            <div class="col-md-12 RescueRoomSecondTitle">
+                会诊
+            </div>
+
+            <div class="form-group col-md-offset-1 RescueRoomSecondTitleEditBlock">
+                @Html.LabelFor(model => model.RequestTime, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input name="RequestTime" id="RequestTime" type="datetime-local" class="form-control" value=@(Model.RequestTime.ToString("yyyy-MM-ddTHH:mm")) />
+                    @Html.ValidationMessageFor(model => model.RequestTime, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-offset-1 RescueRoomSecondTitleEditBlock">
+                @Html.LabelFor(model => model.ArriveTime, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input name="ArriveTime" id="ArriveTime" type="datetime-local" class="form-control" value=@(Model.ArriveTime?.ToString("yyyy-MM-ddTHH:mm")) />
+                    @Html.ValidationMessageFor(model => model.ArriveTime, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-offset-1 RescueRoomSecondTitleEditBlock">
+                @Html.LabelFor(model => model.ConsultationDoctorName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ConsultationDoctorName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ConsultationDoctorName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-offset-1 RescueRoomSecondTitleEditBlock">
+                @Html.LabelFor(model => model.ConsultationDepartmentId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("ConsultationDepartmentId", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ConsultationDepartmentId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <hr />
+
+        <div class="form-group RescueRoomSecondTitleSubmitBlock">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="确定" class="btn btn-info" />
+            </div>
+        </div>
+    </div>
+}

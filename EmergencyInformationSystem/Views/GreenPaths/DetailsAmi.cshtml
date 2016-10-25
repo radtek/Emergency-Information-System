@@ -1,0 +1,198 @@
+﻿@model EmergencyInformationSystem.Models.Domains.Entities.GreenPathAmi
+
+@{
+    ViewBag.Title = "绿色通道信息表 - 急性心肌梗死";
+}
+
+@*面包屑区*@
+<div class="container">
+    <ol class="breadcrumb">
+        <li>@Html.ActionLink("主页", "Index", "Home", null, null)</li>
+        <li>@Html.ActionLink("抢救室病例信息一览表", "Index", "RescueRoomInfos", null, null)</li>
+        <li>@Html.ActionLink("抢救室病例信息表", "Details", "RescueRoomInfos", new { id = Model.RescueRoomInfoId }, null)</li>
+        <li class="active">@ViewBag.Title</li>
+    </ol>
+</div>
+
+@*主体区域*@
+<div class="container">
+    @*标题*@
+    <div class="row RescueRoomMainTitleRow">
+        <div class="h2 RescueRoomMainTitleCell">
+            @ViewBag.Title
+        </div>
+    </div>
+
+    @*眉栏*@
+    @Html.Action("Header", "RescueRoomInfos", new { id = Model.RescueRoomInfoId })
+
+    <hr />
+
+    @*信息*@
+    <div class="row RescueRoomSecondTitleRow">
+        <div class="col-md-12 RescueRoomSecondTitle">
+            信息
+        </div>
+
+        <div class="col-md-3 RescueRoomSecondTitleCell">
+            @Html.DisplayNameFor(model => model.OccurrenceTime)
+            :
+            @Html.DisplayFor(model => model.OccurrenceTime)
+        </div>
+    </div>
+
+    <hr />
+
+    @*操作*@
+    <div class="row RescueRoomSecondTitleRow">
+        <div class="col-md-12 RescueRoomSecondTitle">
+            操作
+        </div>
+
+        <div class="col-md-3 RescueRoomSecondTitleCell">
+            @Html.DisplayNameFor(model => model.EcgFirstTime)
+            :
+            @Html.DisplayFor(model => model.EcgFirstTime)
+        </div>
+
+        <div class="col-md-3 RescueRoomSecondTitleCell">
+            @Html.DisplayNameFor(model => model.EcgSecondTime)
+            :
+            @Html.DisplayFor(model => model.EcgSecondTime)
+        </div>
+    </div>
+
+    <hr />
+
+    @*附加*@
+    <div class="row RescueRoomSecondTitleRow">
+        <div class="col-md-12 RescueRoomSecondTitle">
+            附加
+        </div>
+
+        <div class="col-md-12 RescueRoomSecondTitleCell">
+            @Html.DisplayNameFor(model => model.Remarks)
+            :
+            @Html.DisplayFor(model => model.Remarks)
+        </div>
+    </div>
+
+    <hr />
+
+    @*完成*@
+    <div class="row RescueRoomSecondTitleRow">
+        <div class="col-md-12 RescueRoomSecondTitle">
+            完成
+        </div>
+
+        <div class="col-md-6 RescueRoomSecondTitleCell">
+            @Html.DisplayNameFor(model => model.FinishPathTime)
+            :
+            @Html.DisplayFor(model => model.FinishPathTime)
+        </div>
+
+        <div class="col-md-6 RescueRoomSecondTitleCell">
+            @Html.DisplayNameFor(model => model.During)
+            :
+            @Html.DisplayFor(model => model.During)
+        </div>
+
+        <div class="col-md-12 RescueRoomSecondTitleCell">
+            @Html.DisplayNameFor(model => model.Problem)
+            :
+            @Html.DisplayFor(model => model.Problem)
+        </div>
+    </div>
+
+    <hr />
+
+    @*会诊*@
+    <div class="row RescueRoomSecondTitleRow">
+        <div class="col-md-12 RescueRoomSecondTitle">
+            会诊
+            <small>
+                <span>
+                    @Html.ActionLink("新增", "Create", "RescueRoomConsultations", new { Model.RescueRoomInfoId, goToGreenPath = true }, new { @class = "label label-default" })
+                </span>
+            </small>
+        </div>
+
+        @Html.Action("IndexPartial", "RescueRoomConsultations", new { Model.RescueRoomInfoId })
+    </div>
+
+    <hr />
+
+    @*检查*@
+    <div class="row RescueRoomSecondTitleRow">
+        <div class="col-md-12 RescueRoomSecondTitle">
+            检查
+            <small>
+                <span>
+                    <button id="RefreshImageRecords">刷新</button>
+                </span>
+            </small>
+        </div>
+
+        <div id="ImageRecords">
+            @Html.Action("IndexPartial", "RescueRoomImageRecords", new { Model.RescueRoomInfoId })
+        </div>
+    </div>
+
+    <hr />
+
+    @*用药*@
+
+    <div class="row RescueRoomSecondTitleRow">
+        <div class="col-md-12 RescueRoomSecondTitle">
+            用药
+            <small>
+                <span>
+                    <button id="RefreshDrugRecords">刷新</button>
+                </span>
+            </small>
+        </div>
+
+        <div id="DrugRecords">
+            @Html.Action("IndexPartial", "RescueRoomDrugRecords", new { Model.RescueRoomInfoId })
+        </div>
+    </div>
+
+    <hr />
+
+    @*按钮*@
+    <div class="form-group RescueRoomSecondTitleSubmitBlock">
+        <div class="col-md-offset-1 col-md-9">
+            @Html.ActionLink("编辑", "EditAmi", new { id = Model.GreenPathAmiId }, new { @class = "btn btn-info" })
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#RefreshDrugRecords").click(function (event) {
+            event.preventDefault();
+
+            $("#DrugRecords").load("@Url.Action("Refresh", "RescueRoomDrugRecords", new { rescueRoomInfoId = Model.RescueRoomInfoId })", null, function (responseTxt, statusTxt, xhr) {
+                if (statusTxt == "success") {
+                }
+                if (statusTxt == "error") {
+                    alert("Error: " + xhr.status + ": " + xhr.statusText);
+                }
+            });
+        });
+    });
+
+    $(document).ready(function () {
+        $("#RefreshImageRecords").click(function (event) {
+            event.preventDefault();
+
+            $("#ImageRecords").load("@Url.Action("Refresh", "RescueRoomImageRecords", new { rescueRoomInfoId = Model.RescueRoomInfoId })", null, function (responseTxt, statusTxt, xhr) {
+                if (statusTxt == "success") {
+                }
+                if (statusTxt == "error") {
+                    alert("Error: " + xhr.status + ": " + xhr.statusText);
+                }
+            });
+        });
+    });
+</script>

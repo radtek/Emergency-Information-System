@@ -1,0 +1,138 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+
+
+
+
+/*自定义内容*/
+
+
+
+
+
+/*抢救室 主标题 行*/
+.RescueRoomMainTitleRow{
+
+}
+
+/*抢救室 主标题 格*/
+.RescueRoomMainTitleCell {
+    padding: 20px;
+    text-align: center;
+}
+
+/*抢救室 眉栏 行*/
+.RescueRoomHeaderRow{
+
+}
+
+/*抢救室 眉栏 格*/
+.RescueRoomHeaderCell{
+    padding-top:6px;
+    padding-bottom:6px;
+}
+
+/*抢救室 次标题 行*/
+.RescueRoomSecondTitleRow {
+    
+}
+
+/*抢救室 次标题 标题*/
+.RescueRoomSecondTitle {
+    font-size: large;
+    padding: 20px;
+}
+
+/*抢救室 次标题 表单 组*/
+.RescueRoomSecondTitleEditBlock {
+
+}
+
+/*抢救室 次标题 按钮 组*/
+.RescueRoomSecondTitleSubmitBlock {
+    
+}
+
+/*抢救室 次标题 显示 格*/
+.RescueRoomSecondTitleCell {
+    padding-top:6px;
+    padding-bottom:6px;
+    border: 1px solid black;
+}
+
+
+
+
+
+/*留观室 主标题 行*/
+.ObserveRoomMainTitleRow{
+
+}
+
+/*留观室 主标题 格*/
+.ObserveRoomMainTitleCell {
+    padding: 20px;
+    text-align: center;
+}
+
+/*留观室 眉栏 行*/
+.ObserveRoomHeaderRow{
+
+}
+
+/*留观室 眉栏 格*/
+.ObserveRoomHeaderCell{
+    padding-top:6px;
+    padding-bottom:6px;
+}
+
+/*留观室 次标题 行*/
+.ObserveRoomSecondTitleRow {
+    
+}
+
+/*留观室 次标题 标题*/
+.ObserveRoomSecondTitle {
+    font-size: large;
+    padding: 20px;
+}
+
+/*留观室 次标题 表单 组*/
+.ObserveRoomSecondTitleEditBlock {
+
+}
+
+/*留观室 次标题 按钮 组*/
+.ObserveRoomSecondTitleSubmitBlock {
+    
+}
+
+/*留观室 次标题 显示 格*/
+.ObserveRoomSecondTitleCell {
+    padding-top:6px;
+    padding-bottom:6px;
+    border: 1px solid black;
+}

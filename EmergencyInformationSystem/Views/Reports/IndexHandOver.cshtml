@@ -1,0 +1,65 @@
+﻿@model EmergencyInformationSystem.Models.ViewModels.Reports.IndexHandOver.IndexHandOver
+
+@{
+    ViewBag.Title = "交班表";
+}
+
+@*面包屑区*@
+<div class="container">
+    <ol class="breadcrumb">
+        <li>@Html.ActionLink("主界面", "Index", "Home", null, null)</li>
+        <li>@Html.ActionLink("报表中心", "Index")</li>
+        <li class="active">@ViewBag.Title</li>
+    </ol>
+</div>
+
+<table>
+    <tr>
+        <td rowspan="2">
+            <h2>@ViewBag.Title</h2>
+        </td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>
+            <div>
+                @Html.ActionLink("刷新", "IndexHandOver", null, new { @class = "btn btn-default" })
+                <a href="javascript:printme()" target="_self" class="btn btn-default">打印</a>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<h3>@Html.DisplayFor(model => model.Time)</h3>
+
+<br />
+
+@*列表区*@
+@Html.Partial("IndexHandOverList", Model.List)
+
+@*打印区*@
+<div id='PrintArea' hidden="hidden">
+    <table>
+        <tr>
+            <td rowspan="2">
+                <h2>@ViewBag.Title</h2>
+                <small>
+                    &nbsp;&nbsp;&nbsp;&nbsp;急诊就诊人次：____&nbsp;&nbsp;&nbsp;&nbsp;抢救总次数____&nbsp;&nbsp;&nbsp;&nbsp;绿色通道例数____&nbsp;&nbsp;&nbsp;&nbsp;死亡人数____&nbsp;&nbsp;&nbsp;&nbsp;交班医师____
+                </small>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+        </tr>
+    </table>
+
+    @Html.Partial("IndexHandOverListPrint", Model.List)
+</div>
+
+<script language="javascript">
+    function printme() {
+        document.body.innerHTML = document.getElementById('PrintArea').innerHTML;
+        window.print();
+    }
+</script>

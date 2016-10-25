@@ -1,0 +1,195 @@
+﻿@model EmergencyInformationSystem.Models.Domains.Entities.ObserveRoomInfo
+
+@{
+    ViewBag.Title = "留观室病例信息表 - 新增";
+}
+
+@*面包屑区*@
+<div class="container">
+    <ol class="breadcrumb">
+        <li>@Html.ActionLink("主界面", "Index", "Home", null, null)</li>
+        <li>@Html.ActionLink("留观室病例信息一览表", "Index")</li>
+        <li class="active">新增</li>
+    </ol>
+</div>
+
+@*表单区*@
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(false, "", new { @class = "text-danger alert alert-danger" })
+
+    @Html.HiddenFor(model => model.PatientName)
+    @Html.HiddenFor(model => model.OutPatientNumber)
+    @Html.HiddenFor(model => model.Sex)
+    @Html.HiddenFor(model => model.BirthDate)
+    @Html.HiddenFor(model => model.DiagnosisNameOrigin)
+    @Html.HiddenFor(model => model.ReceiveTime)
+    @Html.HiddenFor(model => model.FirstDoctorName)
+
+    @Html.HiddenFor(model => model.KDJID)
+    @Html.HiddenFor(model => model.BRXXID)
+    @Html.HiddenFor(model => model.GHXXID)
+    @Html.HiddenFor(model => model.JZID)
+
+    <div class="container">
+        @*标题*@
+        <div class="row RescueRoomMainTitleRow">
+            <div class="h2 RescueRoomMainTitleCell">
+                @ViewBag.Title
+            </div>
+        </div>
+
+        @*眉栏*@
+        @* 此时数据库还没有对应的眉栏存在，应通过自身Model传递。 *@
+        @Html.Partial("Header", new EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Header.Header(Model))
+
+        <hr />
+
+        @*入室*@
+        <div class="row RescueRoomSecondTitleRow">
+            <div class="col-md-12 RescueRoomSecondTitle">
+                入室
+            </div>
+
+            <div class="form-group col-md-offset-1 RescueRoomSecondTitleEditBlock">
+                @Html.LabelFor(model => model.InDepartmentTime, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input name="InDepartmentTime" id="InDepartmentTime" type="datetime-local" class="form-control" value=@(Model.InDepartmentTime.ToString("yyyy-MM-ddTHH:mm")) />
+                    @Html.ValidationMessageFor(model => model.InDepartmentTime, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-offset-1 RescueRoomSecondTitleEditBlock">
+                @Html.LabelFor(model => model.BedId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("BedId", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.BedId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-offset-1 RescueRoomSecondTitleEditBlock">
+                @Html.LabelFor(model => model.FirstNurseName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.FirstNurseName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FirstNurseName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-offset-1 RescueRoomSecondTitleEditBlock">
+                @Html.LabelFor(model => model.InObserveRoomWayId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("InObserveRoomWayId", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.InObserveRoomWayId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-offset-1 RescueRoomSecondTitleEditBlock">
+                @Html.LabelFor(model => model.InObserveRoomWayRemarks, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.InObserveRoomWayRemarks, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.InObserveRoomWayRemarks, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <hr />
+
+        @*预约*@
+        <div class="row RescueRoomSecondTitleRow">
+            <div class="col-md-12 RescueRoomSecondTitle">
+                预约
+            </div>
+
+            <div class="form-group col-md-offset-1 RescueRoomSecondTitleEditBlock">
+                @Html.LabelFor(model => model.DestinationFirstId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("DestinationFirstId", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.DestinationFirstId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-offset-1 RescueRoomSecondTitleEditBlock">
+                @Html.LabelFor(model => model.DestinationFirstTime, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input name="DestinationFirstTime" id="DestinationFirstTime" type="datetime-local" class="form-control" value=@(Model.DestinationFirstTime?.ToString("yyyy-MM-ddTHH:mm")) />
+                    @Html.ValidationMessageFor(model => model.DestinationFirstTime, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-offset-1 RescueRoomSecondTitleEditBlock">
+                @Html.LabelFor(model => model.DestinationFirstContact, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DestinationFirstContact, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DestinationFirstContact, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-offset-1 RescueRoomSecondTitleEditBlock">
+                @Html.LabelFor(model => model.DestinationSecondId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("DestinationSecondId", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.DestinationSecondId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <hr />
+
+        @*离室*@
+        <div class="row RescueRoomSecondTitleRow">
+            <div class="col-md-12 RescueRoomSecondTitle">
+                离室
+            </div>
+
+            <div class="form-group col-md-offset-1 RescueRoomSecondTitleEditBlock">
+                @Html.LabelFor(model => model.OutDepartmentTime, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input name="OutDepartmentTime" id="OutDepartmentTime" type="datetime-local" class="form-control" value=@(Model.OutDepartmentTime?.ToString("yyyy-MM-ddTHH:mm")) />
+                    @Html.ValidationMessageFor(model => model.OutDepartmentTime, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-offset-1 RescueRoomSecondTitleEditBlock">
+                @Html.LabelFor(model => model.DestinationId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("DestinationId", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.DestinationId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-offset-1 RescueRoomSecondTitleEditBlock">
+                @Html.LabelFor(model => model.DestinationRemarks, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DestinationRemarks, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DestinationRemarks, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-offset-1 RescueRoomSecondTitleEditBlock">
+                @Html.LabelFor(model => model.HandleNurse, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.HandleNurse, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.HandleNurse, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-offset-1 RescueRoomSecondTitleEditBlock">
+                @Html.LabelFor(model => model.DiagnosisName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DiagnosisName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DiagnosisName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <hr />
+
+        <div class="form-group RescueRoomSecondTitleSubmitBlock">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="确定" class="btn btn-info" />
+            </div>
+        </div>
+    </div>
+}
