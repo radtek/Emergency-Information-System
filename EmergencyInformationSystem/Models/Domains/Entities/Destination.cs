@@ -100,7 +100,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         public virtual bool Priority { get; set; }
 
         /// <summary>
-        /// 优先级。
+        /// 优先级2。
         /// </summary>
         public virtual int Priority2 { get; set; }
 

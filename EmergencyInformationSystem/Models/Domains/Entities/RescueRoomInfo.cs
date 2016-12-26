@@ -655,7 +655,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
                 else if (this.DuringHours.Value > 24)
                     return "24至48小时";
                 else
-                    return "小于24小时";
+                    return "小于等于24小时";
             }
         }
 

@@ -35,6 +35,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// <summary>
         /// 影像类型ID。
         /// </summary>
+        [Key]
         public virtual int ImageCategoryId { get; set; }
 
 

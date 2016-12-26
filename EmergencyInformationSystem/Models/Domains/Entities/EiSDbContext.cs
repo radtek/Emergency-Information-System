@@ -13,20 +13,18 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
     public class EiSDbContext : DbContext
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="EiSDbContext"/> class.
+        /// 初始化实例<see cref="EiSDbContext"/>。
         /// </summary>
-        public EiSDbContext():base("LocalConnection")
-        {           
-             
+        public EiSDbContext() : base("LocalConnection")
+        {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="EiSDbContext"/> class.
+        /// 初始化实例<see cref="EiSDbContext"/>。
         /// </summary>
         /// <param name="connection">连接字符串。</param>
         public EiSDbContext(string connection) : base(connection)
         {
-
         }
 
 
@@ -125,7 +123,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<RescueRoomInfo>()                
+            modelBuilder.Entity<RescueRoomInfo>()
                 .HasOptional(c => c.NextObserveRoomInfo)
                 .WithOptionalDependent(c => c.PreviousRescueRoomInfo)
                 .WillCascadeOnDelete(false);

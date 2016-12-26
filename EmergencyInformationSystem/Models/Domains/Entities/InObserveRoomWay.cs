@@ -38,6 +38,10 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         [Key]
         public virtual int InObserveRoomWayId { get; set; }
 
+
+
+
+
         /// <summary>
         /// 进入留观室方式名称。
         /// </summary>
