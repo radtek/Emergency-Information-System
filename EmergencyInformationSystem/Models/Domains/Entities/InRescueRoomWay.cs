@@ -11,20 +11,26 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
     /// <summary>
     /// 进入抢救室方式。
     /// </summary>
+    /// <remarks>进入抢救室方式。抢救室专用的入室方式。</remarks>
     [Table("InRescueRoomWays")]
     public class InRescueRoomWay
     {
+        #region 构建
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="InRescueRoomWay"/> class.
+        /// 初始化实例<see cref="InRescueRoomWay"/>。
         /// </summary>
         public InRescueRoomWay()
         {
-
         }
 
+        #endregion
 
 
 
+
+
+        #region 实体属性
 
         /// <summary>
         /// 进入抢救室方式ID。
@@ -48,7 +54,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         public virtual bool IsHasAdditionalInfo { get; set; }
 
         /// <summary>
-        /// 是否用于空。
+        /// 是否用于表示空。
         /// </summary>
         public virtual bool IsUseForEmpty { get; set; }
 
@@ -60,5 +66,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         public virtual byte[] TimeStamp { get; set; }
 
         public virtual DateTime UpdateTime { get; set; }
+
+        #endregion
     }
 }

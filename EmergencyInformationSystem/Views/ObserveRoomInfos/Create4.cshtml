@@ -1,0 +1,326 @@
+﻿@model EmergencyInformationSystem.Models.Domains.Entities.ObserveRoomInfo
+
+@{
+    ViewBag.Title = "留观室病例信息表 - 新增";
+}
+
+@*面包屑区*@
+<div class="container">
+    <ol class="breadcrumb">
+        <li>@Html.ActionLink("主界面", "Index", "Home", null, new { @class = "btn-show-modal" })</li>
+        <li>@Html.ActionLink("留观室病例信息一览表", "Index", null, new { @class = "btn-show-modal" })</li>
+        <li class="active">新增</li>
+    </ol>
+</div>
+
+@*表单区*@
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(false, "", new { @class = "text-danger alert-danger" })
+
+    @Html.HiddenFor(model => model.PatientName)
+    @Html.HiddenFor(model => model.OutPatientNumber)
+    @Html.HiddenFor(model => model.Sex)
+    @Html.HiddenFor(model => model.BirthDate)
+    @Html.HiddenFor(model => model.DiagnosisNameOrigin)
+    @Html.HiddenFor(model => model.ReceiveTime)
+    @Html.HiddenFor(model => model.FirstDoctorName)
+
+    @Html.HiddenFor(model => model.KDJID)
+    @Html.HiddenFor(model => model.BRXXID)
+    @Html.HiddenFor(model => model.GHXXID)
+    @Html.HiddenFor(model => model.JZID)
+
+    <input type="hidden" name="PreviousRescueRoomInfoId" value="@ViewBag.PreviousRescueRoomInfoId" />
+
+    <div class="container">
+        @*标题*@
+        <div class="row ObserveRoomMainTitleRow">
+            <div class="h2 ObserveRoomMainTitleCell">
+                @ViewBag.Title
+            </div>
+        </div>
+
+        @*眉栏*@
+        @* 此时数据库还没有对应的眉栏存在，应通过自身Model传递。 *@
+        @Html.Partial("Header", new EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Header.Header(Model))
+
+        <hr />
+
+        @*入室*@
+        <div class="row ObserveRoomSecondTitleRow">
+            <div class="col-md-12 ObserveRoomSecondTitle">
+                入室
+            </div>
+
+            <div class="form-group col-md-offset-1 row ObserveRoomSecondTitleEditBlock">
+                @Html.LabelFor(model => model.InDepartmentTime, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    <input name="InDepartmentTime" id="InDepartmentTime" type="datetime-local" class="form-control" value=@(Model.InDepartmentTime.ToString("yyyy-MM-ddTHH:mm")) />
+                    @Html.ValidationMessageFor(model => model.InDepartmentTime, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="默认为接诊日期0点">！</button>
+                    <button type="button" class="btn btn-default btn-set-time-now" data-toggle="tooltip" data-placement="top" title="设置为当前时间" data-for-set-time-now="InDepartmentTime">现在</button>
+                </div>
+            </div>
+
+            <div class="form-group col-md-offset-1 row ObserveRoomSecondTitleEditBlock">
+                @Html.LabelFor(model => model.BedId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("BedId", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.BedId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-offset-1 row ObserveRoomSecondTitleEditBlock">
+                @Html.LabelFor(model => model.FirstNurseName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.FirstNurseName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FirstNurseName, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="可用工号">！</button>
+                </div>
+            </div>
+
+            <div class="form-group col-md-offset-1 row ObserveRoomSecondTitleEditBlock">
+                @Html.LabelFor(model => model.InObserveRoomWayId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.DropDownList("InObserveRoomWayId", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.InObserveRoomWayId, "", new { @class = "text-danger" })
+                </div>                
+            </div>
+
+            <div id="DivInObserveRoomWayRemarks" class="form-group col-md-offset-1 row ObserveRoomSecondTitleEditBlock" hidden="hidden">
+                @Html.LabelFor(model => model.InObserveRoomWayRemarks, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.InObserveRoomWayRemarks, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.InObserveRoomWayRemarks, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <hr />
+
+        @*预约*@
+        <div class="row ObserveRoomSecondTitleRow">
+            <div class="col-md-12 ObserveRoomSecondTitle">
+                预约
+            </div>
+
+            <div class="form-group col-md-offset-1 row ObserveRoomSecondTitleEditBlock">
+                @Html.LabelFor(model => model.DestinationFirstId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("DestinationFirstId", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.DestinationFirstId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div id="DivDestinationFirstTime" hidden="hidden" class="form-group col-md-offset-1 row ObserveRoomSecondTitleEditBlock">
+                @Html.LabelFor(model => model.DestinationFirstTime, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    <input name="DestinationFirstTime" id="DestinationFirstTime" type="datetime-local" class="form-control" value=@(Model.DestinationFirstTime?.ToString("yyyy-MM-ddTHH:mm")) />
+                    @Html.ValidationMessageFor(model => model.DestinationFirstTime, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-default btn-set-time-now" data-toggle="tooltip" data-placement="top" title="设置为当前时间" data-for-set-time-now="DestinationFirstTime">现在</button>
+                </div>
+            </div>
+
+            <div id="DivDestinationFirstContact" hidden="hidden" class="form-group col-md-offset-1 row ObserveRoomSecondTitleEditBlock">
+                @Html.LabelFor(model => model.DestinationFirstContact, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.DestinationFirstContact, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DestinationFirstContact, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="可用工号">！</button>
+                </div>
+            </div>
+
+            <div id="DivDestinationSecondId" hidden="hidden" class="form-group col-md-offset-1 row ObserveRoomSecondTitleEditBlock">
+                @Html.LabelFor(model => model.DestinationSecondId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("DestinationSecondId", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.DestinationSecondId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <hr />
+
+        @*离室*@
+        <div class="row ObserveRoomSecondTitleRow">
+            <div class="col-md-12 ObserveRoomSecondTitle">
+                离室
+            </div>
+
+            <div class="form-group col-md-offset-1 row ObserveRoomSecondTitleEditBlock">
+                @Html.LabelFor(model => model.DestinationId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("DestinationId", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.DestinationId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div id="DivDestinationRemarks" hidden="hidden" class="form-group col-md-offset-1 row ObserveRoomSecondTitleEditBlock">
+                @Html.LabelFor(model => model.DestinationRemarks, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DestinationRemarks, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DestinationRemarks, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div id="DivOutDepartmentTime" hidden="hidden" class="form-group col-md-offset-1 row ObserveRoomSecondTitleEditBlock">
+                @Html.LabelFor(model => model.OutDepartmentTime, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    <input name="OutDepartmentTime" id="OutDepartmentTime" type="datetime-local" class="form-control" value=@(Model.OutDepartmentTime?.ToString("yyyy-MM-ddTHH:mm")) />
+                    @Html.ValidationMessageFor(model => model.OutDepartmentTime, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-default btn-set-time-now" data-toggle="tooltip" data-placement="top" title="设置为当前时间" data-for-set-time-now="OutDepartmentTime">现在</button>
+                </div>
+            </div>
+
+            <div id="DivHandleNurse" hidden="hidden" class="form-group col-md-offset-1 row ObserveRoomSecondTitleEditBlock">
+                @Html.LabelFor(model => model.HandleNurse, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.HandleNurse, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.HandleNurse, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="可用工号">！</button>
+                </div>
+            </div>
+
+            <div id="DivDiagnosisName" hidden="hidden" class="form-group col-md-offset-1 row ObserveRoomSecondTitleEditBlock">
+                @Html.LabelFor(model => model.DiagnosisName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DiagnosisName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DiagnosisName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <hr />
+
+        <div class="form-group ObserveRoomSecondTitleSubmitBlock">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="确定" class="btn btn-info btn-show-modal" />
+            </div>
+        </div>
+    </div>
+}
+
+@section scripts{
+    @Scripts.Render("~/bundles/EisNormal")
+}
+
+<script>
+    $(document).ready(function () {
+        //==动态组==
+        $(function () {
+            //基于“入室方式”而改变的
+            onchangeForInObserveRoomWayId();
+            $("#InObserveRoomWayId").on("change", function () {
+                onchangeForInObserveRoomWayId();
+            });
+
+            //基于“预约首选科室”而改变的
+            onchangeForDestinationFirstId();
+            $("#DestinationFirstId").on("change", function () {
+                onchangeForDestinationFirstId();
+            });
+
+            //基于“去向”而改变的
+            onchangeForDestinationId();
+            $("#DestinationId").on("change", function () {
+                onchangeForDestinationId();
+            });
+        });
+    });
+
+
+
+
+
+    //“InObserveRoomWayId”改变
+    function onchangeForInObserveRoomWayId() {
+        eisOnchangeUseJson('@Url.Action("CheckInObserveRoomWayIdForIsHasAdditionalInfo")', "InObserveRoomWayId", checkInObserveRoomWayIdForIsHasAdditionalInfoTrue, checkInObserveRoomWayIdForIsHasAdditionalInfoFalse)
+    }
+    function checkInObserveRoomWayIdForIsHasAdditionalInfoTrue() {
+        //影响“InObserveRoomWayRemarks”
+        $("#DivInObserveRoomWayRemarks").show(10, null);
+        $("#InObserveRoomWayRemarks").removeAttr("disabled");
+    }
+    function checkInObserveRoomWayIdForIsHasAdditionalInfoFalse() {
+        //影响“InObserveRoomWayRemarks”
+        $("#DivInObserveRoomWayRemarks").hide(10, null);
+        $("#InObserveRoomWayRemarks").attr("disabled", "disabled");
+    }
+
+    //“DestinationFirstId”改变
+    function onchangeForDestinationFirstId() {
+        eisOnchangeUseJson('@Url.Action("CheckDestinationFirstIdForIsUseForEmpty")', "DestinationFirstId", checkDestinationFirstIdForIsUseForEmptyTrue, checkDestinationFirstIdForIsUseForEmptyFalse)
+    }
+    function checkDestinationFirstIdForIsUseForEmptyTrue() {
+        //影响“DestinationFirstTime”、“DestinationFirstContact”、“DestinationSecondId”
+        $("#DivDestinationFirstTime").hide(10, null);
+        $("#DivDestinationFirstContact").hide(10, null);
+        $("#DivDestinationSecondId").hide(10, null);
+
+        $("#DestinationFirstTime").attr("disabled", "disabled");
+        $("#DestinationFirstContact").attr("disabled", "disabled");
+
+        $("#DestinationSecondId").val($("#DestinationFirstId").val().toString());
+    }
+    function checkDestinationFirstIdForIsUseForEmptyFalse() {
+        //影响“DestinationFirstTime”、“DestinationFirstContact”、“DestinationSecondId”
+        $("#DivDestinationFirstTime").show(10, null);
+        $("#DivDestinationFirstContact").show(10, null);
+        $("#DivDestinationSecondId").show(10, null);
+
+        $("#DestinationFirstTime").removeAttr("disabled");
+        $("#DestinationFirstContact").removeAttr("disabled");
+    }
+
+    //“DestinationId”改变
+    function onchangeForDestinationId() {
+        eisOnchangeUseJson('@Url.Action("CheckDestinationIdForIsHasAdditionalInfo")', "DestinationId", checkDestinationIdForIsHasAdditionalInfoTrue, checkDestinationIdForIsHasAdditionalInfoFalse);
+
+        eisOnchangeUseJson('@Url.Action("CheckDestinationIdForIsUseForEmpty")', "DestinationId", checkDestinationIdForIsUseForEmptyTrue, checkDestinationIdForIsUseForEmptyFalse);
+    }
+    function checkDestinationIdForIsHasAdditionalInfoTrue() {
+        //影响“DestinationRemarks”
+        $("#DivDestinationRemarks").show(10, null);
+        $("#DestinationRemarks").removeAttr("disabled");
+    }
+    function checkDestinationIdForIsHasAdditionalInfoFalse() {
+        //影响“DestinationRemarks”
+        $("#DivDestinationRemarks").hide(10, null);
+        $("#DestinationRemarks").attr("disabled", "disabled");
+    }
+    function checkDestinationIdForIsUseForEmptyTrue() {
+        //影响“OutDepartmentTime”、“HandleNurse”、“DiagnosisName”
+        $("#DivOutDepartmentTime").hide(10, null);
+        $("#DivHandleNurse").hide(10, null);
+        $("#DivDiagnosisName").hide(10, null);
+
+        $("#OutDepartmentTime").attr("disabled", "disabled");
+        $("#HandleNurse").attr("disabled", "disabled");
+        $("#DiagnosisName").attr("disabled", "disabled");
+    }
+    function checkDestinationIdForIsUseForEmptyFalse() {
+        //影响“OutDepartmentTime”、“HandleNurse”、“DiagnosisName”
+        $("#DivOutDepartmentTime").show(10, null);
+        $("#DivHandleNurse").show(10, null);
+        $("#DivDiagnosisName").show(10, null);
+
+        $("#OutDepartmentTime").removeAttr("disabled");
+        $("#HandleNurse").removeAttr("disabled");
+        $("#DiagnosisName").removeAttr("disabled");
+    }
+</script>

@@ -11,21 +11,26 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
     /// <summary>
     /// 去向。
     /// </summary>
-    /// <remarks>包含科室和非科室。</remarks>
+    /// <remarks>去向。表示离室后病人的去向，包括科室和非科室。各室通用。通过指定字段标识可使用室。</remarks>
     [Table("Destinations")]
     public class Destination
     {
+        #region 构建
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="Destination"/> class.
+        /// 初始化实例<see cref="Destination"/>。
         /// </summary>
         public Destination()
         {
-
         }
 
+        #endregion
 
 
 
+
+
+        #region 实体属性
 
         /// <summary>
         /// 去向ID。
@@ -52,7 +57,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// 是否用于留观室。
         /// </summary>
         public virtual bool IsUseForObserveRoom { get; set; }
-                
+
         /// <summary>
         /// 是否用于预约。
         /// </summary>
@@ -84,14 +89,35 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         public virtual bool IsClassifiedToOther { get; set; }
 
         /// <summary>
-        /// 是否用于空。
+        /// 是否用于表示空。
         /// </summary>
         public virtual bool IsUseForEmpty { get; set; }
+
+        /// <summary>
+        /// 优先级。
+        /// </summary>
+        [Obsolete]
+        public virtual bool Priority { get; set; }
+
+        /// <summary>
+        /// 优先级。
+        /// </summary>
+        public virtual int Priority2 { get; set; }
 
         /// <summary>
         /// 是否有额外信息。
         /// </summary>
         public virtual bool IsHasAdditionalInfo { get; set; }
+
+        /// <summary>
+        /// 是否去往抢救室。
+        /// </summary>
+        public virtual bool IsGotoRescueRoom { get; set; }
+
+        /// <summary>
+        /// 是否去往留观室。
+        /// </summary>
+        public virtual bool IsGotoObserveRoom { get; set; }
 
 
 
@@ -102,14 +128,18 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
 
         public virtual DateTime UpdateTime { get; set; }
 
+        #endregion
 
 
 
+
+
+        #region 实例属性
 
         /// <summary>
-        /// 用于表示的去向分类。
+        /// 去向类别。
         /// </summary>
-        /// <remarks>如果同时归属多个分类，则用“|”分割。</remarks>
+        /// <remarks>用于表示去向的类别。如果同时归属多个分类，则用“|”串联。</remarks>
         public string DestinationCategoryNameConcat
         {
             get
@@ -146,5 +176,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
                 return name;
             }
         }
+
+        #endregion
     }
 }

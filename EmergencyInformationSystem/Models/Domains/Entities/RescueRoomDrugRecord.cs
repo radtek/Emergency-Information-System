@@ -11,20 +11,26 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
     /// <summary>
     /// 抢救室用药项。
     /// </summary>
+    /// <remarks>抢救室用药项。抢救室病例的用药项。</remarks>
     [Table("RescueRoomDrugRecords")]
     public class RescueRoomDrugRecord
     {
+        #region 构建
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="RescueRoomDrugRecord"/> class.
+        /// 初始化实例<see cref="RescueRoomDrugRecord"/>。
         /// </summary>
         public RescueRoomDrugRecord()
         {
-
         }
 
+        #endregion
 
 
 
+
+
+        #region 实体属性
 
         /// <summary>
         /// 抢救室用药项ID。
@@ -47,7 +53,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
 
 
         /// <summary>
-        /// 代码。
+        /// 项目代码。
         /// </summary>
         [Display(Name = "代码")]
         public virtual string ProductCode { get; set; }
@@ -83,6 +89,12 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}")]
         public virtual DateTime? PrescriptionTime { get; set; }
 
+        /// <summary>
+        /// 用法。
+        /// </summary>
+        [Display(Name = "用法")]
+        public virtual string Usage { get; set; }
+
 
 
 
@@ -93,6 +105,12 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// <remarks>dbo.MZ_CFMXB的CFMXID。</remarks>
         public virtual Guid CFMXID { get; set; }
 
+        /// <summary>
+        /// “创新”“处方ID”。
+        /// </summary>
+        /// <remarks>dbo.MZ_CFMXB的CFID。可以用于分组——相同的为一组。</remarks>
+        public virtual Guid CFID { get; set; }
+
 
 
 
@@ -102,13 +120,39 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
 
         public virtual DateTime UpdateTime { get; set; }
 
+        #endregion
 
 
 
+
+
+        #region 导航属性
 
         /// <summary>
         /// 归属的抢救室病例。
         /// </summary>
         public virtual RescueRoomInfo RescueRoomInfo { get; set; }
+
+        #endregion
+
+
+
+
+
+        #region 实例属性
+
+        /// <summary>
+        /// 用量-完整。
+        /// </summary>
+        [Display(Name = "用量")]
+        public string DosageQuantityFull
+        {
+            get
+            {
+                return this.DosageQuantity + " " + this.DosageUnit;
+            }
+        }
+
+        #endregion
     }
 }

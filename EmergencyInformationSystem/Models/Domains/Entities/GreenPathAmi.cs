@@ -9,25 +9,31 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace EmergencyInformationSystem.Models.Domains.Entities
 {
     /// <summary>
-    /// 绿色通道——急性心肌梗死。
+    /// 绿色通道-急性心肌梗死。
     /// </summary>
+    /// <remarks>绿色通道-急性心肌梗死。表示抢救室病例的绿色通道-急性心肌梗死的信息。</remarks>
     [Table("GreenPathAmis")]
     public class GreenPathAmi
     {
+        #region 构建
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="GreenPathAmi"/> class.
+        /// 初始化实例<see cref="GreenPathAmi"/>。
         /// </summary>
         public GreenPathAmi()
         {
-
         }
 
+        #endregion
 
 
 
+
+
+        #region 实体属性
 
         /// <summary>
-        /// 绿色通道——急性心肌梗死ID。
+        /// 绿色通道-急性心肌梗死ID。
         /// </summary>
         [Key]
         public virtual Guid GreenPathAmiId { get; set; }
@@ -89,6 +95,12 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         public virtual DateTime? FinishPathTime { get; set; }
 
         /// <summary>
+        /// 是否滞留。
+        /// </summary>
+        [Display(Name = "滞留")]
+        public virtual bool IsHeldUp { get; set; }
+
+        /// <summary>
         /// 存在问题。
         /// </summary>
         [Display(Name = "存在问题")]
@@ -103,21 +115,29 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
 
         public virtual DateTime UpdateTime { get; set; }
 
+        #endregion
 
 
 
+
+
+        #region 导航属性
 
         /// <summary>
         /// 归属的抢救室病例。
         /// </summary>
         public virtual RescueRoomInfo RescueRoomInfo { get; set; }
 
+        #endregion
 
 
 
+
+
+        #region 实例属性
 
         /// <summary>
-        /// 通道停留时间。
+        /// 通道停留时长。
         /// </summary>
         [Display(Name = "通道停留时长")]
         public TimeSpan? During
@@ -132,7 +152,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         }
 
         /// <summary>
-        /// 是否已完成通道。
+        /// 是否完成通道。
         /// </summary>
         public bool IsFinished
         {
@@ -141,5 +161,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
                 return this.FinishPathTime.HasValue;
             }
         }
+
+        #endregion
     }
 }

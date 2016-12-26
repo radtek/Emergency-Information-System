@@ -11,20 +11,26 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
     /// <summary>
     /// 抢救室病例。
     /// </summary>
+    /// <remarks>抢救室病例。表示抢救室的病例。包含冗余的个人信息。</remarks>
     [Table("RescueRoomInfos")]
     public class RescueRoomInfo
     {
+        #region 构建
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="RescueRoomInfo"/> class.
+        /// 初始化实例<see cref="RescueRoomInfo"/>。
         /// </summary>
         public RescueRoomInfo()
         {
-
         }
 
+        #endregion
 
 
 
+
+
+        #region 实体属性
 
         /// <summary>
         /// 抢救室病例ID。
@@ -96,7 +102,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// 床位号。
         /// </summary>
         [Obsolete]
-        [Display(Name = "床位号")]
+        [Display(Name = "床位")]
         public virtual string BedNumber { get; set; }
 
         /// <summary>
@@ -120,9 +126,9 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         public virtual int InRescueRoomWayId { get; set; }
 
         /// <summary>
-        /// 入室方式明细。
+        /// 进入抢救室方式明细。
         /// </summary>
-        /// <remarks>进入抢救室方式为有额外信息时才有意义。</remarks>
+        /// <remarks>有额外信息时才有意义。</remarks>
         [Display(Name = "入室方式明细")]
         public virtual string InRescueRoomWayRemarks { get; set; }
 
@@ -160,7 +166,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// <summary>
         /// 绿色通道明细。
         /// </summary>
-        /// <remarks>绿色通道为有额外信息时才有意义。</remarks>
+        /// <remarks>有额外信息时才有意义。</remarks>
         [Display(Name = "绿色通道明细")]
         public virtual string GreenPathCategoryRemarks { get; set; }
 
@@ -228,7 +234,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// <summary>
         /// 去向明细。
         /// </summary>
-        /// <remarks>去向为有额外信息时才有意义。</remarks>
+        /// <remarks>有额外信息时才有意义。</remarks>
         [Display(Name = "去向明细")]
         public virtual string DestinationRemarks { get; set; }
 
@@ -241,7 +247,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// <summary>
         /// 离室诊断名称。
         /// </summary>
-        [Display(Name = "离室诊断名称")]
+        [Display(Name = "离室诊断")]
         public virtual string DiagnosisName { get; set; }
 
 
@@ -281,9 +287,13 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
 
         public virtual DateTime UpdateTime { get; set; }
 
+        #endregion
 
 
 
+
+
+        #region 导航属性
 
         /// <summary>
         /// 床位。
@@ -291,7 +301,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         public virtual Bed Bed { get; set; }
 
         /// <summary>
-        /// 进入留观室方式。
+        /// 进入抢救室方式。
         /// </summary>
         public virtual InRescueRoomWay InRescueRoomWay { get; set; }
 
@@ -335,10 +345,14 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// </summary>
         public virtual ObserveRoomInfo NextObserveRoomInfo { get; set; }
 
+        #endregion
 
 
 
 
+
+        #region 导航集合
+        
         /// <summary>
         /// 抢救室会诊项。
         /// </summary>   
@@ -355,18 +369,27 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         public virtual List<RescueRoomDrugRecord> RescueRoomDrugRecords { get; set; }
 
         /// <summary>
-        /// 绿色通道——急性心肌梗死。
+        /// 抢救室治疗项。
+        /// </summary>
+        public virtual List<RescueRoomTreatmentRecord> RescueRoomTreatmentRecords { get; set; }
+
+        /// <summary>
+        /// 绿色通道-急性心肌梗死。
         /// </summary>
         public virtual List<GreenPathAmi> GreenPathAmis { get; set; }
 
         /// <summary>
-        /// 绿色通道——急性脑卒中。
+        /// 绿色通道-急性脑卒中。
         /// </summary>
         public virtual List<GreenPathStk> GreenStks { get; set; }
 
+        #endregion
 
 
 
+
+
+        #region 实例属性
 
         /// <summary>
         /// 就诊年龄名称。
@@ -457,7 +480,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         {
             get
             {
-                if (IsGreenPath)
+                if (this.IsGreenPath)
                     return "是";
                 else
                     return "否";
@@ -538,7 +561,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         }
 
         /// <summary>
-        /// 是否已离室。
+        /// 是否离室。
         /// </summary>
         [Display(Name = "离室")]
         public bool IsLeave
@@ -550,7 +573,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         }
 
         /// <summary>
-        /// 是否已离室名称。
+        /// 是否离室名称。
         /// </summary>
         public string IsLeaveName
         {
@@ -574,6 +597,37 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         }
 
         /// <summary>
+        /// 最初入室时间。
+        /// </summary>
+        /// <remarks>连续在抢救室和留观室中的最初入室时间。</remarks>
+        public DateTime InDepartmentTimeActual
+        {
+            get
+            {
+                if (this.PreviousObserveRoomInfo == null)
+                    return this.InDepartmentTime;
+                else
+                    return this.PreviousObserveRoomInfo.InDepartmentTimeActual;
+            }
+        }
+
+        /// <summary>
+        /// 连续滞留时长。
+        /// </summary>
+        /// <remarks>从最初入室到当前（未离室）或离室时的累积时长。</remarks>
+        [Display(Name = "连续滞留时长")]
+        public TimeSpan DuringDetained
+        {
+            get
+            {
+                if (this.IsLeave)
+                    return this.OutDepartmentTime.Value - this.InDepartmentTimeActual;
+                else
+                    return DateTime.Now - this.InDepartmentTimeActual;
+            }
+        }
+
+        /// <summary>
         /// 停留时长小时数。
         /// </summary>
         public int? DuringHours
@@ -584,6 +638,10 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
             }
         }
 
+        /// <summary>
+        /// 停留时长分组。
+        /// </summary>
+        /// <remarks>基于停留时长小时数进行的分组。</remarks>
         public string DuringGroupName
         {
             get
@@ -604,6 +662,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// <summary>
         /// 去向名称-完整。
         /// </summary>
+        /// <remarks>整合附加信息。</remarks>
         [Display(Name = "去向")]
         public string DestinationNameFull
         {
@@ -665,5 +724,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
                     }
             }
         }
+
+        #endregion
     }
 }

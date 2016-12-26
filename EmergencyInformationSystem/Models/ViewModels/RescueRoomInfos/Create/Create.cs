@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations;
 namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Create
 {
     /// <summary>
-    /// 抢救室——新增——1。
+    /// 抢救室——新增1。
     /// </summary>
     public class Create
     {

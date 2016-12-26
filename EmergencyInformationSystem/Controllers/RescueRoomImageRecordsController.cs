@@ -14,32 +14,13 @@ namespace EmergencyInformationSystem.Controllers
     public class RescueRoomImageRecordsController : Controller
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="RescueRoomImageRecordsController"/> class.
-        /// </summary>
-        public RescueRoomImageRecordsController()
-        {
-            db = new EiSDbContext();
-        }
-
-
-
-
-
-        /// <summary>
-        /// EiS数据上下文。
-        /// </summary>
-        private EiSDbContext db;
-
-
-
-
-
-        /// <summary>
         /// 一览——部分。
         /// </summary>
         /// <param name="rescueRoomInfoId">归属的抢救室病例ID。</param>
         public ActionResult IndexPartial(int rescueRoomInfoId)
         {
+            var db = new EiSDbContext();
+
             var target = db.RescueRoomInfos.Find(rescueRoomInfoId);
             if (target == null)
                 return null;
@@ -59,6 +40,8 @@ namespace EmergencyInformationSystem.Controllers
         /// <param name="id">归属的抢救室病例ID。</param>
         public ActionResult Refresh(int rescueRoomInfoId)
         {
+            var db = new EiSDbContext();
+
             var target = db.RescueRoomInfos.Find(rescueRoomInfoId);
             if (target == null)
                 return HttpNotFound();
@@ -78,7 +61,7 @@ namespace EmergencyInformationSystem.Controllers
 
                 newRescueRoomImageRecord.BOOKID = (string)row["BOOKID"];
 
-                if (db.RescueRoomImageRecords.Any(c => c.BOOKID == newRescueRoomImageRecord.BOOKID))
+                if (db.RescueRoomImageRecords.Any(c => c.BOOKID == newRescueRoomImageRecord.BOOKID) || (target.OutDepartmentTime.HasValue && target.OutDepartmentTime.Value <= (DateTime?)row["CHKTIME"]))
                     continue;
 
                 newRescueRoomImageRecord.RescueRoomImageRecordId = Guid.NewGuid();
@@ -93,6 +76,22 @@ namespace EmergencyInformationSystem.Controllers
                 newRescueRoomImageRecord.UpdateTime = DateTime.Now;
 
                 db.RescueRoomImageRecords.Add(newRescueRoomImageRecord);
+                db.SaveChanges();
+            }
+
+            //删除检查时间早于接诊时间的影像项
+            if (true)
+            {
+                var listRescueRoomImageRecord = db.RescueRoomImageRecords.Where(c => c.RescueRoomInfoId == target.RescueRoomInfoId && c.CheckTime < target.ReceiveTime).ToList();
+                db.RescueRoomImageRecords.RemoveRange(listRescueRoomImageRecord);
+                db.SaveChanges();
+            }
+
+            //删除检查时间超过离室时间的影像项
+            if (target.OutDepartmentTime.HasValue)
+            {
+                var listRescueRoomImageRecord = db.RescueRoomImageRecords.Where(c => c.RescueRoomInfoId == target.RescueRoomInfoId && target.OutDepartmentTime <= c.CheckTime).ToList();
+                db.RescueRoomImageRecords.RemoveRange(listRescueRoomImageRecord);
                 db.SaveChanges();
             }
 

@@ -104,9 +104,18 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         public DbSet<RescueRoomImageRecord> RescueRoomImageRecords { get; set; }
 
         /// <summary>
+        /// 抢救室治疗项。
+        /// </summary>
+        public DbSet<RescueRoomTreatmentRecord> RescueRoomTreatmentRecords { get; set; }
+
+        /// <summary>
         /// 抢救室病例。
         /// </summary>
         public DbSet<RescueRoomInfo> RescueRoomInfos { get; set; }
+
+        public DbSet<RescueRoomDrugRecordDefinition> RescueRoomDrugRecordDefinitions { get; set; }
+
+        public DbSet<RescueRoomTreatmentRecordDefinition> RescueRoomTreatmentRecordDefinitions { get; set; }
 
 
 
@@ -116,9 +125,15 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<RescueRoomInfo>()
-                
-            
+            modelBuilder.Entity<RescueRoomInfo>()                
+                .HasOptional(c => c.NextObserveRoomInfo)
+                .WithOptionalDependent(c => c.PreviousRescueRoomInfo)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<ObserveRoomInfo>()
+                .HasOptional(c => c.NextRescueRoomInfo)
+                .WithOptionalDependent(c => c.PreviousObserveRoomInfo)
+                .WillCascadeOnDelete(false);
         }
     }
 }

@@ -11,21 +11,26 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
     /// <summary>
     /// 抢救室会诊项。
     /// </summary>
-    /// <remarks>表示抢救室病例的会诊信息。</remarks>
+    /// <remarks>抢救室会诊项。表示抢救室病例的会诊信息。</remarks>
     [Table("RescueRoomConsultations")]
     public class RescueRoomConsultation
     {
+        #region 构建
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="RescueRoomConsultation"/> class.
+        /// 初始化实例<see cref="RescueRoomConsultation"/>。
         /// </summary>
         public RescueRoomConsultation()
         {
-
         }
 
+        #endregion
 
 
 
+
+
+        #region 实体属性
 
         /// <summary>
         /// 抢救室会诊项ID。
@@ -85,9 +90,13 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
 
         public virtual DateTime UpdateTime { get; set; }
 
+        #endregion
 
 
 
+
+
+        #region 导航属性
 
         /// <summary>
         /// 归属的抢救室病例。
@@ -99,9 +108,13 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// </summary>
         public virtual Destination ConsultationDepartment { get; set; }
 
+        #endregion
 
 
 
+
+        
+        #region 实例属性
 
         /// <summary>
         /// 会诊科室名称——去向名称。
@@ -114,5 +127,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
                 return this.ConsultationDepartment.DestinationName;
             }
         }
+
+        #endregion
     }
 }

@@ -11,21 +11,27 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
     /// <summary>
     /// 绿色通道类型。
     /// </summary>
+    /// <remarks>绿色通道类型。表示抢救室病例归属的绿色通道类型，包括空值。</remarks>
     [Table("GreenPathCategories")]
     public class GreenPathCategory
     {
+        #region 构建
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="GreenPathCategory"/> class.
+        /// 初始化实例<see cref="GreenPathCategory"/>。
         /// </summary>
         public GreenPathCategory()
         {
-
         }
 
+        #endregion
 
 
 
 
+
+        #region 实体属性
+        
         /// <summary>
         /// 绿色通道类型ID。
         /// </summary>
@@ -66,5 +72,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         public virtual byte[] TimeStamp { get; set; }
 
         public virtual DateTime UpdateTime { get; set; }
+
+        #endregion
     }
 }

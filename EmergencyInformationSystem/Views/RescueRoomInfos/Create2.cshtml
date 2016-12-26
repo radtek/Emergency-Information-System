@@ -7,8 +7,8 @@
 @*面包屑区*@
 <div class="container">
     <ol class="breadcrumb">
-        <li>@Html.ActionLink("主界面", "Index", "Home", null, null)</li>
-        <li>@Html.ActionLink("抢救室病例信息一览表", "Index")</li>
+        <li>@Html.ActionLink("主界面", "Index", "Home", null, new { @class = "btn-show-modal" })</li>
+        <li>@Html.ActionLink("抢救室病例信息一览表", "Index", null, new { @class = "btn-show-modal" })</li>
         <li class="active">新增</li>
     </ol>
 </div>
@@ -31,3 +31,7 @@
     @*列表区*@
     @Html.Partial("Create2ListGhxx", Model.ListGhxx)
 </div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/EisNormal")
+}

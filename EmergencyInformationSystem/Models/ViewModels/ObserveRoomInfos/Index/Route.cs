@@ -15,22 +15,22 @@ namespace EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Index
         /// <summary>
         /// Initializes a new instance of the <see cref="Route"/> class.
         /// </summary>
-        /// <param name="inTimeStart">入室时间开始点。</param>
-        /// <param name="inTimeEnd">入室时间结束点。</param>
-        /// <param name="outTimeStart">离室时间开始点。</param>
-        /// <param name="outTimeEnd">离室时间结束点。</param>       
-        /// <param name="isLeave">是否已离室。</param>
+        /// <param name="inDepartmentTimeStart">入室时间起点。</param>
+        /// <param name="inDepartmentTimeEnd">入室时间结点。</param>
+        /// <param name="outDepartmentTimeStart">离室时间起点。</param>
+        /// <param name="outDepartmentTimeEnd">离室时间结点。</param>       
+        /// <param name="isLeave">是否离室。</param>
         /// <param name="patientName">患者姓名。</param>
         /// <param name="outPatientNumber">卡号。</param>
         /// <param name="page">页码。</param>
         /// <param name="perPage">每页项目数。</param>
         /// <param name="count">项目总数。</param>
-        public Route(DateTime? inTimeStart, DateTime? inTimeEnd, DateTime? outTimeStart, DateTime? outTimeEnd, bool? isLeave, string patientName, string outPatientNumber, int page, int perPage, int count)
+        public Route(DateTime? inDepartmentTimeStart, DateTime? inDepartmentTimeEnd, DateTime? outDepartmentTimeStart, DateTime? outDepartmentTimeEnd, bool? isLeave, string patientName, string outPatientNumber, int page, int perPage, int count)
         {
-            this.InTimeStart = inTimeStart;
-            this.InTimeEnd = inTimeEnd;
-            this.OutTimeStart = outTimeStart;
-            this.OutTimeEnd = outTimeEnd;
+            this.InDepartmentTimeStart = inDepartmentTimeStart;
+            this.InDepartmentTimeEnd = inDepartmentTimeEnd;
+            this.OutDepartmentTimeStart = outDepartmentTimeStart;
+            this.OutDepartmentTimeEnd = outDepartmentTimeEnd;
             this.IsLeave = isLeave;
             this.PatientName = patientName;
             this.OutPatientNumber = outPatientNumber;
@@ -46,29 +46,29 @@ namespace EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Index
 
 
         /// <summary>
-        /// 入室时间开始点。
+        /// 入室时间起点。
         /// </summary>
         [Display(Name = "入室时间")]
-        public DateTime? InTimeStart { get; set; }
+        public DateTime? InDepartmentTimeStart { get; set; }
 
         /// <summary>
-        /// 入室时间结束点。
+        /// 入室时间结点。
         /// </summary>
-        public DateTime? InTimeEnd { get; set; }
+        public DateTime? InDepartmentTimeEnd { get; set; }
 
         /// <summary>
-        /// 离室时间开始点。
+        /// 离室时间起点。
         /// </summary>
         [Display(Name = "离室时间")]
-        public DateTime? OutTimeStart { get; set; }
+        public DateTime? OutDepartmentTimeStart { get; set; }
 
         /// <summary>
-        /// 离室时间结束点。
+        /// 离室时间结点。
         /// </summary>
-        public DateTime? OutTimeEnd { get; set; }
+        public DateTime? OutDepartmentTimeEnd { get; set; }
 
         /// <summary>
-        /// 是否已离室。
+        /// 是否离室。
         /// </summary>
         [Display(Name = "离室")]
         public bool? IsLeave { get; set; }
@@ -133,7 +133,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Index
         /// <param name="page">页码。</param>
         public Route GetRoute(int page)
         {
-            return new Route(this.InTimeStart, this.InTimeEnd, this.OutTimeStart, this.OutTimeEnd, this.IsLeave, this.PatientName, this.OutPatientNumber, page, this.PerPage, this.Count);
+            return new Route(this.InDepartmentTimeStart, this.InDepartmentTimeEnd, this.OutDepartmentTimeStart, this.OutDepartmentTimeEnd, this.IsLeave, this.PatientName, this.OutPatientNumber, page, this.PerPage, this.Count);
         }
     }
 }

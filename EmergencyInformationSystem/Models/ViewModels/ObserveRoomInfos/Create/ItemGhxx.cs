@@ -17,25 +17,18 @@ namespace EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Create
         /// <summary>
         /// Initializes a new instance of the <see cref="ItemGhxx"/> class.
         /// </summary>
-        protected ItemGhxx()
-        {
-
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ItemGhxx"/> class.
-        /// </summary>
         /// <param name="outPatientNumber">卡号。</param>
         /// <param name="KDJID">卡登记ID。</param>
         /// <param name="GHXX">挂号信息。</param>
-        /// <param name="dbTrasen">创新数据库。</param>
-        public ItemGhxx(string outPatientNumber, Guid KDJID, VI_MZ_GHXX GHXX, TrasenDbContext dbTrasen)
+        public ItemGhxx(string outPatientNumber, Guid KDJID, VI_MZ_GHXX GHXX)
         {
+            var dbTrasen = new TrasenDbContext("TrasenConnection");
+
             this.RegisterTime = GHXX.GHSJ;
 
-            var JZJLs = dbTrasen.MZYS_JZJL.Where(c => c.GHXXID == GHXX.GHXXID);
+            var listJZJL = dbTrasen.MZYS_JZJL.Where(c => c.GHXXID == GHXX.GHXXID).OrderByDescending(c => c.JSSJ).ThenBy(c => c.JZID).ToList();
 
-            this.ListJzjl = JZJLs.ToList().Select(c => new ItemJzjl(outPatientNumber, KDJID, c, dbTrasen)).ToList();
+            this.ListJzjl = listJZJL.Select(c => new ItemJzjl(outPatientNumber, KDJID, c)).ToList();
         }
 
 

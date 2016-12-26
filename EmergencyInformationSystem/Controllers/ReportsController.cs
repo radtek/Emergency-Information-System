@@ -5,13 +5,22 @@ using System.Web;
 using System.Web.Mvc;
 
 using EmergencyInformationSystem.Models.Domains.Entities;
-using EmergencyInformationSystem.Models.ViewModels.Reports.IndexHandOver;
-using EmergencyInformationSystem.Models.ViewModels.Reports.IndexDay;
-using EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsMonth;
-using EmergencyInformationSystem.Models.ViewModels.Reports.IndexRescue;
-using EmergencyInformationSystem.Models.ViewModels.Reports.IndexGreenPath;
-using EmergencyInformationSystem.Models.ViewModels.Reports.IndexDuring;
-using EmergencyInformationSystem.Models.ViewModels.Reports.IndexDestination;
+
+using EmergencyInformationSystem.Models.ViewModels.Reports.IndexRescueRoomHandOver;
+using EmergencyInformationSystem.Models.ViewModels.Reports.IndexRescueRoomDay;
+using EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueRoomMonth;
+
+using EmergencyInformationSystem.Models.ViewModels.Reports.IndexRescueRoomRescue;
+using EmergencyInformationSystem.Models.ViewModels.Reports.IndexRescueRoomGreenPath;
+using EmergencyInformationSystem.Models.ViewModels.Reports.IndexRescueRoomDuring;
+using EmergencyInformationSystem.Models.ViewModels.Reports.IndexRescueRoomDestination;
+
+using EmergencyInformationSystem.Models.ViewModels.Reports.IndexObserveRoomHandOver;
+using EmergencyInformationSystem.Models.ViewModels.Reports.IndexObserveRoomDay;
+using EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsObserveRoomMonth;
+
+using EmergencyInformationSystem.Models.ViewModels.Reports.IndexObserveRoomDuring;
+using EmergencyInformationSystem.Models.ViewModels.Reports.IndexObserveRoomDestination;
 
 namespace EmergencyInformationSystem.Controllers
 {
@@ -20,27 +29,6 @@ namespace EmergencyInformationSystem.Controllers
     /// </summary>
     public class ReportsController : Controller
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ReportsController"/> class.
-        /// </summary>
-        public ReportsController()
-        {
-            db = new EiSDbContext();
-        }
-
-
-
-
-
-        /// <summary>
-        /// EiS数据上下文。
-        /// </summary>
-        private EiSDbContext db;
-
-
-
-
-
         /// <summary>
         /// 报表中心主界面。
         /// </summary>
@@ -54,11 +42,11 @@ namespace EmergencyInformationSystem.Controllers
 
 
         /// <summary>
-        /// 交班表。
+        /// 抢救室交班表。
         /// </summary>
-        public ActionResult IndexHandOver()
+        public ActionResult IndexRescueRoomHandOver()
         {
-            var targetV = new IndexHandOver(db);
+            var targetV = new IndexRescueRoomHandOver();
 
             return View(targetV);
         }
@@ -68,15 +56,15 @@ namespace EmergencyInformationSystem.Controllers
 
 
         /// <summary>
-        /// 日报表。
+        /// 抢救室日报表。
         /// </summary>
-        /// <param name="time">指定的时间。只使用其中日期部分。</param>
-        public ActionResult IndexDay(DateTime? time)
+        /// <param name="time">指定的日报表日期。只使用其中日期部分。</param>
+        public ActionResult IndexRescueRoomDay(DateTime? time)
         {
             if (time == null)
                 time = DateTime.Now;
 
-            var targetV = new IndexDay(time.Value, db);
+            var targetV = new IndexRescueRoomDay(time.Value);
 
             return View(targetV);
         }
@@ -86,77 +74,154 @@ namespace EmergencyInformationSystem.Controllers
 
 
         /// <summary>
-        /// 月报表。
+        /// 抢救室月报表。
         /// </summary>
-        /// <param name="time">指定的时间，只使用其中日期部分。</param>
-        public ActionResult StatisticsMonth(DateTime? time)
+        /// <param name="time">指定的月报表涵盖时间点，只使用其中日期部分。</param>
+        public ActionResult StatisticsRescueRoomMonth(DateTime? time)
         {
             if (time == null)
                 time = DateTime.Now;
 
-            var targetV = new StatisticsMonth(time.Value, db);
+            var targetV = new StatisticsRescueRoomMonth(time.Value);
 
             return View(targetV);
         }
 
         /// <summary>
-        /// 月报表抢救项表。
+        /// 抢救室统计项明细抢救项一览。
         /// </summary>
-        /// <param name="time">The time.</param>
-        /// <param name="isRescue">if set to <c>true</c> [is rescue].</param>
-        /// <param name="rescueResultId">The rescue result identifier.</param>
-        /// <returns>ActionResult.</returns>
-        public ActionResult IndexRescue(DateTime time, bool isRescue, int? rescueResultId)
-        {
-            var targetV = new IndexRescue(time, isRescue, rescueResultId, db);
+        /// <param name="time">指定的月报表涵盖时间点，只使用其中日期部分。</param>
+        /// <param name="isRescue">是否抢救。</param>
+        /// <param name="rescueResultId">抢救结果ID。</param>
+        public ActionResult IndexRescueRoomRescue(DateTime time, bool isRescue, int? rescueResultId)
+        {         
+            var targetV = new IndexRescueRoomRescue(time, isRescue, rescueResultId);
 
             return View(targetV);
         }
 
         /// <summary>
-        /// 月报表绿色通道项表。
+        /// 抢救室统计项明细绿色通道项一览。
         /// </summary>
-        /// <param name="time">The time.</param>
-        /// <param name="isGreenPath">if set to <c>true</c> [is green path].</param>
-        /// <param name="greenPathCategoryId">The green path category identifier.</param>
-        /// <param name="greenPathCategoryRemarks">The green path category remarks.</param>
-        /// <returns>ActionResult.</returns>
-        public ActionResult IndexGreenPath(DateTime time, bool? isGreenPath, int? greenPathCategoryId, string greenPathCategoryRemarks)
+        /// <param name="time">指定的月报表涵盖时间点，只使用其中日期部分。</param>
+        /// <param name="isGreenPath">是否绿色通道。</param>
+        /// <param name="greenPathCategoryId">绿色通道类别ID。</param>
+        /// <param name="greenPathCategoryRemarks">绿色通道明细。</param>
+        public ActionResult IndexRescueRoomGreenPath(DateTime time, bool? isGreenPath, int? greenPathCategoryId, string greenPathCategoryRemarks)
         {
-            var targetV = new IndexGreenPath(time, isGreenPath, greenPathCategoryId, greenPathCategoryRemarks, db);
+            var targetV = new IndexRescueRoomGreenPath(time, isGreenPath, greenPathCategoryId, greenPathCategoryRemarks);
 
             return View(targetV);
         }
 
         /// <summary>
-        /// Indexes the during.
+        /// 抢救室统计项明细时长项一览。
         /// </summary>
-        /// <param name="time">The time.</param>
-        /// <param name="duringHours">The during hours.</param>
-        /// <param name="duringMin">The during minimum.</param>
-        /// <param name="duringMax">The during maximum.</param>
-        /// <returns>ActionResult.</returns>
-        public ActionResult IndexDuring(DateTime time, int? duringHours, int? duringMin, int? duringMax)
+        /// <param name="time">指定的月报表涵盖时间点，只使用其中日期部分。</param>
+        /// <param name="duringHours">时长。</param>
+        /// <param name="duringMin">时长范围下界。</param>
+        /// <param name="duringMax">时长范围上界。</param>
+        public ActionResult IndexRescueRoomDuring(DateTime time, int? duringHours, int? duringMin, int? duringMax)
         {
-            var targetV = new IndexDuring(time, duringHours, duringMin, duringMax, db);
+            var targetV = new IndexRescueRoomDuring(time, duringHours, duringMin, duringMax);
 
             return View(targetV);
         }
 
         /// <summary>
-        /// Indexes the destination.
+        /// 抢救室统计项明细去向项一览。
         /// </summary>
-        /// <param name="time">The time.</param>
-        /// <param name="isClassifiedToInDepartment">if set to <c>true</c> [is classified to in department].</param>
-        /// <param name="isClassifiedToOutDepartment">if set to <c>true</c> [is classified to out department].</param>
-        /// <param name="isClassifiedLeave">if set to <c>true</c> [is classified leave].</param>
-        /// <param name="isClassifiedToOther">if set to <c>true</c> [is classified to other].</param>
-        /// <param name="destinationId">The destination identifier.</param>
-        /// <param name="destinationRemarks">The destination remarks.</param>
-        /// <returns>ActionResult.</returns>
-        public ActionResult IndexDestination(DateTime time, bool? isClassifiedToInDepartment, bool? isClassifiedToOutDepartment, bool? isClassifiedLeave, bool? isClassifiedToOther, int? destinationId, string destinationRemarks)
+        /// <param name="time">指定的月报表涵盖时间点，只使用其中日期部分。</param>
+        /// <param name="isClassifiedToInDepartment">是否分类为住院科室。</param>
+        /// <param name="isClassifiedToOutDepartment">是否分类为门诊科室。</param>
+        /// <param name="isClassifiedLeave">是否分类为离开。</param>
+        /// <param name="isClassifiedToOther">是否分类为其他。</param>
+        /// <param name="destinationId">去向ID。</param>
+        /// <param name="destinationRemarks">去向明细。</param>
+        public ActionResult IndexRescueRoomDestination(DateTime time, bool? isClassifiedToInDepartment, bool? isClassifiedToOutDepartment, bool? isClassifiedLeave, bool? isClassifiedToOther, int? destinationId, string destinationRemarks)
         {
-            var targetV = new IndexDestination(time, isClassifiedToInDepartment, isClassifiedToOutDepartment, isClassifiedLeave, isClassifiedToOther, destinationId, destinationRemarks, db);
+            var targetV = new IndexRescueRoomDestination(time, isClassifiedToInDepartment, isClassifiedToOutDepartment, isClassifiedLeave, isClassifiedToOther, destinationId, destinationRemarks);
+
+            return View(targetV);
+        }
+
+
+        
+
+
+        /// <summary>
+        /// 留观室交班表。
+        /// </summary>
+        public ActionResult IndexObserveRoomHandOver()
+        {
+            var targetV = new IndexObserveRoomHandOver();
+
+            return View(targetV);
+        }
+
+
+
+
+
+        /// <summary>
+        /// 留观室日报表。
+        /// </summary>
+        /// <param name="time">指定的日报表日期。只使用其中日期部分。</param>
+        public ActionResult IndexObserveRoomDay(DateTime? time)
+        {
+            if (time == null)
+                time = DateTime.Now;
+
+            var targetV = new IndexObserveRoomDay(time.Value);
+
+            return View(targetV);
+        }
+
+
+
+
+
+        /// <summary>
+        /// 留观室月报表。
+        /// </summary>
+        /// <param name="time">指定的月报表涵盖时间点，只使用其中日期部分。</param>
+        public ActionResult StatisticsObserveRoomMonth(DateTime? time)
+        {
+            if (time == null)
+                time = DateTime.Now;
+
+            var targetV = new StatisticsObserveRoomMonth(time.Value);
+
+            return View(targetV);
+        }
+
+        /// <summary>
+        /// 留观室统计项明细时长项一览。
+        /// </summary>
+        /// <param name="time">指定的月报表涵盖时间点，只使用其中日期部分。</param>
+        /// <param name="duringHours">时长。</param>
+        /// <param name="duringMin">时长范围下界。</param>
+        /// <param name="duringMax">时长范围上界。</param>
+        public ActionResult IndexObserveRoomDuring(DateTime time, int? duringHours, int? duringMin, int? duringMax)
+        {
+            var targetV = new IndexObserveRoomDuring(time, duringHours, duringMin, duringMax);
+
+            return View(targetV);
+        }
+
+        /// <summary>
+        /// 留观室统计项明细去向项一览。
+        /// </summary>
+        /// <param name="time">指定的月报表涵盖时间点，只使用其中日期部分。</param>
+        /// <param name="isClassifiedToInDepartment">是否分类为住院科室。</param>
+        /// <param name="isClassifiedToOutDepartment">是否分类为门诊科室。</param>
+        /// <param name="isClassifiedLeave">是否分类为离开。</param>
+        /// <param name="isClassifiedToOther">是否分类为其他。</param>
+        /// <param name="destinationId">去向ID。</param>
+        /// <param name="destinationRemarks">去向明细。</param>
+        public ActionResult IndexObserveRoomDestination(DateTime time, bool? isClassifiedToInDepartment, bool? isClassifiedToOutDepartment, bool? isClassifiedLeave, bool? isClassifiedToOther, int? destinationId, string destinationRemarks)
+        {
+            var targetV = new IndexObserveRoomDestination(time, isClassifiedToInDepartment, isClassifiedToOutDepartment, isClassifiedLeave, isClassifiedToOther, destinationId, destinationRemarks);
 
             return View(targetV);
         }

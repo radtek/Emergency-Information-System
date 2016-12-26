@@ -11,20 +11,26 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
     /// <summary>
     /// 进入留观室方式。
     /// </summary>
+    /// <remarks>进入留观室方式。留观室专用的入室方式。</remarks>
     [Table("InObserveRoomWays")]
     public class InObserveRoomWay
     {
+        #region 构建
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="InObserveRoomWay"/> class.
+        /// 初始化实例<see cref="InObserveRoomWay"/>。
         /// </summary>
         public InObserveRoomWay()
         {
-
         }
 
+        #endregion
 
 
 
+
+
+        #region 实体属性
 
         /// <summary>
         /// 进入留观室方式ID。
@@ -44,7 +50,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         public virtual bool IsHasAdditionalInfo { get; set; }
 
         /// <summary>
-        /// 是否用于空。
+        /// 是否用于表示空。
         /// </summary>
         public virtual bool IsUseForEmpty { get; set; }
 
@@ -56,5 +62,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         public virtual byte[] TimeStamp { get; set; }
 
         public virtual DateTime UpdateTime { get; set; }
+
+        #endregion
     }
 }

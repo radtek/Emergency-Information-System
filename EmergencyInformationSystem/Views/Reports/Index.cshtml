@@ -6,7 +6,7 @@
 @*面包屑区*@
 <div class="container">
     <ol class="breadcrumb">
-        <li>@Html.ActionLink("主界面", "Index", "Home", null, null)</li>
+        <li>@Html.ActionLink("主界面", "Index", "Home", null, new { @class = "btn-show-modal" })</li>
         <li class="active">@ViewBag.Title</li>
     </ol>
 </div>
@@ -17,10 +17,16 @@
     </h1>
 
     <h3>抢救室</h3>
-    <p>@Html.ActionLink("交班表", "IndexHandOver", "Reports", null, new { @class = "btn btn-default" })</p>
-    <p>@Html.ActionLink("日报表", "IndexDay", "Reports", null, new { @class = "btn btn-default" })</p>
-    <p>@Html.ActionLink("月报表", "StatisticsMonth", "Reports", null, new { @class = "btn btn-default" })</p>
+    <p>@Html.ActionLink("抢救室交班表", "IndexRescueRoomHandOver", "Reports", null, new { @class = "btn btn-default btn-show-modal" })</p>
+    <p>@Html.ActionLink("抢救室日报表", "IndexRescueRoomDay", "Reports", null, new { @class = "btn btn-default btn-show-modal" })</p>
+    <p>@Html.ActionLink("抢救室月报表", "StatisticsRescueRoomMonth", "Reports", null, new { @class = "btn btn-default btn-show-modal" })</p>
 
     <h3>留观室</h3>
-    <a class="btn btn-default disabled">待添加</a>
+    <p>@Html.ActionLink("留观室交班表", "IndexObserveRoomHandOver", "Reports", null, new { @class = "btn btn-default btn-show-modal" })</p>
+    <p>@Html.ActionLink("留观室日报表", "IndexObserveRoomDay", "Reports", null, new { @class = "btn btn-default btn-show-modal" })</p>
+    <p>@Html.ActionLink("留观室月报表", "StatisticsObserveRoomMonth", "Reports", null, new { @class = "btn btn-default btn-show-modal" })</p>
 </div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/EisNormal")
+}

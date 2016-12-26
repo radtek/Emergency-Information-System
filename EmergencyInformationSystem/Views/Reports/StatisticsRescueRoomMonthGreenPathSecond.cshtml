@@ -1,0 +1,15 @@
+﻿@model IEnumerable<EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueRoomMonth.GreenPathSecond>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td style="padding-left:40px">
+            @Html.ActionLink(item.GreenPathCategoryName, "IndexRescueRoomGreenPath", new { item.GreenPathCategoryId, item.Time }, new { target = "_blank" })
+        </td>
+        <td style="padding-left:40px">
+            @Html.DisplayFor(model => item.Count)
+        </td>
+    </tr>
+
+    @Html.Partial("StatisticsRescueRoomMonthGreenPathThird", item.List)
+}

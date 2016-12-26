@@ -11,20 +11,26 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
     /// <summary>
     /// 抢救室影像项。
     /// </summary>
+    /// <remarks>抢救室影像项。抢救室病例的影像项。</remarks>
     [Table("RescueRoomImageRecords")]
     public class RescueRoomImageRecord
     {
+        #region 构建
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="RescueRoomImageRecord"/> class.
+        /// 初始化实例<see cref="RescueRoomImageRecord"/>。
         /// </summary>
         public RescueRoomImageRecord()
         {
-
         }
 
+        #endregion
 
 
 
+
+
+        #region 实体属性
 
         /// <summary>
         /// 抢救室影像项ID。
@@ -104,9 +110,13 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
 
         public virtual DateTime UpdateTime { get; set; }
 
+        #endregion
 
 
 
+
+
+        #region 导航属性
 
         /// <summary>
         /// 归属的抢救室病例。
@@ -117,5 +127,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// 影像类型。
         /// </summary>
         public virtual ImageCategory ImageCategory { get; set; }
+
+        #endregion
     }
 }

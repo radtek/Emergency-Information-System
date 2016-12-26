@@ -11,20 +11,26 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
     /// <summary>
     /// 床位。
     /// </summary>
+    /// <remarks>床位。表示各室的床位。各室通用。通过指定字段标识可使用室。</remarks>
     [Table("Beds")]
     public class Bed
     {
+        #region 构建
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="Bed"/> class.
+        /// 初始化实例<see cref="Bed"/>。
         /// </summary>
         public Bed()
         {
-
         }
 
+        #endregion
 
 
 
+
+
+        #region 实体属性
 
         /// <summary>
         /// 床位ID。
@@ -65,5 +71,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         public virtual byte[] TimeStamp { get; set; }
 
         public virtual DateTime UpdateTime { get; set; }
+
+        #endregion
     }
 }

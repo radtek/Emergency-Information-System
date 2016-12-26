@@ -7,8 +7,8 @@
 @*面包屑区*@
 <div class="container">
     <ol class="breadcrumb">
-        <li>@Html.ActionLink("主界面", "Index", "Home", null, null)</li>
-        <li>@Html.ActionLink("抢救室病例信息一览表", "Index")</li>
+        <li>@Html.ActionLink("主界面", "Index", "Home", null, new { @class = "btn-show-modal" })</li>
+        <li>@Html.ActionLink("抢救室病例信息一览表", "Index", null, new { @class = "btn-show-modal" })</li>
         <li class="active">@ViewBag.Title</li>
     </ol>
 </div>
@@ -90,11 +90,11 @@
 
                     if (Model.GreenPathId != null)
                     {
-                        @Html.ActionLink("打开", Model.GreenPathActionName, "GreenPaths", new { id = Model.GreenPathId }, new { @class = "label label-info" })
+                        @Html.ActionLink("打开", Model.GreenPathActionName, "GreenPaths", new { id = Model.GreenPathId }, new { @class = "label label-info btn-show-modal" })
                     }
                     else
                     {
-                        @Html.ActionLink("创建", Model.GreenPathActionName, "GreenPaths", new { rescueRoomInfoId = Model.RescueRoomInfoId }, new { @class = "label label-info" })
+                        @Html.ActionLink("创建", Model.GreenPathActionName, "GreenPaths", new { rescueRoomInfoId = Model.RescueRoomInfoId }, new { @class = "label label-info btn-show-modal" })
                     }
                 }
             }
@@ -167,9 +167,9 @@
         </div>
 
         <div class="col-md-3 RescueRoomSecondTitleCell">
-            @Html.DisplayNameFor(model => model.DestinationNameFull)
+            @Html.DisplayNameFor(model => model.DuringDetained)
             :
-            @Html.DisplayFor(model => model.DestinationNameFull)
+            @Html.DisplayFor(model => model.DuringDetained)
         </div>
 
         <div class="col-md-3 RescueRoomSecondTitleCell">
@@ -178,7 +178,7 @@
             @Html.DisplayFor(model => model.HandleNurse)
         </div>
 
-        <div class="col-md-9 RescueRoomSecondTitleCell">
+        <div class="col-md-6 RescueRoomSecondTitleCell">
             @Html.DisplayNameFor(model => model.DiagnosisName)
             :
             @Html.DisplayFor(model => model.DiagnosisName)
@@ -189,6 +189,12 @@
             :
             @Html.DisplayFor(model => model.IsLeaveName)
         </div>
+
+        <div class="col-md-3 RescueRoomSecondTitleCell">
+            @Html.DisplayNameFor(model => model.DestinationNameFull)
+            :
+            @Html.DisplayFor(model => model.DestinationNameFull)
+        </div>
     </div>
 
     <hr />
@@ -196,7 +202,11 @@
     @*按钮*@
     <div class="form-group RescueRoomSecondTitleSubmitBlock">
         <div class="col-md-offset-1 col-md-9">
-            @Html.ActionLink("编辑", "Edit", new { id = Model.RescueRoomInfoId }, new { @class = "btn btn-info" })
+            @Html.ActionLink("编辑", "Edit", new { id = Model.RescueRoomInfoId }, new { @class = "btn btn-info btn-show-modal" })
         </div>
     </div>
 </div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/EisNormal")
+}

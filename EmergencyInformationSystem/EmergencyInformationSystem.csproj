@@ -209,6 +209,7 @@
     <Compile Include="Controllers\ObserveRoomInfosController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\RescueRoomConsultationsController.cs" />
+    <Compile Include="Controllers\RescueRoomTreatmentRecordsController.cs" />
     <Compile Include="Controllers\RescueRoomDrugRecordsController.cs" />
     <Compile Include="Controllers\RescueRoomImageRecordsController.cs" />
     <Compile Include="Controllers\RescueRoomInfosController.cs" />
@@ -243,8 +244,65 @@
     <Compile Include="Migrations\201610201137536_RescueRoomConsultationChangeKeyName.Designer.cs">
       <DependentUpon>201610201137536_RescueRoomConsultationChangeKeyName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610251422048_ConnectRescueRoomInfoAndObserveRoomInfo.cs" />
+    <Compile Include="Migrations\201610251422048_ConnectRescueRoomInfoAndObserveRoomInfo.Designer.cs">
+      <DependentUpon>201610251422048_ConnectRescueRoomInfoAndObserveRoomInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611021312465_DestinationAddField.cs" />
+    <Compile Include="Migrations\201611021312465_DestinationAddField.Designer.cs">
+      <DependentUpon>201611021312465_DestinationAddField.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612071039100_Change1.cs" />
+    <Compile Include="Migrations\201612071039100_Change1.Designer.cs">
+      <DependentUpon>201612071039100_Change1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612151034499_AddClassRescueRoomDrugRecordDefinition.cs" />
+    <Compile Include="Migrations\201612151034499_AddClassRescueRoomDrugRecordDefinition.Designer.cs">
+      <DependentUpon>201612151034499_AddClassRescueRoomDrugRecordDefinition.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612151038591_RescueRoomDrugRecordDefinitionAddField.cs" />
+    <Compile Include="Migrations\201612151038591_RescueRoomDrugRecordDefinitionAddField.Designer.cs">
+      <DependentUpon>201612151038591_RescueRoomDrugRecordDefinitionAddField.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612151040116_RescueRoomDrugRecordDefinitionAddField2.cs" />
+    <Compile Include="Migrations\201612151040116_RescueRoomDrugRecordDefinitionAddField2.Designer.cs">
+      <DependentUpon>201612151040116_RescueRoomDrugRecordDefinitionAddField2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612200840257_change2.cs" />
+    <Compile Include="Migrations\201612200840257_change2.Designer.cs">
+      <DependentUpon>201612200840257_change2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612200848436_change3.cs" />
+    <Compile Include="Migrations\201612200848436_change3.Designer.cs">
+      <DependentUpon>201612200848436_change3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612200928314_AddClassRescueRoomTreatmentRecord.cs" />
+    <Compile Include="Migrations\201612200928314_AddClassRescueRoomTreatmentRecord.Designer.cs">
+      <DependentUpon>201612200928314_AddClassRescueRoomTreatmentRecord.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612200944059_AddClassRescueRoomTreatmentRecordDefinition.cs" />
+    <Compile Include="Migrations\201612200944059_AddClassRescueRoomTreatmentRecordDefinition.Designer.cs">
+      <DependentUpon>201612200944059_AddClassRescueRoomTreatmentRecordDefinition.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612210407363_ChangeForGreenPath.cs" />
+    <Compile Include="Migrations\201612210407363_ChangeForGreenPath.Designer.cs">
+      <DependentUpon>201612210407363_ChangeForGreenPath.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612210459106_ChangeForGreenPath2.cs" />
+    <Compile Include="Migrations\201612210459106_ChangeForGreenPath2.Designer.cs">
+      <DependentUpon>201612210459106_ChangeForGreenPath2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612210500211_ChangeForGreenPath3.cs" />
+    <Compile Include="Migrations\201612210500211_ChangeForGreenPath3.Designer.cs">
+      <DependentUpon>201612210500211_ChangeForGreenPath3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612210516352_ChangeForGreenPath4.cs" />
+    <Compile Include="Migrations\201612210516352_ChangeForGreenPath4.Designer.cs">
+      <DependentUpon>201612210516352_ChangeForGreenPath4.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\BusinessModels\TrasenInformationConvertor.cs" />
     <Compile Include="Models\Domains\Entities\Bed.cs" />
     <Compile Include="Models\Domains\Entities\CriticalLevel.cs" />
     <Compile Include="Models\Domains\Entities\Destination.cs" />
@@ -259,48 +317,72 @@
     <Compile Include="Models\Domains\Entities\RescueResult.cs" />
     <Compile Include="Models\Domains\Entities\RescueRoomConsultation.cs" />
     <Compile Include="Models\Domains\Entities\RescueRoomDrugRecord.cs" />
+    <Compile Include="Models\Domains\Entities\RescueRoomTreatmentRecordDefinition.cs" />
+    <Compile Include="Models\Domains\Entities\RescueRoomDrugRecordDefinition.cs" />
     <Compile Include="Models\Domains\Entities\RescueRoomImageRecord.cs" />
     <Compile Include="Models\Domains\Entities\RescueRoomInfo.cs" />
+    <Compile Include="Models\Domains\Entities\RescueRoomTreatmentRecord.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ViewModels\ObserveRoomInfos\Create\Create.cs" />
     <Compile Include="Models\ViewModels\ObserveRoomInfos\Create\Create2.cs" />
     <Compile Include="Models\ViewModels\ObserveRoomInfos\Create\Create3.cs" />
+    <Compile Include="Models\ViewModels\ObserveRoomInfos\Create\Create4.cs" />
     <Compile Include="Models\ViewModels\ObserveRoomInfos\Create\ItemGhxx.cs" />
     <Compile Include="Models\ViewModels\ObserveRoomInfos\Create\ItemJzjl.cs" />
+    <Compile Include="Models\ViewModels\ObserveRoomInfos\Create\ItemRescueRoomInfo.cs" />
     <Compile Include="Models\ViewModels\ObserveRoomInfos\Details\Details.cs" />
     <Compile Include="Models\ViewModels\ObserveRoomInfos\Header\Header.cs" />
     <Compile Include="Models\ViewModels\ObserveRoomInfos\Index\Index.cs" />
     <Compile Include="Models\ViewModels\ObserveRoomInfos\Index\Item.cs" />
     <Compile Include="Models\ViewModels\ObserveRoomInfos\Index\Route.cs" />
-    <Compile Include="Models\ViewModels\Reports\IndexDay\IndexDay.cs" />
-    <Compile Include="Models\ViewModels\Reports\IndexDay\Item.cs" />
-    <Compile Include="Models\ViewModels\Reports\IndexDestination\IndexDestination.cs" />
-    <Compile Include="Models\ViewModels\Reports\IndexDestination\Item.cs" />
-    <Compile Include="Models\ViewModels\Reports\IndexDuring\IndexDuring.cs" />
-    <Compile Include="Models\ViewModels\Reports\IndexDuring\Item.cs" />
-    <Compile Include="Models\ViewModels\Reports\IndexGreenPath\IndexGreenPath.cs" />
-    <Compile Include="Models\ViewModels\Reports\IndexGreenPath\Item.cs" />
-    <Compile Include="Models\ViewModels\Reports\IndexHandOver\IndexHandOver.cs" />
-    <Compile Include="Models\ViewModels\Reports\IndexHandOver\Item.cs" />
-    <Compile Include="Models\ViewModels\Reports\IndexRescue\IndexRescue.cs" />
-    <Compile Include="Models\ViewModels\Reports\IndexRescue\Item.cs" />
-    <Compile Include="Models\ViewModels\Reports\StatisticsMonth\DestinationFirst.cs" />
-    <Compile Include="Models\ViewModels\Reports\StatisticsMonth\DestinationSecond.cs" />
-    <Compile Include="Models\ViewModels\Reports\StatisticsMonth\DestinationThird.cs" />
-    <Compile Include="Models\ViewModels\Reports\StatisticsMonth\DuringFirst.cs" />
-    <Compile Include="Models\ViewModels\Reports\StatisticsMonth\DuringSecond.cs" />
-    <Compile Include="Models\ViewModels\Reports\StatisticsMonth\GreenPathFirst.cs" />
-    <Compile Include="Models\ViewModels\Reports\StatisticsMonth\GreenPathSecond.cs" />
-    <Compile Include="Models\ViewModels\Reports\StatisticsMonth\GreenPathThird.cs" />
-    <Compile Include="Models\ViewModels\Reports\StatisticsMonth\RescueFirst.cs" />
-    <Compile Include="Models\ViewModels\Reports\StatisticsMonth\RescueSecond.cs" />
-    <Compile Include="Models\ViewModels\Reports\StatisticsMonth\StatisticsMonth.cs" />
+    <Compile Include="Models\ViewModels\Reports\IndexObserveRoomDay\IndexObserveRoomDay.cs" />
+    <Compile Include="Models\ViewModels\Reports\IndexObserveRoomDay\Item.cs" />
+    <Compile Include="Models\ViewModels\Reports\IndexObserveRoomDestination\IndexObserveRoomDestination.cs" />
+    <Compile Include="Models\ViewModels\Reports\IndexObserveRoomDestination\Item.cs" />
+    <Compile Include="Models\ViewModels\Reports\IndexObserveRoomDuring\IndexObserveRoomDuring.cs" />
+    <Compile Include="Models\ViewModels\Reports\IndexObserveRoomDuring\Item.cs" />
+    <Compile Include="Models\ViewModels\Reports\IndexObserveRoomHandOver\IndexObserveRoomHandOver.cs" />
+    <Compile Include="Models\ViewModels\Reports\IndexObserveRoomHandOver\Item.cs" />
+    <Compile Include="Models\ViewModels\Reports\IndexRescueRoomDay\IndexRescueRoomDay.cs" />
+    <Compile Include="Models\ViewModels\Reports\IndexRescueRoomDay\Item.cs" />
+    <Compile Include="Models\ViewModels\Reports\IndexRescueRoomDestination\IndexRescueRoomDestination.cs" />
+    <Compile Include="Models\ViewModels\Reports\IndexRescueRoomDestination\Item.cs" />
+    <Compile Include="Models\ViewModels\Reports\IndexRescueRoomDuring\IndexRescueRoomDuring.cs" />
+    <Compile Include="Models\ViewModels\Reports\IndexRescueRoomDuring\Item.cs" />
+    <Compile Include="Models\ViewModels\Reports\IndexRescueRoomGreenPath\IndexRescueRoomGreenPath.cs" />
+    <Compile Include="Models\ViewModels\Reports\IndexRescueRoomGreenPath\Item.cs" />
+    <Compile Include="Models\ViewModels\Reports\IndexRescueRoomHandOver\IndexRescueRoomHandOver.cs" />
+    <Compile Include="Models\ViewModels\Reports\IndexRescueRoomHandOver\Item.cs" />
+    <Compile Include="Models\ViewModels\Reports\IndexRescueRoomRescue\IndexRescue.cs" />
+    <Compile Include="Models\ViewModels\Reports\IndexRescueRoomRescue\Item.cs" />
+    <Compile Include="Models\ViewModels\Reports\StatisticsObserveRoomMonth\DestinationFirst.cs" />
+    <Compile Include="Models\ViewModels\Reports\StatisticsObserveRoomMonth\DestinationSecond.cs" />
+    <Compile Include="Models\ViewModels\Reports\StatisticsObserveRoomMonth\DestinationThird.cs" />
+    <Compile Include="Models\ViewModels\Reports\StatisticsObserveRoomMonth\DuringFirst.cs" />
+    <Compile Include="Models\ViewModels\Reports\StatisticsObserveRoomMonth\DuringSecond.cs" />
+    <Compile Include="Models\ViewModels\Reports\StatisticsObserveRoomMonth\StatisticsObserveRoomMonth.cs" />
+    <Compile Include="Models\ViewModels\Reports\StatisticsRescueRoomMonth\DestinationFirst.cs" />
+    <Compile Include="Models\ViewModels\Reports\StatisticsRescueRoomMonth\DestinationSecond.cs" />
+    <Compile Include="Models\ViewModels\Reports\StatisticsRescueRoomMonth\DestinationThird.cs" />
+    <Compile Include="Models\ViewModels\Reports\StatisticsRescueRoomMonth\DuringFirst.cs" />
+    <Compile Include="Models\ViewModels\Reports\StatisticsRescueRoomMonth\DuringSecond.cs" />
+    <Compile Include="Models\ViewModels\Reports\StatisticsRescueRoomMonth\GreenPathFirst.cs" />
+    <Compile Include="Models\ViewModels\Reports\StatisticsRescueRoomMonth\GreenPathSecond.cs" />
+    <Compile Include="Models\ViewModels\Reports\StatisticsRescueRoomMonth\GreenPathThird.cs" />
+    <Compile Include="Models\ViewModels\Reports\StatisticsRescueRoomMonth\RescueFirst.cs" />
+    <Compile Include="Models\ViewModels\Reports\StatisticsRescueRoomMonth\RescueSecond.cs" />
+    <Compile Include="Models\ViewModels\Reports\StatisticsRescueRoomMonth\StatisticsRescueRoomMonth.cs" />
+    <Compile Include="Models\ViewModels\RescueRoomDrugRecords\IndexPartial.cs" />
+    <Compile Include="Models\ViewModels\RescueRoomDrugRecords\ItemFirst.cs" />
+    <Compile Include="Models\ViewModels\RescueRoomDrugRecords\ItemSecond.cs" />
     <Compile Include="Models\ViewModels\RescueRoomInfos\Create\Create.cs" />
     <Compile Include="Models\ViewModels\RescueRoomInfos\Create\Create2.cs" />
     <Compile Include="Models\ViewModels\RescueRoomInfos\Create\Create3.cs" />
+    <Compile Include="Models\ViewModels\RescueRoomInfos\Create\Create4.cs" />
     <Compile Include="Models\ViewModels\RescueRoomInfos\Create\ItemGhxx.cs" />
     <Compile Include="Models\ViewModels\RescueRoomInfos\Create\ItemJzjl.cs" />
+    <Compile Include="Models\ViewModels\RescueRoomInfos\Create\ItemObserveRoomInfo.cs" />
     <Compile Include="Models\ViewModels\RescueRoomInfos\Details\Details.cs" />
     <Compile Include="Models\ViewModels\RescueRoomInfos\Header\Header.cs" />
     <Compile Include="Models\ViewModels\RescueRoomInfos\Index\Index.cs" />
@@ -324,6 +406,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\eis-normal.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -379,7 +462,7 @@
     <Content Include="Views\RescueRoomInfos\Create2.cshtml" />
     <Content Include="Views\RescueRoomInfos\Create2ListJzjl.cshtml" />
     <Content Include="Views\RescueRoomInfos\Create2ListGhxx.cshtml" />
-    <Content Include="Views\RescueRoomInfos\Create3.cshtml" />
+    <Content Include="Views\RescueRoomInfos\Create4.cshtml" />
     <Content Include="Views\RescueRoomInfos\Edit.cshtml" />
     <Content Include="Views\ObserveRoomInfos\IndexList.cshtml" />
     <Content Include="Views\ObserveRoomInfos\IndexFilter.cshtml" />
@@ -391,7 +474,7 @@
     <Content Include="Views\ObserveRoomInfos\Create2.cshtml" />
     <Content Include="Views\ObserveRoomInfos\Create2ListGhxx.cshtml" />
     <Content Include="Views\ObserveRoomInfos\Create2ListJzjl.cshtml" />
-    <Content Include="Views\ObserveRoomInfos\Create3.cshtml" />
+    <Content Include="Views\ObserveRoomInfos\Create4.cshtml" />
     <Content Include="Views\ObserveRoomInfos\Edit.cshtml" />
     <Content Include="Views\RescueRoomConsultations\IndexPartial.cshtml" />
     <Content Include="Views\RescueRoomConsultations\Create.cshtml" />
@@ -401,31 +484,55 @@
     <Content Include="Views\RescueRoomImageRecords\IndexPartial.cshtml" />
     <Content Include="Views\RescueRoomDrugRecords\IndexPartial.cshtml" />
     <Content Include="Views\Reports\Index.cshtml" />
-    <Content Include="Views\Reports\IndexHandOver.cshtml" />
-    <Content Include="Views\Reports\IndexHandOverList.cshtml" />
-    <Content Include="Views\Reports\IndexHandOverListPrint.cshtml" />
-    <Content Include="Views\Reports\IndexDay.cshtml" />
-    <Content Include="Views\Reports\IndexDayList.cshtml" />
-    <Content Include="Views\Reports\IndexDayListPrint.cshtml" />
-    <Content Include="Views\Reports\StatisticsMonth.cshtml" />
-    <Content Include="Views\Reports\StatisticsMonthRescueFirst.cshtml" />
-    <Content Include="Views\Reports\StatisticsMonthRescueSecond.cshtml" />
-    <Content Include="Views\Reports\StatisticsMonthGreenPathThird.cshtml" />
-    <Content Include="Views\Reports\StatisticsMonthGreenPathSecond.cshtml" />
-    <Content Include="Views\Reports\StatisticsMonthGreenPathFirst.cshtml" />
-    <Content Include="Views\Reports\StatisticsMonthDuringSecond.cshtml" />
-    <Content Include="Views\Reports\StatisticsMonthDuringFirst.cshtml" />
-    <Content Include="Views\Reports\StatisticsMonthDestinationThird.cshtml" />
-    <Content Include="Views\Reports\StatisticsMonthDestinationSecond.cshtml" />
-    <Content Include="Views\Reports\StatisticsMonthDestinationFirst.cshtml" />
-    <Content Include="Views\Reports\IndexRescue.cshtml" />
-    <Content Include="Views\Reports\IndexRescueList.cshtml" />
-    <Content Include="Views\Reports\IndexGreenPath.cshtml" />
-    <Content Include="Views\Reports\IndexGreenPathList.cshtml" />
-    <Content Include="Views\Reports\IndexDuring.cshtml" />
-    <Content Include="Views\Reports\IndexDuringList.cshtml" />
-    <Content Include="Views\Reports\IndexDestination.cshtml" />
-    <Content Include="Views\Reports\IndexDestinationList.cshtml" />
+    <Content Include="Views\Reports\IndexRescueRoomHandOver.cshtml" />
+    <Content Include="Views\Reports\IndexRescueRoomHandOverList.cshtml" />
+    <Content Include="Views\Reports\IndexRescueRoomHandOverListPrint.cshtml" />
+    <Content Include="Views\Reports\IndexRescueRoomDay.cshtml" />
+    <Content Include="Views\Reports\IndexRescueRoomDayList.cshtml" />
+    <Content Include="Views\Reports\IndexRescueRoomDayListPrint.cshtml" />
+    <Content Include="Views\Reports\StatisticsRescueRoomMonth.cshtml" />
+    <Content Include="Views\Reports\StatisticsRescueRoomMonthRescueFirst.cshtml" />
+    <Content Include="Views\Reports\StatisticsRescueRoomMonthRescueSecond.cshtml" />
+    <Content Include="Views\Reports\StatisticsRescueRoomMonthGreenPathThird.cshtml" />
+    <Content Include="Views\Reports\StatisticsRescueRoomMonthGreenPathSecond.cshtml" />
+    <Content Include="Views\Reports\StatisticsRescueRoomMonthGreenPathFirst.cshtml" />
+    <Content Include="Views\Reports\StatisticsRescueRoomMonthDuringSecond.cshtml" />
+    <Content Include="Views\Reports\StatisticsRescueRoomMonthDuringFirst.cshtml" />
+    <Content Include="Views\Reports\StatisticsRescueRoomMonthDestinationThird.cshtml" />
+    <Content Include="Views\Reports\StatisticsRescueRoomMonthDestinationSecond.cshtml" />
+    <Content Include="Views\Reports\StatisticsRescueRoomMonthDestinationFirst.cshtml" />
+    <Content Include="Views\Reports\IndexRescueRoomRescue.cshtml" />
+    <Content Include="Views\Reports\IndexRescueRoomRescueList.cshtml" />
+    <Content Include="Views\Reports\IndexRescueRoomGreenPath.cshtml" />
+    <Content Include="Views\Reports\IndexRescueRoomGreenPathList.cshtml" />
+    <Content Include="Views\Reports\IndexRescueRoomDuring.cshtml" />
+    <Content Include="Views\Reports\IndexRescueRoomDuringList.cshtml" />
+    <Content Include="Views\Reports\IndexRescueRoomDestination.cshtml" />
+    <Content Include="Views\Reports\IndexRescueRoomDestinationList.cshtml" />
+    <Content Include="Views\RescueRoomInfos\Create3ListObserveRoomInfo.cshtml" />
+    <Content Include="Views\RescueRoomInfos\Create3.cshtml" />
+    <Content Include="Views\RescueRoomInfos\_Layout.cshtml" />
+    <Content Include="Views\ObserveRoomInfos\Create3.cshtml" />
+    <Content Include="Views\ObserveRoomInfos\Create3ListRescueRoomInfo.cshtml" />
+    <Content Include="Views\Reports\IndexObserveRoomHandOver.cshtml" />
+    <Content Include="Views\Reports\IndexObserveRoomHandOverList.cshtml" />
+    <Content Include="Views\Reports\IndexObserveRoomHandOverListPrint.cshtml" />
+    <Content Include="Views\Reports\IndexObserveRoomDay.cshtml" />
+    <Content Include="Views\Reports\IndexObserveRoomDayList.cshtml" />
+    <Content Include="Views\Reports\IndexObserveRoomDayListPrint.cshtml" />
+    <Content Include="Views\Reports\StatisticsObserveRoomMonth.cshtml" />
+    <Content Include="Views\Reports\StatisticsObserveRoomMonthDuringFirst.cshtml" />
+    <Content Include="Views\Reports\StatisticsObserveRoomMonthDuringSecond.cshtml" />
+    <Content Include="Views\Reports\StatisticsObserveRoomMonthDestinationFirst.cshtml" />
+    <Content Include="Views\Reports\StatisticsObserveRoomMonthDestinationSecond.cshtml" />
+    <Content Include="Views\Reports\StatisticsObserveRoomMonthDestinationThird.cshtml" />
+    <Content Include="Views\Reports\IndexObserveRoomDuring.cshtml" />
+    <Content Include="Views\Reports\IndexObserveRoomDuringList.cshtml" />
+    <Content Include="Views\Reports\IndexObserveRoomDestination.cshtml" />
+    <Content Include="Views\Reports\IndexObserveRoomDestinationList.cshtml" />
+    <Content Include="Views\RescueRoomDrugRecords\IndexPartialPart.cshtml" />
+    <Content Include="Views\RescueRoomTreatmentRecords\IndexPartial.cshtml" />
+    <Content Include="Views\RescueRoomTreatmentRecords\IndexPartialPart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -459,6 +566,48 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610201137536_RescueRoomConsultationChangeKeyName.resx">
       <DependentUpon>201610201137536_RescueRoomConsultationChangeKeyName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610251422048_ConnectRescueRoomInfoAndObserveRoomInfo.resx">
+      <DependentUpon>201610251422048_ConnectRescueRoomInfoAndObserveRoomInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611021312465_DestinationAddField.resx">
+      <DependentUpon>201611021312465_DestinationAddField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612071039100_Change1.resx">
+      <DependentUpon>201612071039100_Change1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612151034499_AddClassRescueRoomDrugRecordDefinition.resx">
+      <DependentUpon>201612151034499_AddClassRescueRoomDrugRecordDefinition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612151038591_RescueRoomDrugRecordDefinitionAddField.resx">
+      <DependentUpon>201612151038591_RescueRoomDrugRecordDefinitionAddField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612151040116_RescueRoomDrugRecordDefinitionAddField2.resx">
+      <DependentUpon>201612151040116_RescueRoomDrugRecordDefinitionAddField2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612200840257_change2.resx">
+      <DependentUpon>201612200840257_change2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612200848436_change3.resx">
+      <DependentUpon>201612200848436_change3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612200928314_AddClassRescueRoomTreatmentRecord.resx">
+      <DependentUpon>201612200928314_AddClassRescueRoomTreatmentRecord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612200944059_AddClassRescueRoomTreatmentRecordDefinition.resx">
+      <DependentUpon>201612200944059_AddClassRescueRoomTreatmentRecordDefinition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612210407363_ChangeForGreenPath.resx">
+      <DependentUpon>201612210407363_ChangeForGreenPath.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612210459106_ChangeForGreenPath2.resx">
+      <DependentUpon>201612210459106_ChangeForGreenPath2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612210500211_ChangeForGreenPath3.resx">
+      <DependentUpon>201612210500211_ChangeForGreenPath3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612210516352_ChangeForGreenPath4.resx">
+      <DependentUpon>201612210516352_ChangeForGreenPath4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

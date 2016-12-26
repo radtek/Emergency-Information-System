@@ -6,10 +6,10 @@
 
 <div class="container">
     <ol class="breadcrumb">
-        <li>@Html.ActionLink("主页", "Index", "Home", null, null)</li>
-        <li>@Html.ActionLink("抢救室病例信息一览表", "Index", "RescueRoomInfos", null, null)</li>
-        <li>@Html.ActionLink("抢救室病例信息表", "Details", "RescueRoomInfos", new { id = Model.RescueRoomInfoId }, null)</li>
-        <li>@Html.ActionLink("绿色通道信息表 - 急性心肌梗死", "DetailsAmi", new { id = Model.GreenPathAmiId }, null)</li>
+        <li>@Html.ActionLink("主界面", "Index", "Home", null, new { @class = "btn-show-modal" })</li>
+        <li>@Html.ActionLink("抢救室病例信息一览表", "Index", "RescueRoomInfos", null, new { @class = "btn-show-modal" })</li>
+        <li>@Html.ActionLink("抢救室病例信息表", "Details", "RescueRoomInfos", new { id = Model.RescueRoomInfoId }, new { @class = "btn-show-modal" })</li>
+        <li>@Html.ActionLink("绿色通道信息表 - 急性心肌梗死", "DetailsAmi", new { id = Model.GreenPathAmiId }, new { @class = "btn-show-modal" })</li>
         <li class="active">编辑</li>
     </ol>
 </div>
@@ -18,7 +18,7 @@
 {
     @Html.AntiForgeryToken()
 
-    @Html.ValidationSummary(false, "", new { @class = "text-danger alert alert-danger" })
+    @Html.ValidationSummary(false, "", new { @class = "text-danger alert-danger" })
 
     @Html.HiddenFor(model => model.GreenPathAmiId)
     @Html.HiddenFor(model => model.RescueRoomInfoId)
@@ -43,11 +43,14 @@
                 信息
             </div>
 
-            <div class="form-group  col-md-offset-1 RescueRoomSecondTitleEditBlock">
+            <div class="form-group  col-md-offset-1 row RescueRoomSecondTitleEditBlock">
                 @Html.LabelFor(model => model.OccurrenceTime, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    <input type="datetime-local" name="OccurrenceTime" class="form-control" value=@(Model.OccurrenceTime?.ToString("yyyy-MM-ddTHH:mm")) />
+                <div class="col-md-4">
+                    <input type="datetime-local" name="OccurrenceTime" class="form-control" id="OccurrenceTime" value=@(Model.OccurrenceTime?.ToString("yyyy-MM-ddTHH:mm")) />
                     @Html.ValidationMessageFor(model => model.OccurrenceTime, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-default btn-set-time-now" data-toggle="tooltip" data-placement="top" title="设置为当前时间" data-for-set-time-now="OccurrenceTime">现在</button>
                 </div>
             </div>
         </div>
@@ -60,19 +63,25 @@
                 操作
             </div>
 
-            <div class="form-group  col-md-offset-1 RescueRoomSecondTitleEditBlock">
+            <div class="form-group  col-md-offset-1 row RescueRoomSecondTitleEditBlock">
                 @Html.LabelFor(model => model.EcgFirstTime, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    <input type="datetime-local" name="EcgFirstTime" class="form-control" value=@(Model.EcgFirstTime?.ToString("yyyy-MM-ddTHH:mm")) />
+                <div class="col-md-4">
+                    <input type="datetime-local" name="EcgFirstTime" id="EcgFirstTime" class="form-control" value=@(Model.EcgFirstTime?.ToString("yyyy-MM-ddTHH:mm")) />
                     @Html.ValidationMessageFor(model => model.EcgFirstTime, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-default btn-set-time-now" data-toggle="tooltip" data-placement="top" title="设置为当前时间" data-for-set-time-now="EcgFirstTime">现在</button>
                 </div>
             </div>
 
-            <div class="form-group  col-md-offset-1 RescueRoomSecondTitleEditBlock">
+            <div class="form-group  col-md-offset-1 row RescueRoomSecondTitleEditBlock">
                 @Html.LabelFor(model => model.EcgSecondTime, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    <input type="datetime-local" name="EcgSecondTime" class="form-control" value=@(Model.EcgSecondTime?.ToString("yyyy-MM-ddTHH:mm")) />
+                <div class="col-md-4">
+                    <input type="datetime-local" name="EcgSecondTime" id="EcgSecondTime" class="form-control" value=@(Model.EcgSecondTime?.ToString("yyyy-MM-ddTHH:mm")) />
                     @Html.ValidationMessageFor(model => model.EcgSecondTime, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-default btn-set-time-now" data-toggle="tooltip" data-placement="top" title="设置为当前时间" data-for-set-time-now="EcgSecondTime">现在</button>
                 </div>
             </div>
         </div>
@@ -85,7 +94,7 @@
                 附加
             </div>
 
-            <div class="form-group  col-md-offset-1 RescueRoomSecondTitleEditBlock">
+            <div class="form-group  col-md-offset-1 row RescueRoomSecondTitleEditBlock">
                 @Html.LabelFor(model => model.Remarks, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(c => c.Remarks, new { htmlAttributes = new { @class = "form-control" } })
@@ -102,15 +111,26 @@
                 完成
             </div>
 
-            <div class="form-group  col-md-offset-1 RescueRoomSecondTitleEditBlock">
+            <div class="form-group  col-md-offset-1 row RescueRoomSecondTitleEditBlock">
                 @Html.LabelFor(model => model.FinishPathTime, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    <input type="datetime-local" name="FinishPathTime" class="form-control" value=@(Model.FinishPathTime?.ToString("yyyy-MM-ddTHH:mm")) />
+                <div class="col-md-4">
+                    <input type="datetime-local" name="FinishPathTime" id="FinishPathTime" class="form-control" value=@(Model.FinishPathTime?.ToString("yyyy-MM-ddTHH:mm")) />
                     @Html.ValidationMessageFor(model => model.FinishPathTime, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-default btn-set-time-now" data-toggle="tooltip" data-placement="top" title="设置为当前时间" data-for-set-time-now="FinishPathTime">现在</button>
                 </div>
             </div>
 
-            <div class="form-group  col-md-offset-1 RescueRoomSecondTitleEditBlock">
+            <div class="form-group  col-md-offset-1 row RescueRoomSecondTitleEditBlock">
+                @Html.LabelFor(model => model.IsHeldUp, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(c => c.IsHeldUp, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.IsHeldUp, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group  col-md-offset-1 row RescueRoomSecondTitleEditBlock">
                 @Html.LabelFor(model => model.Problem, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(c => c.Problem, new { htmlAttributes = new { @class = "form-control" } })
@@ -124,8 +144,12 @@
         @*按钮*@
         <div class="form-group RescueRoomSecondTitleSubmitBlock">
             <div class="col-md-offset-1 col-md-9">
-                <input type="submit" value="确定" class="btn btn-info" />
+                <input type="submit" value="确定" class="btn btn-info btn-show-modal" />
             </div>
         </div>
     </div>
+}
+
+@section scripts{
+    @Scripts.Render("~/bundles/EisNormal")
 }

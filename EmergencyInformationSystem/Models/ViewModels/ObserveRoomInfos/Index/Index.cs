@@ -15,28 +15,29 @@ namespace EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Index
         /// <summary>
         /// Initializes a new instance of the <see cref="Index"/> class.
         /// </summary>
-        /// <param name="inTimeStart">入室时间开始点。</param>
-        /// <param name="inTimeEnd">入室时间结束点。</param>
-        /// <param name="outTimeStart">离室时间开始点。</param>
-        /// <param name="outTimeEnd">离室时间结束点。</param>       
-        /// <param name="isLeave">是否已离室。</param>
+        /// <param name="inDepartmentTimeStart">入室时间起点。</param>
+        /// <param name="inDepartmentTimeEnd">入室时间结点。</param>
+        /// <param name="outDepartmentTimeStart">离室时间起点。</param>
+        /// <param name="outDepartmentTimeEnd">离室时间结点。</param>       
+        /// <param name="isLeave">是否离室。</param>
         /// <param name="patientName">患者姓名。</param>
         /// <param name="outPatientNumber">卡号。</param>
         /// <param name="page">页码。</param>
         /// <param name="perPage">每页项目数。</param>
-        /// <param name="db">数据源。</param>
-        public Index(DateTime? inTimeStart, DateTime? inTimeEnd, DateTime? outTimeStart, DateTime? outTimeEnd, bool? isLeave, string patientName, string outPatientNumber, int page, int perPage, EiSDbContext db)
+        public Index(DateTime? inDepartmentTimeStart, DateTime? inDepartmentTimeEnd, DateTime? outDepartmentTimeStart, DateTime? outDepartmentTimeEnd, bool? isLeave, string patientName, string outPatientNumber, int page, int perPage)
         {
+            var db = new EiSDbContext();
+
             var query = db.ObserveRoomInfos.AsEnumerable();
 
-            if (inTimeStart != null)
-                query = query.Where(c => inTimeStart.Value <= c.InDepartmentTime);
-            if (inTimeEnd != null)
-                query = query.Where(c => c.InDepartmentTime < inTimeEnd);
-            if (outTimeStart != null)
-                query = query.Where(c => outTimeStart.Value <= c.OutDepartmentTime);
-            if (outTimeEnd != null)
-                query = query.Where(c => c.OutDepartmentTime < outTimeEnd);
+            if (inDepartmentTimeStart != null)
+                query = query.Where(c => inDepartmentTimeStart.Value <= c.InDepartmentTime);
+            if (inDepartmentTimeEnd != null)
+                query = query.Where(c => c.InDepartmentTime < inDepartmentTimeEnd);
+            if (outDepartmentTimeStart != null)
+                query = query.Where(c => outDepartmentTimeStart.Value <= c.OutDepartmentTime);
+            if (outDepartmentTimeEnd != null)
+                query = query.Where(c => c.OutDepartmentTime < outDepartmentTimeEnd);
             if (isLeave != null)
                 query = query.Where(c => c.IsLeave == isLeave);
             if (!string.IsNullOrEmpty(patientName))
@@ -46,7 +47,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Index
 
             var queryCurrentPage = query.OrderByDescending(c => c.InDepartmentTime).ThenBy(c => c.ObserveRoomInfoId).Skip((page - 1) * perPage).Take(perPage);
 
-            this.Route = new Route(inTimeStart, inTimeEnd, outTimeStart, outTimeEnd, isLeave, patientName, outPatientNumber, page, perPage, query.Count());
+            this.Route = new Route(inDepartmentTimeStart, inDepartmentTimeEnd, outDepartmentTimeStart, outDepartmentTimeEnd, isLeave, patientName, outPatientNumber, page, perPage, query.Count());
 
             this.List = queryCurrentPage.ToList().Select(c => new Item(c)).ToList();
         }

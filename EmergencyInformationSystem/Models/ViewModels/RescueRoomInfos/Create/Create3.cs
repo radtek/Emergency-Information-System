@@ -3,64 +3,43 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-using TrasenLib;
-
 using EmergencyInformationSystem.Models.Domains.Entities;
 
 namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Create
 {
-    /// <summary>
-    /// 抢救室——新增3。
-    /// </summary>
-    /// <remarks>实现生成器。</remarks>
     public class Create3
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Create3"/> class.
-        /// </summary>
-        public Create3()
+        public Create3(string outPatientNumber, Guid JZID, Guid GHXXID, Guid BRXXID, Guid KDJID)
         {
+            var db = new EiSDbContext();
 
+            this.OutPatientNumber = outPatientNumber;
+            this.JZID = JZID;
+            this.GHXXID = GHXXID;
+            this.BRXXID = BRXXID;
+            this.KDJID = KDJID;
+
+            this.ListObserveRoomInfos = db.ObserveRoomInfos.Where(c => c.OutPatientNumber == outPatientNumber && c.OutDepartmentTime.HasValue && c.OutDepartmentTime <= DateTime.Now).OrderByDescending(c => c.OutDepartmentTime).Take(1).ToList().Select(c => new ItemObserveRoomInfo(c, outPatientNumber, JZID, GHXXID, BRXXID, KDJID)).ToList();
         }
 
 
 
 
 
-        /// <summary>
-        /// 基于指定条件获取实例。
-        /// </summary>
-        /// <param name="outPatientNumber">卡号。</param>
-        /// <param name="JZID">门诊医师接诊记录ID。</param>
-        /// <param name="GHXXID">挂号信息ID。</param>
-        /// <param name="BRXXID">病人信息ID。</param>
-        /// <param name="KDJID">卡登记ID。</param>
-        /// <param name="dbTrasen">创新数据库。</param>
-        public RescueRoomInfo GetRescueRoomInfo(string outPatientNumber, Guid JZID, Guid GHXXID, Guid BRXXID, Guid KDJID, TrasenDbContext dbTrasen)
-        {
-            var target = new RescueRoomInfo();
+        public string OutPatientNumber { get; set; }
 
-            var BRXX = dbTrasen.VI_YY_BRXX.Where(c => c.BRXXID == BRXXID).FirstOrDefault();
-            var GHXX = dbTrasen.VI_MZ_GHXX.Where(c => c.GHXXID == GHXXID).FirstOrDefault();
-            var JZJL = dbTrasen.MZYS_JZJL.Where(c => c.JZID == JZID).FirstOrDefault();
+        public Guid JZID { get; set; }
 
-            target.PatientName = BRXX?.BRXM;
-            target.OutPatientNumber = outPatientNumber;
-            if (BRXX != null)
-                target.Sex = dbTrasen.JC_SEXCODE.Where(c => c.CODE == BRXX.XB).FirstOrDefault()?.NAME;
-            target.BirthDate = BRXX?.CSRQ;
-            target.DiagnosisNameOrigin = JZJL?.ZDMC;
-            target.ReceiveTime = JZJL?.JSSJ;
-            target.FirstDoctorName = dbTrasen.JC_EMPLOYEE_PROPERTY.Where(c => c.EMPLOYEE_ID == JZJL.JSYSDM).FirstOrDefault()?.NAME;
+        public Guid GHXXID { get; set; }
 
-            target.KDJID = KDJID;
-            target.BRXXID = BRXXID;
-            target.GHXXID = GHXXID;
-            target.JZID = JZID;
+        public Guid BRXXID { get; set; }
 
-            target.InDepartmentTime = DateTime.Today;
+        public Guid KDJID { get; set; }
 
-            return target;
-        }
+
+
+
+
+        public List<ItemObserveRoomInfo> ListObserveRoomInfos { get; set; }
     }
 }

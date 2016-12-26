@@ -42,6 +42,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Details
 
             this.OutDepartmentTime = rescueRoomInfo.OutDepartmentTime;
             this.During = rescueRoomInfo.During;
+            this.DuringDetained = rescueRoomInfo.DuringDetained;
             this.DestinationNameFull = rescueRoomInfo.DestinationNameFull;
             this.HandleNurse = rescueRoomInfo.HandleNurse;
             this.DiagnosisName = rescueRoomInfo.DiagnosisName;
@@ -175,6 +176,12 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Details
         /// </summary>
         [Display(Name = "停留时长")]
         public TimeSpan? During { get; set; }
+
+        /// <summary>
+        /// 连续滞留时长。
+        /// </summary>
+        [Display(Name = "连续滞留时长")]
+        public TimeSpan DuringDetained { get; set; }
 
         /// <summary>
         /// 去向名称-完整。

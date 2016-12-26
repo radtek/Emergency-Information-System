@@ -17,20 +17,13 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Create
         /// <summary>
         /// Initializes a new instance of the <see cref="ItemJzjl"/> class.
         /// </summary>
-        protected ItemJzjl()
-        {
-
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ItemJzjl"/> class.
-        /// </summary>
         /// <param name="outPatientNumber">卡号。</param>
         /// <param name="KDJID">卡登记ID。</param>
         /// <param name="JZJL">门诊医师接诊记录。</param>
-        /// <param name="dbTrasen">创新数据库。</param>
-        public ItemJzjl(string outPatientNumber,Guid KDJID,MZYS_JZJL JZJL,TrasenDbContext dbTrasen)
+        public ItemJzjl(string outPatientNumber,Guid KDJID,MZYS_JZJL JZJL)
         {
+            var dbTrasen = new TrasenDbContext("TrasenConnection");
+
             this.ORIGIN_JZID = JZJL.JZID;
             this.ORIGIN_KDJID = KDJID;
             this.ORIGIN_BRXXID = JZJL.BRXXID;

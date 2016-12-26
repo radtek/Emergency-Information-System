@@ -14,40 +14,13 @@ namespace EmergencyInformationSystem.Controllers
     public class GreenPathsController : Controller
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="GreenPathsController"/> class.
+        /// 急性心肌梗死详情。
         /// </summary>
-        public GreenPathsController()
-        {
-            db = new EiSDbContext();
-        }
-
-
-
-
-
-        /// <summary>
-        /// EiS数据上下文。
-        /// </summary>
-        private EiSDbContext db;
-
-
-
-
-
-        /// <summary>
-        /// 未实现。
-        /// </summary>
-        public ActionResult IndexAmi()
-        {
-            return View();
-        }
-
-        /// <summary>
-        /// 详情——AMI。
-        /// </summary>
-        /// <param name="id">主ID——AMI。</param>
+        /// <param name="id">急性心肌梗死绿色通道ID。</param>
         public ActionResult DetailsAmi(Guid id)
         {
+            var db = new EiSDbContext();
+
             var target = db.GreenPathAmis.Find(id);
             if (target == null)
                 return null;
@@ -56,18 +29,20 @@ namespace EmergencyInformationSystem.Controllers
         }
 
         /// <summary>
-        /// 新增——AMI。
+        /// 急性心肌梗死新增。
         /// </summary>
         /// <param name="rescueRoomInfoId">归属的抢救室病例ID。</param>
         /// <remarks>直接生成后，跳转到Edit。</remarks>
         public ActionResult CreateAmi(int rescueRoomInfoId)
         {
+            var db = new EiSDbContext();
+
             var rescueRoomInfo = db.RescueRoomInfos.Find(rescueRoomInfoId);
             if (rescueRoomInfo == null)
                 return HttpNotFound();
 
             if (db.GreenPathAmis.Any(c => c.RescueRoomInfoId == rescueRoomInfoId))
-                HttpNotFound();
+                return HttpNotFound();
 
             var target = new GreenPathAmi();
 
@@ -91,11 +66,13 @@ namespace EmergencyInformationSystem.Controllers
         }
 
         /// <summary>
-        /// 编辑——AMI。
+        /// 急性心肌梗死编辑。
         /// </summary>
-        /// <param name="id">主ID——AMI。</param>
+        /// <param name="id">急性心肌梗死绿色通道ID。</param>
         public ActionResult EditAmi(Guid id)
         {
+            var db = new EiSDbContext();
+
             var target = db.GreenPathAmis.Find(id);
             if (target == null)
                 return HttpNotFound();
@@ -104,13 +81,15 @@ namespace EmergencyInformationSystem.Controllers
         }
 
         /// <summary>
-        /// 编辑——AMI——执行。
+        /// 急性心肌梗死编辑 执行。
         /// </summary>
         /// <param name="greenPathAmi">提交实例。</param>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult EditAmi([Bind()]GreenPathAmi greenPathAmi)
         {
+            var db = new EiSDbContext();
+
             var rescueRoomInfo = db.RescueRoomInfos.Find(greenPathAmi.RescueRoomInfoId);
 
             //1-须先有首次心电图才能有再次心电图。
@@ -128,10 +107,10 @@ namespace EmergencyInformationSystem.Controllers
             //5-首次心电图时间不能早于接诊时间。
             if (rescueRoomInfo.ReceiveTime.HasValue && greenPathAmi.EcgFirstTime.HasValue && rescueRoomInfo.ReceiveTime.Value > greenPathAmi.EcgFirstTime.Value)
                 ModelState.AddModelError("EcgFirstTime", "首次心电图时间不能早于接诊时间。");
-            //5-再次心电图时间不能晚于完成通道时间。
+            //6-再次心电图时间不能晚于完成通道时间。
             if (greenPathAmi.FinishPathTime.HasValue && greenPathAmi.EcgSecondTime.HasValue && greenPathAmi.FinishPathTime.Value < greenPathAmi.EcgSecondTime.Value)
                 ModelState.AddModelError("EcgSecondTime", "再次心电图时间不能晚于完成通道时间。");
-            //6-完成通道时间不能早于接诊时间。
+            //7-完成通道时间不能早于接诊时间。
             if(rescueRoomInfo.ReceiveTime.HasValue && greenPathAmi.FinishPathTime.HasValue && rescueRoomInfo.ReceiveTime.Value>greenPathAmi.FinishPathTime.Value)
                 ModelState.AddModelError("EcgFirstTime", "完成通道时间不能早于接诊时间。");
 
@@ -147,6 +126,7 @@ namespace EmergencyInformationSystem.Controllers
                 target.Remarks = greenPathAmi.Remarks;
                 target.Problem = greenPathAmi.Problem;
                 target.FinishPathTime = greenPathAmi.FinishPathTime;
+                target.IsHeldUp = greenPathAmi.IsHeldUp;
 
                 target.TimeStamp = greenPathAmi.TimeStamp;
                 target.UpdateTime = DateTime.Now;

@@ -11,21 +11,26 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
     /// <summary>
     /// 抢救效果。
     /// </summary>
-    /// <remarks>表示抢救室病例进行抢救后的结果。</remarks>
+    /// <remarks>抢救效果。表示抢救室病例进行抢救后的结果。</remarks>
     [Table("RescueResults")]
     public class RescueResult
     {
+        #region 构建
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="RescueResult"/> class.
+        /// 初始化实例<see cref="RescueResult"/>。
         /// </summary>
         public RescueResult()
         {
-
         }
 
+        #endregion
 
 
 
+
+
+        #region 实体属性
 
         /// <summary>
         /// 抢救效果ID。
@@ -56,5 +61,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         public virtual byte[] TimeStamp { get; set; }
 
         public virtual DateTime UpdateTime { get; set; }
+
+        #endregion
     }
 }

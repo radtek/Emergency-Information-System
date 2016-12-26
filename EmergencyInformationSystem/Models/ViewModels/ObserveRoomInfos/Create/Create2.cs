@@ -17,22 +17,15 @@ namespace EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Create
         /// <summary>
         /// Initializes a new instance of the <see cref="Create2"/> class.
         /// </summary>
-        protected Create2()
-        {
-
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Create2"/> class.
-        /// </summary>
         /// <param name="outPatientNumber">卡号。</param>
-        /// <param name="dbTrasen">创新数据库。</param>
-        public Create2(string outPatientNumber, TrasenDbContext dbTrasen)
+        public Create2(string outPatientNumber)
         {
-            var KDJB = dbTrasen.YY_KDJB.Where(c => c.KH == outPatientNumber).First();
-            var GHXXs = dbTrasen.VI_MZ_GHXX.Where(c => c.BRXXID == KDJB.BRXXID);
+            var dbTrasen = new TrasenDbContext("TrasenConnection");
 
-            this.ListGhxx = GHXXs.ToList().Select(c => new ItemGhxx(outPatientNumber, KDJB.KDJID, c, dbTrasen)).ToList();
+            var itemKDJB = dbTrasen.YY_KDJB.Where(c => c.KH == outPatientNumber).First();
+            var listGHXX = dbTrasen.VI_MZ_GHXX.Where(c => c.BRXXID == itemKDJB.BRXXID).OrderByDescending(c => c.GHSJ).ThenBy(c => c.GHXXID).ToList();
+
+            this.ListGhxx = listGHXX.Select(c => new ItemGhxx(outPatientNumber, itemKDJB.KDJID, c)).ToList();
         }
 
 

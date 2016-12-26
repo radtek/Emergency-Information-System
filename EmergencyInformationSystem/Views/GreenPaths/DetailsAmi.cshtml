@@ -7,9 +7,9 @@
 @*面包屑区*@
 <div class="container">
     <ol class="breadcrumb">
-        <li>@Html.ActionLink("主页", "Index", "Home", null, null)</li>
-        <li>@Html.ActionLink("抢救室病例信息一览表", "Index", "RescueRoomInfos", null, null)</li>
-        <li>@Html.ActionLink("抢救室病例信息表", "Details", "RescueRoomInfos", new { id = Model.RescueRoomInfoId }, null)</li>
+        <li>@Html.ActionLink("主界面", "Index", "Home", null, new { @class = "btn-show-modal" })</li>
+        <li>@Html.ActionLink("抢救室病例信息一览表", "Index", "RescueRoomInfos", null, new { @class = "btn-show-modal" } )</li>
+        <li>@Html.ActionLink("抢救室病例信息表", "Details", "RescueRoomInfos", new { id = Model.RescueRoomInfoId }, new { @class = "btn-show-modal" })</li>
         <li class="active">@ViewBag.Title</li>
     </ol>
 </div>
@@ -92,12 +92,18 @@
         </div>
 
         <div class="col-md-6 RescueRoomSecondTitleCell">
+            @Html.DisplayNameFor(model => model.IsHeldUp)
+            :
+            @Html.DisplayFor(model => model.IsHeldUp)
+        </div>
+
+        <div class="col-md-6 RescueRoomSecondTitleCell">
             @Html.DisplayNameFor(model => model.During)
             :
             @Html.DisplayFor(model => model.During)
         </div>
 
-        <div class="col-md-12 RescueRoomSecondTitleCell">
+        <div class="col-md-6 RescueRoomSecondTitleCell">
             @Html.DisplayNameFor(model => model.Problem)
             :
             @Html.DisplayFor(model => model.Problem)
@@ -112,7 +118,7 @@
             会诊
             <small>
                 <span>
-                    @Html.ActionLink("新增", "Create", "RescueRoomConsultations", new { Model.RescueRoomInfoId, goToGreenPath = true }, new { @class = "label label-default" })
+                    @Html.ActionLink("新增", "Create", "RescueRoomConsultations", new { Model.RescueRoomInfoId, goToGreenPath = true }, new { @class = "label label-default btn-show-modal" })
                 </span>
             </small>
         </div>
@@ -136,6 +142,12 @@
         <div id="ImageRecords">
             @Html.Action("IndexPartial", "RescueRoomImageRecords", new { Model.RescueRoomInfoId })
         </div>
+        <div id="ImageRecordsLoading" hidden="hidden">
+            <p class="alert-info">更新中…</p>
+        </div>
+        <div id="ImageRecordsError" hidden="hidden">
+            <p class="alert-danger">更新失败</p>
+        </div>
     </div>
 
     <hr />
@@ -155,6 +167,37 @@
         <div id="DrugRecords">
             @Html.Action("IndexPartial", "RescueRoomDrugRecords", new { Model.RescueRoomInfoId })
         </div>
+        <div id="DrugRecordsLoading" hidden="hidden">
+            <p class="alert-info">更新中…</p>
+        </div>
+        <div id="DrugRecordsError" hidden="hidden">
+            <p class="alert-danger">更新失败</p>
+        </div>
+    </div>
+
+    <hr />
+
+    @*治疗*@
+
+    <div class="row RescueRoomSecondTitleRow">
+        <div class="col-md-12 RescueRoomSecondTitle">
+            治疗
+            <small>
+                <span>
+                    <button id="RefreshTreatmentRecords">刷新</button>
+                </span>
+            </small>
+        </div>
+
+        <div id="TreatmentRecords">
+            @Html.Action("IndexPartial", "RescueRoomTreatmentRecords", new { Model.RescueRoomInfoId })
+        </div>
+        <div id="TreatmentRecordsLoading" hidden="hidden">
+            <p class="alert-info">更新中…</p>
+        </div>
+        <div id="TreatmentRecordsError" hidden="hidden">
+            <p class="alert-danger">更新失败</p>
+        </div>
     </div>
 
     <hr />
@@ -162,23 +205,23 @@
     @*按钮*@
     <div class="form-group RescueRoomSecondTitleSubmitBlock">
         <div class="col-md-offset-1 col-md-9">
-            @Html.ActionLink("编辑", "EditAmi", new { id = Model.GreenPathAmiId }, new { @class = "btn btn-info" })
+            @Html.ActionLink("编辑", "EditAmi", new { id = Model.GreenPathAmiId }, new { @class = "btn btn-info btn-show-modal" })
         </div>
     </div>
 </div>
 
-<script type="text/javascript">
+@section scripts{
+    @Scripts.Render("~/bundles/EisNormal")
+}
+
+<script>
     $(document).ready(function () {
         $("#RefreshDrugRecords").click(function (event) {
             event.preventDefault();
 
-            $("#DrugRecords").load("@Url.Action("Refresh", "RescueRoomDrugRecords", new { rescueRoomInfoId = Model.RescueRoomInfoId })", null, function (responseTxt, statusTxt, xhr) {
-                if (statusTxt == "success") {
-                }
-                if (statusTxt == "error") {
-                    alert("Error: " + xhr.status + ": " + xhr.statusText);
-                }
-            });
+            BeforeRefreshDrugRecords();
+
+            RefreshDrugRecords();
         });
     });
 
@@ -186,13 +229,145 @@
         $("#RefreshImageRecords").click(function (event) {
             event.preventDefault();
 
-            $("#ImageRecords").load("@Url.Action("Refresh", "RescueRoomImageRecords", new { rescueRoomInfoId = Model.RescueRoomInfoId })", null, function (responseTxt, statusTxt, xhr) {
-                if (statusTxt == "success") {
-                }
-                if (statusTxt == "error") {
-                    alert("Error: " + xhr.status + ": " + xhr.statusText);
-                }
-            });
+            BeforeRefreshImageRecords();
+
+            RefreshImageRecords();
         });
     });
+
+    $(document).ready(function () {
+        $("#RefreshTreatmentRecords").click(function (event) {
+            event.preventDefault();
+
+            BeforeRefreshTreatmentRecords();
+
+            RefreshTreatmentRecords();
+        });
+    });
+
+
+
+
+
+    //执行前 抢救室用药项.刷新
+    function BeforeRefreshDrugRecords() {
+        $("#RefreshDrugRecords").attr("disabled", "disabled");
+
+        $("#DrugRecords").hide(10, null);
+        $("#DrugRecordsLoading").show(10, null);
+    }
+
+    //执行 抢救室用药项.刷新
+    function RefreshDrugRecords() {
+        $("#DrugRecords").load("@Url.Action("Refresh", "RescueRoomDrugRecords", new { rescueRoomInfoId = Model.RescueRoomInfoId })", null, function (responseTxt, statusTxt, xhr) {
+            if (statusTxt == "success") {
+                SuccessRefreshDrugRecords();
+            }
+            if (statusTxt == "error") {
+                FaildRefreshDrugRecords();
+            }
+        });
+    };
+
+    //执行成功后 抢救室用药项.刷新
+    function SuccessRefreshDrugRecords() {
+        $("#DrugRecords").show(10, null);
+        $("#DrugRecordsLoading").hide(10, null);
+        $("#DrugRecordsError").hide(10, null);
+
+        $("#RefreshDrugRecords").removeAttr("disabled");
+    }
+
+    //执行失败后 抢救室用药项.刷新
+    function FaildRefreshDrugRecords() {
+        $("#DrugRecords").hide(10, null);
+        $("#DrugRecordsLoading").hide(10, null);
+        $("#DrugRecordsError").show(10, null);
+
+        $("#RefreshDrugRecords").removeAttr("disabled");
+    }
+
+
+
+
+
+    //执行前 抢救室影像项.刷新
+    function BeforeRefreshImageRecords() {
+        $("#RefreshImageRecords").attr("disabled", "disabled");
+
+        $("#ImageRecords").hide(10, null);        
+        $("#ImageRecordsLoading").show(10, null);        
+    }
+
+    //执行 抢救室影像项.刷新
+    function RefreshImageRecords() {
+        $("#ImageRecords").load("@Url.Action("Refresh", "RescueRoomImageRecords", new { rescueRoomInfoId = Model.RescueRoomInfoId })", null, function (responseTxt, statusTxt, xhr) {
+            if (statusTxt == "success") {
+                SuccessRefreshImageRecords();
+            }
+            if (statusTxt == "error") {
+                FaildRefreshImageRecords();
+            }
+        });
+    };
+
+    //执行成功后 抢救室影像项.刷新
+    function SuccessRefreshImageRecords() {
+        $("#ImageRecords").show(10, null);
+        $("#ImageRecordsLoading").hide(10, null);
+        $("#ImageRecordsError").hide(10, null);
+
+        $("#RefreshImageRecords").removeAttr("disabled");
+    }
+
+    //执行失败后 抢救室影像项.刷新
+    function FaildRefreshImageRecords() {
+        $("#ImageRecords").hide(10, null);
+        $("#ImageRecordsLoading").hide(10, null);
+        $("#ImageRecordsError").show(10, null);
+
+        $("#RefreshImageRecords").removeAttr("disabled");
+    }
+
+
+
+
+
+    //执行前 抢救室治疗项.刷新
+    function BeforeRefreshTreatmentRecords() {
+        $("#RefreshTreatmentRecords").attr("disabled", "disabled");
+
+        $("#TreatmentRecords").hide(10, null);
+        $("#TreatmentRecordsLoading").show(10, null);
+    }
+
+    //执行 抢救室治疗项.刷新
+    function RefreshTreatmentRecords() {
+        $("#TreatmentRecords").load("@Url.Action("Refresh", "RescueRoomTreatmentRecords", new { rescueRoomInfoId = Model.RescueRoomInfoId })", null, function (responseTxt, statusTxt, xhr) {
+            if (statusTxt == "success") {
+                SuccessRefreshTreatmentRecords();
+            }
+            if (statusTxt == "error") {
+                FaildRefreshTreatmentRecords();
+            }
+        });
+    };
+
+    //执行成功后 抢救室治疗项.刷新
+    function SuccessRefreshTreatmentRecords() {
+        $("#TreatmentRecords").show(10, null);
+        $("#TreatmentRecordsLoading").hide(10, null);
+        $("#TreatmentRecordsError").hide(10, null);
+
+        $("#RefreshTreatmentRecords").removeAttr("disabled");
+    }
+
+    //执行失败后 抢救室治疗项.刷新
+    function FaildRefreshTreatmentRecords() {
+        $("#TreatmentRecords").hide(10, null);
+        $("#TreatmentRecordsLoading").hide(10, null);
+        $("#TreatmentRecordsError").show(10, null);
+
+        $("#RefreshTreatmentRecords").removeAttr("disabled");
+    }
 </script>

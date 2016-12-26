@@ -11,20 +11,26 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
     /// <summary>
     /// 留观室病例。
     /// </summary>
+    /// <remarks>留观室病例。表示留观室的病例。包含冗余的个人信息。</remarks>
     [Table("ObserveRoomInfos")]
     public class ObserveRoomInfo
     {
+        #region 构建
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="ObserveRoomInfo"/> class.
+        /// 初始化实例<see cref="ObserveRoomInfo"/>。
         /// </summary>
         public ObserveRoomInfo()
         {
-
         }
 
+        #endregion
 
 
 
+
+
+        #region 实体属性
 
         /// <summary>
         /// 留观室病例ID。
@@ -110,7 +116,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// 首诊护士姓名。
         /// </summary>
         [Display(Name = "首诊护士")]
-        public string FirstNurseName { get; set; }
+        public virtual string FirstNurseName { get; set; }
 
         /// <summary>
         /// 进入留观室方式ID。
@@ -120,9 +126,9 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         public virtual int InObserveRoomWayId { get; set; }
 
         /// <summary>
-        /// 入室方式明细。
+        /// 进入留观室方式明细。
         /// </summary>
-        /// <remarks>进入留观室方式为有额外信息时才有意义。</remarks>
+        /// <remarks>有额外信息时才有意义。</remarks>
         [Display(Name = "入室方式明细")]
         public virtual string InObserveRoomWayRemarks { get; set; }
 
@@ -178,7 +184,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// <summary>
         /// 去向明细。
         /// </summary>
-        /// <remarks>去向为有额外信息时才有意义。</remarks>
+        /// <remarks>有额外信息时才有意义。</remarks>
         [Display(Name = "去向明细")]
         public virtual string DestinationRemarks { get; set; }
 
@@ -191,7 +197,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// <summary>
         /// 离室诊断名称。
         /// </summary>
-        [Display(Name = "离室诊断名称")]
+        [Display(Name = "离室诊断")]
         public virtual string DiagnosisName { get; set; }
 
 
@@ -231,9 +237,13 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
 
         public virtual DateTime UpdateTime { get; set; }
 
+        #endregion
 
 
 
+
+
+        #region 导航属性
 
         /// <summary>
         /// 床位。
@@ -269,6 +279,8 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// 关联的下一次抢救室病例。
         /// </summary>
         public virtual RescueRoomInfo NextRescueRoomInfo { get; set; }
+
+        #endregion
 
 
 
@@ -319,7 +331,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         {
             get
             {
-                if (this.Bed.IsUseForEmpty)
+                if (this.Bed == null || this.Bed.IsUseForEmpty)
                     return this.BedNumber;
                 else
                     return this.Bed.BedName;
@@ -367,7 +379,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         }
 
         /// <summary>
-        /// 是否已离室。
+        /// 是否离室。
         /// </summary>
         [Display(Name = "离室")]
         public bool IsLeave
@@ -379,7 +391,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         }
 
         /// <summary>
-        /// 是否已离室名称。
+        /// 是否离室名称。
         /// </summary>
         public string IsLeaveName
         {
@@ -392,7 +404,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// <summary>
         /// 停留时长。
         /// </summary>
-        /// <remarks>入室时间至离室时间的间隔。</remarks>
+        /// <remarks>停留时长。入室时间至离室时间的间隔。</remarks>
         [Display(Name = "停留时长")]
         public TimeSpan? During
         {
@@ -403,8 +415,72 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         }
 
         /// <summary>
+        /// 最初入室时间。
+        /// </summary>
+        /// <remarks>连续在抢救室和留观室中的最初入室时间。</remarks>
+        public DateTime InDepartmentTimeActual
+        {
+            get
+            {
+                if (this.PreviousRescueRoomInfo == null)
+                    return this.InDepartmentTime;
+                else
+                    return this.PreviousRescueRoomInfo.InDepartmentTimeActual;
+            }
+        }
+
+        /// <summary>
+        /// 连续滞留时长。
+        /// </summary>
+        /// <remarks>从最初入室到当前（未离室）或离室时的累积时长。</remarks>
+        [Display(Name = "连续滞留时长")]
+        public TimeSpan DuringDetained
+        {
+            get
+            {
+                if (this.IsLeave)
+                    return this.OutDepartmentTime.Value - this.InDepartmentTimeActual;
+                else
+                    return DateTime.Now - this.InDepartmentTimeActual;
+            }
+        }
+
+        /// <summary>
+        /// 停留时长小时数。
+        /// </summary>
+        public int? DuringHours
+        {
+            get
+            {
+                return this.During?.Hours + this.During?.Days * 24;
+            }
+        }
+
+        /// <summary>
+        /// 停留时长分组。
+        /// </summary>
+        /// <remarks>基于停留时长小时数进行的分组。</remarks>
+        public string DuringGroupName
+        {
+            get
+            {
+                if (!this.DuringHours.HasValue)
+                    return "未离室";
+                else if (this.DuringHours.Value > 72)
+                    return "大于72小时";
+                else if (this.DuringHours.Value > 48)
+                    return "48至72小时";
+                else if (this.DuringHours.Value > 24)
+                    return "24至48小时";
+                else
+                    return "小于24小时";
+            }
+        }
+
+        /// <summary>
         /// 去向名称-完整。
         /// </summary>
+        /// <remarks>整合附加信息。</remarks>
         [Display(Name = "去向")]
         public string DestinationNameFull
         {

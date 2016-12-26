@@ -1,0 +1,13 @@
+﻿@model IEnumerable<EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueRoomMonth.RescueSecond>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td style="padding-left:40px">
+            @Html.ActionLink(item.RescueResultName, "IndexRescueRoomRescue", new { item.IsRescue, item.RescueResultId, item.Time }, new { target = "_blank" })
+        </td>
+        <td style="padding-left:40px">
+            @Html.DisplayFor(model => item.Count)
+        </td>
+    </tr>
+}

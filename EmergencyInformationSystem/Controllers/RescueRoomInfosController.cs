@@ -4,8 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-using TrasenLib;
-
 using EmergencyInformationSystem.Models.Domains.Entities;
 using EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Index;
 using EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Details;
@@ -20,49 +18,24 @@ namespace EmergencyInformationSystem.Controllers
     public class RescueRoomInfosController : Controller
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="RescueRoomInfosController"/> class.
-        /// </summary>
-        public RescueRoomInfosController()
-        {
-            this.db = new EiSDbContext();
-            this.dbTrasen = new TrasenDbContext("TrasenConnection");
-        }
-
-
-
-
-
-        /// <summary>
-        /// Trasen数据上下文。
-        /// </summary>
-        private TrasenDbContext dbTrasen;
-
-        /// <summary>
-        /// EiS数据上下文。
-        /// </summary>
-        private EiSDbContext db;
-
-
-
-
-
-        /// <summary>
         /// 一览。
         /// </summary>
-        /// <param name="inTimeStart">入室时间开始点。</param>
-        /// <param name="inTimeEnd">入室时间结束点。</param>
-        /// <param name="outTimeStart">离室时间开始点。</param>
-        /// <param name="outTimeEnd">离室时间结束点。</param>       
+        /// <param name="inDepartmentTimeStart">入室时间起点。</param>
+        /// <param name="inDepartmentTimeEnd">入室时间结点。</param>
+        /// <param name="outDepartmentTimeStart">离室时间起点。</param>
+        /// <param name="outDepartmentTimeEnd">离室时间结点。</param>
         /// <param name="greenPathCategoryId">绿色通道类型ID。</param>
         /// <param name="isRescue">是否抢救。</param>
-        /// <param name="isLeave">是否已离室。</param>       
+        /// <param name="isLeave">是否离室。</param>
         /// <param name="patientName">患者姓名。</param>
         /// <param name="outPatientNumber">卡号。</param>
         /// <param name="page">页码。</param>
         /// <param name="perPage">每页项目数。</param>
-        public ActionResult Index(DateTime? inTimeStart = null, DateTime? inTimeEnd = null, DateTime? outTimeStart = null, DateTime? outTimeEnd = null, int? greenPathCategoryId = null, bool? isRescue = null, bool? isLeave = null, string patientName = "", string outPatientNumber = "", int page = 1, int perPage = 20)
+        public ActionResult Index(DateTime? inDepartmentTimeStart, DateTime? inDepartmentTimeEnd, DateTime? outDepartmentTimeStart, DateTime? outDepartmentTimeEnd, int? greenPathCategoryId, bool? isRescue, bool? isLeave, string patientName, string outPatientNumber, int page = 1, int perPage = 20)
         {
-            var targetV = new Index(inTimeStart, inTimeEnd, outTimeStart, outTimeEnd, greenPathCategoryId, isRescue, isLeave, patientName, outPatientNumber, page, perPage, db);
+            var targetV = new Index(inDepartmentTimeStart, inDepartmentTimeEnd, outDepartmentTimeStart, outDepartmentTimeEnd, greenPathCategoryId, isRescue, isLeave, patientName, outPatientNumber, page, perPage);
+
+            var db = new EiSDbContext();
 
             ViewBag.GreenPathCategoryId = new SelectList(db.GreenPathCategories, "GreenPathCategoryId", "GreenPathCategoryName", greenPathCategoryId);
             ViewBag.IsRescue = new SelectList(new List<SelectListItem>
@@ -82,9 +55,11 @@ namespace EmergencyInformationSystem.Controllers
         /// <summary>
         /// 详情。
         /// </summary>
-        /// <param name="id">主ID。</param>
+        /// <param name="id">抢救室病例ID。</param>
         public ActionResult Details(int id)
         {
+            var db = new EiSDbContext();
+
             var target = db.RescueRoomInfos.Find(id);
             if (target == null)
                 return HttpNotFound();
@@ -106,13 +81,16 @@ namespace EmergencyInformationSystem.Controllers
         }
 
         /// <summary>
-        /// 新增1——执行。
+        /// 新增1 执行。
         /// </summary>
+        /// <param name="create">提交对象。</param>
         /// <remarks>跳转到Create2。</remarks>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind()]Create create)
         {
+            var dbTrasen = new TrasenLib.TrasenDbContext("TrasenConnection");
+
             if (!dbTrasen.YY_KDJB.Any(c => c.KH == create.OutPatientNumber))
                 ModelState.AddModelError("outPatientNumber", "卡号不存在");
 
@@ -131,7 +109,7 @@ namespace EmergencyInformationSystem.Controllers
         /// <remarks>定位接诊记录。</remarks>
         public ActionResult Create2(string outPatientNumber)
         {
-            var targetV = new Create2(outPatientNumber, dbTrasen);
+            var targetV = new Create2(outPatientNumber);
 
             return View(targetV);
         }
@@ -144,36 +122,70 @@ namespace EmergencyInformationSystem.Controllers
         /// <param name="GHXXID">挂号信息ID。</param>
         /// <param name="BRXXID">病人信息ID。</param>
         /// <param name="KDJID">卡登记ID。</param>
-        /// <returns>表单。</returns>
         public ActionResult Create3(string outPatientNumber, Guid JZID, Guid GHXXID, Guid BRXXID, Guid KDJID)
         {
+            var db = new EiSDbContext();
+
             //查找是否已存在相同JZID的记录。若存在，则跳转到Details。
             var targetDump = db.RescueRoomInfos.Where(c => c.JZID == JZID).FirstOrDefault();
             if (targetDump != null)
                 return RedirectToAction("Details", new { id = targetDump.RescueRoomInfoId });
 
-            var target = (new Create3()).GetRescueRoomInfo(outPatientNumber, JZID, GHXXID, BRXXID, KDJID, dbTrasen);
+            var targetV = new Create3(outPatientNumber, JZID, GHXXID, BRXXID, KDJID);
+
+            //无留观室记录时，跳转到下一步。
+            if (targetV.ListObserveRoomInfos.Count() != 0)
+                return View(targetV);
+            else
+                return RedirectToAction("Create4", new { outPatientNumber, JZID, GHXXID, BRXXID, KDJID });
+        }
+
+        /// <summary>
+        /// 新增4。
+        /// </summary>
+        /// <param name="outPatientNumber">卡号。</param>
+        /// <param name="JZID">门诊医师接诊记录ID。</param>
+        /// <param name="GHXXID">挂号信息ID。</param>
+        /// <param name="BRXXID">病人信息ID。</param>
+        /// <param name="KDJID">卡登记ID。</param>
+        /// <param name="previousObserveRoomInfoId">关联的留观室病例ID。</param>
+        /// <returns>表单。</returns>
+        public ActionResult Create4(string outPatientNumber, Guid JZID, Guid GHXXID, Guid BRXXID, Guid KDJID, Guid? previousObserveRoomInfoId)
+        {
+            var db = new EiSDbContext();
+
+            //查找是否已存在相同JZID的记录。若存在，则跳转到Details。
+            var targetDump = db.RescueRoomInfos.Where(c => c.JZID == JZID).FirstOrDefault();
+            if (targetDump != null)
+                return RedirectToAction("Details", new { id = targetDump.RescueRoomInfoId });
+
+            var target = (new Create4()).GetRescueRoomInfo(outPatientNumber, JZID, GHXXID, BRXXID, KDJID);
 
             ViewBag.BedId = new SelectList(db.Beds.Where(c => c.IsUseForRescueRoom), "BedId", "BedName");
             ViewBag.InRescueRoomWayId = new SelectList(db.InRescueRoomWays, "InRescueRoomWayId", "InRescueRoomWayName");
             ViewBag.GreenPathCategoryId = new SelectList(db.GreenPathCategories, "GreenPathCategoryId", "GreenPathCategoryName");
             ViewBag.RescueResultId = new SelectList(db.RescueResults, "RescueResultId", "RescueResultName");
-            ViewBag.DestinationId = new SelectList(db.Destinations, "DestinationId", "DestinationName");
+            ViewBag.DestinationId = new SelectList(db.Destinations.Where(c => c.IsUseForRescueRoom).OrderBy(c => c.Priority2), "DestinationId", "DestinationName");
             ViewBag.CriticalLevelId = new SelectList(db.CriticalLevels, "CriticalLevelId", "CriticalLevelName");
-            ViewBag.DestinationFirstId = new SelectList(db.Destinations.Where(c => c.IsUseForSubscription), "DestinationId", "DestinationName");
-            ViewBag.DestinationSecondId = new SelectList(db.Destinations.Where(c => c.IsUseForSubscription), "DestinationId", "DestinationName");
+            ViewBag.DestinationFirstId = new SelectList(db.Destinations.Where(c => c.IsUseForSubscription).OrderBy(c => c.Priority2), "DestinationId", "DestinationName");
+            ViewBag.DestinationSecondId = new SelectList(db.Destinations.Where(c => c.IsUseForSubscription).OrderBy(c => c.Priority2), "DestinationId", "DestinationName");
+
+            ViewBag.PreviousObserveRoomInfoId = previousObserveRoomInfoId;
 
             return View(target);
         }
 
         /// <summary>
-        /// 新增3——执行。
+        /// 新增4 执行。
         /// </summary>
         /// <param name="rescueRoomInfo">提交实例。</param>
+        /// <param name="previousObserveRoomInfoId">关联的留观室病例ID。</param>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create3([Bind()]RescueRoomInfo rescueRoomInfo)
+        public ActionResult Create4([Bind()]RescueRoomInfo rescueRoomInfo, Guid? previousObserveRoomInfoId)
         {
+            var db = new EiSDbContext();
+
             //查找是否已存在相同JZID的记录。若存在，则跳转到Details。
             var targetDump = db.RescueRoomInfos.Where(c => c.JZID == rescueRoomInfo.JZID).FirstOrDefault();
             if (targetDump != null)
@@ -189,8 +201,8 @@ namespace EmergencyInformationSystem.Controllers
             if (string.IsNullOrEmpty(rescueRoomInfo.FirstNurseName))
                 ModelState.AddModelError("FirstNurseName", "不可为空。");
             //4-入室方式为允许附加数据才可以有附加数据。
-            if (!db.InRescueRoomWays.Find(rescueRoomInfo.InRescueRoomWayId).IsHasAdditionalInfo && !string.IsNullOrEmpty(rescueRoomInfo.InRescueRoomWayRemarks))
-                ModelState.AddModelError("InRescueRoomWayRemarks", "与入院方式不匹配。");
+            //if (!db.InRescueRoomWays.Find(rescueRoomInfo.InRescueRoomWayId).IsHasAdditionalInfo && !string.IsNullOrEmpty(rescueRoomInfo.InRescueRoomWayRemarks))
+            //    ModelState.AddModelError("InRescueRoomWayRemarks", "与入院方式不匹配。");
             //5-入室方式为允许附加数据，必须有具体名称。
             if (db.InRescueRoomWays.Find(rescueRoomInfo.InRescueRoomWayId).IsHasAdditionalInfo && string.IsNullOrEmpty(rescueRoomInfo.InRescueRoomWayRemarks))
                 ModelState.AddModelError("InRescueRoomWayRemarks", "必须有具体名称。");
@@ -201,9 +213,9 @@ namespace EmergencyInformationSystem.Controllers
             if (rescueRoomInfo.IsLeave && rescueRoomInfo.IsRescue && db.RescueResults.Find(rescueRoomInfo.RescueResultId).IsUseForEmpty)
                 ModelState.AddModelError("RescueResultId", "离室时有抢救必须有抢救结果。");
             //8-绿色通道为允许附加数据才可以有附加数据。
-            if (!db.GreenPathCategories.Find(rescueRoomInfo.GreenPathCategoryId).IsHasAdditionalInfo && !string.IsNullOrEmpty(rescueRoomInfo.GreenPathCategoryRemarks))
-                ModelState.AddModelError("GreenPathCategoryRemarks", "与绿色通道病种不匹配。");
-            //9-绿色通道为允许附加数据,必须有具体名称。
+            //if (!db.GreenPathCategories.Find(rescueRoomInfo.GreenPathCategoryId).IsHasAdditionalInfo && !string.IsNullOrEmpty(rescueRoomInfo.GreenPathCategoryRemarks))
+            //    ModelState.AddModelError("GreenPathCategoryRemarks", "与绿色通道病种不匹配。");
+            //9-绿色通道为允许附加数据，必须有具体名称。
             if (db.GreenPathCategories.Find(rescueRoomInfo.GreenPathCategoryId).IsHasAdditionalInfo && string.IsNullOrEmpty(rescueRoomInfo.GreenPathCategoryRemarks))
                 ModelState.AddModelError("GreenPathCategoryRemarks", "必须有具体名称。");
             //10-有预约首选科室，必须有预约首选时间。
@@ -215,28 +227,41 @@ namespace EmergencyInformationSystem.Controllers
             //12-有预约首选科室，必须有预约首选医师。
             if (!db.Destinations.Find(rescueRoomInfo.DestinationFirstId).IsUseForEmpty && string.IsNullOrEmpty(rescueRoomInfo.DestinationFirstContact))
                 ModelState.AddModelError("DestinationFirstContact", "有预约首选科室时必填。");
-            //12-有预约次选科室，必须有预约首选科室。
+            //13-有预约次选科室，必须有预约首选科室。
             if (!db.Destinations.Find(rescueRoomInfo.DestinationSecondId).IsUseForEmpty && db.Destinations.Find(rescueRoomInfo.DestinationFirstId).IsUseForEmpty)
                 ModelState.AddModelError("DestinationSecondId", "必须先填写预约首选科室。");
-            //13-有离室时间，必须有去向。
-            if (rescueRoomInfo.IsLeave && db.Destinations.Find(rescueRoomInfo.DestinationId).IsUseForEmpty)
-                ModelState.AddModelError("DestinationId", "离室时必填。");
-            //14-有离室时间，必须有经手护士。
-            if (rescueRoomInfo.IsLeave && string.IsNullOrEmpty(rescueRoomInfo.HandleNurse))
-                ModelState.AddModelError("HandleNurse", "离室时必填。");
-            //15-离室时间必须不早于入室时间。
+            //14-有离室时间，必须有去向。
+            //if (rescueRoomInfo.IsLeave && db.Destinations.Find(rescueRoomInfo.DestinationId).IsUseForEmpty)
+            //    ModelState.AddModelError("DestinationId", "离室时必填。");
+            //15-有离室时间，必须有经手护士。
+            //if (rescueRoomInfo.IsLeave && string.IsNullOrEmpty(rescueRoomInfo.HandleNurse))
+            //    ModelState.AddModelError("HandleNurse", "离室时必填。");
+            //16-离室时间必须不早于入室时间。
             if (rescueRoomInfo.OutDepartmentTime.HasValue && rescueRoomInfo.InDepartmentTime > rescueRoomInfo.OutDepartmentTime)
                 ModelState.AddModelError("OutDepartmentTime", "不能早于入室时间。");
-            //16-去向为允许附加数据才可以填写去向详细。
-            if (!db.Destinations.Find(rescueRoomInfo.DestinationId).IsHasAdditionalInfo && !string.IsNullOrEmpty(rescueRoomInfo.DestinationRemarks))
-                ModelState.AddModelError("DestinationRemarks", "与去向不匹配。");
-            //17-去向为允许附加数据,必须填写去向详细。
+            //17-去向为允许附加数据才可以填写去向详细。
+            //if (!db.Destinations.Find(rescueRoomInfo.DestinationId).IsHasAdditionalInfo && !string.IsNullOrEmpty(rescueRoomInfo.DestinationRemarks))
+            //    ModelState.AddModelError("DestinationRemarks", "与去向不匹配。");
+            //18-去向为允许附加数据,必须填写去向详细。
             if (db.Destinations.Find(rescueRoomInfo.DestinationId).IsHasAdditionalInfo && string.IsNullOrEmpty(rescueRoomInfo.DestinationRemarks))
                 ModelState.AddModelError("DestinationRemarks", "必须有具体名称。");
+            //19-有去向，必须有离室时间。
+            if (!db.Destinations.Find(rescueRoomInfo.DestinationId).IsUseForEmpty && !rescueRoomInfo.OutDepartmentTime.HasValue)
+                ModelState.AddModelError("OutDepartmentTime", "必须有离室时间。");
+            //20-有去向，必须有经手护士。
+            if (!db.Destinations.Find(rescueRoomInfo.DestinationId).IsUseForEmpty && string.IsNullOrEmpty(rescueRoomInfo.HandleNurse))
+                ModelState.AddModelError("HandleNurse", "离室时必填。");
 
             if (ModelState.IsValid)
             {
                 rescueRoomInfo.UpdateTime = DateTime.Now;
+
+                if (previousObserveRoomInfoId.HasValue)
+                {
+                    rescueRoomInfo.PreviousObserveRoomInfo = db.ObserveRoomInfos.Find(previousObserveRoomInfoId);
+                }
+
+                Models.BusinessModels.TrasenInformationConvertor.FromEmployeeNumberToName(rescueRoomInfo);
 
                 db.RescueRoomInfos.Add(rescueRoomInfo);
                 db.SaveChanges();
@@ -248,10 +273,12 @@ namespace EmergencyInformationSystem.Controllers
             ViewBag.InRescueRoomWayId = new SelectList(db.InRescueRoomWays, "InRescueRoomWayId", "InRescueRoomWayName");
             ViewBag.GreenPathCategoryId = new SelectList(db.GreenPathCategories, "GreenPathCategoryId", "GreenPathCategoryName");
             ViewBag.RescueResultId = new SelectList(db.RescueResults, "RescueResultId", "RescueResultName");
-            ViewBag.DestinationId = new SelectList(db.Destinations, "DestinationId", "DestinationName");
+            ViewBag.DestinationId = new SelectList(db.Destinations.Where(c => c.IsUseForRescueRoom).OrderBy(c => c.Priority2), "DestinationId", "DestinationName");
             ViewBag.CriticalLevelId = new SelectList(db.CriticalLevels, "CriticalLevelId", "CriticalLevelName");
-            ViewBag.DestinationFirstId = new SelectList(db.Destinations.Where(c => c.IsUseForSubscription), "DestinationId", "DestinationName");
-            ViewBag.DestinationSecondId = new SelectList(db.Destinations.Where(c => c.IsUseForSubscription), "DestinationId", "DestinationName");
+            ViewBag.DestinationFirstId = new SelectList(db.Destinations.Where(c => c.IsUseForSubscription).OrderBy(c => c.Priority2), "DestinationId", "DestinationName");
+            ViewBag.DestinationSecondId = new SelectList(db.Destinations.Where(c => c.IsUseForSubscription).OrderBy(c => c.Priority2), "DestinationId", "DestinationName");
+
+            ViewBag.PreviousObserveRoomInfoId = previousObserveRoomInfoId;
 
             return View(rescueRoomInfo);
         }
@@ -259,9 +286,11 @@ namespace EmergencyInformationSystem.Controllers
         /// <summary>
         /// 编辑。
         /// </summary>
-        /// <param name="id">主ID。</param>
+        /// <param name="id">抢救室病例ID。</param>
         public ActionResult Edit(int id)
         {
+            var db = new EiSDbContext();
+
             var target = db.RescueRoomInfos.Find(id);
             if (target == null)
                 return HttpNotFound();
@@ -270,22 +299,24 @@ namespace EmergencyInformationSystem.Controllers
             ViewBag.InRescueRoomWayId = new SelectList(db.InRescueRoomWays, "InRescueRoomWayId", "InRescueRoomWayName", target.InRescueRoomWayId);
             ViewBag.GreenPathCategoryId = new SelectList(db.GreenPathCategories, "GreenPathCategoryId", "GreenPathCategoryName", target.GreenPathCategoryId);
             ViewBag.RescueResultId = new SelectList(db.RescueResults, "RescueResultId", "RescueResultName", target.RescueResultId);
-            ViewBag.DestinationId = new SelectList(db.Destinations, "DestinationId", "DestinationName", target.DestinationId);
+            ViewBag.DestinationId = new SelectList(db.Destinations.Where(c => c.IsUseForRescueRoom).OrderBy(c => c.Priority2), "DestinationId", "DestinationName", target.DestinationId);
             ViewBag.CriticalLevelId = new SelectList(db.CriticalLevels, "CriticalLevelId", "CriticalLevelName", target.CriticalLevelId);
-            ViewBag.DestinationFirstId = new SelectList(db.Destinations.Where(c => c.IsUseForSubscription), "DestinationId", "DestinationName", target.DestinationFirstId);
-            ViewBag.DestinationSecondId = new SelectList(db.Destinations.Where(c => c.IsUseForSubscription), "DestinationId", "DestinationName", target.DestinationSecondId);
+            ViewBag.DestinationFirstId = new SelectList(db.Destinations.Where(c => c.IsUseForSubscription).OrderBy(c => c.Priority2), "DestinationId", "DestinationName", target.DestinationFirstId);
+            ViewBag.DestinationSecondId = new SelectList(db.Destinations.Where(c => c.IsUseForSubscription).OrderBy(c => c.Priority2), "DestinationId", "DestinationName", target.DestinationSecondId);
 
             return View(target);
         }
 
         /// <summary>
-        /// 编辑——执行。
+        /// 编辑 执行。
         /// </summary>
         /// <param name="rescueRoomInfo">提交实例。</param>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind()]RescueRoomInfo rescueRoomInfo)
         {
+            var db = new EiSDbContext();
+
             //1-入室时间不能晚于当前时间。
             if (rescueRoomInfo.InDepartmentTime > DateTime.Now)
                 ModelState.AddModelError("InDepartmentTime", "入室时间不能晚于当前时间。");
@@ -296,8 +327,8 @@ namespace EmergencyInformationSystem.Controllers
             if (string.IsNullOrEmpty(rescueRoomInfo.FirstNurseName))
                 ModelState.AddModelError("FirstNurseName", "不可为空。");
             //4-入室方式为允许附加数据才可以有附加数据。。
-            if (!db.InRescueRoomWays.Find(rescueRoomInfo.InRescueRoomWayId).IsHasAdditionalInfo && !string.IsNullOrEmpty(rescueRoomInfo.InRescueRoomWayRemarks))
-                ModelState.AddModelError("InRescueRoomWayRemarks", "与入院方式不匹配。");
+            //if (!db.InRescueRoomWays.Find(rescueRoomInfo.InRescueRoomWayId).IsHasAdditionalInfo && !string.IsNullOrEmpty(rescueRoomInfo.InRescueRoomWayRemarks))
+            //    ModelState.AddModelError("InRescueRoomWayRemarks", "与入院方式不匹配。");
             //5-入室方式为允许附加数据，必须有具体名称。
             if (db.InRescueRoomWays.Find(rescueRoomInfo.InRescueRoomWayId).IsHasAdditionalInfo && string.IsNullOrEmpty(rescueRoomInfo.InRescueRoomWayRemarks))
                 ModelState.AddModelError("InRescueRoomWayRemarks", "必须有具体名称。");
@@ -308,8 +339,8 @@ namespace EmergencyInformationSystem.Controllers
             if (rescueRoomInfo.IsLeave && rescueRoomInfo.IsRescue && db.RescueResults.Find(rescueRoomInfo.RescueResultId).IsUseForEmpty)
                 ModelState.AddModelError("RescueResultId", "离室时有抢救必须有抢救结果。");
             //8-绿色通道为允许附加数据才可以有附加数据。
-            if (!db.GreenPathCategories.Find(rescueRoomInfo.GreenPathCategoryId).IsHasAdditionalInfo && !string.IsNullOrEmpty(rescueRoomInfo.GreenPathCategoryRemarks))
-                ModelState.AddModelError("GreenPathCategoryRemarks", "与绿色通道病种不匹配。");
+            //if (!db.GreenPathCategories.Find(rescueRoomInfo.GreenPathCategoryId).IsHasAdditionalInfo && !string.IsNullOrEmpty(rescueRoomInfo.GreenPathCategoryRemarks))
+            //    ModelState.AddModelError("GreenPathCategoryRemarks", "与绿色通道病种不匹配。");
             //9-绿色通道为允许附加数据,必须有具体名称。
             if (db.GreenPathCategories.Find(rescueRoomInfo.GreenPathCategoryId).IsHasAdditionalInfo && string.IsNullOrEmpty(rescueRoomInfo.GreenPathCategoryRemarks))
                 ModelState.AddModelError("GreenPathCategoryRemarks", "必须有具体名称。");
@@ -322,24 +353,30 @@ namespace EmergencyInformationSystem.Controllers
             //12-有预约首选科室，必须有预约首选医师。
             if (!db.Destinations.Find(rescueRoomInfo.DestinationFirstId).IsUseForEmpty && string.IsNullOrEmpty(rescueRoomInfo.DestinationFirstContact))
                 ModelState.AddModelError("DestinationFirstContact", "有预约首选科室时必填。");
-            //12-有预约次选科室，必须有预约首选科室。
+            //13-有预约次选科室，必须有预约首选科室。
             if (!db.Destinations.Find(rescueRoomInfo.DestinationSecondId).IsUseForEmpty && db.Destinations.Find(rescueRoomInfo.DestinationFirstId).IsUseForEmpty)
                 ModelState.AddModelError("DestinationSecondId", "必须先填写预约首选科室。");
-            //13-有离室时间，必须有去向。
-            if (rescueRoomInfo.IsLeave && db.Destinations.Find(rescueRoomInfo.DestinationId).IsUseForEmpty)
-                ModelState.AddModelError("DestinationId", "离室时必填。");
-            //14-有离室时间，必须有经手护士。
-            if (rescueRoomInfo.IsLeave && string.IsNullOrEmpty(rescueRoomInfo.HandleNurse))
-                ModelState.AddModelError("HandleNurse", "离室时必填。");
-            //15-离室时间必须不早于入室时间。
+            //14-有离室时间，必须有去向。
+            //if (rescueRoomInfo.IsLeave && db.Destinations.Find(rescueRoomInfo.DestinationId).IsUseForEmpty)
+            //    ModelState.AddModelError("DestinationId", "离室时必填。");
+            //15-有离室时间，必须有经手护士。
+            //if (rescueRoomInfo.IsLeave && string.IsNullOrEmpty(rescueRoomInfo.HandleNurse))
+            //    ModelState.AddModelError("HandleNurse", "离室时必填。");
+            //16-离室时间必须不早于入室时间。
             if (rescueRoomInfo.OutDepartmentTime.HasValue && rescueRoomInfo.InDepartmentTime > rescueRoomInfo.OutDepartmentTime)
                 ModelState.AddModelError("OutDepartmentTime", "不能早于入室时间。");
-            //16-去向为允许附加数据才可以填写去向详细。
-            if (!db.Destinations.Find(rescueRoomInfo.DestinationId).IsHasAdditionalInfo && !string.IsNullOrEmpty(rescueRoomInfo.DestinationRemarks))
-                ModelState.AddModelError("DestinationRemarks", "与去向不匹配。");
-            //17-去向为允许附加数据,必须填写去向详细。
+            //17-去向为允许附加数据才可以填写去向详细。
+            //if (!db.Destinations.Find(rescueRoomInfo.DestinationId).IsHasAdditionalInfo && !string.IsNullOrEmpty(rescueRoomInfo.DestinationRemarks))
+            //    ModelState.AddModelError("DestinationRemarks", "与去向不匹配。");
+            //18-去向为允许附加数据,必须填写去向详细。
             if (db.Destinations.Find(rescueRoomInfo.DestinationId).IsHasAdditionalInfo && string.IsNullOrEmpty(rescueRoomInfo.DestinationRemarks))
                 ModelState.AddModelError("DestinationRemarks", "必须有具体名称。");
+            //19-有去向，必须有离室时间。
+            if (!db.Destinations.Find(rescueRoomInfo.DestinationId).IsUseForEmpty && !rescueRoomInfo.OutDepartmentTime.HasValue)
+                ModelState.AddModelError("OutDepartmentTime", "必须有离室时间。");
+            //20-有去向，必须有经手护士。
+            if (!db.Destinations.Find(rescueRoomInfo.DestinationId).IsUseForEmpty && string.IsNullOrEmpty(rescueRoomInfo.HandleNurse))
+                ModelState.AddModelError("HandleNurse", "离室时必填。");
 
             if (ModelState.IsValid)
             {
@@ -375,6 +412,8 @@ namespace EmergencyInformationSystem.Controllers
                 target.TimeStamp = rescueRoomInfo.TimeStamp;
                 target.UpdateTime = DateTime.Now;
 
+                Models.BusinessModels.TrasenInformationConvertor.FromEmployeeNumberToName(target);
+
                 db.SaveChanges();
 
                 return RedirectToAction("Details", new { id = rescueRoomInfo.RescueRoomInfoId });
@@ -384,10 +423,10 @@ namespace EmergencyInformationSystem.Controllers
             ViewBag.InRescueRoomWayId = new SelectList(db.InRescueRoomWays, "InRescueRoomWayId", "InRescueRoomWayName", rescueRoomInfo.InRescueRoomWayId);
             ViewBag.GreenPathCategoryId = new SelectList(db.GreenPathCategories, "GreenPathCategoryId", "GreenPathCategoryName", rescueRoomInfo.GreenPathCategoryId);
             ViewBag.RescueResultId = new SelectList(db.RescueResults, "RescueResultId", "RescueResultName", rescueRoomInfo.RescueResultId);
-            ViewBag.DestinationId = new SelectList(db.Destinations, "DestinationId", "DestinationName", rescueRoomInfo.DestinationId);
+            ViewBag.DestinationId = new SelectList(db.Destinations.Where(c => c.IsUseForRescueRoom).OrderBy(c => c.Priority2), "DestinationId", "DestinationName", rescueRoomInfo.DestinationId);
             ViewBag.CriticalLevelId = new SelectList(db.CriticalLevels, "CriticalLevelId", "CriticalLevelName", rescueRoomInfo.CriticalLevelId);
-            ViewBag.DestinationFirstId = new SelectList(db.Destinations.Where(c => c.IsUseForSubscription), "DestinationId", "DestinationName", rescueRoomInfo.DestinationFirstId);
-            ViewBag.DestinationSecondId = new SelectList(db.Destinations.Where(c => c.IsUseForSubscription), "DestinationId", "DestinationName", rescueRoomInfo.DestinationSecondId);
+            ViewBag.DestinationFirstId = new SelectList(db.Destinations.Where(c => c.IsUseForSubscription).OrderBy(c => c.Priority2), "DestinationId", "DestinationName", rescueRoomInfo.DestinationFirstId);
+            ViewBag.DestinationSecondId = new SelectList(db.Destinations.Where(c => c.IsUseForSubscription).OrderBy(c => c.Priority2), "DestinationId", "DestinationName", rescueRoomInfo.DestinationSecondId);
 
             return View(rescueRoomInfo);
         }
@@ -399,9 +438,11 @@ namespace EmergencyInformationSystem.Controllers
         /// <summary>
         /// 眉栏。
         /// </summary>
-        /// <param name="id">主ID。</param>
+        /// <param name="id">抢救室病例ID。</param>
         public ActionResult Header(int id)
         {
+            var db = new EiSDbContext();
+
             var target = db.RescueRoomInfos.Find(id);
             if (target == null)
                 return HttpNotFound();
@@ -409,6 +450,100 @@ namespace EmergencyInformationSystem.Controllers
             var targetV = new Header(target);
 
             return PartialView(targetV);
+        }
+
+
+
+
+
+        public JsonResult CheckInRescueRoomWayIdForIsHasAdditionalInfo(int id)
+        {
+            var db = new EiSDbContext();
+
+            var target = db.InRescueRoomWays.Find(id);
+
+            if (target == null || !target.IsHasAdditionalInfo)
+            {
+                var result = new { result = false };
+                return Json(result);
+            }
+            else
+            {
+                var result = new { result = true };
+                return Json(result);
+            }
+        }
+
+        public JsonResult CheckGreenPathCategoryIdForIsHasAdditionalInfo(int id)
+        {
+            var db = new EiSDbContext();
+
+            var target = db.GreenPathCategories.Find(id);
+
+            if (target == null || !target.IsHasAdditionalInfo)
+            {
+                var result = new { result = false };
+                return Json(result);
+            }
+            else
+            {
+                var result = new { result = true };
+                return Json(result);
+            }
+        }
+
+        public JsonResult CheckDestinationFirstIdForIsUseForEmpty(int id)
+        {
+            var db = new EiSDbContext();
+
+            var target = db.Destinations.Find(id);
+
+            if (target == null || !target.IsUseForEmpty)
+            {
+                var result = new { result = false };
+                return Json(result);
+            }
+            else
+            {
+                var result = new { result = true };
+                return Json(result);
+            }
+        }
+
+        public JsonResult CheckDestinationIdForIsHasAdditionalInfo(int id)
+        {
+            var db = new EiSDbContext();
+
+            var target = db.Destinations.Find(id);
+
+            if (target == null || !target.IsHasAdditionalInfo)
+            {
+                var result = new { result = false };
+                return Json(result);
+            }
+            else
+            {
+                var result = new { result = true };
+                return Json(result);
+            }
+        }
+
+        public JsonResult CheckDestinationIdForIsUseForEmpty(int id)
+        {
+            var db = new EiSDbContext();
+
+            var target = db.Destinations.Find(id);
+
+            if (target == null || !target.IsUseForEmpty)
+            {
+                var result = new { result = false };
+                return Json(result);
+            }
+            else
+            {
+                var result = new { result = true };
+                return Json(result);
+            }
         }
     }
 }

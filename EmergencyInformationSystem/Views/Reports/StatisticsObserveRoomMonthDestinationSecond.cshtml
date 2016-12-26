@@ -1,0 +1,15 @@
+﻿@model IEnumerable<EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsObserveRoomMonth.DestinationSecond>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td style="padding-left:40px">
+            @Html.ActionLink(item.DestinationName, "IndexObserveRoomDestination", new { item.DestinationId, item.Time }, new { target = "_blank" })
+        </td>
+        <td style="padding-left:40px">
+            @Html.DisplayFor(model => item.Count)
+        </td>
+    </tr>
+
+    @Html.Partial("StatisticsObserveRoomMonthDestinationThird", item.List)
+}

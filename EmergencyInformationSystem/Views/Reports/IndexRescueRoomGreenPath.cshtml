@@ -1,0 +1,22 @@
+﻿@model EmergencyInformationSystem.Models.ViewModels.Reports.IndexRescueRoomGreenPath.IndexRescueRoomGreenPath
+
+@{
+    ViewBag.Title = "抢救室统计项明细绿色通道项一览";
+}
+
+@*面包屑区*@
+<div class="container">
+    <ol class="breadcrumb">
+        <li>@Html.ActionLink("主界面", "Index", "Home", null, new { @class = "btn-show-modal" })</li>
+        <li>@Html.ActionLink("报表中心", "Index", null, new { @class = "btn-show-modal" })</li>
+        <li class="active">@ViewBag.Title</li>
+    </ol>
+</div>
+
+<h2>@ViewBag.Title</h2>
+
+@Html.Partial("IndexRescueRoomGreenPathList", Model.List)
+
+@section scripts{
+    @Scripts.Render("~/bundles/EisNormal")
+}

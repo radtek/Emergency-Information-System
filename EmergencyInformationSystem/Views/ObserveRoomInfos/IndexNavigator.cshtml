@@ -3,8 +3,8 @@
 <div class="btn-group" style="padding-bottom:10px">
     @if (Model.Page > 1)
     {
-        @Html.ActionLink("首页", "Index", Model.GetRoute(1), new { @class = "btn btn-default" });
-        @Html.ActionLink("上一页", "Index", Model.GetRoute(Model.Page - 1), new { @class = "btn btn-default" });
+        @Html.ActionLink("首页", "Index", Model.GetRoute(1), new { @class = "btn btn-default btn-show-modal" });
+        @Html.ActionLink("上一页", "Index", Model.GetRoute(Model.Page - 1), new { @class = "btn btn-default btn-show-modal" });
     }
     else
     {
@@ -18,8 +18,8 @@
 
     @if (Model.Page < Model.MaxPage)
     {
-        @Html.ActionLink("下一页", "Index", Model.GetRoute(Model.Page + 1), new { @class = "btn btn-default" });
-        @Html.ActionLink("末页", "Index", Model.GetRoute(Model.MaxPage), new { @class = "btn btn-default" });
+        @Html.ActionLink("下一页", "Index", Model.GetRoute(Model.Page + 1), new { @class = "btn btn-default btn-show-modal" });
+        @Html.ActionLink("末页", "Index", Model.GetRoute(Model.MaxPage), new { @class = "btn btn-default btn-show-modal" });
     }
     else
     {
@@ -27,5 +27,5 @@
         @Html.ActionLink("末页", "", "", new { @class = "btn btn-default", disabled = "disabled" });
     }
 
-    @Html.ActionLink("新增", "Create", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("新增", "Create", null, new { @class = "btn btn-primary btn-show-modal" })
 </div>

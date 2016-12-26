@@ -12,14 +12,21 @@
     <h1>
         急诊数据管理系统
         <small>
-            （Ver4.2）
+            （Ver5.0）
         </small>
     </h1>
 
     <br />
 
-    <p>@Html.ActionLink("抢救室病例信息一览表", "Index", "RescueRoomInfos", null, new { @class = "btn btn-default" })</p>
-    <p>@Html.ActionLink("留观室病例信息一览表", "Index", "ObserveRoomInfos", null, new { @class = "btn btn-default" })</p>
-    <p>@Html.ActionLink("报表中心", "Index", "Reports", null, new { @class = "btn btn-default" })</p>
-    <p>@Html.ActionLink("更新履历", "index", "Notifications", null, new { @class = "btn btn-default" })</p>
+    <p>@Html.ActionLink("抢救室病例信息一览表", "Index", "RescueRoomInfos", null, new { @class = "btn btn-default btn-show-modal" })</p>
+    <br />
+    <p>@Html.ActionLink("留观室病例信息一览表", "Index", "ObserveRoomInfos", null, new { @class = "btn btn-default btn-show-modal" })</p>
+    <br />
+    <p>@Html.ActionLink("报表中心", "Index", "Reports", null, new { @class = "btn btn-default btn-show-modal" })</p>
+    <br />
+    <p>@Html.ActionLink("更新履历", "index", "Notifications", null, new { @class = "btn btn-default btn-show-modal" })</p>
 </div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/EisNormal")
+}

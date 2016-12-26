@@ -7,8 +7,8 @@
 @*面包屑区*@
 <div class="container">
     <ol class="breadcrumb">
-        <li>@Html.ActionLink("主界面", "Index", "Home", null, null)</li>
-        <li>@Html.ActionLink("留观室病例信息一览表", "Index")</li>
+        <li>@Html.ActionLink("主界面", "Index", "Home", null, new { @class= "btn-show-modal" })</li>
+        <li>@Html.ActionLink("留观室病例信息一览表", "Index",null, new { @class = "btn-show-modal" })</li>
         <li class="active">新增</li>
     </ol>
 </div>
@@ -17,12 +17,12 @@
 {
     @Html.AntiForgeryToken()
 
-    @Html.ValidationSummary(false, "", new { @class = "text-danger alert alert-danger" })
+    @Html.ValidationSummary(false, "", new { @class = "text-danger alert-danger" })
 
     <div class="container">
         @*标题*@
-        <div class="row RescueRoomMainTitleRow">
-            <div class="h2 RescueRoomMainTitleCell">
+        <div class="row ObserveRoomMainTitleRow">
+            <div class="h2 ObserveRoomMainTitleCell">
                 @ViewBag.Title
             </div>
         </div>
@@ -31,12 +31,12 @@
 
         @*信息*@
 
-        <div class="row RescueRoomSecondTitleRow">
-            <div class="col-md-12 RescueRoomSecondTitle">
+        <div class="row ObserveRoomSecondTitleRow">
+            <div class="col-md-12 ObserveRoomSecondTitle">
                 提供信息
             </div>
 
-            <div class="form-group col-md-offset-1 RescueRoomSecondTitleEditBlock">
+            <div class="form-group col-md-offset-1 ObserveRoomSecondTitleEditBlock">
                 @Html.LabelFor(model => model.OutPatientNumber, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.OutPatientNumber, new { htmlAttributes = new { @class = "form-control" } })
@@ -48,9 +48,13 @@
 
     <hr />
 
-    <div class="form-group RescueRoomSecondTitleSubmitBlock">
+    <div class="form-group ObserveRoomSecondTitleSubmitBlock">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="确定" class="btn btn-info" />
+            <input type="submit" value="确定" class="btn btn-info btn-show-modal" />
         </div>
     </div>
+}
+
+@section scripts{
+    @Scripts.Render("~/bundles/EisNormal")
 }

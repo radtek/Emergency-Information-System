@@ -17,41 +17,41 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Index
         /// <summary>
         /// Initializes a new instance of the <see cref="Item"/> class.
         /// </summary>
-        /// <param name="rescueRoomInfo">原抢救室病例。</param>
-        public Item(RescueRoomInfo rescueRoomInfo)
+        /// <param name="origin">原抢救室病例。</param>
+        public Item(RescueRoomInfo origin)
         {
-            this.RescueRoomInfoId = rescueRoomInfo.RescueRoomInfoId;
-            this.IsLeave = rescueRoomInfo.IsLeave;
+            this.RescueRoomInfoId = origin.RescueRoomInfoId;
+            this.IsLeave = origin.IsLeave;
 
-            this.PatientName = rescueRoomInfo.PatientName;
-            this.OutPatientNumber = rescueRoomInfo.OutPatientNumber;
-            this.Sex = rescueRoomInfo.Sex;
-            this.ReceiveAgeName = rescueRoomInfo.ReceiveAgeName;
-            this.DiagnosisNameOrigin = rescueRoomInfo.DiagnosisNameOrigin;
-            this.ReceiveTime = rescueRoomInfo.ReceiveTime;
-            this.FirstDoctorName = rescueRoomInfo.FirstDoctorName;
+            this.PatientName = origin.PatientName;
+            this.OutPatientNumber = origin.OutPatientNumber;
+            this.Sex = origin.Sex;
+            this.ReceiveAgeName = origin.ReceiveAgeName;
+            this.DiagnosisNameOrigin = origin.DiagnosisNameOrigin;
+            this.ReceiveTime = origin.ReceiveTime;
+            this.FirstDoctorName = origin.FirstDoctorName;
 
-            this.InDepartmentTime = rescueRoomInfo.InDepartmentTime;
-            this.BedNameFull = rescueRoomInfo.BedNameFull;
-            this.FirstNurseName = rescueRoomInfo.FirstNurseName;
-            this.InRescueRoomWayNameFull = rescueRoomInfo.InRescueRoomWayNameFull;
+            this.InDepartmentTime = origin.InDepartmentTime;
+            this.BedNameFull = origin.BedNameFull;
+            this.FirstNurseName = origin.FirstNurseName;
+            this.InRescueRoomWayNameFull = origin.InRescueRoomWayNameFull;
 
-            this.CriticalLevelName = rescueRoomInfo.CriticalLevel.CriticalLevelName;
-            this.RescueResultNameFull = rescueRoomInfo.RescueResultNameFull;
-            this.GreenPathCategoryNameFull = rescueRoomInfo.GreenPathCategoryNameFull;
-            this.Antibiotic = rescueRoomInfo.Antibiotic;
-            this.Remarks = rescueRoomInfo.Remarks;
+            this.CriticalLevelName = origin.CriticalLevel.CriticalLevelName;
+            this.RescueResultNameFull = origin.RescueResultNameFull;
+            this.GreenPathCategoryNameFull = origin.GreenPathCategoryNameFull;
+            this.Antibiotic = origin.Antibiotic;
+            this.Remarks = origin.Remarks;
 
-            this.DestinationFirstName = rescueRoomInfo.DestinationFirstName;
-            this.DestinationFirstTime = rescueRoomInfo.DestinationFirstTime;
-            this.DestinationFirstContact = rescueRoomInfo.DestinationFirstContact;
-            this.DestinationSecondName = rescueRoomInfo.DestinationSecondName;
+            this.DestinationFirstName = origin.DestinationFirstName;
+            this.DestinationFirstTime = origin.DestinationFirstTime;
+            this.DestinationFirstContact = origin.DestinationFirstContact;
+            this.DestinationSecondName = origin.DestinationSecondName;
 
-            this.OutDepartmentTime = rescueRoomInfo.OutDepartmentTime;
-            this.During = rescueRoomInfo.During;
-            this.DestinationNameFull = rescueRoomInfo.DestinationNameFull;
-            this.HandleNurse = rescueRoomInfo.HandleNurse;
-            this.DiagnosisName = rescueRoomInfo.DiagnosisName;
+            this.OutDepartmentTime = origin.OutDepartmentTime;
+            this.During = origin.During;
+            this.DestinationNameFull = origin.DestinationNameFull;
+            this.HandleNurse = origin.HandleNurse;
+            this.DiagnosisName = origin.DiagnosisName;
         }
 
 

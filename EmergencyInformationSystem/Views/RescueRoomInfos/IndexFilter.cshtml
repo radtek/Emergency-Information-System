@@ -5,10 +5,10 @@
     <table class="form-group">
         <tr>
             <td>
-                @Html.DisplayNameFor(model => model.InTimeStart)
+                @Html.DisplayNameFor(model => model.InDepartmentTimeStart)
 
-                <input type="datetime-local" name="InTimeStart" class="form-inline" value=@((Model.InTimeStart)?.ToString("yyyy-MM-ddTHH:mm")) />
-                <input type="datetime-local" name="InTimeEnd" class="form-inline" value=@((Model.InTimeEnd)?.ToString("yyyy-MM-ddTHH:mm")) />
+                <input type="datetime-local" name="InDepartmentTimeStart" class="form-inline" value=@((Model.InDepartmentTimeStart)?.ToString("yyyy-MM-ddTHH:mm")) />
+                <input type="datetime-local" name="InDepartmentTimeEnd" class="form-inline" value=@((Model.InDepartmentTimeEnd)?.ToString("yyyy-MM-ddTHH:mm")) />
             </td>
             <td>
                 &nbsp;&nbsp;
@@ -30,10 +30,10 @@
         </tr>
         <tr>
             <td>
-                @Html.DisplayNameFor(model => model.OutTimeStart)
+                @Html.DisplayNameFor(model => model.OutDepartmentTimeStart)
 
-                <input type="datetime-local" name="OutTimeStart" class="form-inline" value=@((Model.OutTimeStart)?.ToString("yyyy-MM-ddTHH:mm")) />
-                <input type="datetime-local" name="OutTimeEnd" class="form-inline" value=@((Model.OutTimeEnd)?.ToString("yyyy-MM-ddTHH:mm")) />
+                <input type="datetime-local" name="OutDepartmentTimeStart" class="form-inline" value=@((Model.OutDepartmentTimeStart)?.ToString("yyyy-MM-ddTHH:mm")) />
+                <input type="datetime-local" name="OutDepartmentTimeEnd" class="form-inline" value=@((Model.OutDepartmentTimeEnd)?.ToString("yyyy-MM-ddTHH:mm")) />
             </td>
             <td>
                 &nbsp;&nbsp;
@@ -47,8 +47,10 @@
                 @Html.EditorFor(model => model.OutPatientNumber, new { htmlAttributes = new { @class = "form-inline" } })
             </td>
             <td>
-                <input type="submit" formmethod="get" value="筛选" class="btn btn-default" />
-                @Html.ActionLink("清空", "index", null, new { @class = "btn btn-default" })
+                <div id="IndexFilter_ButtonArea">
+                    <input type="submit" formmethod="get" value="筛选" class="btn btn-default btn-show-modal" />
+                    @Html.ActionLink("清空", "index", null, new { @class = "btn btn-default btn-show-modal" })
+                </div>
             </td>
         </tr>
     </table>

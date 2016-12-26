@@ -58,7 +58,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Index
         public Guid ObserveRoomInfoId { get; set; }
 
         /// <summary>
-        /// 是否已离室。
+        /// 是否离室。
         /// </summary>
         public bool IsLeave { get; set; }
 

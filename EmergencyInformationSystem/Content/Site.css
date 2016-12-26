@@ -33,31 +33,43 @@ textarea {
 
 
 
-/*抢救室 主标题 行*/
-.RescueRoomMainTitleRow{
+/*抢救室*/
+.RescueRoomSpecial {
+    /*border-style:solid;
+    border-color:lightpink;*/
+}
 
+/*抢救室 主标题 行*/
+.RescueRoomMainTitleRow {
 }
 
 /*抢救室 主标题 格*/
 .RescueRoomMainTitleCell {
-    padding: 20px;
+    padding: 10px;
     text-align: center;
+
+    font-size: 30px;
+    font-weight: 500;
+
+    background-color: lightpink;
+
+    border-style: solid;
+    border-color: lightcoral;
+    border-radius: 20px;
 }
 
 /*抢救室 眉栏 行*/
-.RescueRoomHeaderRow{
-
+.RescueRoomHeaderRow {
 }
 
 /*抢救室 眉栏 格*/
-.RescueRoomHeaderCell{
-    padding-top:6px;
-    padding-bottom:6px;
+.RescueRoomHeaderCell {
+    padding-top: 6px;
+    padding-bottom: 6px;
 }
 
 /*抢救室 次标题 行*/
 .RescueRoomSecondTitleRow {
-    
 }
 
 /*抢救室 次标题 标题*/
@@ -68,18 +80,16 @@ textarea {
 
 /*抢救室 次标题 表单 组*/
 .RescueRoomSecondTitleEditBlock {
-
 }
 
 /*抢救室 次标题 按钮 组*/
 .RescueRoomSecondTitleSubmitBlock {
-    
 }
 
 /*抢救室 次标题 显示 格*/
 .RescueRoomSecondTitleCell {
-    padding-top:6px;
-    padding-bottom:6px;
+    padding-top: 6px;
+    padding-bottom: 6px;
     border: 1px solid black;
 }
 
@@ -88,30 +98,36 @@ textarea {
 
 
 /*留观室 主标题 行*/
-.ObserveRoomMainTitleRow{
-
+.ObserveRoomMainTitleRow {
 }
 
 /*留观室 主标题 格*/
 .ObserveRoomMainTitleCell {
-    padding: 20px;
+    padding: 10px;
     text-align: center;
+
+    font-size: 30px;
+    font-weight: 500;
+
+    background-color: lightcyan;
+
+    border-style: solid;
+    border-color: lightgreen;
+    border-radius: 20px;
 }
 
 /*留观室 眉栏 行*/
-.ObserveRoomHeaderRow{
-
+.ObserveRoomHeaderRow {
 }
 
 /*留观室 眉栏 格*/
-.ObserveRoomHeaderCell{
-    padding-top:6px;
-    padding-bottom:6px;
+.ObserveRoomHeaderCell {
+    padding-top: 6px;
+    padding-bottom: 6px;
 }
 
 /*留观室 次标题 行*/
 .ObserveRoomSecondTitleRow {
-    
 }
 
 /*留观室 次标题 标题*/
@@ -122,17 +138,15 @@ textarea {
 
 /*留观室 次标题 表单 组*/
 .ObserveRoomSecondTitleEditBlock {
-
 }
 
 /*留观室 次标题 按钮 组*/
 .ObserveRoomSecondTitleSubmitBlock {
-    
 }
 
 /*留观室 次标题 显示 格*/
 .ObserveRoomSecondTitleCell {
-    padding-top:6px;
-    padding-bottom:6px;
+    padding-top: 6px;
+    padding-bottom: 6px;
     border: 1px solid black;
 }

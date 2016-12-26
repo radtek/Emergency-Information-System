@@ -11,20 +11,26 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
     /// <summary>
     /// 危重等级。
     /// </summary>
+    /// <remarks>危重等级。表示在门诊分诊时所划分的等级，即入室时的危重等级。</remarks>
     [Table("CriticalLevels")]
     public class CriticalLevel
     {
+        #region 构建
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="CriticalLevel"/> class.
+        /// 初始化实例<see cref="CriticalLevel"/>。
         /// </summary>
         public CriticalLevel()
         {
-
         }
 
+        #endregion
 
 
 
+
+
+        #region 实体属性
 
         /// <summary>
         /// 危重等级ID。
@@ -50,5 +56,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         public virtual byte[] TimeStamp { get; set; }
 
         public virtual DateTime UpdateTime { get; set; }
+
+        #endregion
     }
 }
