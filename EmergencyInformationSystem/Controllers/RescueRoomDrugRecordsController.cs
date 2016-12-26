@@ -131,9 +131,11 @@ namespace EmergencyInformationSystem.Controllers
             if (true)
             {
                 var listRescueRoomDrugRecord = db.RescueRoomDrugRecords.ToList();
+                var listRescueRoomDrugRecordDefinition = db.RescueRoomDrugRecordDefinitions.Where(c => c.GreenPathCode == "Ami").ToList();
+
                 foreach (var itemRescueRoomDrugRecord in listRescueRoomDrugRecord)
                 {
-                    if (!db.RescueRoomDrugRecordDefinitions.Any(c => c.DrugCode == itemRescueRoomDrugRecord.ProductCode))
+                    if (!listRescueRoomDrugRecordDefinition.Any(c => c.DrugCode == itemRescueRoomDrugRecord.ProductCode))
                     {
                         db.RescueRoomDrugRecords.Remove(itemRescueRoomDrugRecord);
                     }
