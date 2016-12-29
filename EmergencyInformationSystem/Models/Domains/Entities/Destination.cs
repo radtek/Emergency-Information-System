@@ -119,6 +119,11 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// </summary>
         public virtual bool IsGotoObserveRoom { get; set; }
 
+        /// <summary>
+        /// 是否转院。
+        /// </summary>
+        public virtual bool IsTransfer { get; set; }
+
 
 
 

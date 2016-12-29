@@ -239,6 +239,22 @@
                 </div>
             </div>
 
+            <div id="DivTransferReasonId" class="form-group col-md-offset-1 row RescueRoomSecondTitleEditBlock" hidden="hidden">
+                @Html.LabelFor(model => model.TransferReasonId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("TransferReasonId", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.TransferReasonId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div id="DivTransferTarget" class="form-group col-md-offset-1 row RescueRoomSecondTitleEditBlock" hidden="hidden">
+                @Html.LabelFor(model => model.TransferTarget, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.TransferTarget, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.TransferTarget, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
             <div id="DivOutDepartmentTime" class="form-group col-md-offset-1 row RescueRoomSecondTitleEditBlock">
                 @Html.LabelFor(model => model.OutDepartmentTime, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-4">
@@ -386,11 +402,13 @@
         eisOnchangeUseJson('@Url.Action("CheckDestinationIdForIsHasAdditionalInfo")', "DestinationId", checkDestinationIdForIsHasAdditionalInfoTrue, checkDestinationIdForIsHasAdditionalInfoFalse);
 
         eisOnchangeUseJson('@Url.Action("CheckDestinationIdForIsUseForEmpty")', "DestinationId", checkDestinationIdForIsUseForEmptyTrue, checkDestinationIdForIsUseForEmptyFalse);
+
+        eisOnchangeUseJson('@Url.Action("CheckDestinationIdForIsTransfer")', "DestinationId", checkDestinationIdForIsTransferTrue, checkDestinationIdForIsTransferFalse);
     }
     function checkDestinationIdForIsHasAdditionalInfoTrue() {
         //影响“DestinationRemarks”
         $("#DivDestinationRemarks").show(10, null);
-        $("#DestinationRemarks").removeAttr("disabled");        
+        $("#DestinationRemarks").removeAttr("disabled");
     }
     function checkDestinationIdForIsHasAdditionalInfoFalse() {
         //影响“DestinationRemarks”
@@ -416,5 +434,21 @@
         $("#OutDepartmentTime").removeAttr("disabled");
         $("#HandleNurse").removeAttr("disabled");
         $("#DiagnosisName").removeAttr("disabled");
+    }
+    function checkDestinationIdForIsTransferTrue() {
+        //影响“TransferReasonId”、“TransferTarget”
+        $("#DivTransferReasonId").show(10, null);
+        $("#DivTransferTarget").show(10, null);
+
+        $("#TransferReasonId").removeAttr("disabled");
+        $("#TransferTarget").removeAttr("disabled");
+    }
+    function checkDestinationIdForIsTransferFalse() {
+        //影响“TransferReasonId”、“TransferTarget”
+        $("#DivTransferReasonId").hide(10, null);
+        $("#DivTransferTarget").hide(10, null);
+
+        $("#TransferReasonId").attr("disabled", "disabled");
+        $("#TransferTarget").attr("disabled", "disabled");
     }
 </script>

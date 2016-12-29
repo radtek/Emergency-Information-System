@@ -115,6 +115,8 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
 
         public DbSet<RescueRoomTreatmentRecordDefinition> RescueRoomTreatmentRecordDefinitions { get; set; }
 
+        public DbSet<TransferReason> TransferReasons { get; set; }
+
 
 
 

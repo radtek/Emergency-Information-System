@@ -155,6 +155,7 @@ namespace EmergencyInformationSystem.Controllers
             ViewBag.DestinationId = new SelectList(db.Destinations.Where(c => c.IsUseForObserveRoom).OrderBy(c => c.Priority2), "DestinationId", "DestinationName");
             ViewBag.DestinationFirstId = new SelectList(db.Destinations.Where(c => c.IsUseForSubscription).OrderBy(c => c.Priority2), "DestinationId", "DestinationName");
             ViewBag.DestinationSecondId = new SelectList(db.Destinations.Where(c => c.IsUseForSubscription).OrderBy(c => c.Priority2), "DestinationId", "DestinationName");
+            ViewBag.TransferReasonId = new SelectList(db.TransferReasons, "TransferReasonId", "TransferReasonName");
 
             ViewBag.PreviousRescueRoomInfoId = previousRescueRoomInfoId;
 
@@ -225,6 +226,12 @@ namespace EmergencyInformationSystem.Controllers
             //16-有去向，必须有经手护士。
             if (!db.Destinations.Find(observeRoomInfo.DestinationId).IsUseForEmpty && string.IsNullOrEmpty(observeRoomInfo.HandleNurse))
                 ModelState.AddModelError("HandleNurse", "离室时必填。");
+            //17-去向为转院时，必须有转院原因。
+            if (db.Destinations.Find(observeRoomInfo.DestinationId).IsTransfer && db.TransferReasons.Find(observeRoomInfo.TransferReasonId).IsUseForEmpty)
+                ModelState.AddModelError("TransferReasonId", "必须有转院原因。");
+            //18-去向为转院时，必须有转往医院。
+            if (db.Destinations.Find(observeRoomInfo.DestinationId).IsTransfer && string.IsNullOrEmpty(observeRoomInfo.TransferTarget))
+                ModelState.AddModelError("TransferTarget", "必须有转往医院。");
 
             if (ModelState.IsValid)
             {
@@ -249,6 +256,7 @@ namespace EmergencyInformationSystem.Controllers
             ViewBag.DestinationId = new SelectList(db.Destinations.Where(c => c.IsUseForObserveRoom).OrderBy(c => c.Priority2), "DestinationId", "DestinationName");
             ViewBag.DestinationFirstId = new SelectList(db.Destinations.Where(c => c.IsUseForSubscription).OrderBy(c => c.Priority2), "DestinationId", "DestinationName");
             ViewBag.DestinationSecondId = new SelectList(db.Destinations.Where(c => c.IsUseForSubscription).OrderBy(c => c.Priority2), "DestinationId", "DestinationName");
+            ViewBag.TransferReasonId = new SelectList(db.TransferReasons, "TransferReasonId", "TransferReasonName");
 
             ViewBag.PreviousRescueRoomInfoId = previousRescueRoomInfoId;
 
@@ -272,6 +280,7 @@ namespace EmergencyInformationSystem.Controllers
             ViewBag.DestinationId = new SelectList(db.Destinations.Where(c => c.IsUseForObserveRoom).OrderBy(c => c.Priority2), "DestinationId", "DestinationName", target.DestinationId);
             ViewBag.DestinationFirstId = new SelectList(db.Destinations.Where(c => c.IsUseForSubscription).OrderBy(c => c.Priority2), "DestinationId", "DestinationName", target.DestinationFirstId);
             ViewBag.DestinationSecondId = new SelectList(db.Destinations.Where(c => c.IsUseForSubscription).OrderBy(c => c.Priority2), "DestinationId", "DestinationName", target.DestinationSecondId);
+            ViewBag.TransferReasonId = new SelectList(db.TransferReasons, "TransferReasonId", "TransferReasonName", target.TransferReasonId);
 
             return View(target);
         }
@@ -334,6 +343,12 @@ namespace EmergencyInformationSystem.Controllers
             //16-有去向，必须有经手护士。
             if (!db.Destinations.Find(observeRoomInfo.DestinationId).IsUseForEmpty && string.IsNullOrEmpty(observeRoomInfo.HandleNurse))
                 ModelState.AddModelError("HandleNurse", "离室时必填。");
+            //17-去向为转院时，必须有转院原因。
+            if (db.Destinations.Find(observeRoomInfo.DestinationId).IsTransfer && db.TransferReasons.Find(observeRoomInfo.TransferReasonId).IsUseForEmpty)
+                ModelState.AddModelError("TransferReasonId", "必须有转院原因。");
+            //18-去向为转院时，必须有转往医院。
+            if (db.Destinations.Find(observeRoomInfo.DestinationId).IsTransfer && string.IsNullOrEmpty(observeRoomInfo.TransferTarget))
+                ModelState.AddModelError("TransferTarget", "必须有转往医院。");
 
             if (ModelState.IsValid)
             {
@@ -355,6 +370,8 @@ namespace EmergencyInformationSystem.Controllers
                 target.OutDepartmentTime = observeRoomInfo.OutDepartmentTime;
                 target.DestinationId = observeRoomInfo.DestinationId;
                 target.DestinationRemarks = observeRoomInfo.DestinationRemarks;
+                target.TransferReasonId = observeRoomInfo.TransferReasonId;
+                target.TransferTarget = observeRoomInfo.TransferTarget;
                 target.HandleNurse = observeRoomInfo.HandleNurse;
                 target.DiagnosisName = observeRoomInfo.DiagnosisName;
 
@@ -373,6 +390,7 @@ namespace EmergencyInformationSystem.Controllers
             ViewBag.DestinationId = new SelectList(db.Destinations.Where(c => c.IsUseForObserveRoom).OrderBy(c => c.Priority2), "DestinationId", "DestinationName", observeRoomInfo.DestinationId);
             ViewBag.DestinationFirstId = new SelectList(db.Destinations.Where(c => c.IsUseForSubscription).OrderBy(c => c.Priority2), "DestinationId", "DestinationName", observeRoomInfo.DestinationFirstId);
             ViewBag.DestinationSecondId = new SelectList(db.Destinations.Where(c => c.IsUseForSubscription).OrderBy(c => c.Priority2), "DestinationId", "DestinationName", observeRoomInfo.DestinationSecondId);
+            ViewBag.TransferReasonId = new SelectList(db.TransferReasons, "TransferReasonId", "TransferReasonName", observeRoomInfo.TransferReasonId);
 
             return View(observeRoomInfo);
         }
@@ -466,6 +484,24 @@ namespace EmergencyInformationSystem.Controllers
             var target = db.Destinations.Find(id);
 
             if (target == null || !target.IsUseForEmpty)
+            {
+                var result = new { result = false };
+                return Json(result);
+            }
+            else
+            {
+                var result = new { result = true };
+                return Json(result);
+            }
+        }
+
+        public JsonResult CheckDestinationIdForIsTransfer(int id)
+        {
+            var db = new EiSDbContext();
+
+            var target = db.Destinations.Find(id);
+
+            if (target == null || !target.IsTransfer)
             {
                 var result = new { result = false };
                 return Json(result);

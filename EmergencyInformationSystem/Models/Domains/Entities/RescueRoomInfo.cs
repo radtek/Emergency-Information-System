@@ -250,6 +250,19 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         [Display(Name = "离室诊断")]
         public virtual string DiagnosisName { get; set; }
 
+        /// <summary>
+        /// 转院原因ID。
+        /// </summary>
+        [Display(Name = "转院原因")]
+        [ForeignKey("TransferReason")]
+        public virtual int? TransferReasonId { get; set; }
+
+        /// <summary>
+        /// 转往医院。
+        /// </summary>
+        [Display(Name = "转往医院")]
+        public virtual string TransferTarget { get; set; }
+
 
 
 
@@ -345,6 +358,11 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// </summary>
         public virtual ObserveRoomInfo NextObserveRoomInfo { get; set; }
 
+        /// <summary>
+        /// 转院原因。
+        /// </summary>
+        public virtual TransferReason TransferReason { get; set; }
+
         #endregion
 
 
@@ -352,7 +370,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
 
 
         #region 导航集合
-        
+
         /// <summary>
         /// 抢救室会诊项。
         /// </summary>   
