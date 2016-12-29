@@ -50,7 +50,7 @@ namespace EmergencyInformationSystem.Controllers
             Oracle.ManagedDataAccess.Client.OracleCommand command;
             Oracle.ManagedDataAccess.Client.OracleDataAdapter dataAdapter;
             connection = new Oracle.ManagedDataAccess.Client.OracleConnection("Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=192.168.100.9)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=hzsydb)));User Id=pacsinterface;Password=pubpacs;");
-            command = new Oracle.ManagedDataAccess.Client.OracleCommand(string.Format("select * from pacstations.PACS_CHECK_VIEW where cureid='{0}' AND chktime>= to_date('{1}','yyyy-mm-dd')", target.OutPatientNumber, target.ReceiveTime.Value.ToString("yyyy-MM-dd")), connection);
+            command = new Oracle.ManagedDataAccess.Client.OracleCommand(string.Format("select * from pacstations.PACS_CHECK_VIEW where cureid='{0}' AND chktime>= to_date('{1}','yyyy-mm-dd')", target.OutPatientNumber, target.InDepartmentTime.ToString("yyyy-MM-dd")), connection);
             var dataSet = new System.Data.DataSet();
             dataAdapter = new Oracle.ManagedDataAccess.Client.OracleDataAdapter(command);
             dataAdapter.Fill(dataSet);
@@ -79,10 +79,10 @@ namespace EmergencyInformationSystem.Controllers
                 db.SaveChanges();
             }
 
-            //删除检查时间早于接诊时间的影像项
-            if (true)
+            //删除检查时间早于入室时间的影像项
+            if (false)
             {
-                var listRescueRoomImageRecord = db.RescueRoomImageRecords.Where(c => c.RescueRoomInfoId == target.RescueRoomInfoId && c.CheckTime < target.ReceiveTime).ToList();
+                var listRescueRoomImageRecord = db.RescueRoomImageRecords.Where(c => c.RescueRoomInfoId == target.RescueRoomInfoId && c.CheckTime < target.InDepartmentTime).ToList();
                 db.RescueRoomImageRecords.RemoveRange(listRescueRoomImageRecord);
                 db.SaveChanges();
             }

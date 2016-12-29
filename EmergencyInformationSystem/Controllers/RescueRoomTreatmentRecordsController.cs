@@ -111,10 +111,10 @@ namespace EmergencyInformationSystem.Controllers
                 }
             }
 
-            //删除处方时间早于接诊时间的治疗项
+            //删除处方时间早于入室时间的治疗项
             if (true)
             {
-                var listRescueRoomTreatmentRecord = db.RescueRoomTreatmentRecords.Where(c => c.RescueRoomInfoId == target.RescueRoomInfoId && c.PrescriptionTime < target.ReceiveTime).ToList();
+                var listRescueRoomTreatmentRecord = db.RescueRoomTreatmentRecords.Where(c => c.RescueRoomInfoId == target.RescueRoomInfoId && c.PrescriptionTime < target.InDepartmentTime).ToList();
                 db.RescueRoomTreatmentRecords.RemoveRange(listRescueRoomTreatmentRecord);
                 db.SaveChanges();
             }
