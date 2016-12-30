@@ -29,6 +29,21 @@ namespace EmergencyInformationSystem.Controllers
         }
 
         /// <summary>
+        /// 急性心肌梗死详情-打印。
+        /// </summary>
+        /// <param name="id">急性心肌梗死绿色通道ID。</param>
+        public ActionResult DetailsAmiPrint(Guid id)
+        {
+            var db = new EiSDbContext();
+
+            var target = db.GreenPathAmis.Find(id);
+            if (target == null)
+                return null;
+
+            return View(target);
+        }
+
+        /// <summary>
         /// 急性心肌梗死新增。
         /// </summary>
         /// <param name="rescueRoomInfoId">归属的抢救室病例ID。</param>

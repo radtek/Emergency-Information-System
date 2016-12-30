@@ -539,6 +539,7 @@
     <Content Include="Views\RescueRoomDrugRecords\IndexPartialPart.cshtml" />
     <Content Include="Views\RescueRoomTreatmentRecords\IndexPartial.cshtml" />
     <Content Include="Views\RescueRoomTreatmentRecords\IndexPartialPart.cshtml" />
+    <Content Include="Views\GreenPaths\DetailsAmiPrint.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

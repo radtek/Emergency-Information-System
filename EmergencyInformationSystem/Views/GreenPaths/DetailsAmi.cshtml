@@ -8,6 +8,7 @@
 <div class="container">
     <ol class="breadcrumb">
         <li>@Html.ActionLink("主界面", "Index", "Home", null, new { @class = "btn-show-modal" })</li>
+        <li>@Html.ActionLink("抢救室病例信息一览表", "Index", "RescueRoomInfos", null, new { @class = "btn-show-modal" })</li>
         <li>@Html.ActionLink("抢救室病例信息表", "Details", "RescueRoomInfos", new { id = Model.RescueRoomInfoId }, new { @class = "btn-show-modal" })</li>
         <li class="active">@ViewBag.Title</li>
     </ol>
@@ -205,6 +206,7 @@
     <div class="form-group RescueRoomSecondTitleSubmitBlock">
         <div class="col-md-offset-1 col-md-9">
             @Html.ActionLink("编辑", "EditAmi", new { id = Model.GreenPathAmiId }, new { @class = "btn btn-info btn-show-modal" })
+            @Html.ActionLink("打印预览", "DetailsAmiPrint", new { id = Model.GreenPathAmiId }, new { @class = "btn btn-info btn-show-modal" })
         </div>
     </div>
 </div>

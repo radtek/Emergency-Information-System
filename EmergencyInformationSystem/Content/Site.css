@@ -144,3 +144,21 @@ textarea {
     padding-bottom: 6px;
     border: 1px solid black;
 }
+
+
+
+
+
+/*打印*/
+
+.print-table-header {
+    font-weight: 900;
+}
+
+.print-table-row {
+    border: 1px solid black;
+}
+
+.print-table-cell {
+    border: 1px solid black;
+}
