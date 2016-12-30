@@ -128,6 +128,18 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
             }
         }
 
+        /// <summary>
+        /// 申请到到达会诊时长。
+        /// </summary>
+        [Display(Name = "申请到到达")]
+        public TimeSpan? DuringRequestToArrive
+        {
+            get
+            {
+                return this.ArriveTime - this.RequestTime;
+            }
+        }
+
         #endregion
     }
 }

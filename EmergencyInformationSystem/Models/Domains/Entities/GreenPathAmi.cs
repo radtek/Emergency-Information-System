@@ -137,6 +137,66 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         #region 实例属性
 
         /// <summary>
+        /// 发病到入室时长。
+        /// </summary>
+        [Display(Name = "发病到入室")]
+        public TimeSpan? DuringOccurrenceToInDepartment
+        {
+            get
+            {
+                if (this.OccurrenceTime.HasValue)
+                    return this.RescueRoomInfo.InDepartmentTime - this.OccurrenceTime;
+                else
+                    return null;
+            }
+        }
+
+        /// <summary>
+        /// 入室到接诊时长。
+        /// </summary>
+        [Display(Name = "入室到接诊")]
+        public TimeSpan? DuringInDepartmentToReceive
+        {
+            get
+            {
+                if (this.RescueRoomInfo.ReceiveTime.HasValue)
+                    return this.RescueRoomInfo.ReceiveTime - this.RescueRoomInfo.InDepartmentTime;
+                else
+                    return null;
+            }
+        }
+
+        /// <summary>
+        /// 入室到首次心电图时长。
+        /// </summary>
+        [Display(Name = "入室到首次心电图")]
+        public TimeSpan? DuringInDepartmentToEcgFirst
+        {
+            get
+            {
+                if (this.EcgFirstTime.HasValue)
+                    return this.EcgFirstTime - this.RescueRoomInfo.InDepartmentTime;
+                else
+                    return null;
+            }
+        }
+
+        /// <summary>
+        /// 入室到再次心电图时长。
+        /// </summary>
+        [Display(Name = "入室到再次心电图")]
+        public TimeSpan? DuringInDepartmentToEcgSecond
+        {
+            get
+            {
+                if (this.EcgSecondTime.HasValue)
+                    return this.EcgSecondTime - this.RescueRoomInfo.InDepartmentTime;
+                else
+                    return null;
+            }
+        }
+
+        /// <summary>
         /// 通道停留时长。
         /// </summary>
         [Display(Name = "通道停留时长")]
@@ -159,6 +219,30 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
             get
             {
                 return this.FinishPathTime.HasValue;
+            }
+        }
+
+        /// <summary>
+        /// 是否滞留名称。
+        /// </summary>
+        [Display(Name = "滞留")]
+        public string IsHeldUpString
+        {
+            get
+            {
+                return this.IsHeldUp ? "是" : "否";
+            }
+        }
+
+        /// <summary>
+        /// 通道滞留时长。
+        /// </summary>
+        [Display(Name = "通道滞留时长")]
+        public TimeSpan? DuringPathHeldUp
+        {
+            get
+            {
+                return this.RescueRoomInfo.OutDepartmentTime - this.FinishPathTime;
             }
         }
 
