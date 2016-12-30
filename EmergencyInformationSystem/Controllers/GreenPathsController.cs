@@ -126,7 +126,7 @@ namespace EmergencyInformationSystem.Controllers
             if (greenPathAmi.FinishPathTime.HasValue && greenPathAmi.EcgSecondTime.HasValue && greenPathAmi.FinishPathTime.Value < greenPathAmi.EcgSecondTime.Value)
                 ModelState.AddModelError("EcgSecondTime", "再次心电图时间不能晚于完成通道时间。");
             //7-完成通道时间不能早于接诊时间。
-            if(rescueRoomInfo.ReceiveTime.HasValue && greenPathAmi.FinishPathTime.HasValue && rescueRoomInfo.ReceiveTime.Value>greenPathAmi.FinishPathTime.Value)
+            if (rescueRoomInfo.ReceiveTime.HasValue && greenPathAmi.FinishPathTime.HasValue && rescueRoomInfo.ReceiveTime.Value > greenPathAmi.FinishPathTime.Value)
                 ModelState.AddModelError("EcgFirstTime", "完成通道时间不能早于接诊时间。");
 
             if (ModelState.IsValid)
