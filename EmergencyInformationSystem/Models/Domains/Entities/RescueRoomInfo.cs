@@ -450,6 +450,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// <summary>
         /// 床位名称-完整。
         /// </summary>
+        [Display(Name = "床位")]
         public string BedNameFull
         {
             get
