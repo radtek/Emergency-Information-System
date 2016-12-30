@@ -6,6 +6,8 @@ using System.Web.Mvc;
 
 using EmergencyInformationSystem.Models.Domains.Entities;
 
+using EmergencyInformationSystem.Models.ViewModels.GreenPaths.IndexAmi;
+
 namespace EmergencyInformationSystem.Controllers
 {
     /// <summary>
@@ -13,6 +15,30 @@ namespace EmergencyInformationSystem.Controllers
     /// </summary>
     public class GreenPathsController : Controller
     {
+        /// <summary>
+        /// 绿色通道主界面。
+        /// </summary>
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+
+
+
+
+        /// <summary>
+        /// 一览。
+        /// </summary>
+        /// <param name="page">页码。</param>
+        /// <param name="perPage">每页项目数。</param>
+        public ActionResult IndexAmi(int page = 1, int perPage = 20)
+        {
+            var targetV = new IndexAmi(page, perPage);
+
+            return View(targetV);
+        }
+
         /// <summary>
         /// 急性心肌梗死详情。
         /// </summary>

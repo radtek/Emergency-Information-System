@@ -1,0 +1,32 @@
+﻿@model EmergencyInformationSystem.Models.ViewModels.GreenPaths.IndexAmi.IndexAmi
+
+@{
+    ViewBag.Title = "绿色通道-急性心肌梗死一览表";
+}
+
+@*面包屑区*@
+<div class="container">
+    <ol class="breadcrumb">
+        <li>@Html.ActionLink("主界面", "Index", "Home", null, new { @class = "btn-show-modal" })</li>
+        <li>@Html.ActionLink("绿色通道", "Index", "GreenPaths", null, new { @class = "btn-show-modal" })</li>
+        <li class="active">@ViewBag.Title</li>
+    </ol>
+</div>
+
+@*标题区*@
+<h2 class="greenpath-main-title-cell">@ViewBag.Title</h2>
+
+@*筛选区*@
+@Html.Partial("IndexAmiFilter", Model.Route)
+
+<hr />
+
+@*导航区*@
+@Html.Partial("IndexAmiNavigator", Model.Route)
+
+@*列表区*@
+@Html.Partial("IndexAmiList", Model.List)
+
+@section scripts{
+    @Scripts.Render("~/bundles/EisNormal")
+}

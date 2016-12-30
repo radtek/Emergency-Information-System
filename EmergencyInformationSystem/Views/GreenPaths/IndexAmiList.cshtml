@@ -1,0 +1,93 @@
+﻿@model IEnumerable<EmergencyInformationSystem.Models.ViewModels.GreenPaths.IndexAmi.Item>
+
+<table class="table table-hover table-condensed table-bordered" style="table-layout:fixed">
+    <thead>
+        <tr>
+            <th class="alert-link text-center" width="80">
+                @Html.DisplayNameFor(model => model.PatientName)
+            </th>
+            <th class="alert-link text-center" width="80">
+                @Html.DisplayNameFor(model => model.OutPatientNumber)
+            </th>
+            <th class="alert-link text-center" width="130">
+                @Html.DisplayNameFor(model => model.InDepartmentTime)
+            </th>
+
+
+            <th class="alert-success text-center" width="130">
+                @Html.DisplayNameFor(model => model.OccurrenceTime)
+            </th>
+            <th class="alert-success text-center" width="130">
+                @Html.DisplayNameFor(model => model.EcgFirstTime)
+            </th>
+            <th class="alert-success text-center" width="130">
+                @Html.DisplayNameFor(model => model.EcgSecondTime)
+            </th>
+
+
+            <th class="alert-warning text-center" width="150">
+                @Html.DisplayNameFor(model => model.Remarks)
+            </th>
+
+
+            <th class="alert-danger text-center" width="130">
+                @Html.DisplayNameFor(model => model.FinishPathTime)
+            </th>
+            <th class="alert-danger text-center" width="130">
+                @Html.DisplayNameFor(model => model.OutDepartmentTime)
+            </th>
+            <th class="alert-danger text-center" width="50">
+                @Html.DisplayNameFor(model => model.IsHeldUp)
+            </th>
+            <th class="alert-danger text-center" width="150">
+                @Html.DisplayNameFor(model => model.Problem)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr @(item.IsLeave ? "" : "class=danger")>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.PatientName)
+                </td>
+                <td class="text-center">
+                    @Html.ActionLink(item.OutPatientNumber, "DetailsAmi", new { id = item.GreenPathAmiId }, new { @class = "btn-show-modal" })
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.InDepartmentTime)
+                </td>
+
+
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.OccurrenceTime)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.EcgFirstTime)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.EcgSecondTime)
+                </td>
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Remarks)
+                </td>
+
+
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.FinishPathTime)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.OutDepartmentTime)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.IsHeldUp)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Problem)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

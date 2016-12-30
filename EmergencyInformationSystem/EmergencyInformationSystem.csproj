@@ -329,6 +329,9 @@
     <Compile Include="Models\Domains\Entities\TransferReason.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ViewModels\GreenPaths\IndexAmi\IndexAmi.cs" />
+    <Compile Include="Models\ViewModels\GreenPaths\IndexAmi\Item.cs" />
+    <Compile Include="Models\ViewModels\GreenPaths\IndexAmi\Route.cs" />
     <Compile Include="Models\ViewModels\ObserveRoomInfos\Create\Create.cs" />
     <Compile Include="Models\ViewModels\ObserveRoomInfos\Create\Create2.cs" />
     <Compile Include="Models\ViewModels\ObserveRoomInfos\Create\Create3.cs" />
@@ -540,6 +543,11 @@
     <Content Include="Views\RescueRoomTreatmentRecords\IndexPartial.cshtml" />
     <Content Include="Views\RescueRoomTreatmentRecords\IndexPartialPart.cshtml" />
     <Content Include="Views\GreenPaths\DetailsAmiPrint.cshtml" />
+    <Content Include="Views\GreenPaths\IndexAmi.cshtml" />
+    <Content Include="Views\GreenPaths\IndexAmiFilter.cshtml" />
+    <Content Include="Views\GreenPaths\IndexAmiNavigator.cshtml" />
+    <Content Include="Views\GreenPaths\IndexAmiList.cshtml" />
+    <Content Include="Views\GreenPaths\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

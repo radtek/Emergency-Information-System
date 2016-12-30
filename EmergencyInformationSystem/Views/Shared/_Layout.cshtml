@@ -25,6 +25,7 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("抢救室", "Index", "RescueRoomInfos", null, new { @class = "btn-show-modal" })</li>
                     <li>@Html.ActionLink("留观室", "Index", "ObserveRoomInfos", null, new { @class = "btn-show-modal" })</li>
+                    <li>@Html.ActionLink("绿色通道", "Index", "GreenPaths", null, new { @class = "btn-show-modal" })</li>
                     <li>@Html.ActionLink("报表中心", "Index", "Reports", null, new { @class = "btn-show-modal" })</li>
                 </ul>
                 @*@Html.Partial("_LoginPartial")*@
@@ -35,7 +36,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - HIMS(Ver5.1.4.2)</p>
+            <p>&copy; @DateTime.Now.Year - HIMS(Ver5.1.5.0)</p>
         </footer>
     </div>
 

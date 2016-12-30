@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "绿色通道";
+}
+
+<div class="container">
+    <ol class="breadcrumb">
+        <li>@Html.ActionLink("主界面", "Index", "Home", null, new { @class = "btn-show-modal" })</li>
+        <li class="active">@ViewBag.Title</li>
+    </ol>
+</div>
+
+<div class="jumbotron">
+    <h1>
+        绿色通道
+    </h1>
+
+    <br />
+
+    <p>@Html.ActionLink("急性心肌梗死", "IndexAmi", "GreenPaths", null, new { @class = "btn btn-default btn-show-modal" })</p>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/EisNormal")
+}
