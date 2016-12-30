@@ -8,7 +8,6 @@
 <div class="container">
     <ol class="breadcrumb">
         <li>@Html.ActionLink("主界面", "Index", "Home", null, new { @class = "btn-show-modal" })</li>
-        <li>@Html.ActionLink("抢救室病例信息一览表", "Index", "RescueRoomInfos", null, new { @class = "btn-show-modal" } )</li>
         <li>@Html.ActionLink("抢救室病例信息表", "Details", "RescueRoomInfos", new { id = Model.RescueRoomInfoId }, new { @class = "btn-show-modal" })</li>
         <li class="active">@ViewBag.Title</li>
     </ol>
@@ -295,8 +294,8 @@
     function BeforeRefreshImageRecords() {
         $("#RefreshImageRecords").attr("disabled", "disabled");
 
-        $("#ImageRecords").hide(10, null);        
-        $("#ImageRecordsLoading").show(10, null);        
+        $("#ImageRecords").hide(10, null);
+        $("#ImageRecordsLoading").show(10, null);
     }
 
     //执行 抢救室影像项.刷新

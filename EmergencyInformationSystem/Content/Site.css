@@ -47,12 +47,9 @@ textarea {
 .RescueRoomMainTitleCell {
     padding: 10px;
     text-align: center;
-
     font-size: 30px;
     font-weight: 500;
-
     background-color: lightpink;
-
     border-style: solid;
     border-color: lightcoral;
     border-radius: 20px;
@@ -105,12 +102,9 @@ textarea {
 .ObserveRoomMainTitleCell {
     padding: 10px;
     text-align: center;
-
     font-size: 30px;
     font-weight: 500;
-
     background-color: lightcyan;
-
     border-style: solid;
     border-color: lightgreen;
     border-radius: 20px;
