@@ -21,6 +21,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsObserve
         {
             this.DestinationId = group.First().DestinationId;
             this.Time = time;
+            this.Level = 2;
 
             this.DestinationName = group.First().Destination.DestinationName;
             this.Count = group.Count();
@@ -44,6 +45,8 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsObserve
         public int DestinationId { get; set; }
 
         public DateTime Time { get; set; }
+
+        public int Level { get; set; }
 
 
 

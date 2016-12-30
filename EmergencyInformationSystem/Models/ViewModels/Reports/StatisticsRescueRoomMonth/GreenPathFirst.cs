@@ -24,6 +24,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
 
             this.IsGreenPathName = group.First().IsGreenPathName;
             this.Count = group.Count();
+            this.Level = 1;
 
             if (!group.First().IsGreenPath)
             {
@@ -41,6 +42,8 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
         public bool IsGreenPath { get; set; }
 
         public DateTime Time { get; set; }
+
+        public int Level { get; set; }
 
 
 

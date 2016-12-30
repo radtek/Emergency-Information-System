@@ -21,6 +21,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
         {
             this.DuringHours = group.First().DuringHours.Value;
             this.Time = time;
+            this.Level = 2;
 
             this.DuringHoursName = this.DuringHours.ToString();
             this.Count = group.Count();
@@ -36,6 +37,8 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
         /// 统计项归属的时间点。
         /// </summary>
         public DateTime Time { get; set; }
+
+        public int Level { get; set; }
 
 
 

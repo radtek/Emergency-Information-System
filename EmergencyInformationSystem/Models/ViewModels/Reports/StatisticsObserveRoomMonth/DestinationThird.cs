@@ -22,6 +22,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsObserve
             this.DestinationId = group.First().DestinationId;
             this.DestinationRemarks = group.First().DestinationRemarks;
             this.Time = time;
+            this.Level = 3;
 
             this.DestinationRemarksForDisplay = group.First().DestinationRemarks;
             this.Count = group.Count();
@@ -48,6 +49,8 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsObserve
         /// 统计项归属的时间点。
         /// </summary>
         public DateTime Time { get; set; }
+
+        public int Level { get; set; }
 
 
 

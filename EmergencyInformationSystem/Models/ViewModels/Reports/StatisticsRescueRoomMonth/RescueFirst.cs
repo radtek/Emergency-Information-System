@@ -24,6 +24,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
 
             this.IsRescueName = group.First().IsRescueName;
             this.Count = group.Count();
+            this.Level = 1;
 
             if (this.IsRescue == false)
             {
@@ -47,6 +48,8 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
         /// 统计项归属的时间点。
         /// </summary>
         public DateTime Time { get; set; }
+
+        public int Level { get; set; }
 
 
 

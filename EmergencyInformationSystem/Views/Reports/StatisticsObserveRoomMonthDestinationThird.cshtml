@@ -4,7 +4,7 @@
 {
     <tr>
         <td style="padding-left:80px">
-            @Html.ActionLink(item.DestinationRemarksForDisplay, "IndexObserveRoomDestination", new { item.DestinationId, item.DestinationRemarks, item.Time }, new { target = "_blank" })
+            @Html.ActionLink(item.DestinationRemarksForDisplay, "IndexObserveRoomDestination", new { item.DestinationId, item.DestinationRemarks, item.Time, item.Level }, new { target = "_blank" })
         </td>
         <td style="padding-left:80px">
             @Html.DisplayFor(model => item.Count)

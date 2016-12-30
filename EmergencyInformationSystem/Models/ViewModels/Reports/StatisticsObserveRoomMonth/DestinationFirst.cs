@@ -24,6 +24,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsObserve
             this.IsClassifiedLeave = group.First().Destination.IsClassifiedLeave;
             this.IsClassifiedToOther = group.First().Destination.IsClassifiedToOther;
             this.Time = time;
+            this.Level = 1;
 
             this.DestinationCategoryNameConcat = group.First().Destination.DestinationCategoryNameConcat;
             this.Count = group.Count();
@@ -47,6 +48,8 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsObserve
         public bool IsClassifiedToOther { get; set; }
 
         public DateTime Time { get; set; }
+
+        public int Level { get; set; }
 
 
 

@@ -19,25 +19,34 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.IndexRescueRoomGr
         /// <param name="isGreenPath">if set to <c>true</c> [is green path].</param>
         /// <param name="greenPathCategoryId">The green path category identifier.</param>
         /// <param name="greenPathCategoryRemarks">The green path category remarks.</param>
-        public IndexRescueRoomGreenPath(DateTime time, bool? isGreenPath, int? greenPathCategoryId, string greenPathCategoryRemarks)
+        public IndexRescueRoomGreenPath(DateTime time, bool? isGreenPath, int? greenPathCategoryId, string greenPathCategoryRemarks, int level)
         {
             var db = new EiSDbContext();
 
             this.Start = new DateTime(time.Year, time.Month, 1);
             this.End = this.Start.AddMonths(1);
+            this.Message = string.Format("{0} 绿色通道：", this.Start.ToString("yyyy年M月"));
 
-            var query = db.RescueRoomInfos.Where(c => this.Start <= c.OutDepartmentTime && c.OutDepartmentTime < this.End);
-            if (greenPathCategoryId != null)
-                query = query.Where(c => c.GreenPathCategoryId == greenPathCategoryId);
-            if (!string.IsNullOrEmpty(greenPathCategoryRemarks))
-                query = query.Where(c => c.GreenPathCategoryRemarks == greenPathCategoryRemarks);
-            
-            var list = query.ToList();
-
-            if (isGreenPath != null)
+            var list = db.RescueRoomInfos.Where(c => this.Start <= c.OutDepartmentTime && c.OutDepartmentTime < this.End).OrderBy(c => c.InDepartmentTime).ThenBy(c => c.RescueRoomInfoId).ToList();
+            if (level == 1)
+            {
                 list = list.Where(c => c.IsGreenPath == isGreenPath).ToList();
-
-            list = list.OrderBy(c => c.InDepartmentTime).ThenBy(c => c.RescueRoomInfoId).ToList();
+                this.Message += list.First().IsGreenPathName;
+            }
+            if (level == 2)
+            {
+                list = list.Where(c => c.GreenPathCategoryId == greenPathCategoryId).ToList();
+                this.Message += list.First().GreenPathCategory.GreenPathCategoryName;
+            }
+            if (level == 3)
+            {
+                list = list.Where(c => c.GreenPathCategoryId == greenPathCategoryId).ToList();
+                if (string.IsNullOrEmpty(greenPathCategoryRemarks))
+                    list = list.Where(c => c.GreenPathCategoryRemarks == null || c.GreenPathCategoryRemarks == "").ToList();
+                else
+                    list = list.Where(c => c.GreenPathCategoryRemarks == greenPathCategoryRemarks).ToList();
+                this.Message += list.First().GreenPathCategoryNameFull;
+            }
 
             this.List = list.Select(c => new Item(c)).ToList();
         }
@@ -49,6 +58,8 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.IndexRescueRoomGr
         public DateTime Start { get; set; }
 
         public DateTime End { get; set; }
+
+        public string Message { get; set; }
 
 
 

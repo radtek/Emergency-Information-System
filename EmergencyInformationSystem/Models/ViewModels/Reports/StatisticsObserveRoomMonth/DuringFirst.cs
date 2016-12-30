@@ -22,6 +22,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsObserve
             this.DuringMin = group.Min(c => c.DuringHours.Value);
             this.DuringMax = group.Max(c => c.DuringHours.Value);
             this.Time = time;
+            this.Level = 1;
 
             this.DuringGroupName = group.First().DuringGroupName;
             this.Count = group.Count();
@@ -38,6 +39,8 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsObserve
         public int DuringMax { get; set; }
 
         public DateTime Time { get; set; }
+
+        public int Level { get; set; }
 
 
 

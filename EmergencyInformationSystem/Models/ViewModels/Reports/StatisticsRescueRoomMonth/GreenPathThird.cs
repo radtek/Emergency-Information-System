@@ -22,6 +22,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
             this.GreenPathCategoryId = group.First().GreenPathCategoryId;
             this.GreenPathCategoryRemarks = group.First().GreenPathCategoryRemarks;
             this.Time = time;
+            this.Level = 3;
 
             this.Count = group.Count();
             this.GreenPathCategoryRemarksForDisplay = group.First().GreenPathCategoryRemarks;
@@ -48,6 +49,8 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
         /// 统计项归属的时间点。
         /// </summary>
         public DateTime Time { get; set; }
+
+        public int Level { get; set; }
 
 
 

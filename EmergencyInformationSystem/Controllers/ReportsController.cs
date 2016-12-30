@@ -93,9 +93,9 @@ namespace EmergencyInformationSystem.Controllers
         /// <param name="time">指定的月报表涵盖时间点，只使用其中日期部分。</param>
         /// <param name="isRescue">是否抢救。</param>
         /// <param name="rescueResultId">抢救结果ID。</param>
-        public ActionResult IndexRescueRoomRescue(DateTime time, bool isRescue, int? rescueResultId)
-        {         
-            var targetV = new IndexRescueRoomRescue(time, isRescue, rescueResultId);
+        public ActionResult IndexRescueRoomRescue(DateTime time, bool isRescue, int? rescueResultId, int level)
+        {
+            var targetV = new IndexRescueRoomRescue(time, isRescue, rescueResultId, level);
 
             return View(targetV);
         }
@@ -107,9 +107,9 @@ namespace EmergencyInformationSystem.Controllers
         /// <param name="isGreenPath">是否绿色通道。</param>
         /// <param name="greenPathCategoryId">绿色通道类别ID。</param>
         /// <param name="greenPathCategoryRemarks">绿色通道明细。</param>
-        public ActionResult IndexRescueRoomGreenPath(DateTime time, bool? isGreenPath, int? greenPathCategoryId, string greenPathCategoryRemarks)
+        public ActionResult IndexRescueRoomGreenPath(DateTime time, bool? isGreenPath, int? greenPathCategoryId, string greenPathCategoryRemarks, int level)
         {
-            var targetV = new IndexRescueRoomGreenPath(time, isGreenPath, greenPathCategoryId, greenPathCategoryRemarks);
+            var targetV = new IndexRescueRoomGreenPath(time, isGreenPath, greenPathCategoryId, greenPathCategoryRemarks, level);
 
             return View(targetV);
         }
@@ -121,9 +121,9 @@ namespace EmergencyInformationSystem.Controllers
         /// <param name="duringHours">时长。</param>
         /// <param name="duringMin">时长范围下界。</param>
         /// <param name="duringMax">时长范围上界。</param>
-        public ActionResult IndexRescueRoomDuring(DateTime time, int? duringHours, int? duringMin, int? duringMax)
+        public ActionResult IndexRescueRoomDuring(DateTime time, int? duringHours, int? duringMin, int? duringMax, int level)
         {
-            var targetV = new IndexRescueRoomDuring(time, duringHours, duringMin, duringMax);
+            var targetV = new IndexRescueRoomDuring(time, duringHours, duringMin, duringMax, level);
 
             return View(targetV);
         }
@@ -138,15 +138,15 @@ namespace EmergencyInformationSystem.Controllers
         /// <param name="isClassifiedToOther">是否分类为其他。</param>
         /// <param name="destinationId">去向ID。</param>
         /// <param name="destinationRemarks">去向明细。</param>
-        public ActionResult IndexRescueRoomDestination(DateTime time, bool? isClassifiedToInDepartment, bool? isClassifiedToOutDepartment, bool? isClassifiedLeave, bool? isClassifiedToOther, int? destinationId, string destinationRemarks)
+        public ActionResult IndexRescueRoomDestination(DateTime time, bool? isClassifiedToInDepartment, bool? isClassifiedToOutDepartment, bool? isClassifiedLeave, bool? isClassifiedToOther, int? destinationId, string destinationRemarks, int level)
         {
-            var targetV = new IndexRescueRoomDestination(time, isClassifiedToInDepartment, isClassifiedToOutDepartment, isClassifiedLeave, isClassifiedToOther, destinationId, destinationRemarks);
+            var targetV = new IndexRescueRoomDestination(time, isClassifiedToInDepartment, isClassifiedToOutDepartment, isClassifiedLeave, isClassifiedToOther, destinationId, destinationRemarks, level);
 
             return View(targetV);
         }
 
 
-        
+
 
 
         /// <summary>
@@ -202,9 +202,9 @@ namespace EmergencyInformationSystem.Controllers
         /// <param name="duringHours">时长。</param>
         /// <param name="duringMin">时长范围下界。</param>
         /// <param name="duringMax">时长范围上界。</param>
-        public ActionResult IndexObserveRoomDuring(DateTime time, int? duringHours, int? duringMin, int? duringMax)
+        public ActionResult IndexObserveRoomDuring(DateTime time, int? duringHours, int? duringMin, int? duringMax, int level)
         {
-            var targetV = new IndexObserveRoomDuring(time, duringHours, duringMin, duringMax);
+            var targetV = new IndexObserveRoomDuring(time, duringHours, duringMin, duringMax, level);
 
             return View(targetV);
         }
@@ -219,9 +219,9 @@ namespace EmergencyInformationSystem.Controllers
         /// <param name="isClassifiedToOther">是否分类为其他。</param>
         /// <param name="destinationId">去向ID。</param>
         /// <param name="destinationRemarks">去向明细。</param>
-        public ActionResult IndexObserveRoomDestination(DateTime time, bool? isClassifiedToInDepartment, bool? isClassifiedToOutDepartment, bool? isClassifiedLeave, bool? isClassifiedToOther, int? destinationId, string destinationRemarks)
+        public ActionResult IndexObserveRoomDestination(DateTime time, bool? isClassifiedToInDepartment, bool? isClassifiedToOutDepartment, bool? isClassifiedLeave, bool? isClassifiedToOther, int? destinationId, string destinationRemarks, int level)
         {
-            var targetV = new IndexObserveRoomDestination(time, isClassifiedToInDepartment, isClassifiedToOutDepartment, isClassifiedLeave, isClassifiedToOther, destinationId, destinationRemarks);
+            var targetV = new IndexObserveRoomDestination(time, isClassifiedToInDepartment, isClassifiedToOutDepartment, isClassifiedLeave, isClassifiedToOther, destinationId, destinationRemarks, level);
 
             return View(targetV);
         }
