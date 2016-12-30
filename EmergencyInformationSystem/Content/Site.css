@@ -104,9 +104,9 @@ textarea {
     text-align: center;
     font-size: 30px;
     font-weight: 500;
-    background-color: lightcyan;
+    background-color: lightyellow;
     border-style: solid;
-    border-color: lightgreen;
+    border-color: yellow;
     border-radius: 20px;
 }
 
@@ -145,6 +145,17 @@ textarea {
     border: 1px solid black;
 }
 
+/*绿色通道*/
+.greenpath-main-title-cell {
+    padding: 10px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 500;
+    background-color: lightcyan;
+    border-style: solid;
+    border-color: lightgreen;
+    border-radius: 20px;
+}
 
 
 
