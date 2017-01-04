@@ -304,6 +304,10 @@
     <Compile Include="Migrations\201612281037268_DestinationTransfer.Designer.cs">
       <DependentUpon>201612281037268_DestinationTransfer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701041054244_ChangeForAdditionalDiagnosis.cs" />
+    <Compile Include="Migrations\201701041054244_ChangeForAdditionalDiagnosis.Designer.cs">
+      <DependentUpon>201701041054244_ChangeForAdditionalDiagnosis.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BusinessModels\TrasenInformationConvertor.cs" />
@@ -626,6 +630,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612281037268_DestinationTransfer.resx">
       <DependentUpon>201612281037268_DestinationTransfer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701041054244_ChangeForAdditionalDiagnosis.resx">
+      <DependentUpon>201701041054244_ChangeForAdditionalDiagnosis.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
