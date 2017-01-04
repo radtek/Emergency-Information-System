@@ -132,6 +132,12 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         [Display(Name = "入室方式明细")]
         public virtual string InRescueRoomWayRemarks { get; set; }
 
+        /// <summary>
+        /// 补充诊断。
+        /// </summary>
+        [Display(Name = "补充诊断")]
+        public virtual string AdditionalDiagnosis { get; set; }
+
 
 
 
