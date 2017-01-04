@@ -39,6 +39,9 @@
             <th class="alert-success text-center" width="80">
                 @Html.DisplayNameFor(model => model.InObserveRoomWayNameFull)
             </th>
+            <th class="alert-success text-center" width="200">
+                @Html.DisplayNameFor(model => model.AdditionalDiagnosis)
+            </th>
 
             @*预约*@
             <th class="alert-info text-center" width="110">
@@ -111,6 +114,9 @@
             </td>
             <td class="text-center">
                 @Html.DisplayFor(modelItem => item.InObserveRoomWayNameFull)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.AdditionalDiagnosis)
             </td>
 
             @*预约*@

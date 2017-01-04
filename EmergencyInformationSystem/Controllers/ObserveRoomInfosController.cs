@@ -361,6 +361,7 @@ namespace EmergencyInformationSystem.Controllers
                 target.FirstNurseName = observeRoomInfo.FirstNurseName;
                 target.InObserveRoomWayId = observeRoomInfo.InObserveRoomWayId;
                 target.InObserveRoomWayRemarks = observeRoomInfo.InObserveRoomWayRemarks;
+                target.AdditionalDiagnosis = observeRoomInfo.AdditionalDiagnosis;
 
                 target.DestinationFirstId = observeRoomInfo.DestinationFirstId;
                 target.DestinationFirstTime = observeRoomInfo.DestinationFirstTime;

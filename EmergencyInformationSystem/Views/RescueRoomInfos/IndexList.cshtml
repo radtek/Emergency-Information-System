@@ -39,6 +39,9 @@
             <th class="alert-success text-center" width="80">
                 @Html.DisplayNameFor(model => model.InRescueRoomWayNameFull)
             </th>
+            <th class="alert-success text-center" width="200">
+                @Html.DisplayNameFor(model => model.AdditionalDiagnosis)
+            </th>
 
             @*处理*@
             <th class="alert-warning text-center" width="80">
@@ -128,6 +131,9 @@
                 </td>
                 <td class="text-center">
                     @Html.DisplayFor(modelItem => item.InRescueRoomWayNameFull)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.AdditionalDiagnosis)
                 </td>
 
                 @*处理*@

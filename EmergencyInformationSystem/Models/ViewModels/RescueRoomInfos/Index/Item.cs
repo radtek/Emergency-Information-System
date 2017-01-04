@@ -35,6 +35,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Index
             this.BedNameFull = origin.BedNameFull;
             this.FirstNurseName = origin.FirstNurseName;
             this.InRescueRoomWayNameFull = origin.InRescueRoomWayNameFull;
+            this.AdditionalDiagnosis = origin.AdditionalDiagnosis;
 
             this.CriticalLevelName = origin.CriticalLevel.CriticalLevelName;
             this.RescueResultNameFull = origin.RescueResultNameFull;
@@ -143,6 +144,12 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Index
         /// </summary>
         [Display(Name = "入室方式")]
         public string InRescueRoomWayNameFull { get; set; }
+
+        /// <summary>
+        /// 补充诊断。
+        /// </summary>
+        [Display(Name = "补充诊断")]
+        public string AdditionalDiagnosis { get; set; }
 
 
 

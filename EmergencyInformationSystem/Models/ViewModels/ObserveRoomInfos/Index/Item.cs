@@ -35,6 +35,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Index
             this.BedNameFull = observeRoomInfo.BedNameFull;
             this.FirstNurseName = observeRoomInfo.FirstNurseName;
             this.InObserveRoomWayNameFull = observeRoomInfo.InObserveRoomWayNameFull;           
+            this.AdditionalDiagnosis = observeRoomInfo.AdditionalDiagnosis;
 
             this.DestinationFirstName = observeRoomInfo.DestinationFirstName;
             this.DestinationFirstTime = observeRoomInfo.DestinationFirstTime;
@@ -137,6 +138,12 @@ namespace EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Index
         /// </summary>
         [Display(Name = "入室方式")]
         public string InObserveRoomWayNameFull { get; set; }
+
+        /// <summary>
+        /// 补充诊断。
+        /// </summary>
+        [Display(Name = "补充诊断")]
+        public string AdditionalDiagnosis { get; set; }
 
 
 

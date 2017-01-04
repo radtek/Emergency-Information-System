@@ -404,6 +404,7 @@ namespace EmergencyInformationSystem.Controllers
                 target.FirstNurseName = rescueRoomInfo.FirstNurseName;
                 target.InRescueRoomWayId = rescueRoomInfo.InRescueRoomWayId;
                 target.InRescueRoomWayRemarks = rescueRoomInfo.InRescueRoomWayRemarks;
+                target.AdditionalDiagnosis = rescueRoomInfo.AdditionalDiagnosis;
 
                 target.CriticalLevelId = rescueRoomInfo.CriticalLevelId;
                 target.IsRescue = rescueRoomInfo.IsRescue;
