@@ -34,7 +34,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Index
             this.InDepartmentTime = observeRoomInfo.InDepartmentTime;
             this.BedNameFull = observeRoomInfo.BedNameFull;
             this.FirstNurseName = observeRoomInfo.FirstNurseName;
-            this.InObserveRoomWayNameFull = observeRoomInfo.InObserveRoomWayNameFull;           
+            this.InObserveRoomWayNameFull = observeRoomInfo.InObserveRoomWayNameFull;
             this.AdditionalDiagnosis = observeRoomInfo.AdditionalDiagnosis;
 
             this.DestinationFirstName = observeRoomInfo.DestinationFirstName;
