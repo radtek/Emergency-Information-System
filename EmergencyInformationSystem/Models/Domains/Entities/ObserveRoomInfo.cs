@@ -520,6 +520,54 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
             }
         }
 
+        /// <summary>
+        /// 是否去往首选预约科室。
+        /// </summary>
+        public bool? IsGotoFirstSubscription
+        {
+            get
+            {
+                if (this.Destination.IsUseForEmpty || this.DestinationFirst.IsUseForEmpty)
+                    return null;
+
+                if (this.DestinationId == this.DestinationFirstId)
+                    return true;
+
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 是否去往次选预约科室。
+        /// </summary>
+        public bool? IsGotoSecondSubscription
+        {
+            get
+            {
+                if (this.Destination.IsUseForEmpty || this.DestinationSecond.IsUseForEmpty)
+                    return null;
+
+                if (this.DestinationId == this.DestinationSecondId)
+                    return true;
+
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 是否去往预约科室。
+        /// </summary>
+        public bool? IsGotoSubscription
+        {
+            get
+            {
+                if (!this.IsGotoFirstSubscription.HasValue || !this.IsGotoSecondSubscription.HasValue)
+                    return null;
+
+                return this.IsGotoFirstSubscription.Value || this.IsGotoSecondSubscription.Value;
+            }
+        }
+
         #endregion
     }
 }
