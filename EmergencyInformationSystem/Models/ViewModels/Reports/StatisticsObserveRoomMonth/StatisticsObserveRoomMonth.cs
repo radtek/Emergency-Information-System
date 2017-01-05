@@ -15,7 +15,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsObserve
     public class StatisticsObserveRoomMonth
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="StatisticsObserveRoomMonth"/> class.
+        /// 初始化实例<see cref="StatisticsObserveRoomMonth"/>。
         /// </summary>
         /// <param name="time">指定的月报表涵盖时间点，只取其中月份部分。</param>
         public StatisticsObserveRoomMonth(DateTime time)

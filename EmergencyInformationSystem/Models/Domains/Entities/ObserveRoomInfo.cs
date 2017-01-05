@@ -220,7 +220,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         public virtual string TransferTarget { get; set; }
 
 
-        
+
 
 
         /// <summary>
