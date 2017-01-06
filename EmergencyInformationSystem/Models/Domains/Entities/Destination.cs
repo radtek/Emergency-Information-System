@@ -124,6 +124,11 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// </summary>
         public virtual bool IsTransfer { get; set; }
 
+        /// <summary>
+        /// 是否专科。
+        /// </summary>
+        public virtual bool IsProfessional { get; set; }
+
 
 
 

@@ -308,6 +308,14 @@
     <Compile Include="Migrations\201701041054244_ChangeForAdditionalDiagnosis.Designer.cs">
       <DependentUpon>201701041054244_ChangeForAdditionalDiagnosis.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701060732180_DestinationAddField1.cs" />
+    <Compile Include="Migrations\201701060732180_DestinationAddField1.Designer.cs">
+      <DependentUpon>201701060732180_DestinationAddField1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701060734179_ChangeForPorfessional.cs" />
+    <Compile Include="Migrations\201701060734179_ChangeForPorfessional.Designer.cs">
+      <DependentUpon>201701060734179_ChangeForPorfessional.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BusinessModels\TrasenInformationConvertor.cs" />
@@ -633,6 +641,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701041054244_ChangeForAdditionalDiagnosis.resx">
       <DependentUpon>201701041054244_ChangeForAdditionalDiagnosis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701060732180_DestinationAddField1.resx">
+      <DependentUpon>201701060732180_DestinationAddField1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701060734179_ChangeForPorfessional.resx">
+      <DependentUpon>201701060734179_ChangeForPorfessional.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

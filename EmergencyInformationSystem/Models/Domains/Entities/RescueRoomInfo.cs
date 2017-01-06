@@ -269,6 +269,12 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         [Display(Name = "转往医院")]
         public virtual string TransferTarget { get; set; }
 
+        /// <summary>
+        /// 专科名称。
+        /// </summary>
+        [Display(Name = "专科名称")]
+        public virtual string ProfessionalTarget { get; set; }
+
 
 
 
