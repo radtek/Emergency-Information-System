@@ -232,6 +232,9 @@ namespace EmergencyInformationSystem.Controllers
             //18-去向为转院时，必须有转往医院。
             if (db.Destinations.Find(observeRoomInfo.DestinationId).IsTransfer && string.IsNullOrEmpty(observeRoomInfo.TransferTarget))
                 ModelState.AddModelError("TransferTarget", "必须有转往医院。");
+            //19-去向为专科时，必须有专科名称
+            if (db.Destinations.Find(observeRoomInfo.DestinationId).IsProfessional && string.IsNullOrEmpty(observeRoomInfo.ProfessionalTarget))
+                ModelState.AddModelError("ProfessionalTarget", "必须有专科名称。");
 
             if (ModelState.IsValid)
             {
@@ -349,6 +352,9 @@ namespace EmergencyInformationSystem.Controllers
             //18-去向为转院时，必须有转往医院。
             if (db.Destinations.Find(observeRoomInfo.DestinationId).IsTransfer && string.IsNullOrEmpty(observeRoomInfo.TransferTarget))
                 ModelState.AddModelError("TransferTarget", "必须有转往医院。");
+            //19-去向为专科时，必须有专科名称
+            if (db.Destinations.Find(observeRoomInfo.DestinationId).IsProfessional && string.IsNullOrEmpty(observeRoomInfo.ProfessionalTarget))
+                ModelState.AddModelError("ProfessionalTarget", "必须有专科名称。");
 
             if (ModelState.IsValid)
             {
@@ -503,6 +509,24 @@ namespace EmergencyInformationSystem.Controllers
             var target = db.Destinations.Find(id);
 
             if (target == null || !target.IsTransfer)
+            {
+                var result = new { result = false };
+                return Json(result);
+            }
+            else
+            {
+                var result = new { result = true };
+                return Json(result);
+            }
+        }
+
+        public JsonResult CheckDestinationIdForIsProfessional(int id)
+        {
+            var db = new EiSDbContext();
+
+            var target = db.Destinations.Find(id);
+
+            if (target == null || !target.IsProfessional)
             {
                 var result = new { result = false };
                 return Json(result);
