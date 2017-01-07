@@ -213,6 +213,7 @@
     <Compile Include="Controllers\RescueRoomDrugRecordsController.cs" />
     <Compile Include="Controllers\RescueRoomImageRecordsController.cs" />
     <Compile Include="Controllers\RescueRoomInfosController.cs" />
+    <Compile Include="Controllers\ServicesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -427,6 +428,7 @@
     </Content>
     <None Include="Properties\PublishProfiles\Normal.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\eis-dynamic.js" />
     <Content Include="Scripts\eis-normal.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -563,6 +565,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Services\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -71,7 +71,7 @@ function checkDateFormat(str) {
 }
 
 //在变化时通过JSON处理
-function eisOnchangeUseJson(targetUrl, changingElementId, trueFunc, falseFunc) {
+function eisOnchangeUseJson(targetUrl, changingElementId, resultFunction) {
     $.ajax({
         url: targetUrl,
         type: "POST",
@@ -79,13 +79,15 @@ function eisOnchangeUseJson(targetUrl, changingElementId, trueFunc, falseFunc) {
         data: {
             id: $('#' + changingElementId).val()
         },
+        //success: function (data) {
+        //    if (data.result == true) {
+        //        resultFunction(true);
+        //    }
+        //    else {
+        //        resultFunction(false);
+        //    };
         success: function (data) {
-            if (data.result == true) {
-                trueFunc();
-            }
-            else {
-                falseFunc();
-            };
+            resultFunction(data);
         }
     });
 }

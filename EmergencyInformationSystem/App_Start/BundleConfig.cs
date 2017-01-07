@@ -28,7 +28,7 @@ namespace EmergencyInformationSystem
                       "~/Content/site.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/EisNormal").Include(
-            "~/Scripts/eis-normal.js"));
+            "~/Scripts/eis-normal.js", "~/Scripts/eis-dynamic.js"));
         }
     }
 }

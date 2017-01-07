@@ -80,7 +80,7 @@
             <div class="form-group col-md-offset-1 row ObserveRoomSecondTitleEditBlock">
                 @Html.LabelFor(model => model.InObserveRoomWayId, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownList("InObserveRoomWayId", null, new { @class = "form-control" })
+                    @Html.DropDownList("InObserveRoomWayId", null, new { @class = "form-control", data_url_action = Url.Action("GetInObserveRoomWay", "Services") })
                     @Html.ValidationMessageFor(model => model.InObserveRoomWayId, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -113,7 +113,7 @@
             <div class="form-group col-md-offset-1 row ObserveRoomSecondTitleEditBlock">
                 @Html.LabelFor(model => model.DestinationFirstId, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownList("DestinationFirstId", null, new { @class = "form-control" })
+                    @Html.DropDownList("DestinationFirstId", null, new { @class = "form-control", data_url_action = Url.Action("GetDestination", "Services") })
                     @Html.ValidationMessageFor(model => model.DestinationFirstId, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -160,7 +160,7 @@
             <div class="form-group col-md-offset-1 row ObserveRoomSecondTitleEditBlock">
                 @Html.LabelFor(model => model.DestinationId, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownList("DestinationId", null, new { @class = "form-control" })
+                    @Html.DropDownList("DestinationId", null, new { @class = "form-control", data_url_action = Url.Action("GetDestination", "Services") })
                     @Html.ValidationMessageFor(model => model.DestinationId, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -242,144 +242,3 @@
 @section scripts{
     @Scripts.Render("~/bundles/EisNormal")
 }
-
-<script>
-    $(document).ready(function () {
-        //==动态组==
-        $(function () {
-            //基于“入室方式”而改变的
-            onchangeForInObserveRoomWayId();
-            $("#InObserveRoomWayId").on("change", function () {
-                onchangeForInObserveRoomWayId();
-            });
-
-            //基于“预约首选科室”而改变的
-            onchangeForDestinationFirstId();
-            $("#DestinationFirstId").on("change", function () {
-                onchangeForDestinationFirstId();
-            });
-
-            //基于“去向”而改变的
-            onchangeForDestinationId();
-            $("#DestinationId").on("change", function () {
-                onchangeForDestinationId();
-            });
-        });
-    });
-
-
-
-
-
-
-
-
-    //“InObserveRoomWayId”改变
-    function onchangeForInObserveRoomWayId() {
-        eisOnchangeUseJson('@Url.Action("CheckInObserveRoomWayIdForIsHasAdditionalInfo")', "InObserveRoomWayId", checkInObserveRoomWayIdForIsHasAdditionalInfoTrue, checkInObserveRoomWayIdForIsHasAdditionalInfoFalse)
-    }
-    function checkInObserveRoomWayIdForIsHasAdditionalInfoTrue() {
-        //影响“InObserveRoomWayRemarks”
-        $("#DivInObserveRoomWayRemarks").show(10, null);
-        $("#InObserveRoomWayRemarks").removeAttr("disabled");
-    }
-    function checkInObserveRoomWayIdForIsHasAdditionalInfoFalse() {
-        //影响“InObserveRoomWayRemarks”
-        $("#DivInObserveRoomWayRemarks").hide(10, null);
-        $("#InObserveRoomWayRemarks").attr("disabled", "disabled");
-    }
-
-    //“DestinationFirstId”改变
-    function onchangeForDestinationFirstId() {
-        eisOnchangeUseJson('@Url.Action("CheckDestinationFirstIdForIsUseForEmpty")', "DestinationFirstId", checkDestinationFirstIdForIsUseForEmptyTrue, checkDestinationFirstIdForIsUseForEmptyFalse)
-    }
-    function checkDestinationFirstIdForIsUseForEmptyTrue() {
-        //影响“DestinationFirstTime”、“DestinationFirstContact”、“DestinationSecondId”
-        $("#DivDestinationFirstTime").hide(10, null);
-        $("#DivDestinationFirstContact").hide(10, null);
-        $("#DivDestinationSecondId").hide(10, null);
-
-        $("#DestinationFirstTime").attr("disabled", "disabled");
-        $("#DestinationFirstContact").attr("disabled", "disabled");
-
-        $("#DestinationSecondId").val($("#DestinationFirstId").val().toString());
-    }
-    function checkDestinationFirstIdForIsUseForEmptyFalse() {
-        //影响“DestinationFirstTime”、“DestinationFirstContact”、“DestinationSecondId”
-        $("#DivDestinationFirstTime").show(10, null);
-        $("#DivDestinationFirstContact").show(10, null);
-        $("#DivDestinationSecondId").show(10, null);
-
-        $("#DestinationFirstTime").removeAttr("disabled");
-        $("#DestinationFirstContact").removeAttr("disabled");
-    }
-
-    //“DestinationId”改变
-    function onchangeForDestinationId() {
-        eisOnchangeUseJson('@Url.Action("CheckDestinationIdForIsHasAdditionalInfo")', "DestinationId", checkDestinationIdForIsHasAdditionalInfoTrue, checkDestinationIdForIsHasAdditionalInfoFalse);
-
-        eisOnchangeUseJson('@Url.Action("CheckDestinationIdForIsUseForEmpty")', "DestinationId", checkDestinationIdForIsUseForEmptyTrue, checkDestinationIdForIsUseForEmptyFalse);
-
-        eisOnchangeUseJson('@Url.Action("CheckDestinationIdForIsTransfer")', "DestinationId", checkDestinationIdForIsTransferTrue, checkDestinationIdForIsTransferFalse);
-
-        eisOnchangeUseJson('@Url.Action("CheckDestinationIdForIsProfessional")', "DestinationId", checkDestinationIdForIsProfessionalTrue, checkDestinationIdForIsProfessionalFalse);
-    }
-    function checkDestinationIdForIsHasAdditionalInfoTrue() {
-        //影响“DestinationRemarks”
-        $("#DivDestinationRemarks").show(10, null);
-        $("#DestinationRemarks").removeAttr("disabled");
-    }
-    function checkDestinationIdForIsHasAdditionalInfoFalse() {
-        //影响“DestinationRemarks”
-        $("#DivDestinationRemarks").hide(10, null);
-        $("#DestinationRemarks").attr("disabled", "disabled");
-    }
-    function checkDestinationIdForIsUseForEmptyTrue() {
-        //影响“OutDepartmentTime”、“HandleNurse”、“DiagnosisName”
-        $("#DivOutDepartmentTime").hide(10, null);
-        $("#DivHandleNurse").hide(10, null);
-        $("#DivDiagnosisName").hide(10, null);
-
-        $("#OutDepartmentTime").attr("disabled", "disabled");
-        $("#HandleNurse").attr("disabled", "disabled");
-        $("#DiagnosisName").attr("disabled", "disabled");
-    }
-    function checkDestinationIdForIsUseForEmptyFalse() {
-        //影响“OutDepartmentTime”、“HandleNurse”、“DiagnosisName”
-        $("#DivOutDepartmentTime").show(10, null);
-        $("#DivHandleNurse").show(10, null);
-        $("#DivDiagnosisName").show(10, null);
-
-        $("#OutDepartmentTime").removeAttr("disabled");
-        $("#HandleNurse").removeAttr("disabled");
-        $("#DiagnosisName").removeAttr("disabled");
-    }
-    function checkDestinationIdForIsTransferTrue() {
-        //影响“TransferReasonId”、“TransferTarget”
-        $("#DivTransferReasonId").show(10, null);
-        $("#DivTransferTarget").show(10, null);
-
-        $("#TransferReasonId").removeAttr("disabled");
-        $("#TransferTarget").removeAttr("disabled");
-    }
-    function checkDestinationIdForIsTransferFalse() {
-        //影响“TransferReasonId”、“TransferTarget”
-        $("#DivTransferReasonId").hide(10, null);
-        $("#DivTransferTarget").hide(10, null);
-
-        $("#TransferReasonId").attr("disabled", "disabled");
-        $("#TransferTarget").attr("disabled", "disabled");
-    }
-    function checkDestinationIdForIsProfessionalTrue() {
-        //影响“TransferReasonId”、“ProfessionalTarget”
-        $("#DivProfessionalTarget").show(10, null);
-
-        $("#ProfessionalTarget").removeAttr("disabled");
-    }
-    function checkDestinationIdForIsProfessionalFalse() {
-        //影响“TransferReasonId”、“ProfessionalTarget”
-        $("#DivProfessionalTarget").hide(10, null);
-
-        $("#ProfessionalTarget").attr("disabled", "disabled");
-    }
-</script>
