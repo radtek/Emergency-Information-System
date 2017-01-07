@@ -253,7 +253,7 @@ namespace EmergencyInformationSystem.Controllers
             if (!db.Destinations.Find(rescueRoomInfo.DestinationId).IsUseForEmpty && string.IsNullOrEmpty(rescueRoomInfo.HandleNurse))
                 ModelState.AddModelError("HandleNurse", "离室时必填。");
             //21-去向为转院时，必须有转院原因。
-            if(db.Destinations.Find(rescueRoomInfo.DestinationId).IsTransfer && db.TransferReasons.Find(rescueRoomInfo.TransferReasonId).IsUseForEmpty)
+            if (db.Destinations.Find(rescueRoomInfo.DestinationId).IsTransfer && db.TransferReasons.Find(rescueRoomInfo.TransferReasonId).IsUseForEmpty)
                 ModelState.AddModelError("TransferReasonId", "必须有转院原因。");
             //22-去向为转院时，必须有转往医院。
             if (db.Destinations.Find(rescueRoomInfo.DestinationId).IsTransfer && string.IsNullOrEmpty(rescueRoomInfo.TransferTarget))
@@ -452,7 +452,7 @@ namespace EmergencyInformationSystem.Controllers
             ViewBag.DestinationFirstId = new SelectList(db.Destinations.Where(c => c.IsUseForSubscription).OrderBy(c => c.Priority2), "DestinationId", "DestinationName", rescueRoomInfo.DestinationFirstId);
             ViewBag.DestinationSecondId = new SelectList(db.Destinations.Where(c => c.IsUseForSubscription).OrderBy(c => c.Priority2), "DestinationId", "DestinationName", rescueRoomInfo.DestinationSecondId);
             ViewBag.TransferReasonId = new SelectList(db.TransferReasons, "TransferReasonId", "TransferReasonName", rescueRoomInfo.TransferReasonId);
-            
+
             return View(rescueRoomInfo);
         }
 
