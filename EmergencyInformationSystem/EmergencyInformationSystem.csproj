@@ -213,7 +213,7 @@
     <Compile Include="Controllers\RescueRoomDrugRecordsController.cs" />
     <Compile Include="Controllers\RescueRoomImageRecordsController.cs" />
     <Compile Include="Controllers\RescueRoomInfosController.cs" />
-    <Compile Include="Controllers\ServicesController.cs" />
+    <Compile Include="Controllers\ServicesQueryController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

@@ -89,7 +89,7 @@
             <div class="form-group col-md-offset-1 row ObserveRoomSecondTitleEditBlock">
                 @Html.LabelFor(model => model.InObserveRoomWayId, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-4">
-                    @Html.DropDownList("InObserveRoomWayId", null, new { @class = "form-control", data_url_action = Url.Action("GetInObserveRoomWay", "Services") })
+                    @Html.DropDownList("InObserveRoomWayId", null, new { @class = "form-control", data_url_action = Url.Action("GetInObserveRoomWay", "ServicesQuery") })
                     @Html.ValidationMessageFor(model => model.InObserveRoomWayId, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -122,7 +122,7 @@
             <div class="form-group col-md-offset-1 row ObserveRoomSecondTitleEditBlock">
                 @Html.LabelFor(model => model.DestinationFirstId, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownList("DestinationFirstId", null, new { @class = "form-control", data_url_action = Url.Action("GetDestination", "Services") })
+                    @Html.DropDownList("DestinationFirstId", null, new { @class = "form-control", data_url_action = Url.Action("GetDestination", "ServicesQuery") })
                     @Html.ValidationMessageFor(model => model.DestinationFirstId, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -169,7 +169,7 @@
             <div class="form-group col-md-offset-1 row ObserveRoomSecondTitleEditBlock">
                 @Html.LabelFor(model => model.DestinationId, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownList("DestinationId", null, new { @class = "form-control", data_url_action = Url.Action("GetDestination", "Services") })
+                    @Html.DropDownList("DestinationId", null, new { @class = "form-control", data_url_action = Url.Action("GetDestination", "ServicesQuery") })
                     @Html.ValidationMessageFor(model => model.DestinationId, "", new { @class = "text-danger" })
                 </div>
             </div>
