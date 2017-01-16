@@ -427,7 +427,11 @@
                 :
                 @Html.DisplayFor(model => model.RescueRoomInfo.DuringDetained)
             </td>
-            <td colspan="3"></td>
+            <td colspan="3">
+                @Html.DisplayNameFor(model => model.RescueRoomInfo.DestinationNameFull)
+                :
+                @Html.DisplayFor(model => model.RescueRoomInfo.DestinationNameFull)
+            </td>
         </tr>
         <tr>
             <td colspan="6">
