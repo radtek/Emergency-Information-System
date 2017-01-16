@@ -52,8 +52,8 @@ namespace EmergencyInformationSystem.Controllers
             //获取指定GHXXID的“处方表”记录。
             var queryCFB = dbTrasen.VI_MZ_CFB.Where(c => c.GHXXID == target.GHXXID && target.ReceiveTime <= c.SFRQ);
 
-            if (target.OutDepartmentTime.HasValue)
-                queryCFB = queryCFB.Where(c => c.SFRQ < target.OutDepartmentTime);
+            //if (target.OutDepartmentTime.HasValue)
+            //queryCFB = queryCFB.Where(c => c.SFRQ < target.OutDepartmentTime);
 
             var listCFB = queryCFB.ToList();
 
@@ -67,45 +67,67 @@ namespace EmergencyInformationSystem.Controllers
                 {
                     if (db.RescueRoomDrugRecordDefinitions.Any(c => c.DrugCode == itemCFBMX.BM))
                     {
-                        var rescueRoomDrugRecord = db.RescueRoomDrugRecords.Where(c => c.CFMXID == itemCFBMX.CFMXID).FirstOrDefault();
-
-                        if (rescueRoomDrugRecord == null)
+                        //判断是新增的药品还是退费的药品
+                        if (!itemCFBMX.TYID.HasValue)
                         {
-                            rescueRoomDrugRecord = new RescueRoomDrugRecord();
+                            var rescueRoomDrugRecord = db.RescueRoomDrugRecords.Where(c => c.CFMXID == itemCFBMX.CFMXID).FirstOrDefault();
 
-                            rescueRoomDrugRecord.RescueRoomDrugRecordId = Guid.NewGuid();
-                            rescueRoomDrugRecord.RescueRoomInfoId = target.RescueRoomInfoId;
-                            rescueRoomDrugRecord.ProductCode = itemCFBMX.BM;
-                            rescueRoomDrugRecord.ProductName = itemCFBMX.PM;
-                            rescueRoomDrugRecord.GoodsName = itemCFBMX.SPM;
-                            rescueRoomDrugRecord.DosageQuantity = itemCFBMX.YL;
-                            rescueRoomDrugRecord.DosageUnit = itemCFBMX.YLDW;
-                            rescueRoomDrugRecord.PrescriptionTime = itemCFB.SFRQ;
-                            rescueRoomDrugRecord.Usage = itemCFBMX.YFMC;
+                            if (rescueRoomDrugRecord == null)
+                            {
+                                rescueRoomDrugRecord = new RescueRoomDrugRecord();
 
-                            rescueRoomDrugRecord.CFMXID = itemCFBMX.CFMXID;
-                            rescueRoomDrugRecord.CFID = itemCFBMX.CFID;
+                                rescueRoomDrugRecord.RescueRoomDrugRecordId = Guid.NewGuid();
+                                rescueRoomDrugRecord.RescueRoomInfoId = target.RescueRoomInfoId;
+                                rescueRoomDrugRecord.ProductCode = itemCFBMX.BM;
+                                rescueRoomDrugRecord.ProductName = itemCFBMX.PM;
+                                rescueRoomDrugRecord.GoodsName = itemCFBMX.SPM;
+                                rescueRoomDrugRecord.DosageQuantity = itemCFBMX.YL;
+                                rescueRoomDrugRecord.DosageUnit = itemCFBMX.YLDW;
+                                rescueRoomDrugRecord.PrescriptionTime = itemCFB.SFRQ;
+                                rescueRoomDrugRecord.Usage = itemCFBMX.YFMC;
 
-                            rescueRoomDrugRecord.UpdateTime = DateTime.Now;
+                                rescueRoomDrugRecord.CFMXID = itemCFBMX.CFMXID;
+                                rescueRoomDrugRecord.CFID = itemCFBMX.CFID;
 
-                            db.RescueRoomDrugRecords.Add(rescueRoomDrugRecord);
-                            db.SaveChanges();
+                                rescueRoomDrugRecord.UpdateTime = DateTime.Now;
+
+                                db.RescueRoomDrugRecords.Add(rescueRoomDrugRecord);
+                                db.SaveChanges();
+                            }
+                            else
+                            {
+                                rescueRoomDrugRecord.RescueRoomInfoId = target.RescueRoomInfoId;
+                                rescueRoomDrugRecord.ProductCode = itemCFBMX.BM;
+                                rescueRoomDrugRecord.ProductName = itemCFBMX.PM;
+                                rescueRoomDrugRecord.GoodsName = itemCFBMX.SPM;
+                                rescueRoomDrugRecord.DosageQuantity = itemCFBMX.YL;
+                                rescueRoomDrugRecord.DosageUnit = itemCFBMX.YLDW;
+                                rescueRoomDrugRecord.PrescriptionTime = itemCFB.SFRQ;
+                                rescueRoomDrugRecord.Usage = itemCFBMX.YFMC;
+
+                                rescueRoomDrugRecord.CFMXID = itemCFBMX.CFMXID;
+                                rescueRoomDrugRecord.CFID = itemCFBMX.CFID;
+
+                                db.SaveChanges();
+                            }
                         }
                         else
                         {
-                            rescueRoomDrugRecord.RescueRoomInfoId = target.RescueRoomInfoId;
-                            rescueRoomDrugRecord.ProductCode = itemCFBMX.BM;
-                            rescueRoomDrugRecord.ProductName = itemCFBMX.PM;
-                            rescueRoomDrugRecord.GoodsName = itemCFBMX.SPM;
-                            rescueRoomDrugRecord.DosageQuantity = itemCFBMX.YL;
-                            rescueRoomDrugRecord.DosageUnit = itemCFBMX.YLDW;
-                            rescueRoomDrugRecord.PrescriptionTime = itemCFB.SFRQ;
-                            rescueRoomDrugRecord.Usage = itemCFBMX.YFMC;
+                            var rescueRoomDrugRecord = db.RescueRoomDrugRecords.Where(c => c.CFMXID == itemCFBMX.TYID.Value).FirstOrDefault();
 
-                            rescueRoomDrugRecord.CFMXID = itemCFBMX.CFMXID;
-                            rescueRoomDrugRecord.CFID = itemCFBMX.CFID;
+                            if (rescueRoomDrugRecord != null)
+                            {
+                                rescueRoomDrugRecord.DosageQuantity -= itemCFBMX.YL;
 
-                            db.SaveChanges();
+                                if (rescueRoomDrugRecord.DosageQuantity == 0)
+                                    db.RescueRoomDrugRecords.Remove(rescueRoomDrugRecord);
+
+                                db.SaveChanges();
+                            }
+                            else
+                            {
+                                throw new Exception("无对应原始处方明细记录。");
+                            }
                         }
                     }
                 }
