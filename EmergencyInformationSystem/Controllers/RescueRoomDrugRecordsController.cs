@@ -49,11 +49,22 @@ namespace EmergencyInformationSystem.Controllers
             if (target == null)
                 return HttpNotFound();
 
-            //获取指定GHXXID的“处方表”记录。
-            var queryCFB = dbTrasen.VI_MZ_CFB.Where(c => c.GHXXID == target.GHXXID && target.ReceiveTime <= c.SFRQ);
+            //设置时段起点、结点
+            DateTime? timeUpperBound;
+            DateTime? timeLowerBound;
+            {
+                timeUpperBound = target.ReceiveTime;
+                var itemJZJL = dbTrasen.MZYS_JZJL.Where(c => c.JZID == target.JZID).FirstOrDefault();
+                timeLowerBound = itemJZJL.WCSJ;
+            }
 
-            //if (target.OutDepartmentTime.HasValue)
-            //queryCFB = queryCFB.Where(c => c.SFRQ < target.OutDepartmentTime);
+            //==获取指定GHXXID的“处方表”记录。==
+            var queryCFB = dbTrasen.VI_MZ_CFB.Where(c => c.GHXXID == target.GHXXID);
+            //设置时段起点
+            queryCFB = queryCFB.Where(c => timeUpperBound <= c.SFRQ);
+            //设置时段结点
+            if (timeLowerBound.HasValue)
+                queryCFB = queryCFB.Where(c => c.SFRQ <= timeLowerBound.Value);//该结点边界特殊，使用闭区间——结束的瞬间可能同时有医嘱。
 
             var listCFB = queryCFB.ToList();
 
@@ -133,18 +144,18 @@ namespace EmergencyInformationSystem.Controllers
                 }
             }
 
-            //删除处方时间早于入室时间的用药项
-            if (true)
+            //删除处方时间早于时段起点的用药项
+            if (timeUpperBound.HasValue)
             {
-                var listRescueRoomDrugRecord = db.RescueRoomDrugRecords.Where(c => c.RescueRoomInfoId == target.RescueRoomInfoId && c.PrescriptionTime < target.InDepartmentTime).ToList();
+                var listRescueRoomDrugRecord = db.RescueRoomDrugRecords.Where(c => c.RescueRoomInfoId == target.RescueRoomInfoId && c.PrescriptionTime < timeUpperBound).ToList();
                 db.RescueRoomDrugRecords.RemoveRange(listRescueRoomDrugRecord);
                 db.SaveChanges();
             }
 
-            //删除处方时间超过离室时间的用药项
-            if (target.OutDepartmentTime.HasValue)
+            //删除处方时间超过时段结点的用药项
+            if (timeLowerBound.HasValue)
             {
-                var listRescueRoomDrugRecord = db.RescueRoomDrugRecords.Where(c => c.RescueRoomInfoId == target.RescueRoomInfoId && target.OutDepartmentTime <= c.PrescriptionTime).ToList();
+                var listRescueRoomDrugRecord = db.RescueRoomDrugRecords.Where(c => c.RescueRoomInfoId == target.RescueRoomInfoId && timeLowerBound < c.PrescriptionTime).ToList();
                 db.RescueRoomDrugRecords.RemoveRange(listRescueRoomDrugRecord);
                 db.SaveChanges();
             }
