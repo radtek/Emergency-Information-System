@@ -1,0 +1,30 @@
+﻿@model IEnumerable<EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueRoomGeneral.ItemInDepartmentWay>
+
+@foreach (var item in Model)
+{
+    string str = string.Empty;
+    for (var i = 1; i < item.Level; i++)
+    {
+        str += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+    }
+
+    <tr>
+        <td>
+            @Html.Raw(str)
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.Raw(str)
+            @Html.DisplayFor(modelItem => item.Count)
+        </td>
+        <td>
+            @Html.Raw(str)
+            @Html.DisplayFor(modelItem => item.Rate)
+        </td>
+    </tr>
+
+    if (item.List != null && item.List.Count() > 0)
+    {
+        @Html.Partial("StatisticsRescueRoomGeneralListInDepartmentWay", item.List)
+    }
+}

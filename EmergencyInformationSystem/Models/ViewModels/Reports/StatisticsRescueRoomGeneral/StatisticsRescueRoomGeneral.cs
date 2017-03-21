@@ -25,6 +25,9 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
 
             //抢救
             this.ListRescue = new ItemRescue(start, end, 0, this.CountAll, list);
+
+            //入室方式
+            this.ListIndepartmentWay = new ItemInDepartmentWay(start, end, 0, this.CountAll, list);
         }
 
 
@@ -56,5 +59,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
 
 
         public ItemRescue ListRescue { get; set; }
+
+        public ItemInDepartmentWay ListIndepartmentWay { get; set; }
     }
 }
