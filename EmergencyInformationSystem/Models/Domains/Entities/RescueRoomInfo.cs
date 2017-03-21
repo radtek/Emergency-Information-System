@@ -699,10 +699,12 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         {
             get
             {
-                if (!this.Destination.IsHasAdditionalInfo)
-                    return this.Destination.DestinationName;
-                else
+                if (this.Destination.IsHasAdditionalInfo)
                     return this.Destination.DestinationName + " - " + this.DestinationRemarks;
+                else if (this.Destination.IsTransfer)
+                    return this.Destination.DestinationName + " - " + this.TransferTarget;
+                else
+                    return this.Destination.DestinationName;
             }
         }
 
