@@ -1,0 +1,71 @@
+﻿@model EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueRoomGeneral.StatisticsRescueRoomGeneral
+
+@{
+    ViewBag.Title = "抢救室综合报表";
+}
+
+@*面包屑区*@
+<div class="container">
+    <ol class="breadcrumb">
+        <li>@Html.ActionLink("主界面", "Index", "Home", null, new { @class = "btn-show-modal" })</li>
+        <li>@Html.ActionLink("报表中心", "Index", null, new { @class = "btn-show-modal" })</li>
+        <li class="active">@ViewBag.Title</li>
+    </ol>
+</div>
+
+@*标题区*@
+<h2>@ViewBag.Title</h2>
+
+@*表单区*@
+@using (Html.BeginForm())
+{
+    <table>
+        <tr>
+            <td>
+                <input type="date" name="start" value=@Model.Start.ToString("yyyy-MM-dd") class="form-control" />
+            </td>
+            <td>
+                <input type="date" name="end" value=@Model.End.ToString("yyyy-MM-dd") class="form-control" />
+            </td>
+            <td>
+                <input type="submit" value="选择" class="btn btn-default btn-show-modal" formmethod="get" />
+            </td>
+        </tr>
+    </table>
+}
+
+@*内容区*@
+<div>
+    @*总体情况*@
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.CountAll)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CountAll)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CountIsRescue)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CountIsRescue)
+            </dd>
+        </dl>
+    </div>
+
+    <hr />
+
+    @*抢救*@
+    <div>
+        @Html.Partial("StatisticsRescueRoomGeneralRescue", Model.ListRescue)
+    </div>
+
+    <hr />
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/EisNormal")
+}

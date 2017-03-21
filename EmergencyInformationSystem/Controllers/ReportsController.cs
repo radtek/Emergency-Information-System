@@ -87,6 +87,18 @@ namespace EmergencyInformationSystem.Controllers
             return View(targetV);
         }
 
+        public ActionResult StatisticsRescueRoomGeneral(DateTime? start, DateTime? end)
+        {
+            if (!start.HasValue)
+                start = DateTime.Today;
+            if (!end.HasValue)
+                end = DateTime.Today.AddDays(1);
+
+            var targetV = new Models.ViewModels.Reports.StatisticsRescueRoomGeneral.StatisticsRescueRoomGeneral(start.Value, end.Value);
+
+            return View(targetV);
+        }
+
         /// <summary>
         /// 抢救室统计项明细抢救项一览。
         /// </summary>
