@@ -24,10 +24,10 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
             this.CountIsRescue = list.Count(c => c.IsRescue);
 
             //抢救
-            this.ListRescue = new ItemRescue(start, end, 0, this.CountAll, list);
+            this.Rescue = new ItemRescue(start, end, 0, this.CountAll, list);
 
             //入室方式
-            this.ListIndepartmentWay = new ItemInDepartmentWay(start, end, 0, this.CountAll, list);
+            this.IndepartmentWay = new ItemInDepartmentWay(start, end, 0, this.CountAll, list);
         }
 
 
@@ -58,8 +58,8 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
 
 
 
-        public ItemRescue ListRescue { get; set; }
+        public ItemRescue Rescue { get; set; }
 
-        public ItemInDepartmentWay ListIndepartmentWay { get; set; }
+        public ItemInDepartmentWay IndepartmentWay { get; set; }
     }
 }
