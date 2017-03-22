@@ -11,7 +11,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
         {
             this.DestinationId = countAll > 0 ? group.First().DestinationId : 0;
             this.DestinationIsHasAdditionalInfo = countAll > 0 ? group.First().Destination.IsHasAdditionalInfo : false;
-            this.DestinationRemarks = countAll > 0 ? group.First().ReceiveAgeName : string.Empty;
+            this.DestinationRemarks = countAll > 0 ? group.First().DestinationRemarks : string.Empty;
             this.DestinationIsTransfer = countAll > 0 ? group.First().Destination.IsTransfer : false;
             this.TransferTarget = countAll > 0 ? group.First().TransferTarget : string.Empty;
             this.DestinationIsProfessional = countAll > 0 ? group.First().Destination.IsProfessional : false;
