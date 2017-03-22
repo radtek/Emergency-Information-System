@@ -384,6 +384,7 @@
     <Compile Include="Models\ViewModels\Reports\StatisticsObserveRoomMonth\DuringSecond.cs" />
     <Compile Include="Models\ViewModels\Reports\StatisticsObserveRoomMonth\StatisticsObserveRoomMonth.cs" />
     <Compile Include="Models\ViewModels\Reports\StatisticsRescueRoomGeneral\ItemBase.cs" />
+    <Compile Include="Models\ViewModels\Reports\StatisticsRescueRoomGeneral\ItemDestination.cs" />
     <Compile Include="Models\ViewModels\Reports\StatisticsRescueRoomGeneral\ItemInDepartmentWay.cs" />
     <Compile Include="Models\ViewModels\Reports\StatisticsRescueRoomGeneral\ItemRescue.cs" />
     <Compile Include="Models\ViewModels\Reports\StatisticsRescueRoomGeneral\StatisticsRescueRoomGeneral.cs" />

@@ -30,6 +30,10 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
             //入室方式
             this.IndepartmentWay = new ItemInDepartmentWay(start, end, 0, this.CountAll, list);
             this.IndepartmentWay.TitleOfName = "入室方式";
+
+            //去向
+            this.Destination = new ItemDestination(start, end, 0, this.CountAll, list);
+            this.Destination.TitleOfName = "去向";
         }
 
 
@@ -63,5 +67,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
         public ItemRescue Rescue { get; set; }
 
         public ItemInDepartmentWay IndepartmentWay { get; set; }
+
+        public ItemDestination Destination { get; set; }
     }
 }
