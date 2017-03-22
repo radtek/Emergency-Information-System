@@ -1,4 +1,4 @@
-﻿@model IEnumerable<EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueRoomGeneral.ItemInDepartmentWay>
+﻿@model IEnumerable<EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueRoomGeneral.ItemBase>
 
 @foreach (var item in Model)
 {
@@ -25,6 +25,6 @@
 
     if (item.List != null && item.List.Count() > 0)
     {
-        @Html.Partial("StatisticsRescueRoomGeneralListInDepartmentWay", item.List)
+        @Html.Partial("StatisticsRescueRoomGeneralList", item.List)
     }
 }

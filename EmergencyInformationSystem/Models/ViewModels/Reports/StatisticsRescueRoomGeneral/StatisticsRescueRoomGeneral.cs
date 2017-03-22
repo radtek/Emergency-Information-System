@@ -25,9 +25,11 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
 
             //抢救
             this.Rescue = new ItemRescue(start, end, 0, this.CountAll, list);
+            this.Rescue.TitleOfName = "抢救";
 
             //入室方式
             this.IndepartmentWay = new ItemInDepartmentWay(start, end, 0, this.CountAll, list);
+            this.IndepartmentWay.TitleOfName = "入室方式";
         }
 
 

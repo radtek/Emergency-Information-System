@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueRoomGeneral
 {
-    public class ItemRescue
+    public class ItemRescue : ItemBase
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ItemRescue"/> class.
@@ -17,16 +17,10 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
         /// <param name="level">当前等级。0级时，包含所有对象。</param>
         /// <param name="countAll">总数。</param>
         /// <param name="group">进入该级别的对象组。</param>
-        public ItemRescue(DateTime start, DateTime end, int level, int countAll, IEnumerable<Models.Domains.Entities.RescueRoomInfo> group)
+        public ItemRescue(DateTime start, DateTime end, int level, int countAll, IEnumerable<Models.Domains.Entities.RescueRoomInfo> group) : base(start, end, level, countAll, group)
         {
-            this.Start = start;
-            this.End = end;
-            this.Level = level;
-            this.Count = group.Count();
-            this.Rate = (decimal)this.Count / countAll;
-
-            this.IsRescue = group.First().IsRescue;
-            this.RescueResultId = group.First().RescueResultId;
+            this.IsRescue = countAll > 0 ? group.First().IsRescue : false;
+            this.RescueResultId = countAll > 0 ? group.First().RescueResultId : 0;
 
             switch (level)
             {
@@ -44,7 +38,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
             {
                 var listGroup = group.GroupBy(c => c.IsRescue);
 
-                this.List = listGroup.Select(c => new ItemRescue(this.Start, this.End, this.Level + 1, countAll, c)).ToList();
+                this.List = listGroup.Select(c => new ItemRescue(this.Start, this.End, this.Level + 1, countAll, c)).ToList().AsEnumerable<ItemBase>().ToList();
             }
             else if (level == 1)
             {
@@ -52,7 +46,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
                 {
                     var listGroup = group.GroupBy(c => c.RescueResultId);
 
-                    this.List = listGroup.Select(c => new ItemRescue(this.Start, this.End, this.Level + 1, countAll, c)).ToList();
+                    this.List = listGroup.Select(c => new ItemRescue(this.Start, this.End, this.Level + 1, countAll, c)).ToList().AsEnumerable<ItemBase>().ToList();
                 }
             }
         }
@@ -61,42 +55,8 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
 
 
 
-        [Display(Name = "抢救")]
-        public string Name { get; set; }
-
-        [Display(Name = "例数")]
-        public int Count { get; set; }
-
-        [Display(Name = "百分比")]
-        [DisplayFormat(DataFormatString = "{0:p}")]
-        public decimal Rate { get; set; }
-
-
-
-
-
-        public int Level { get; set; }
-
-
-
-
-
-        public DateTime Start { get; set; }
-
-        public DateTime End { get; set; }
-
-
-
-
-
         public bool IsRescue { get; set; }
 
         public int RescueResultId { get; set; }
-
-
-
-
-
-        public List<ItemRescue> List { get; set; }
     }
 }

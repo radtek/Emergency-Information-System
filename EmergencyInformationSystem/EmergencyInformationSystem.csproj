@@ -383,6 +383,7 @@
     <Compile Include="Models\ViewModels\Reports\StatisticsObserveRoomMonth\DuringFirst.cs" />
     <Compile Include="Models\ViewModels\Reports\StatisticsObserveRoomMonth\DuringSecond.cs" />
     <Compile Include="Models\ViewModels\Reports\StatisticsObserveRoomMonth\StatisticsObserveRoomMonth.cs" />
+    <Compile Include="Models\ViewModels\Reports\StatisticsRescueRoomGeneral\ItemBase.cs" />
     <Compile Include="Models\ViewModels\Reports\StatisticsRescueRoomGeneral\ItemInDepartmentWay.cs" />
     <Compile Include="Models\ViewModels\Reports\StatisticsRescueRoomGeneral\ItemRescue.cs" />
     <Compile Include="Models\ViewModels\Reports\StatisticsRescueRoomGeneral\StatisticsRescueRoomGeneral.cs" />
@@ -566,10 +567,8 @@
     <Content Include="Views\GreenPaths\IndexAmiList.cshtml" />
     <Content Include="Views\GreenPaths\Index.cshtml" />
     <Content Include="Views\Reports\StatisticsRescueRoomGeneral.cshtml" />
-    <Content Include="Views\Reports\StatisticsRescueRoomGeneralRescue.cshtml" />
-    <Content Include="Views\Reports\StatisticsRescueRoomGeneralListRescue.cshtml" />
-    <Content Include="Views\Reports\StatisticsRescueRoomGeneralInDepartmentWay.cshtml" />
-    <Content Include="Views\Reports\StatisticsRescueRoomGeneralListInDepartmentWay.cshtml" />
+    <Content Include="Views\Reports\StatisticsRescueRoomGeneralHeader.cshtml" />
+    <Content Include="Views\Reports\StatisticsRescueRoomGeneralList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
