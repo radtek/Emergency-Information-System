@@ -165,6 +165,13 @@ namespace EmergencyInformationSystem.Controllers
             return View(targetV);
         }
 
+        public ActionResult StatisticsRescueRoomGeneralIndex(DateTime start, DateTime end, bool? isRescue, int? rescueResultId, int? inRescueRoomWayId, bool? inRescueRoomWayIsHasAdditionalInfo, string inRescueRoomWayRemarks, int? destinationId, bool? destinationIsHasAdditionalInfo, string destinationRemarks, bool? destinationIsTransfer, string transferTarget, bool? destinationIsProfessional, string professionalTarget)
+        {
+            var targetV = new Models.ViewModels.Reports.StatisticsRescueRoomGeneralIndex.Index(start, end, isRescue, rescueResultId, inRescueRoomWayId, inRescueRoomWayIsHasAdditionalInfo, inRescueRoomWayRemarks, destinationId, destinationIsHasAdditionalInfo, destinationRemarks, destinationIsTransfer, transferTarget, destinationIsProfessional, professionalTarget);
+
+            return View(targetV);
+        }
+
 
 
 

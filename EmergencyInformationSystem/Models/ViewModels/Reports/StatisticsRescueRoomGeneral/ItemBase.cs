@@ -16,6 +16,10 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
             this.Level = level;
             this.Count = group.Count();
             this.Rate = countAll == 0 ? 0 : (decimal)this.Count / countAll;
+
+            this.Route = new Route();
+            this.Route.Start = start;
+            this.Route.End = end;
         }
 
 
@@ -50,6 +54,8 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
 
 
 
+
+        public Route Route { get; set; }
 
         public List<ItemBase> List { get; set; }
     }

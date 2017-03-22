@@ -26,9 +26,16 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
             {
                 case 1:
                     this.Name = group.First().IsRescueName;
+
+                    this.Route.IsRescue = this.IsRescue;
+
                     break;
                 case 2:
                     this.Name = group.First().RescueResultNameFull;
+
+                    this.Route.IsRescue = this.IsRescue;
+                    this.Route.RescueResultId = this.RescueResultId;
+
                     break;
             }
             if (string.IsNullOrEmpty(this.Name))

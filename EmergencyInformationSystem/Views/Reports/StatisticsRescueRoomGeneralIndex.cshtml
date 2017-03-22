@@ -1,0 +1,25 @@
+﻿@model EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueRoomGeneralIndex.Index
+
+@{
+    ViewBag.Title = "抢救室综合报表明细";
+}
+
+@*面包屑区*@
+<div class="container">
+    <ol class="breadcrumb">
+        <li>@Html.ActionLink("主界面", "Index", "Home", null, new { @class = "btn-show-modal" })</li>
+        <li>@Html.ActionLink("报表中心", "Index", null, new { @class = "btn-show-modal" })</li>
+        <li>@Html.ActionLink("抢救室综合报表", "StatisticsRescueRoomGeneral", null, new { @class = "btn-show-modal" })</li>
+        <li class="active">@ViewBag.Title</li>
+    </ol>
+</div>
+
+@*标题区*@
+<h2>@ViewBag.Title</h2>
+
+@*列表区*@
+@Html.Partial("StatisticsRescueRoomGeneralIndexList", Model.List)
+
+@section scripts{
+    @Scripts.Render("~/bundles/EisNormal")
+}

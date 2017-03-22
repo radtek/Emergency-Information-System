@@ -11,7 +11,7 @@
     <tr>
         <td>
             @Html.Raw(str)
-            @Html.DisplayFor(modelItem => item.Name)
+            @Html.ActionLink(item.Name, "StatisticsRescueRoomGeneralIndex", item.Route, new { target = "_blank" })
         </td>
         <td>
             @Html.Raw(str)

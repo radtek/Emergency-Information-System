@@ -19,9 +19,17 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
             {
                 case 1:
                     this.Name = group.First().InRescueRoomWay.InRescueRoomWayName;
+
+                    this.Route.InRescueRoomWayId = this.InRescueRoomWayId;
+
                     break;
                 case 2:
                     this.Name = group.First().InRescueRoomWayNameFull;
+
+                    this.Route.InRescueRoomWayId = this.InRescueRoomWayId;
+                    this.Route.InRescueRoomWayIsHasAdditionalInfo = this.InRescueRoomWayIsHasAdditionalInfo;
+                    this.Route.InRescueRoomWayRemarks = this.InRescueRoomWayRemarks;
+
                     break;
             }
             if (string.IsNullOrEmpty(this.Name))

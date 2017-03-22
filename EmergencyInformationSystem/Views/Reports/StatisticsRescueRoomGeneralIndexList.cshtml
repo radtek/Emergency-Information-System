@@ -1,0 +1,45 @@
+﻿@model IEnumerable<EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueRoomGeneralIndex.Item>
+
+<table class="table table-condensed table-hover table-bordered">
+    <thead>
+        <tr>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.PatientName)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.OutPatientNumber)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.InDepartmentTime)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.OutDepartmentTime)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.During)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="text-center">
+                <td>
+                    @Html.DisplayFor(modelItem => item.PatientName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OutPatientNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InDepartmentTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OutDepartmentTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.During)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

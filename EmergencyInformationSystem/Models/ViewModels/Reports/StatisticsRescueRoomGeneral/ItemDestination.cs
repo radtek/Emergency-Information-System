@@ -21,9 +21,21 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
             {
                 case 1:
                     this.Name = group.First().Destination.DestinationName;
+
+                    this.Route.DestinationId = this.DestinationId;
+
                     break;
                 case 2:
                     this.Name = group.First().DestinationNameFull;
+
+                    this.Route.DestinationId = this.DestinationId;
+                    this.Route.DestinationIsHasAdditionalInfo = this.DestinationIsHasAdditionalInfo;
+                    this.Route.DestinationRemarks = this.DestinationRemarks;
+                    this.Route.DestinationIsTransfer = this.DestinationIsTransfer;
+                    this.Route.TransferTarget = this.TransferTarget;
+                    this.Route.DestinationIsProfessional = this.DestinationIsProfessional;
+                    this.Route.ProfessionalTarget = this.ProfessionalTarget;
+
                     break;
             }
             if (string.IsNullOrEmpty(this.Name))
