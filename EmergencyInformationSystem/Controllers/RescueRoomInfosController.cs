@@ -28,16 +28,20 @@ namespace EmergencyInformationSystem.Controllers
         /// <param name="isRescue">是否抢救。</param>
         /// <param name="isLeave">是否离室。</param>
         /// <param name="patientName">患者姓名。</param>
+        /// <param name="inRescueRoomWayId">入室方式ID。</param>
+        /// <param name="destinationId">去向ID。</param>
         /// <param name="outPatientNumber">卡号。</param>
         /// <param name="page">页码。</param>
         /// <param name="perPage">每页项目数。</param>
-        public ActionResult Index(DateTime? inDepartmentTimeStart, DateTime? inDepartmentTimeEnd, DateTime? outDepartmentTimeStart, DateTime? outDepartmentTimeEnd, int? greenPathCategoryId, bool? isRescue, bool? isLeave, string patientName, string outPatientNumber, int page = 1, int perPage = 20)
+        public ActionResult Index(DateTime? inDepartmentTimeStart, DateTime? inDepartmentTimeEnd, DateTime? outDepartmentTimeStart, DateTime? outDepartmentTimeEnd, int? greenPathCategoryId, bool? isRescue, bool? isLeave, string patientName, string outPatientNumber, int? inRescueRoomWayId, int? destinationId, int page = 1, int perPage = 20)
         {
-            var targetV = new Index(inDepartmentTimeStart, inDepartmentTimeEnd, outDepartmentTimeStart, outDepartmentTimeEnd, greenPathCategoryId, isRescue, isLeave, patientName, outPatientNumber, page, perPage);
+            var targetV = new Index(inDepartmentTimeStart, inDepartmentTimeEnd, outDepartmentTimeStart, outDepartmentTimeEnd, greenPathCategoryId, isRescue, isLeave, patientName, outPatientNumber, inRescueRoomWayId, destinationId, page, perPage);
 
             var db = new EiSDbContext();
 
             ViewBag.GreenPathCategoryId = new SelectList(db.GreenPathCategories, "GreenPathCategoryId", "GreenPathCategoryName", greenPathCategoryId);
+            ViewBag.InRescueRoomWayId = new SelectList(db.InRescueRoomWays, "InRescueRoomWayId", "InRescueRoomWayName", inRescueRoomWayId);
+            ViewBag.DestinationId = new SelectList(db.Destinations.Where(c => c.IsUseForRescueRoom), "DestinationId", "DestinationName", destinationId);
             ViewBag.IsRescue = new SelectList(new List<SelectListItem>
             {
                 new SelectListItem {Text="是",Value="True" },

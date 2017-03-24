@@ -24,10 +24,12 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Index
         /// <param name="isLeave">是否离室。</param>
         /// <param name="patientName">患者姓名。</param>
         /// <param name="outPatientNumber">卡号。</param>
+        /// <param name="inRescueRoomWayId">入室方式ID。</param>
+        /// <param name="destinationId">去向ID。</param>
         /// <param name="page">页码。</param>
         /// <param name="perPage">每页项目数。</param>
         /// <param name="count">项目总数。</param>
-        public Route(DateTime? inDepartmentTimeStart, DateTime? inDepartmentTimeEnd, DateTime? outDepartmentTimeStart, DateTime? outDepartmentTimeEnd, int? greenPathCategoryId, bool? isRescue, bool? isLeave, string patientName, string outPatientNumber, int page, int perPage, int count)
+        public Route(DateTime? inDepartmentTimeStart, DateTime? inDepartmentTimeEnd, DateTime? outDepartmentTimeStart, DateTime? outDepartmentTimeEnd, int? greenPathCategoryId, bool? isRescue, bool? isLeave, string patientName, string outPatientNumber, int? inRescueRoomWayId, int? destinationId, int page, int perPage, int count)
         {
             this.InDepartmentTimeStart = inDepartmentTimeStart;
             this.InDepartmentTimeEnd = inDepartmentTimeEnd;
@@ -38,6 +40,8 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Index
             this.IsLeave = isLeave;
             this.PatientName = patientName;
             this.OutPatientNumber = outPatientNumber;
+            this.InRescueRoomWayId = inRescueRoomWayId;
+            this.DestinationId = destinationId;
 
             this.Page = page;
             this.PerPage = perPage;
@@ -52,23 +56,25 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Index
         /// <summary>
         /// 入室时间起点。
         /// </summary>
-        [Display(Name = "入室时间")]
+        [Display(Name = "入室时间起点")]
         public DateTime? InDepartmentTimeStart { get; set; }
 
         /// <summary>
         /// 入室时间结点。
         /// </summary>
+        [Display(Name = "入室时间结点")]
         public DateTime? InDepartmentTimeEnd { get; set; }
 
         /// <summary>
         /// 离室时间起点。
         /// </summary>
-        [Display(Name = "离室时间")]
+        [Display(Name = "离室时间起点")]
         public DateTime? OutDepartmentTimeStart { get; set; }
 
         /// <summary>
         /// 离室时间结点。
         /// </summary>
+        [Display(Name = "离室时间结点")]
         public DateTime? OutDepartmentTimeEnd { get; set; }
 
         /// <summary>
@@ -100,6 +106,18 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Index
         /// </summary>
         [Display(Name = "卡号")]
         public string OutPatientNumber { get; set; }
+
+        /// <summary>
+        /// 进入抢救室方式ID。
+        /// </summary>
+        [Display(Name = "入室方式")]
+        public int? InRescueRoomWayId { get; set; }
+
+        /// <summary>
+        /// 去向ID。
+        /// </summary>
+        [Display(Name = "去向")]
+        public int? DestinationId { get; set; }
 
 
 
@@ -149,7 +167,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Index
         /// <param name="page">页码。</param>
         public Route GetRoute(int page)
         {
-            return new Route(this.InDepartmentTimeStart, this.InDepartmentTimeEnd, this.OutDepartmentTimeStart, this.OutDepartmentTimeEnd, this.GreenPathCategoryId, this.IsRescue, this.IsLeave, this.PatientName, this.OutPatientNumber, page, this.PerPage, this.Count);
+            return new Route(this.InDepartmentTimeStart, this.InDepartmentTimeEnd, this.OutDepartmentTimeStart, this.OutDepartmentTimeEnd, this.GreenPathCategoryId, this.IsRescue, this.IsLeave, this.PatientName, this.OutPatientNumber, this.InRescueRoomWayId, this.DestinationId, page, this.PerPage, this.Count);
         }
     }
 }
