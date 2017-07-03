@@ -29,7 +29,6 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.IndexRescueRoomHa
             this.BedNameFull = rescueRoomInfo.BedNameFull;
             this.CriticalLevelName = rescueRoomInfo.CriticalLevel.CriticalLevelName;
             this.RescueResultNameFull = rescueRoomInfo.RescueResultNameFull;
-            this.GreenPathCategoryNameFull = rescueRoomInfo.GreenPathCategoryNameFull;
             this.Antibiotic = rescueRoomInfo.Antibiotic;
             this.Remarks = rescueRoomInfo.Remarks;
             this.DestinationFirstName = rescueRoomInfo.DestinationFirstName;
@@ -68,9 +67,6 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.IndexRescueRoomHa
 
         [Display(Name = "抢救")]
         public string RescueResultNameFull { get; set; }
-
-        [Display(Name = "绿色通道病种")]
-        public string GreenPathCategoryNameFull { get; set; }
 
         [Display(Name = "抗生素")]
         public virtual string Antibiotic { get; set; }
