@@ -11,7 +11,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
     /// <summary>
     /// 抢救室影像项。
     /// </summary>
-    /// <remarks>抢救室影像项。抢救室病例的影像项。</remarks>
+    /// <remarks>抢救室病例的影像项。</remarks>
     [Table("RescueRoomImageRecords")]
     public class RescueRoomImageRecord
     {

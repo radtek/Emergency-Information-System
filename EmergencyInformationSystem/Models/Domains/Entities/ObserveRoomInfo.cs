@@ -11,7 +11,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
     /// <summary>
     /// 留观室病例。
     /// </summary>
-    /// <remarks>留观室病例。表示留观室的病例。包含冗余的个人信息。</remarks>
+    /// <remarks>表示留观室的病例。包含冗余的个人信息。</remarks>
     [Table("ObserveRoomInfos")]
     public class ObserveRoomInfo
     {
@@ -230,25 +230,25 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
 
 
         /// <summary>
-        /// “创新”“卡登记ID”。
+        /// “创星”“卡登记ID”。
         /// </summary>
         /// <remarks>dbo.YY_KDJB的KDJID。</remarks>
         public virtual Guid? KDJID { get; set; }
 
         /// <summary>
-        /// “创新”“病人信息ID”。
+        /// “创星”“病人信息ID”。
         /// </summary>
         /// <remarks>dbo.YY_BRXX的BRXXID。</remarks>
         public virtual Guid? BRXXID { get; set; }
 
         /// <summary>
-        /// “创新”“挂号信息ID”。
+        /// “创星”“挂号信息ID”。
         /// </summary>
         /// <remarks>dbo.MZ_GHXX的GHXXID。</remarks>
         public virtual Guid? GHXXID { get; set; }
 
         /// <summary>
-        /// “创新”“接诊信息ID”。
+        /// “创星”“接诊信息ID”。
         /// </summary>
         /// <remarks>dbo.MZYS_JZJL的JZID。</remarks>
         public virtual Guid? JZID { get; set; }
@@ -437,7 +437,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// <summary>
         /// 停留时长。
         /// </summary>
-        /// <remarks>停留时长。入室时间至离室时间的间隔。</remarks>
+        /// <remarks>入室时间至离室时间的间隔。</remarks>
         [Display(Name = "停留时长")]
         public TimeSpan? During
         {

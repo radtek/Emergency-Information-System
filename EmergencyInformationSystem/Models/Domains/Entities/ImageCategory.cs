@@ -11,7 +11,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
     /// <summary>
     /// 影像类型。
     /// </summary>
-    /// <remarks>影像类型。表示抢救室影像项的影像类型。需人工添加记录。</remarks>
+    /// <remarks>表示抢救室影像项的影像类型。需人工添加记录。</remarks>
     [Table("ImageCategories")]
     public class ImageCategory
     {

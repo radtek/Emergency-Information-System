@@ -11,7 +11,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
     /// <summary>
     /// 抢救室病例。
     /// </summary>
-    /// <remarks>抢救室病例。表示抢救室的病例。包含冗余的个人信息。</remarks>
+    /// <remarks>表示抢救室的病例。包含冗余的个人信息。</remarks>
     [Table("RescueRoomInfos")]
     public class RescueRoomInfo
     {

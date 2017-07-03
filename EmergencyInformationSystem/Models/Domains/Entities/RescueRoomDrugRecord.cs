@@ -11,7 +11,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
     /// <summary>
     /// 抢救室用药项。
     /// </summary>
-    /// <remarks>抢救室用药项。抢救室病例的用药项。</remarks>
+    /// <remarks>抢救室病例的用药项。</remarks>
     [Table("RescueRoomDrugRecords")]
     public class RescueRoomDrugRecord
     {
@@ -100,13 +100,13 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
 
 
         /// <summary>
-        /// “创新”“处方明细ID”。
+        /// “创星”“处方明细ID”。
         /// </summary>
         /// <remarks>dbo.MZ_CFMXB的CFMXID。</remarks>
         public virtual Guid CFMXID { get; set; }
 
         /// <summary>
-        /// “创新”“处方ID”。
+        /// “创星”“处方ID”。
         /// </summary>
         /// <remarks>dbo.MZ_CFMXB的CFID。可以用于分组——相同的为一组。</remarks>
         public virtual Guid CFID { get; set; }

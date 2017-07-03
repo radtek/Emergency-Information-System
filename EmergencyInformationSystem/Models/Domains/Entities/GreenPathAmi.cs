@@ -11,7 +11,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
     /// <summary>
     /// 绿色通道-急性心肌梗死。
     /// </summary>
-    /// <remarks>绿色通道-急性心肌梗死。表示抢救室病例的绿色通道-急性心肌梗死的信息。</remarks>
+    /// <remarks>表示抢救室病例的绿色通道-急性心肌梗死的信息。</remarks>
     [Table("GreenPathAmis")]
     public class GreenPathAmi
     {

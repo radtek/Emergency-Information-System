@@ -11,7 +11,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
     /// <summary>
     /// 抢救效果。
     /// </summary>
-    /// <remarks>抢救效果。表示抢救室病例进行抢救后的结果。</remarks>
+    /// <remarks>表示抢救室病例进行抢救后的结果。</remarks>
     [Table("RescueResults")]
     public class RescueResult
     {

@@ -11,7 +11,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
     /// <summary>
     /// 进入抢救室方式。
     /// </summary>
-    /// <remarks>进入抢救室方式。抢救室专用的入室方式。</remarks>
+    /// <remarks>抢救室专用的入室方式。</remarks>
     [Table("InRescueRoomWays")]
     public class InRescueRoomWay
     {

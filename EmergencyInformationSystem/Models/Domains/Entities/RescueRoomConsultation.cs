@@ -11,7 +11,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
     /// <summary>
     /// 抢救室会诊项。
     /// </summary>
-    /// <remarks>抢救室会诊项。表示抢救室病例的会诊信息。</remarks>
+    /// <remarks>表示抢救室病例的会诊信息。</remarks>
     [Table("RescueRoomConsultations")]
     public class RescueRoomConsultation
     {

@@ -11,7 +11,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
     /// <summary>
     /// 去向。
     /// </summary>
-    /// <remarks>去向。表示离室后病人的去向，包括科室和非科室。各室通用。通过指定字段标识可使用室。</remarks>
+    /// <remarks>表示离室后病人的去向，包括科室和非科室。各室通用。通过指定字段标识可使用室。</remarks>
     [Table("Destinations")]
     public class Destination
     {

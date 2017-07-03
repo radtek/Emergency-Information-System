@@ -11,7 +11,9 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
     /// <summary>
     /// 床位。
     /// </summary>
-    /// <remarks>床位。表示各室的床位。各室通用。通过指定字段标识可使用室。</remarks>
+    /// <remarks>
+    /// 表示各室的床位。各室通用。通过指定字段标识可使用室。
+    /// </remarks>
     [Table("Beds")]
     public class Bed
     {

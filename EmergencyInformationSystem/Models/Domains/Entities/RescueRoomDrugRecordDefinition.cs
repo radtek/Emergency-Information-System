@@ -11,7 +11,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
     /// <summary>
     /// 抢救室用药项定义项。
     /// </summary>
-    /// <remarks>抢救室用药项定义项。用于处理需要提取为抢救室用药项的药品。</remarks>
+    /// <remarks>用于处理需要提取为抢救室用药项的药品。</remarks>
     [Table("RescueRoomDrugRecordDefinitions")]
     public class RescueRoomDrugRecordDefinition
     {

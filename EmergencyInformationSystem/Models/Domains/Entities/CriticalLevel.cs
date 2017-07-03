@@ -11,7 +11,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
     /// <summary>
     /// 危重等级。
     /// </summary>
-    /// <remarks>危重等级。表示在门诊分诊时所划分的等级，即入室时的危重等级。</remarks>
+    /// <remarks>表示在门诊分诊时所划分的等级，即入室时的危重等级。</remarks>
     [Table("CriticalLevels")]
     public class CriticalLevel
     {

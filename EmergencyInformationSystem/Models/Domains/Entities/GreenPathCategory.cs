@@ -11,7 +11,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
     /// <summary>
     /// 绿色通道类型。
     /// </summary>
-    /// <remarks>绿色通道类型。表示抢救室病例归属的绿色通道类型，包括空值。</remarks>
+    /// <remarks>表示抢救室病例归属的绿色通道类型，包括空值。</remarks>
     [Table("GreenPathCategories")]
     public class GreenPathCategory
     {

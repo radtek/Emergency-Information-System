@@ -11,7 +11,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
     /// <summary>
     /// 进入留观室方式。
     /// </summary>
-    /// <remarks>进入留观室方式。留观室专用的入室方式。</remarks>
+    /// <remarks>留观室专用的入室方式。</remarks>
     [Table("InObserveRoomWays")]
     public class InObserveRoomWay
     {
