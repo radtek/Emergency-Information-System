@@ -1,0 +1,77 @@
+﻿@model IEnumerable<EmergencyInformationSystem.Models.ViewModels.Reports.IndexSubscription.Item>
+
+<table class="table table-hover table-condensed table-bordered">
+    <thead>
+        <tr>
+            <th class="text-center" width="60">
+                @Html.DisplayNameFor(model => model.Source)
+            </th>
+            <th class="text-center" width="60">
+                @Html.DisplayNameFor(model => model.BedNameFull)
+            </th>
+            <th class="text-center" width="80">
+                @Html.DisplayNameFor(model => model.PatientName)
+            </th>
+            <th class="text-center" width="80">
+                @Html.DisplayNameFor(model => model.OutPatientNumber)
+            </th>
+            <th class="text-center" width="130">
+                @Html.DisplayNameFor(model => model.InDepartmentTime)
+            </th>          
+            <th class="text-center" width="100">
+                @Html.DisplayNameFor(model => model.DestinationFirstName)
+            </th>
+            <th class="text-center" width="130">
+                @Html.DisplayNameFor(model => model.DestinationFirstTime)
+            </th>
+            <th class="text-center" width="80">
+                @Html.DisplayNameFor(model => model.DestinationFirstContact)
+            </th>
+            <th class="text-center" width="100">
+                @Html.DisplayNameFor(model => model.DestinationSecondName)
+            </th>           
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Source)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.BedNameFull)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.PatientName)
+                </td>
+                <td class="text-center">
+                    @if (item.RescueRoomInfoId != null)
+                    {
+                        @Html.ActionLink(item.OutPatientNumber, "Details", "RescueRoomInfos", new { id = item.RescueRoomInfoId }, new { target = "_blank" })
+                    }
+                    else
+                    {
+                        @Html.ActionLink(item.OutPatientNumber, "Details", "ObserveRoomInfos", new { id = item.ObserveRoomInfoId }, new { target = "_blank" })
+                    }
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.InDepartmentTime)
+                </td>              
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.DestinationFirstName)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.DestinationFirstTime)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.DestinationFirstContact)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.DestinationSecondName)
+                </td>            
+            </tr>
+        }
+    </tbody>
+</table>

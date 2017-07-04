@@ -377,6 +377,8 @@
     <Compile Include="Models\ViewModels\Reports\IndexRescueRoomHandOver\Item.cs" />
     <Compile Include="Models\ViewModels\Reports\IndexRescueRoomRescue\IndexRescue.cs" />
     <Compile Include="Models\ViewModels\Reports\IndexRescueRoomRescue\Item.cs" />
+    <Compile Include="Models\ViewModels\Reports\IndexSubscription\IndexSubscription.cs" />
+    <Compile Include="Models\ViewModels\Reports\IndexSubscription\Item.cs" />
     <Compile Include="Models\ViewModels\Reports\StatisticsObserveRoomMonth\DestinationFirst.cs" />
     <Compile Include="Models\ViewModels\Reports\StatisticsObserveRoomMonth\DestinationSecond.cs" />
     <Compile Include="Models\ViewModels\Reports\StatisticsObserveRoomMonth\DestinationThird.cs" />
@@ -575,6 +577,8 @@
     <Content Include="Views\Reports\StatisticsRescueRoomGeneralList.cshtml" />
     <Content Include="Views\Reports\StatisticsRescueRoomGeneralIndex.cshtml" />
     <Content Include="Views\Reports\StatisticsRescueRoomGeneralIndexList.cshtml" />
+    <Content Include="Views\Reports\IndexSubscription.cshtml" />
+    <Content Include="Views\Reports\IndexSubscription_List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

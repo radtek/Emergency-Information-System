@@ -254,5 +254,16 @@ namespace EmergencyInformationSystem.Controllers
 
             return View(targetV);
         }
+
+
+
+
+
+        public ActionResult IndexSubscription()
+        {
+            var targetV = new Models.ViewModels.Reports.IndexSubscription.IndexSubscription();
+
+            return View(targetV);
+        }
     }
 }
