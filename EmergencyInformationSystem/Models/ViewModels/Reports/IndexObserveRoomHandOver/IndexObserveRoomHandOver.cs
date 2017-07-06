@@ -20,9 +20,12 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.IndexObserveRoomH
 
             this.Time = DateTime.Now;
 
-            var query = db.ObserveRoomInfos.OrderBy(c => c.InDepartmentTime).ThenBy(c => c.ObserveRoomInfoId).AsEnumerable().Where(c => !c.IsLeave);
+            var query = db.ObserveRoomInfos.AsQueryable();
+            query = query.Where(c => c.OutDepartmentTime == null);
+            var queryOrdered = query.OrderBy(c => c.InDepartmentTime).ThenBy(c => c.ObserveRoomInfoId);
+            var list = queryOrdered.ToList();
 
-            this.List = query.ToList().Select(c => new Item(c)).ToList();
+            this.List = list.Select(c => new Item(c)).ToList();
         }
 
 

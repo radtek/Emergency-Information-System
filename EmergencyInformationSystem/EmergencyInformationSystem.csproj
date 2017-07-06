@@ -518,8 +518,8 @@
     <Content Include="Views\RescueRoomDrugRecords\IndexPartial.cshtml" />
     <Content Include="Views\Reports\Index.cshtml" />
     <Content Include="Views\Reports\IndexRescueRoomHandOver.cshtml" />
-    <Content Include="Views\Reports\IndexRescueRoomHandOverList.cshtml" />
-    <Content Include="Views\Reports\IndexRescueRoomHandOverListPrint.cshtml" />
+    <Content Include="Views\Reports\IndexRescueRoomHandOver_List.cshtml" />
+    <Content Include="Views\Reports\IndexRescueRoomHandOver_ListPrint.cshtml" />
     <Content Include="Views\Reports\IndexRescueRoomDay.cshtml" />
     <Content Include="Views\Reports\IndexRescueRoomDayList.cshtml" />
     <Content Include="Views\Reports\IndexRescueRoomDayListPrint.cshtml" />
@@ -548,8 +548,8 @@
     <Content Include="Views\ObserveRoomInfos\Create3.cshtml" />
     <Content Include="Views\ObserveRoomInfos\Create3ListRescueRoomInfo.cshtml" />
     <Content Include="Views\Reports\IndexObserveRoomHandOver.cshtml" />
-    <Content Include="Views\Reports\IndexObserveRoomHandOverList.cshtml" />
-    <Content Include="Views\Reports\IndexObserveRoomHandOverListPrint.cshtml" />
+    <Content Include="Views\Reports\IndexObserveRoomHandOver_List.cshtml" />
+    <Content Include="Views\Reports\IndexObserveRoomHandOver_ListPrint.cshtml" />
     <Content Include="Views\Reports\IndexObserveRoomDay.cshtml" />
     <Content Include="Views\Reports\IndexObserveRoomDayList.cshtml" />
     <Content Include="Views\Reports\IndexObserveRoomDayListPrint.cshtml" />

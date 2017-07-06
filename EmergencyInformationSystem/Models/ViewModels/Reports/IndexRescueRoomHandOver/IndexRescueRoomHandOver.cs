@@ -23,9 +23,12 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.IndexRescueRoomHa
 
             this.Time = DateTime.Now;
 
-            var query = db.RescueRoomInfos.OrderBy(c => c.InDepartmentTime).ThenBy(c => c.RescueRoomInfoId).AsEnumerable().Where(c => !c.IsLeave);
+            var query = db.RescueRoomInfos.AsQueryable();
+            query = query.Where(c => c.OutDepartmentTime == null);
+            var queryOrdered = query.OrderBy(c => c.InDepartmentTime).ThenBy(c => c.RescueRoomInfoId);
+            var list = queryOrdered.ToList();
 
-            this.List = query.ToList().Select(c => new Item(c)).ToList();
+            this.List = list.Select(c => new Item(c)).ToList();
         }
 
 

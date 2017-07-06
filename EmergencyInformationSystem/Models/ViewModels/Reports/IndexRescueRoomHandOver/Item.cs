@@ -33,6 +33,9 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.IndexRescueRoomHa
             this.Remarks = rescueRoomInfo.Remarks;
             this.DestinationFirstName = rescueRoomInfo.DestinationFirstName;
             this.DestinationSecondName = rescueRoomInfo.DestinationSecondName;
+            this.Sex = target.Sex;
+            this.ReceiveAgeName = target.ReceiveAgeName;
+            this.GreenPathCategoryNameFull = target.GreenPathCategoryNameFull;
         }
 
 
@@ -52,6 +55,12 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.IndexRescueRoomHa
         [Display(Name = "卡号")]
         public string OutPatientNumber { get; set; }
 
+        [Display(Name = "性别")]
+        public string Sex { get; set; }
+
+        [Display(Name = "就诊年龄")]
+        public string ReceiveAgeName { get; set; }
+
         [Display(Name = "入室诊断")]
         public string DiagnosisNameOrigin { get; set; }
 
@@ -62,11 +71,8 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.IndexRescueRoomHa
         [Display(Name = "床位号")]
         public string BedNameFull { get; set; }
 
-        [Display(Name = "危重等级")]
-        public string CriticalLevelName { get; set; }
-
-        [Display(Name = "抢救")]
-        public string RescueResultNameFull { get; set; }
+        [Display(Name = "绿色通道")]
+        public string GreenPathCategoryNameFull { get; set; }
 
         [Display(Name = "抗生素")]
         public virtual string Antibiotic { get; set; }

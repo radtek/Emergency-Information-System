@@ -9,6 +9,12 @@
             <th class="text-center" width="80">
                 @Html.DisplayNameFor(model => model.OutPatientNumber)
             </th>
+            <th class="text-center" width="70">
+                @Html.DisplayNameFor(model => model.Sex)
+            </th>
+            <th class="text-center" width="70">
+                @Html.DisplayNameFor(model => model.ReceiveAgeName)
+            </th>
             <th class="text-center">
                 @Html.DisplayNameFor(model => model.DiagnosisNameOrigin)
             </th>
@@ -19,10 +25,7 @@
                 @Html.DisplayNameFor(model => model.BedNameFull)
             </th>
             <th class="text-center" width="80">
-                @Html.DisplayNameFor(model => model.CriticalLevelName)
-            </th>
-            <th class="text-center" width="40">
-                @Html.DisplayNameFor(model => model.RescueResultNameFull)
+                @Html.DisplayNameFor(model => model.GreenPathCategoryNameFull)
             </th>
             <th class="text-center" width="100">
                 @Html.DisplayNameFor(model => model.Antibiotic)
@@ -47,7 +50,13 @@
                     @Html.DisplayFor(modelItem => item.PatientName)
                 </td>
                 <td class="text-center">
-                    @Html.ActionLink(item.OutPatientNumber, "Details", "RescueRoomInfos", new { id = item.RescueRoomInfoId }, new { target = "_blank" })
+                    @Html.DisplayFor(modelItem => item.OutPatientNumber)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Sex)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.ReceiveAgeName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.DiagnosisNameOrigin)
@@ -59,10 +68,7 @@
                     @Html.DisplayFor(modelItem => item.BedNameFull)
                 </td>
                 <td class="text-center">
-                    @Html.DisplayFor(modelItem => item.CriticalLevelName)
-                </td>
-                <td class="text-center">
-                    @Html.DisplayFor(modelItem => item.RescueResultNameFull)
+                    @Html.DisplayFor(modelItem => item.GreenPathCategoryNameFull)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Antibiotic)
@@ -70,10 +76,10 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Remarks)
                 </td>
-                <td>
+                <td class="text-center">
                     @Html.DisplayFor(modelItem => item.DestinationFirstName)
                 </td>
-                <td>
+                <td class="text-center">
                     @Html.DisplayFor(modelItem => item.DestinationSecondName)
                 </td>
             </tr>

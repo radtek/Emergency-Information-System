@@ -29,6 +29,8 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.IndexObserveRoomH
             this.BedNameFull = observeRoomInfo.BedNameFull;
             this.DestinationFirstName = observeRoomInfo.DestinationFirstName;
             this.DestinationSecondName = observeRoomInfo.DestinationSecondName;
+            this.Sex = target.Sex;
+            this.ReceiveAgeName = target.ReceiveAgeName;
         }
 
 
@@ -47,6 +49,12 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.IndexObserveRoomH
         [Required]
         [Display(Name = "卡号")]
         public string OutPatientNumber { get; set; }
+
+        [Display(Name = "性别")]
+        public string Sex { get; set; }
+
+        [Display(Name = "就诊年龄")]
+        public string ReceiveAgeName { get; set; }
 
         [Display(Name = "入室诊断")]
         public string DiagnosisNameOrigin { get; set; }
