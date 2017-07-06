@@ -28,9 +28,11 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.IndexRescueRoomDa
             var queryIn = db.RescueRoomInfos.Where(c => this.Start <= c.InDepartmentTime && c.InDepartmentTime < this.End);
             var queryStay = db.RescueRoomInfos.Where(c => c.InDepartmentTime < this.Start && (this.Start < c.OutDepartmentTime || c.OutDepartmentTime == null));
 
-            var query = queryIn.Union(queryStay).OrderBy(c => c.InDepartmentTime).ThenBy(c => c.RescueRoomInfoId);
+            var query = queryIn.Union(queryStay);
+            var queryOrdered = query.OrderBy(c => c.InDepartmentTime).ThenBy(c => c.RescueRoomInfoId);
+            var list = queryOrdered.ToList();
 
-            this.List = query.ToList().Select(c => new Item(c)).ToList();
+            this.List = list.Select(c => new Item(c)).ToList();
         }
 
 

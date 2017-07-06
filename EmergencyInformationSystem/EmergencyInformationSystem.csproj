@@ -521,8 +521,8 @@
     <Content Include="Views\Reports\IndexRescueRoomHandOver_List.cshtml" />
     <Content Include="Views\Reports\IndexRescueRoomHandOver_ListPrint.cshtml" />
     <Content Include="Views\Reports\IndexRescueRoomDay.cshtml" />
-    <Content Include="Views\Reports\IndexRescueRoomDayList.cshtml" />
-    <Content Include="Views\Reports\IndexRescueRoomDayListPrint.cshtml" />
+    <Content Include="Views\Reports\IndexRescueRoomDay_List.cshtml" />
+    <Content Include="Views\Reports\IndexRescueRoomDay_ListPrint.cshtml" />
     <Content Include="Views\Reports\StatisticsRescueRoomMonth.cshtml" />
     <Content Include="Views\Reports\StatisticsRescueRoomMonthRescueFirst.cshtml" />
     <Content Include="Views\Reports\StatisticsRescueRoomMonthRescueSecond.cshtml" />
@@ -551,8 +551,8 @@
     <Content Include="Views\Reports\IndexObserveRoomHandOver_List.cshtml" />
     <Content Include="Views\Reports\IndexObserveRoomHandOver_ListPrint.cshtml" />
     <Content Include="Views\Reports\IndexObserveRoomDay.cshtml" />
-    <Content Include="Views\Reports\IndexObserveRoomDayList.cshtml" />
-    <Content Include="Views\Reports\IndexObserveRoomDayListPrint.cshtml" />
+    <Content Include="Views\Reports\IndexObserveRoomDay_List.cshtml" />
+    <Content Include="Views\Reports\IndexObserveRoomDay_ListPrint.cshtml" />
     <Content Include="Views\Reports\StatisticsObserveRoomMonth.cshtml" />
     <Content Include="Views\Reports\StatisticsObserveRoomMonthDuringFirst.cshtml" />
     <Content Include="Views\Reports\StatisticsObserveRoomMonthDuringSecond.cshtml" />
