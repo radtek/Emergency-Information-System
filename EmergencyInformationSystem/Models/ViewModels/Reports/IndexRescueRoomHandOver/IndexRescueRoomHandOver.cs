@@ -14,9 +14,6 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.IndexRescueRoomHa
     /// </summary>
     public class IndexRescueRoomHandOver
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="IndexRescueRoomHandOver"/> class.
-        /// </summary>
         public IndexRescueRoomHandOver()
         {
             var db = new EiSDbContext();

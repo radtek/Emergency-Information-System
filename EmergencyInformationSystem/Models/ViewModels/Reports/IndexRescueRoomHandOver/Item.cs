@@ -14,28 +14,22 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.IndexRescueRoomHa
     /// </summary>
     public class Item
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Item"/> class.
-        /// </summary>
-        /// <param name="rescueRoomInfo">抢救室病例。</param>
-        public Item(RescueRoomInfo rescueRoomInfo)
+        public Item(RescueRoomInfo target)
         {
-            this.RescueRoomInfoId = rescueRoomInfo.RescueRoomInfoId;
+            this.RescueRoomInfoId = target.RescueRoomInfoId;
 
-            this.PatientName = rescueRoomInfo.PatientName;
-            this.OutPatientNumber = rescueRoomInfo.OutPatientNumber;
-            this.DiagnosisNameOrigin = rescueRoomInfo.DiagnosisNameOrigin;
-            this.InDepartmentTime = rescueRoomInfo.InDepartmentTime;
-            this.BedNameFull = rescueRoomInfo.BedNameFull;
-            this.CriticalLevelName = rescueRoomInfo.CriticalLevel.CriticalLevelName;
-            this.RescueResultNameFull = rescueRoomInfo.RescueResultNameFull;
-            this.Antibiotic = rescueRoomInfo.Antibiotic;
-            this.Remarks = rescueRoomInfo.Remarks;
-            this.DestinationFirstName = rescueRoomInfo.DestinationFirstName;
-            this.DestinationSecondName = rescueRoomInfo.DestinationSecondName;
+            this.PatientName = target.PatientName;
+            this.OutPatientNumber = target.OutPatientNumber;
             this.Sex = target.Sex;
             this.ReceiveAgeName = target.ReceiveAgeName;
+            this.DiagnosisNameOrigin = target.DiagnosisNameOrigin;
+            this.InDepartmentTime = target.InDepartmentTime;
+            this.BedNameFull = target.BedNameFull;
             this.GreenPathCategoryNameFull = target.GreenPathCategoryNameFull;
+            this.Antibiotic = target.Antibiotic;
+            this.Remarks = target.Remarks;
+            this.DestinationFirstName = target.DestinationFirstName;
+            this.DestinationSecondName = target.DestinationSecondName;
         }
 
 
