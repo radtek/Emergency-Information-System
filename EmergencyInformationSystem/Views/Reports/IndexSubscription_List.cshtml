@@ -17,7 +17,13 @@
             </th>
             <th class="text-center" width="130">
                 @Html.DisplayNameFor(model => model.InDepartmentTime)
-            </th>          
+            </th>
+            <th class="text-center" width="70">
+                @Html.DisplayNameFor(model => model.Sex)
+            </th>
+            <th class="text-center" width="70">
+                @Html.DisplayNameFor(model => model.ReceiveAgeName)
+            </th>
             <th class="text-center" width="100">
                 @Html.DisplayNameFor(model => model.DestinationFirstName)
             </th>
@@ -58,6 +64,12 @@
                 </td>
                 <td class="text-center">
                     @Html.DisplayFor(modelItem => item.InDepartmentTime)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Sex)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.ReceiveAgeName)
                 </td>
                 <td class="text-center">
                     @Html.DisplayFor(modelItem => item.DestinationFirstName)

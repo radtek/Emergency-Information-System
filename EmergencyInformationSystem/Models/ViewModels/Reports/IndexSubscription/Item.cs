@@ -18,6 +18,8 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.IndexSubscription
             this.OutPatientNumber = target.OutPatientNumber;
             this.InDepartmentTime = target.InDepartmentTime;
             this.BedNameFull = target.BedNameFull;
+            this.Sex = target.Sex;
+            this.ReceiveAgeName = target.ReceiveAgeName;
             this.DestinationFirstName = target.DestinationFirstName;
             this.DestinationFirstTime = target.DestinationFirstTime;
             this.DestinationFirstContact = target.DestinationFirstContact;
@@ -34,6 +36,8 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.IndexSubscription
             this.OutPatientNumber = target.OutPatientNumber;
             this.InDepartmentTime = target.InDepartmentTime;
             this.BedNameFull = target.BedNameFull;
+            this.Sex = target.Sex;
+            this.ReceiveAgeName = target.ReceiveAgeName;
             this.DestinationFirstName = target.DestinationFirstName;
             this.DestinationFirstTime = target.DestinationFirstTime;
             this.DestinationFirstContact = target.DestinationFirstContact;
@@ -73,6 +77,12 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.IndexSubscription
 
         [Display(Name = "床位号")]
         public string BedNameFull { get; set; }
+
+        [Display(Name = "性别")]
+        public string Sex { get; set; }
+
+        [Display(Name = "就诊年龄")]
+        public string ReceiveAgeName { get; set; }
 
         [Display(Name = "预约首选科室")]
         public string DestinationFirstName { get; set; }
