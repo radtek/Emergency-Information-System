@@ -16,12 +16,12 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.IndexSubscription
             this.Time = DateTime.Now;
 
             var query1 = db.RescueRoomInfos.Where(c => c.OutDepartmentTime == null);
-            var queryOrdered1 = query1.OrderBy(c => c.InDepartmentTime);
+            var queryOrdered1 = query1.OrderBy(c => c.InDepartmentTime).ThenBy(c => c.RescueRoomInfoId);
             var list1 = queryOrdered1.ToList();
             var listA = list1.Select(c => new Item(c)).ToList();
 
             var query2 = db.ObserveRoomInfos.Where(c => c.OutDepartmentTime == null);
-            var queryOrdered2 = query2.OrderBy(c => c.InDepartmentTime);
+            var queryOrdered2 = query2.OrderBy(c => c.InDepartmentTime).ThenBy(c => c.ObserveRoomInfoId);
             var list2 = queryOrdered2.ToList();
             var listB = list2.Select(c => new Item(c)).ToList();
 
