@@ -14,27 +14,23 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.IndexRescueRoomDa
     /// </summary>
     public class Item
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Item"/> class.
-        /// </summary>
-        /// <param name="rescueRoomInfo">原抢救室病例。</param>
-        public Item(RescueRoomInfo rescueRoomInfo)
+        public Item(RescueRoomInfo target)
         {
-            this.RescueRoomInfoId = rescueRoomInfo.RescueRoomInfoId;
-            this.IsLeave = rescueRoomInfo.IsLeave;
+            this.RescueRoomInfoId = target.RescueRoomInfoId;
+            this.IsLeave = target.IsLeave;
 
-            this.PatientName = rescueRoomInfo.PatientName;
-            this.OutPatientNumber = rescueRoomInfo.OutPatientNumber;
-            this.DiagnosisNameOrigin = rescueRoomInfo.DiagnosisNameOrigin;
-            this.FirstDoctorName = rescueRoomInfo.FirstDoctorName;
-            this.InDepartmentTime = rescueRoomInfo.InDepartmentTime;
-            this.CriticalLevelName = rescueRoomInfo.CriticalLevel.CriticalLevelName;
-            this.RescueResultNameFull = rescueRoomInfo.RescueResultNameFull;
-            this.GreenPathCategoryNameFull = rescueRoomInfo.GreenPathCategoryNameFull;
-            this.OutDepartmentTime = rescueRoomInfo.OutDepartmentTime;
-            this.During = rescueRoomInfo.During;
-            this.DestinationName = rescueRoomInfo.Destination.DestinationName;
-            this.DiagnosisName = rescueRoomInfo.DiagnosisName;
+            this.PatientName = target.PatientName;
+            this.OutPatientNumber = target.OutPatientNumber;
+            this.DiagnosisNameOrigin = target.DiagnosisNameOrigin;
+            this.FirstDoctorName = target.FirstDoctorName;
+            this.InDepartmentTime = target.InDepartmentTime;
+            this.CriticalLevelName = target.CriticalLevel.CriticalLevelName;
+            this.RescueResultNameFull = target.RescueResultNameFull;
+            this.GreenPathCategoryNameFull = target.GreenPathCategoryNameFull;
+            this.OutDepartmentTime = target.OutDepartmentTime;
+            this.During = target.During;
+            this.DestinationName = target.Destination.DestinationName;
+            this.DiagnosisName = target.DiagnosisName;
         }
 
 

@@ -14,24 +14,20 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.IndexObserveRoomD
     /// </summary>
     public class Item
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Item"/> class.
-        /// </summary>
-        /// <param name="rescueRoomInfo">原留观室病例。</param>
-        public Item(ObserveRoomInfo observeRoomInfo)
+        public Item(ObserveRoomInfo target)
         {
-            this.ObserveRoomInfoId = observeRoomInfo.ObserveRoomInfoId;
-            this.IsLeave = observeRoomInfo.IsLeave;
+            this.ObserveRoomInfoId = target.ObserveRoomInfoId;
+            this.IsLeave = target.IsLeave;
 
-            this.PatientName = observeRoomInfo.PatientName;
-            this.OutPatientNumber = observeRoomInfo.OutPatientNumber;
-            this.DiagnosisNameOrigin = observeRoomInfo.DiagnosisNameOrigin;
-            this.FirstDoctorName = observeRoomInfo.FirstDoctorName;
-            this.InDepartmentTime = observeRoomInfo.InDepartmentTime;
-            this.OutDepartmentTime = observeRoomInfo.OutDepartmentTime;
-            this.During = observeRoomInfo.During;
-            this.DestinationName = observeRoomInfo.Destination.DestinationName;
-            this.DiagnosisName = observeRoomInfo.DiagnosisName;
+            this.PatientName = target.PatientName;
+            this.OutPatientNumber = target.OutPatientNumber;
+            this.DiagnosisNameOrigin = target.DiagnosisNameOrigin;
+            this.FirstDoctorName = target.FirstDoctorName;
+            this.InDepartmentTime = target.InDepartmentTime;
+            this.OutDepartmentTime = target.OutDepartmentTime;
+            this.During = target.During;
+            this.DestinationName = target.Destination.DestinationName;
+            this.DiagnosisName = target.DiagnosisName;
         }
 
 

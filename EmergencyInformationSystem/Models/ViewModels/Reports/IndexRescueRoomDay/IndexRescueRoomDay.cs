@@ -14,10 +14,6 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.IndexRescueRoomDa
     /// </summary>
     public class IndexRescueRoomDay
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="IndexRescueRoomDay"/> class.
-        /// </summary>
-        /// <param name="time">日报表的日期。</param>
         public IndexRescueRoomDay(DateTime time)
         {
             var db = new EiSDbContext();
