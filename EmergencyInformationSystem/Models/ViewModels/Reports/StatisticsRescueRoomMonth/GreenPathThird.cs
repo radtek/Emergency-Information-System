@@ -17,15 +17,15 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
         /// </summary>
         /// <param name="group">The group.</param>
         /// <param name="time">The time.</param>
-        public GreenPathThird(IEnumerable<RescueRoomInfo> group, DateTime time)
+        public GreenPathThird(IGrouping<string, RescueRoomInfo> group, DateTime time)
         {
             this.GreenPathCategoryId = group.First().GreenPathCategoryId;
-            this.GreenPathCategoryRemarks = group.First().GreenPathCategoryRemarks;
+            this.GreenPathCategoryRemarks = group.Key;
             this.Time = time;
             this.Level = 3;
 
             this.Count = group.Count();
-            this.GreenPathCategoryRemarksForDisplay = group.First().GreenPathCategoryRemarks;
+            this.GreenPathCategoryRemarksForDisplay = group.Key;
 
             if (string.IsNullOrEmpty(this.GreenPathCategoryRemarksForDisplay))
                 this.GreenPathCategoryRemarksForDisplay = "--";

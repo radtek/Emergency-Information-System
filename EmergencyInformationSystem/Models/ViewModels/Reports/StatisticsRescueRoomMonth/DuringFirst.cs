@@ -15,17 +15,17 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
         /// <summary>
         /// Initializes a new instance of the <see cref="DuringFirst"/> class.
         /// </summary>
-        public DuringFirst(IEnumerable<RescueRoomInfo> group,DateTime time)
+        public DuringFirst(IGrouping<string, RescueRoomInfo> group, DateTime time)
         {
-            this.DuringMin = group.Min(c=>c.DuringHours.Value);
+            this.DuringMin = group.Min(c => c.DuringHours.Value);
             this.DuringMax = group.Max(c => c.DuringHours.Value);
             this.Time = time;
             this.Level = 1;
 
-            this.DuringGroupName= group.First().DuringGroupName;
+            this.DuringGroupName = group.Key;
             this.Count = group.Count();
 
-            this.List = group.OrderBy(c => c.During).GroupBy(c => c.DuringHours).Select(c => new DuringSecond(c, time)).ToList();
+            this.List = group.OrderBy(c => c.During).GroupBy(c => c.DuringHours.Value).Select(c => new DuringSecond(c, time)).ToList();
         }
 
 

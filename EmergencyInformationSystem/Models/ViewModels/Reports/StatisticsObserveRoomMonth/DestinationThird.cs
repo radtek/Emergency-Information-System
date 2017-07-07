@@ -17,14 +17,14 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsObserve
         /// </summary>
         /// <param name="group">The group.</param>
         /// <param name="time">The time.</param>
-        public DestinationThird(IEnumerable<ObserveRoomInfo> group, DateTime time)
+        public DestinationThird(IGrouping<string, ObserveRoomInfo> group, DateTime time)
         {
             this.DestinationId = group.First().DestinationId;
-            this.DestinationRemarks = group.First().DestinationRemarks;
+            this.DestinationRemarks = group.Key;
             this.Time = time;
             this.Level = 3;
 
-            this.DestinationRemarksForDisplay = group.First().DestinationRemarks;
+            this.DestinationRemarksForDisplay = group.Key;
             this.Count = group.Count();
 
             if (string.IsNullOrEmpty(this.DestinationRemarksForDisplay))

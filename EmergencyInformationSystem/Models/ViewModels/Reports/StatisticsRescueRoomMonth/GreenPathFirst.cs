@@ -17,9 +17,9 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
         /// </summary>
         /// <param name="group">The gourp.</param>
         /// <param name="time">The time.</param>
-        public GreenPathFirst(IEnumerable<RescueRoomInfo> group, DateTime time)
+        public GreenPathFirst(IGrouping<bool, RescueRoomInfo> group, DateTime time)
         {
-            this.IsGreenPath = group.First().IsGreenPath;
+            this.IsGreenPath = group.Key;
             this.Time = time;
 
             this.IsGreenPathName = group.First().IsGreenPathName;
@@ -29,10 +29,11 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
             if (!group.First().IsGreenPath)
             {
                 this.List = new List<GreenPathSecond>();
-                return;
             }
             else
+            {
                 this.List = group.OrderBy(c => c.GreenPathCategoryId).GroupBy(c => c.GreenPathCategoryId).Select(c => new GreenPathSecond(c, time)).ToList();
+            }
         }
 
 

@@ -76,7 +76,7 @@
                 @Html.DisplayNameFor(model => model.AverageDuring)
             </dt>
             <dd>
-                @Html.DisplayFor(model => model.AverageDuring)
+                @Html.DisplayFor(model => model.AverageDuring)（@Html.DisplayFor(model=>model.AverageDuringHour)）
             </dd>
         </dl>
     </div>
@@ -85,28 +85,28 @@
 
     @*抢救*@
     <div>
-        @Html.Partial("StatisticsRescueRoomMonthRescueFirst", Model.ListRescueFirst)
+        @Html.Partial("StatisticsRescueRoomMonth_RescueFirst", Model.ListRescueFirst)
     </div>
 
     <hr />
 
     @*绿色通道*@
     <div>
-        @Html.Partial("StatisticsRescueRoomMonthGreenPathFirst", Model.ListGreenPathFirst)
+        @Html.Partial("StatisticsRescueRoomMonth_GreenPathFirst", Model.ListGreenPathFirst)
     </div>
 
     <hr />
 
     @*停留时间*@
     <div>
-        @Html.Partial("StatisticsRescueRoomMonthDuringFirst", Model.ListDuringFirst)
+        @Html.Partial("StatisticsRescueRoomMonth_DuringFirst", Model.ListDuringFirst)
     </div>
 
     <hr />
 
     @*去向*@
     <div>
-        @Html.Partial("StatisticsRescueRoomMonthDestinationFirst", Model.ListDestinationFirst)
+        @Html.Partial("StatisticsRescueRoomMonth_DestinationFirst", Model.ListDestinationFirst)
     </div>
 </div>
 

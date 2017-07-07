@@ -17,7 +17,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
         /// </summary>
         /// <param name="group">The group.</param>
         /// <param name="time">The time.</param>
-        public DestinationFirst(IEnumerable<RescueRoomInfo> group, DateTime time)
+        public DestinationFirst(IGrouping<string, RescueRoomInfo> group, DateTime time)
         {
             this.IsClassifiedToInDepartment = group.First().Destination.IsClassifiedToInDepartment;
             this.IsClassifiedToOutDepartment = group.First().Destination.IsClassifiedToOutDepartment;
@@ -26,13 +26,13 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
             this.Time = time;
             this.Level = 1;
 
-            this.DestinationCategoryNameConcat = group.First().Destination.DestinationCategoryNameConcat;
+            this.DestinationCategoryNameConcat = group.Key;
             this.Count = group.Count();
 
             if (string.IsNullOrEmpty(this.DestinationCategoryNameConcat))
                 this.DestinationCategoryNameConcat = "--";
 
-            this.List = group.OrderBy(c => c.DestinationId).GroupBy(c => c.DestinationId).Select(c => new DestinationSecond(c, time)).ToList();
+            this.List = group.OrderBy(c => c.Destination.Priority2).GroupBy(c => c.DestinationId).Select(c => new DestinationSecond(c, time)).ToList();
         }
 
 

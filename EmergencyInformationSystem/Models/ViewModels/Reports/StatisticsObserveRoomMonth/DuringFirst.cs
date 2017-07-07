@@ -17,17 +17,17 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsObserve
         /// </summary>
         /// <param name="group"></param>
         /// <param name="time"></param>
-        public DuringFirst(IEnumerable<ObserveRoomInfo> group, DateTime time)
+        public DuringFirst(IGrouping<string, ObserveRoomInfo> group, DateTime time)
         {
             this.DuringMin = group.Min(c => c.DuringHours.Value);
             this.DuringMax = group.Max(c => c.DuringHours.Value);
             this.Time = time;
             this.Level = 1;
 
-            this.DuringGroupName = group.First().DuringGroupName;
+            this.DuringGroupName = group.Key;
             this.Count = group.Count();
 
-            this.List = group.OrderBy(c => c.During).GroupBy(c => c.DuringHours).Select(c => new DuringSecond(c, time)).ToList();
+            this.List = group.OrderBy(c => c.During).GroupBy(c => c.DuringHours.Value).Select(c => new DuringSecond(c, time)).ToList();
         }
 
 

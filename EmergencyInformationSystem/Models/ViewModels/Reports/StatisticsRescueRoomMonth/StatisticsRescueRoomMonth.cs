@@ -41,7 +41,10 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
 
             //停留时长
             if (this.CountAll > 0)
+            {
                 this.AverageDuring = new TimeSpan((long)(list.Average(c => c.During.Value.Ticks)));
+                this.AverageDuringHour = this.AverageDuring.TotalHours;
+            }
             this.ListDuringFirst = list.OrderBy(c => c.During).GroupBy(c => c.DuringGroupName).Select(c => new DuringFirst(c, time)).ToList();
 
             //去向
@@ -68,7 +71,10 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
         public int CountIsGreenPath { get; set; }
 
         [Display(Name = "平均停留时长")]
+        [DisplayFormat(DataFormatString = "{0:d\\.hh\\:mm\\:ss}")]
         public TimeSpan AverageDuring { get; set; }
+
+        public double AverageDuringHour { get; set; }
 
 
 

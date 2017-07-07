@@ -17,9 +17,9 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
         /// </summary>
         /// <param name="group">The group.</param>
         /// <param name="time">The time.</param>
-        public DuringSecond(IEnumerable<RescueRoomInfo> group, DateTime time)
+        public DuringSecond(IGrouping<int, RescueRoomInfo> group, DateTime time)
         {
-            this.DuringHours = group.First().DuringHours.Value;
+            this.DuringHours = group.Key;
             this.Time = time;
             this.Level = 2;
 

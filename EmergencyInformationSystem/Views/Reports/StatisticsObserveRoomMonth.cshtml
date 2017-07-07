@@ -62,7 +62,7 @@
                 @Html.DisplayNameFor(model => model.AverageDuring)
             </dt>
             <dd>
-                @Html.DisplayFor(model => model.AverageDuring)
+                @Html.DisplayFor(model => model.AverageDuring)（@Html.DisplayFor(model => model.AverageDuringHour)）
             </dd>
         </dl>
     </div>
@@ -71,14 +71,14 @@
 
     @*停留时间*@
     <div>
-        @Html.Partial("StatisticsObserveRoomMonthDuringFirst", Model.ListDuringFirst)
+        @Html.Partial("StatisticsObserveRoomMonth_DuringFirst", Model.ListDuringFirst)
     </div>
 
     <hr />
 
     @*去向*@
     <div>
-        @Html.Partial("StatisticsObserveRoomMonthDestinationFirst", Model.ListDestinationFirst)
+        @Html.Partial("StatisticsObserveRoomMonth_DestinationFirst", Model.ListDestinationFirst)
     </div>
 </div>
 

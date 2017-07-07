@@ -17,10 +17,10 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
         /// </summary>
         /// <param name="group">The group.</param>
         /// <param name="time">The time.</param>
-        public RescueSecond(IEnumerable<RescueRoomInfo> group,DateTime time)
+        public RescueSecond(IGrouping<int, RescueRoomInfo> group, DateTime time)
         {
             this.IsRescue = group.First().IsRescue;
-            this.RescueResultId = group.First().RescueResultId;
+            this.RescueResultId = group.Key;
             this.Time = time;
             this.Level = 2;
 

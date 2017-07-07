@@ -17,9 +17,9 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
         /// </summary>
         /// <param name="group">The group.</param>
         /// <param name="time">The time.</param>
-        public RescueFirst(IEnumerable<RescueRoomInfo> group, DateTime time)
+        public RescueFirst(IGrouping<bool, RescueRoomInfo> group, DateTime time)
         {
-            this.IsRescue = group.First().IsRescue;
+            this.IsRescue = group.Key;
             this.Time = time;
 
             this.IsRescueName = group.First().IsRescueName;
@@ -29,10 +29,11 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
             if (this.IsRescue == false)
             {
                 this.List = new List<RescueSecond>();
-                return;
-            }                
+            }
             else
+            {
                 this.List = group.OrderBy(c => c.RescueResultId).GroupBy(c => c.RescueResultId).Select(c => new RescueSecond(c, time)).ToList();
+            }
         }
 
 

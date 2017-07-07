@@ -17,9 +17,9 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
         /// </summary>
         /// <param name="group">The group.</param>
         /// <param name="time">The time.</param>
-        public DestinationSecond(IEnumerable<RescueRoomInfo> group,DateTime time)
+        public DestinationSecond(IGrouping<int, RescueRoomInfo> group, DateTime time)
         {
-            this.DestinationId = group.First().DestinationId;
+            this.DestinationId = group.Key;
             this.Time = time;
             this.Level = 2;
 
@@ -32,10 +32,11 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
             if (!group.First().Destination.IsHasAdditionalInfo)
             {
                 this.List = new List<DestinationThird>();
-                return;
             }
             else
+            {
                 this.List = group.OrderBy(c => c.DestinationRemarks).GroupBy(c => c.DestinationRemarks).Select(c => new DestinationThird(c, time)).ToList();
+            }
         }
 
 
