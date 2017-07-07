@@ -29,8 +29,8 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
 
 
 
-        
-        
+
+
         public int DuringHours { get; set; }
 
         /// <summary>

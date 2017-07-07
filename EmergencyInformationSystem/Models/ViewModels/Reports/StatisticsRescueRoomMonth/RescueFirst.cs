@@ -12,11 +12,6 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
     /// </summary>
     public class RescueFirst
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="RescueFirst"/> class.
-        /// </summary>
-        /// <param name="group">The group.</param>
-        /// <param name="time">The time.</param>
         public RescueFirst(IGrouping<bool, RescueRoomInfo> group, DateTime time)
         {
             this.IsRescue = group.Key;

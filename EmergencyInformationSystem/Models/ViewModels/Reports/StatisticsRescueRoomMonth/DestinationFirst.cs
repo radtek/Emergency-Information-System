@@ -12,11 +12,6 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
     /// </summary>
     public class DestinationFirst
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="DestinationFirst"/> class.
-        /// </summary>
-        /// <param name="group">The group.</param>
-        /// <param name="time">The time.</param>
         public DestinationFirst(IGrouping<string, RescueRoomInfo> group, DateTime time)
         {
             this.IsClassifiedToInDepartment = group.First().Destination.IsClassifiedToInDepartment;

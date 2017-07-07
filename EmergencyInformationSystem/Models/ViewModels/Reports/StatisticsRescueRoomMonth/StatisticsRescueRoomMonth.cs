@@ -18,6 +18,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
         /// Initializes a new instance of the <see cref="StatisticsRescueRoomMonth"/> class.
         /// </summary>
         /// <param name="time">指定的月报表涵盖时间点，只取其中月份部分。</param>
+        /// <remarks>涵盖时段内的离室病例。</remarks>
         public StatisticsRescueRoomMonth(DateTime time)
         {
             var db = new EiSDbContext();
