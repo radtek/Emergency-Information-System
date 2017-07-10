@@ -12,7 +12,6 @@ using EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueRoomM
 
 using EmergencyInformationSystem.Models.ViewModels.Reports.IndexRescueRoomRescue;
 using EmergencyInformationSystem.Models.ViewModels.Reports.IndexRescueRoomGreenPath;
-using EmergencyInformationSystem.Models.ViewModels.Reports.IndexRescueRoomDuring;
 
 using EmergencyInformationSystem.Models.ViewModels.Reports.IndexObserveRoomHandOver;
 using EmergencyInformationSystem.Models.ViewModels.Reports.IndexObserveRoomDay;
@@ -120,9 +119,9 @@ namespace EmergencyInformationSystem.Controllers
         /// <param name="duringMin">时长范围下界。</param>
         /// <param name="duringMax">时长范围上界。</param>
         /// <param name="level">统计项级别。</param>
-        public ActionResult IndexRescueRoomDuring(DateTime time, int? duringHours, int? duringMin, int? duringMax, int level)
+        public ActionResult StatisticsIndexRescueRoomDuring(DateTime time, int? duringHours, int? duringMin, int? duringMax, int level)
         {
-            var targetV = new IndexRescueRoomDuring(time, duringHours, duringMin, duringMax, level);
+            var targetV = new Models.ViewModels.Reports.StatisticsIndexRescueRoomDuring.StatisticsIndexRescueRoomDuring(time, duringHours, duringMin, duringMax, level);
 
             return View(targetV);
         }
