@@ -573,8 +573,8 @@
     <Content Include="Views\GreenPaths\IndexAmiList.cshtml" />
     <Content Include="Views\GreenPaths\Index.cshtml" />
     <Content Include="Views\Reports\StatisticsRescueRoomGeneral.cshtml" />
-    <Content Include="Views\Reports\StatisticsRescueRoomGeneralHeader.cshtml" />
-    <Content Include="Views\Reports\StatisticsRescueRoomGeneralList.cshtml" />
+    <Content Include="Views\Reports\StatisticsRescueRoomGeneral_Header.cshtml" />
+    <Content Include="Views\Reports\StatisticsRescueRoomGeneral_List.cshtml" />
     <Content Include="Views\Reports\StatisticsIndexRescueRoomGeneral.cshtml" />
     <Content Include="Views\Reports\StatisticsIndexRescueRoomGeneral_List.cshtml" />
     <Content Include="Views\Reports\IndexSubscription.cshtml" />
