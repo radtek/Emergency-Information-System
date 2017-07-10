@@ -11,7 +11,6 @@ using EmergencyInformationSystem.Models.ViewModels.Reports.IndexRescueRoomDay;
 using EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueRoomMonth;
 
 using EmergencyInformationSystem.Models.ViewModels.Reports.IndexRescueRoomRescue;
-using EmergencyInformationSystem.Models.ViewModels.Reports.IndexRescueRoomGreenPath;
 
 using EmergencyInformationSystem.Models.ViewModels.Reports.IndexObserveRoomHandOver;
 using EmergencyInformationSystem.Models.ViewModels.Reports.IndexObserveRoomDay;
@@ -104,9 +103,9 @@ namespace EmergencyInformationSystem.Controllers
         /// <param name="greenPathCategoryId">绿色通道类别ID。</param>
         /// <param name="greenPathCategoryRemarks">绿色通道明细。</param>
         /// <param name="level">统计项级别。</param>
-        public ActionResult IndexRescueRoomGreenPath(DateTime time, bool? isGreenPath, int? greenPathCategoryId, string greenPathCategoryRemarks, int level)
+        public ActionResult StatisticsIndexRescueRoomGreenPath(DateTime time, bool? isGreenPath, int? greenPathCategoryId, string greenPathCategoryRemarks, int level)
         {
-            var targetV = new IndexRescueRoomGreenPath(time, isGreenPath, greenPathCategoryId, greenPathCategoryRemarks, level);
+            var targetV = new Models.ViewModels.Reports.StatisticsIndexRescueRoomGreenPath.StatisticsIndexRescueRoomGreenPath(time, isGreenPath, greenPathCategoryId, greenPathCategoryRemarks, level);
 
             return View(targetV);
         }

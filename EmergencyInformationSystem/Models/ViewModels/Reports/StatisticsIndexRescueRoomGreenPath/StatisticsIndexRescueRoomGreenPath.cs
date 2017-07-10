@@ -5,21 +5,21 @@ using System.Web;
 
 using EmergencyInformationSystem.Models.Domains.Entities;
 
-namespace EmergencyInformationSystem.Models.ViewModels.Reports.IndexRescueRoomGreenPath
+namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsIndexRescueRoomGreenPath
 {
     /// <summary>
     /// Class IndexGreenPath.
     /// </summary>
-    public class IndexRescueRoomGreenPath
+    public class StatisticsIndexRescueRoomGreenPath
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="IndexRescueRoomGreenPath"/> class.
+        /// Initializes a new instance of the <see cref="StatisticsIndexRescueRoomGreenPath"/> class.
         /// </summary>
         /// <param name="time">The time.</param>
         /// <param name="isGreenPath">if set to <c>true</c> [is green path].</param>
         /// <param name="greenPathCategoryId">The green path category identifier.</param>
         /// <param name="greenPathCategoryRemarks">The green path category remarks.</param>
-        public IndexRescueRoomGreenPath(DateTime time, bool? isGreenPath, int? greenPathCategoryId, string greenPathCategoryRemarks, int level)
+        public StatisticsIndexRescueRoomGreenPath(DateTime time, bool? isGreenPath, int? greenPathCategoryId, string greenPathCategoryRemarks, int level)
         {
             var db = new EiSDbContext();
 

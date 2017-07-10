@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 using EmergencyInformationSystem.Models.Domains.Entities;
 
-namespace EmergencyInformationSystem.Models.ViewModels.Reports.IndexRescueRoomGreenPath
+namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsIndexRescueRoomGreenPath
 {
     /// <summary>
     /// Class Item.
