@@ -20,7 +20,6 @@ using EmergencyInformationSystem.Models.ViewModels.Reports.IndexObserveRoomDay;
 using EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsObserveRoomMonth;
 
 using EmergencyInformationSystem.Models.ViewModels.Reports.IndexObserveRoomDuring;
-using EmergencyInformationSystem.Models.ViewModels.Reports.IndexObserveRoomDestination;
 
 namespace EmergencyInformationSystem.Controllers
 {
@@ -248,9 +247,9 @@ namespace EmergencyInformationSystem.Controllers
         /// <param name="destinationId">去向ID。</param>
         /// <param name="destinationRemarks">去向明细。</param>
         /// <param name="level">统计项级别。</param>
-        public ActionResult IndexObserveRoomDestination(DateTime time, bool? isClassifiedToInDepartment, bool? isClassifiedToOutDepartment, bool? isClassifiedLeave, bool? isClassifiedToOther, int? destinationId, string destinationRemarks, int level)
+        public ActionResult StatisticsIndexObserveRoomDestination(DateTime time, bool? isClassifiedToInDepartment, bool? isClassifiedToOutDepartment, bool? isClassifiedLeave, bool? isClassifiedToOther, int? destinationId, string destinationRemarks, int level)
         {
-            var targetV = new IndexObserveRoomDestination(time, isClassifiedToInDepartment, isClassifiedToOutDepartment, isClassifiedLeave, isClassifiedToOther, destinationId, destinationRemarks, level);
+            var targetV = new Models.ViewModels.Reports.StatisticsIndexObserveRoomDestination.StatisticsIndexObserveRoomDestination(time, isClassifiedToInDepartment, isClassifiedToOutDepartment, isClassifiedLeave, isClassifiedToOther, destinationId, destinationRemarks, level);
 
             return View(targetV);
         }

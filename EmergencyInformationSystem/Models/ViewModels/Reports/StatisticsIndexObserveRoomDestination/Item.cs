@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 using EmergencyInformationSystem.Models.Domains.Entities;
 
-namespace EmergencyInformationSystem.Models.ViewModels.Reports.IndexObserveRoomDestination
+namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsIndexObserveRoomDestination
 {
     public class Item
     {

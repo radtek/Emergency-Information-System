@@ -5,21 +5,11 @@ using System.Web;
 
 using EmergencyInformationSystem.Models.Domains.Entities;
 
-namespace EmergencyInformationSystem.Models.ViewModels.Reports.IndexObserveRoomDestination
+namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsIndexObserveRoomDestination
 {
-    public class IndexObserveRoomDestination
+    public class StatisticsIndexObserveRoomDestination
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="IndexObserveRoomDestination"/> class.
-        /// </summary>
-        /// <param name="time">The time.</param>
-        /// <param name="isClassifiedToInDepartment">if set to <c>true</c> [is classified to in department].</param>
-        /// <param name="isClassifiedToOutDepartment">if set to <c>true</c> [is classified to out department].</param>
-        /// <param name="isClassifiedLeave">if set to <c>true</c> [is classified leave].</param>
-        /// <param name="isClassifiedToOther">if set to <c>true</c> [is classified to other].</param>
-        /// <param name="destinationId">The destination identifier.</param>
-        /// <param name="destinationRemarks">The destination remarks.</param>
-        public IndexObserveRoomDestination(DateTime time, bool? isClassifiedToInDepartment, bool? isClassifiedToOutDepartment, bool? isClassifiedLeave, bool? isClassifiedToOther, int? destinationId, string destinationRemarks, int level)
+        public StatisticsIndexObserveRoomDestination(DateTime time, bool? isClassifiedToInDepartment, bool? isClassifiedToOutDepartment, bool? isClassifiedLeave, bool? isClassifiedToOther, int? destinationId, string destinationRemarks, int level)
         {
             var db = new EiSDbContext();
 
