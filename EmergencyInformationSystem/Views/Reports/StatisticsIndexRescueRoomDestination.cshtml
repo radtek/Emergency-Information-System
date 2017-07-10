@@ -1,4 +1,4 @@
-﻿@model EmergencyInformationSystem.Models.ViewModels.Reports.IndexRescueRoomDestination.IndexRescueRoomDestination
+﻿@model EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsIndexRescueRoomDestination.StatisticsIndexRescueRoomDestination
 
 @{
     ViewBag.Title = "抢救室统计项明细去向项一览";
@@ -16,7 +16,7 @@
 <h2>@ViewBag.Title</h2>
 <h4>@Model.Message</h4>
 
-@Html.Partial("IndexRescueRoomDestinationList", Model.List)
+@Html.Partial("StatisticsIndexRescueRoomDestination_List", Model.List)
 
 @section scripts{
     @Scripts.Render("~/bundles/EisNormal")

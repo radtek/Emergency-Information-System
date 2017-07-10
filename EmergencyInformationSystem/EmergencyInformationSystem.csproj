@@ -367,8 +367,8 @@
     <Compile Include="Models\ViewModels\Reports\IndexObserveRoomHandOver\Item.cs" />
     <Compile Include="Models\ViewModels\Reports\IndexRescueRoomDay\IndexRescueRoomDay.cs" />
     <Compile Include="Models\ViewModels\Reports\IndexRescueRoomDay\Item.cs" />
-    <Compile Include="Models\ViewModels\Reports\IndexRescueRoomDestination\IndexRescueRoomDestination.cs" />
-    <Compile Include="Models\ViewModels\Reports\IndexRescueRoomDestination\Item.cs" />
+    <Compile Include="Models\ViewModels\Reports\StatisticsIndexRescueRoomDestination\StatisticsIndexRescueRoomDestination.cs" />
+    <Compile Include="Models\ViewModels\Reports\StatisticsIndexRescueRoomDestination\Item.cs" />
     <Compile Include="Models\ViewModels\Reports\IndexRescueRoomDuring\IndexRescueRoomDuring.cs" />
     <Compile Include="Models\ViewModels\Reports\IndexRescueRoomDuring\Item.cs" />
     <Compile Include="Models\ViewModels\Reports\IndexRescueRoomGreenPath\IndexRescueRoomGreenPath.cs" />
@@ -540,8 +540,8 @@
     <Content Include="Views\Reports\IndexRescueRoomGreenPathList.cshtml" />
     <Content Include="Views\Reports\IndexRescueRoomDuring.cshtml" />
     <Content Include="Views\Reports\IndexRescueRoomDuringList.cshtml" />
-    <Content Include="Views\Reports\IndexRescueRoomDestination.cshtml" />
-    <Content Include="Views\Reports\IndexRescueRoomDestinationList.cshtml" />
+    <Content Include="Views\Reports\StatisticsIndexRescueRoomDestination.cshtml" />
+    <Content Include="Views\Reports\StatisticsIndexRescueRoomDestination_List.cshtml" />
     <Content Include="Views\RescueRoomInfos\Create3ListObserveRoomInfo.cshtml" />
     <Content Include="Views\RescueRoomInfos\Create3.cshtml" />
     <Content Include="Views\RescueRoomInfos\_Layout.cshtml" />

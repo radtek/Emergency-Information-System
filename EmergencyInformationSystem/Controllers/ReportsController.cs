@@ -13,7 +13,6 @@ using EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueRoomM
 using EmergencyInformationSystem.Models.ViewModels.Reports.IndexRescueRoomRescue;
 using EmergencyInformationSystem.Models.ViewModels.Reports.IndexRescueRoomGreenPath;
 using EmergencyInformationSystem.Models.ViewModels.Reports.IndexRescueRoomDuring;
-using EmergencyInformationSystem.Models.ViewModels.Reports.IndexRescueRoomDestination;
 
 using EmergencyInformationSystem.Models.ViewModels.Reports.IndexObserveRoomHandOver;
 using EmergencyInformationSystem.Models.ViewModels.Reports.IndexObserveRoomDay;
@@ -139,9 +138,9 @@ namespace EmergencyInformationSystem.Controllers
         /// <param name="destinationId">去向ID。</param>
         /// <param name="destinationRemarks">去向明细。</param>
         /// <param name="level">统计项级别。</param>
-        public ActionResult IndexRescueRoomDestination(DateTime time, bool? isClassifiedToInDepartment, bool? isClassifiedToOutDepartment, bool? isClassifiedLeave, bool? isClassifiedToOther, int? destinationId, string destinationRemarks, int level)
+        public ActionResult StatisticsIndexRescueRoomDestination(DateTime time, bool? isClassifiedToInDepartment, bool? isClassifiedToOutDepartment, bool? isClassifiedLeave, bool? isClassifiedToOther, int? destinationId, string destinationRemarks, int level)
         {
-            var targetV = new IndexRescueRoomDestination(time, isClassifiedToInDepartment, isClassifiedToOutDepartment, isClassifiedLeave, isClassifiedToOther, destinationId, destinationRemarks, level);
+            var targetV = new Models.ViewModels.Reports.StatisticsIndexRescueRoomDestination.StatisticsIndexRescueRoomDestination(time, isClassifiedToInDepartment, isClassifiedToOutDepartment, isClassifiedLeave, isClassifiedToOther, destinationId, destinationRemarks, level);
 
             return View(targetV);
         }

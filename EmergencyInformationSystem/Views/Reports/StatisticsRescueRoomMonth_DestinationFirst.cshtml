@@ -17,7 +17,7 @@
         {
             <tr>
                 <td>
-                    @Html.ActionLink(item.DestinationCategoryNameConcat, "IndexRescueRoomDestination", new { item.IsClassifiedToInDepartment, item.IsClassifiedToOutDepartment, item.IsClassifiedLeave, item.IsClassifiedToOther, item.Time, item.Level }, new { target = "_blank" })
+                    @Html.ActionLink(item.DestinationCategoryNameConcat, "StatisticsIndexRescueRoomDestination", new { item.IsClassifiedToInDepartment, item.IsClassifiedToOutDepartment, item.IsClassifiedLeave, item.IsClassifiedToOther, item.Time, item.Level }, new { target = "_blank" })
                 </td>
                 <td>
                     @Html.DisplayFor(model => item.Count)
