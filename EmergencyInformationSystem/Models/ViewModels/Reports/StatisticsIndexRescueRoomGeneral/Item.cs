@@ -5,7 +5,7 @@ using System.Web;
 
 using System.ComponentModel.DataAnnotations;
 
-namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueRoomGeneralIndex
+namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsIndexRescueRoomGeneral
 {
     public class Item
     {
