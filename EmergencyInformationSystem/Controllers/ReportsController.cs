@@ -19,8 +19,6 @@ using EmergencyInformationSystem.Models.ViewModels.Reports.IndexObserveRoomHandO
 using EmergencyInformationSystem.Models.ViewModels.Reports.IndexObserveRoomDay;
 using EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsObserveRoomMonth;
 
-using EmergencyInformationSystem.Models.ViewModels.Reports.IndexObserveRoomDuring;
-
 namespace EmergencyInformationSystem.Controllers
 {
     /// <summary>
@@ -229,9 +227,9 @@ namespace EmergencyInformationSystem.Controllers
         /// <param name="duringMin">时长范围下界。</param>
         /// <param name="duringMax">时长范围上界。</param>
         /// <param name="level">统计项级别。</param>
-        public ActionResult IndexObserveRoomDuring(DateTime time, int? duringHours, int? duringMin, int? duringMax, int level)
+        public ActionResult StatisticsIndexObserveRoomDuring(DateTime time, int? duringHours, int? duringMin, int? duringMax, int level)
         {
-            var targetV = new IndexObserveRoomDuring(time, duringHours, duringMin, duringMax, level);
+            var targetV = new Models.ViewModels.Reports.StatisticsIndexObserveRoomDuring.StatisticsIndexObserveRoomDuring(time, duringHours, duringMin, duringMax, level);
 
             return View(targetV);
         }

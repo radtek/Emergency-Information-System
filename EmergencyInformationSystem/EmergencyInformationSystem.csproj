@@ -361,8 +361,8 @@
     <Compile Include="Models\ViewModels\Reports\IndexObserveRoomDay\Item.cs" />
     <Compile Include="Models\ViewModels\Reports\StatisticsIndexObserveRoomDestination\StatisticsIndexObserveRoomDestination.cs" />
     <Compile Include="Models\ViewModels\Reports\StatisticsIndexObserveRoomDestination\Item.cs" />
-    <Compile Include="Models\ViewModels\Reports\IndexObserveRoomDuring\IndexObserveRoomDuring.cs" />
-    <Compile Include="Models\ViewModels\Reports\IndexObserveRoomDuring\Item.cs" />
+    <Compile Include="Models\ViewModels\Reports\StatisticsIndexObserveRoomDuring\StatisticsIndexObserveRoomDuring.cs" />
+    <Compile Include="Models\ViewModels\Reports\StatisticsIndexObserveRoomDuring\Item.cs" />
     <Compile Include="Models\ViewModels\Reports\IndexObserveRoomHandOver\IndexObserveRoomHandOver.cs" />
     <Compile Include="Models\ViewModels\Reports\IndexObserveRoomHandOver\Item.cs" />
     <Compile Include="Models\ViewModels\Reports\IndexRescueRoomDay\IndexRescueRoomDay.cs" />
@@ -559,8 +559,8 @@
     <Content Include="Views\Reports\StatisticsObserveRoomMonth_DestinationFirst.cshtml" />
     <Content Include="Views\Reports\StatisticsObserveRoomMonth_DestinationSecond.cshtml" />
     <Content Include="Views\Reports\StatisticsObserveRoomMonth_DestinationThird.cshtml" />
-    <Content Include="Views\Reports\IndexObserveRoomDuring.cshtml" />
-    <Content Include="Views\Reports\IndexObserveRoomDuringList.cshtml" />
+    <Content Include="Views\Reports\StatisticsIndexObserveRoomDuring.cshtml" />
+    <Content Include="Views\Reports\StatisticsIndexObserveRoomDuring_List.cshtml" />
     <Content Include="Views\Reports\StatisticsIndexObserveRoomDestination.cshtml" />
     <Content Include="Views\Reports\StatisticsIndexObserveRoomDestination_List.cshtml" />
     <Content Include="Views\RescueRoomDrugRecords\IndexPartialPart.cshtml" />

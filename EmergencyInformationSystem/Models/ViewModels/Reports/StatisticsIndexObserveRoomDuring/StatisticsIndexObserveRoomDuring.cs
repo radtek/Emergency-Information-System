@@ -5,18 +5,18 @@ using System.Web;
 
 using EmergencyInformationSystem.Models.Domains.Entities;
 
-namespace EmergencyInformationSystem.Models.ViewModels.Reports.IndexObserveRoomDuring
+namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsIndexObserveRoomDuring
 {
-    public class IndexObserveRoomDuring
+    public class StatisticsIndexObserveRoomDuring
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="IndexObserveRoomDuring"/> class.
+        /// Initializes a new instance of the <see cref="StatisticsIndexObserveRoomDuring"/> class.
         /// </summary>
         /// <param name="time">The time.</param>
         /// <param name="duringHours">The during hours.</param>
         /// <param name="duringMin">The during minimum.</param>
         /// <param name="duringMax">The during maximum.</param>
-        public IndexObserveRoomDuring(DateTime time, int? duringHours, int? duringMin, int? duringMax, int level)
+        public StatisticsIndexObserveRoomDuring(DateTime time, int? duringHours, int? duringMin, int? duringMax, int level)
         {
             var db = new EiSDbContext();
 

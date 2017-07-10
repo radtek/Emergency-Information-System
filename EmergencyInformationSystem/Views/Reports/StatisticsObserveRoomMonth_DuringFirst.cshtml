@@ -17,7 +17,7 @@
         {
             <tr>
                 <td>
-                    @Html.ActionLink(item.DuringGroupName, "IndexObserveRoomDuring", new { item.DuringMin, item.DuringMax, item.Time, item.Level }, new { target = "_blank" })
+                    @Html.ActionLink(item.DuringGroupName, "StatisticsIndexObserveRoomDuring", new { item.DuringMin, item.DuringMax, item.Time, item.Level }, new { target = "_blank" })
                 </td>
                 <td>
                     @Html.DisplayFor(model => item.Count)
