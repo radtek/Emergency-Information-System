@@ -5,20 +5,20 @@ using System.Web;
 
 using EmergencyInformationSystem.Models.Domains.Entities;
 
-namespace EmergencyInformationSystem.Models.ViewModels.Reports.IndexRescueRoomRescue
+namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsIndexRescueRoomRescue
 {
     /// <summary>
     /// 抢救室统计项明细抢救项。
     /// </summary>
-    public class IndexRescueRoomRescue
+    public class StatisticsIndexRescueRoomRescue
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="IndexRescueRoomRescue"/> class.
+        /// Initializes a new instance of the <see cref="StatisticsIndexRescueRoomRescue"/> class.
         /// </summary>
         /// <param name="time">指定的月报表涵盖时间点，只使用其中日期部分。</param>
         /// <param name="isRescue">是否抢救。</param>
         /// <param name="rescueResultId">抢救结果ID。</param>
-        public IndexRescueRoomRescue(DateTime time, bool isRescue, int? rescueResultId, int level)
+        public StatisticsIndexRescueRoomRescue(DateTime time, bool isRescue, int? rescueResultId, int level)
         {
             var db = new EiSDbContext();
 

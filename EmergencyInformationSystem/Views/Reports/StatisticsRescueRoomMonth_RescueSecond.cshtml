@@ -4,7 +4,7 @@
 {
     <tr>
         <td style="padding-left:40px">
-            @Html.ActionLink(item.RescueResultName, "IndexRescueRoomRescue", new { item.IsRescue, item.RescueResultId, item.Time, item.Level }, new { target = "_blank" })
+            @Html.ActionLink(item.RescueResultName, "StatisticsIndexRescueRoomRescue", new { item.IsRescue, item.RescueResultId, item.Time, item.Level }, new { target = "_blank" })
         </td>
         <td style="padding-left:40px">
             @Html.DisplayFor(model => item.Count)

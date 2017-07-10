@@ -10,8 +10,6 @@ using EmergencyInformationSystem.Models.ViewModels.Reports.IndexRescueRoomHandOv
 using EmergencyInformationSystem.Models.ViewModels.Reports.IndexRescueRoomDay;
 using EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueRoomMonth;
 
-using EmergencyInformationSystem.Models.ViewModels.Reports.IndexRescueRoomRescue;
-
 using EmergencyInformationSystem.Models.ViewModels.Reports.IndexObserveRoomHandOver;
 using EmergencyInformationSystem.Models.ViewModels.Reports.IndexObserveRoomDay;
 using EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsObserveRoomMonth;
@@ -88,9 +86,9 @@ namespace EmergencyInformationSystem.Controllers
         /// <param name="isRescue">是否抢救。</param>
         /// <param name="rescueResultId">抢救结果ID。</param>
         /// <param name="level">统计项级别。</param>
-        public ActionResult IndexRescueRoomRescue(DateTime time, bool isRescue, int? rescueResultId, int level)
+        public ActionResult StatisticsIndexRescueRoomRescue(DateTime time, bool isRescue, int? rescueResultId, int level)
         {
-            var targetV = new IndexRescueRoomRescue(time, isRescue, rescueResultId, level);
+            var targetV = new Models.ViewModels.Reports.StatisticsIndexRescueRoomRescue.StatisticsIndexRescueRoomRescue(time, isRescue, rescueResultId, level);
 
             return View(targetV);
         }
