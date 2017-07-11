@@ -203,6 +203,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ApiController.cs" />
     <Compile Include="Controllers\GreenPathsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -342,6 +343,8 @@
     <Compile Include="Models\Domains\Entities\TransferReason.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ViewModels\Api\IndexSubscription\IndexSubscription.cs" />
+    <Compile Include="Models\ViewModels\Api\IndexSubscription\Item.cs" />
     <Compile Include="Models\ViewModels\GreenPaths\IndexAmi\IndexAmi.cs" />
     <Compile Include="Models\ViewModels\GreenPaths\IndexAmi\Item.cs" />
     <Compile Include="Models\ViewModels\GreenPaths\IndexAmi\Route.cs" />
@@ -579,6 +582,8 @@
     <Content Include="Views\Reports\StatisticsIndexRescueRoomGeneral_List.cshtml" />
     <Content Include="Views\Reports\IndexSubscription.cshtml" />
     <Content Include="Views\Reports\IndexSubscription_List.cshtml" />
+    <Content Include="Views\Api\IndexSubscription.cshtml" />
+    <Content Include="Views\Api\IndexSubscription_List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

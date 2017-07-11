@@ -1,0 +1,8 @@
+﻿@model EmergencyInformationSystem.Models.ViewModels.Api.IndexSubscription.IndexSubscription
+
+<h3>@Html.DisplayFor(model => model.Time)</h3>
+
+<br />
+
+@*列表区*@
+@Html.Partial("IndexSubscription_List", Model.List)
