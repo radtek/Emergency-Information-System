@@ -55,6 +55,24 @@
                     alert("加载失败！");
                 }
             })
+            //jQuery.ajax({
+            //    type: "get",
+            //    url: "http://192.168.100.162:809/Api/IndexSubscription",
+            //    data: { 'timeStamp': new Date().getTime() },
+            //    dataType: 'json',
+            //    success: function (message) {
+            //        if (message != false) {
+            //            eisHideModal();
+            //        } else {
+            //            alert("加载失败！");
+            //        };
+            //    },
+            //    error: function (err) {
+            //        //alert('网络故障');
+            //        $("#main").html(err.responseText);
+            //        eisHideModal();
+            //    },
+            //});
         });
 
         function eisShowModal() {
