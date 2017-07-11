@@ -1,0 +1,81 @@
+﻿
+@{
+    ViewBag.Title = "床位预约表";
+}
+
+<div class="container">
+    <ol class="breadcrumb">
+        <li>@Html.ActionLink("主界面", "Index", "Home", null, new { @class = "btn-show-modal" })</li>
+        <li class="active">@ViewBag.Title</li>
+    </ol>
+</div>
+
+<table>
+    <tr>
+        <td rowspan="2">
+            <h2>@ViewBag.Title</h2>
+        </td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>
+            <div>
+                @Html.ActionLink("刷新", "IndexSubscription", null, new { @class = "btn btn-default btn-show-modal" })
+            </div>
+        </td>
+    </tr>
+</table>
+
+<div id="main">
+    <p>加载中……</p>
+</div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            //弹出式提示框
+            $(function () {
+                $("[data-toggle='tooltip']").tooltip();
+            });
+
+            //操作对象添加类"btn-show-modal"
+            $(".btn-show-modal").click(function (event) {
+                eisShowModal();
+            });
+
+            eisShowModal();
+
+            //加载正文
+            $.get("http://192.168.100.162:809/Api/IndexSubscription", function (data, textStatus, jqXHR) {
+                if (textStatus == 'success') {
+                    $("#main").html(data);
+                    eisHideModal();
+                }   
+                else {
+                    alert("加载失败！");
+                }
+            })
+        });
+
+        function eisShowModal() {
+            $('#ModalMain').modal({
+                backdrop: 'static'
+            });
+        }
+
+        function eisHideModal() {
+            $('#ModalMain').modal('hide');
+        }
+    </script>
+
+    <!-- Modal -->
+    <div class="modal" id="ModalMain" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    载入中，请稍后…
+                </div>
+            </div>
+        </div>
+    </div>
+}
