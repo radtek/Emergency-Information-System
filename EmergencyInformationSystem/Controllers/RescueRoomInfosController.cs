@@ -69,14 +69,17 @@ namespace EmergencyInformationSystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind()]Create create)
         {
-            var dbTrasen = new TrasenLib.TrasenDbContext("TrasenConnection");
-
-            if (!dbTrasen.YY_KDJB.Any(c => c.KH == create.OutPatientNumber))
-                ModelState.AddModelError("outPatientNumber", "卡号不存在");
-
             if (ModelState.IsValid)
             {
-                return RedirectToAction("Create2", new { create.OutPatientNumber });
+                var dbTrasen = new TrasenLib.TrasenDbContext("TrasenConnection");
+
+                if (!dbTrasen.YY_KDJB.Any(c => c.KH == create.OutPatientNumber))
+                    ModelState.AddModelError("outPatientNumber", "卡号不存在");
+
+                if (ModelState.IsValid)
+                {
+                    return RedirectToAction("Create2", new { create.OutPatientNumber });
+                }
             }
 
             return View(create);
