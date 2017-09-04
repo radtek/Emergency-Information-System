@@ -17,7 +17,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.IndexRescueRoomDa
         public Item(RescueRoomInfo target)
         {
             this.RescueRoomInfoId = target.RescueRoomInfoId;
-            this.IsLeave = target.IsLeave;
+            this.IsLeave = target.OutDepartmentTime.HasValue;
 
             this.PatientName = target.PatientName;
             this.OutPatientNumber = target.OutPatientNumber;

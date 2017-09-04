@@ -411,17 +411,17 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
             }
         }
 
-        /// <summary>
-        /// 是否离室。
-        /// </summary>
-        [Display(Name = "离室")]
-        public bool IsLeave
-        {
-            get
-            {
-                return this.OutDepartmentTime != null;
-            }
-        }
+        ///// <summary>
+        ///// 是否离室。
+        ///// </summary>
+        //[Display(Name = "离室")]
+        //public bool IsLeave
+        //{
+        //    get
+        //    {
+        //        return this.OutDepartmentTime != null;
+        //    }
+        //}
 
         /// <summary>
         /// 是否离室名称。
@@ -430,7 +430,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         {
             get
             {
-                return this.IsLeave ? "是" : "否";
+                return this.OutDepartmentTime.HasValue ? "是" : "否";
             }
         }
 
@@ -471,7 +471,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         {
             get
             {
-                if (this.IsLeave)
+                if (this.OutDepartmentTime.HasValue)
                     return this.OutDepartmentTime.Value - this.InDepartmentTimeActual;
                 else
                     return DateTime.Now - this.InDepartmentTimeActual;

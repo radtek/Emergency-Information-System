@@ -32,7 +32,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Index
         {
             var db = new EiSDbContext();
 
-            var query = db.RescueRoomInfos.AsEnumerable();
+            var query = db.RescueRoomInfos.AsQueryable();
 
             if (inDepartmentTimeStart != null)
                 query = query.Where(c => inDepartmentTimeStart.Value <= c.InDepartmentTime);
@@ -47,7 +47,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Index
             if (isRescue != null)
                 query = query.Where(c => c.IsRescue == isRescue);
             if (isLeave != null)
-                query = query.Where(c => c.IsLeave == isLeave);
+                query = query.Where(c => c.OutDepartmentTime.HasValue == isLeave);
             if (!string.IsNullOrEmpty(patientName))
                 query = query.Where(c => c.PatientName == patientName);
             if (!string.IsNullOrEmpty(outPatientNumber))

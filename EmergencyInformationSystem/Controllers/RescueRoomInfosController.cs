@@ -215,7 +215,7 @@ namespace EmergencyInformationSystem.Controllers
             if (!rescueRoomInfo.IsRescue && !db.RescueResults.Find(rescueRoomInfo.RescueResultId).IsUseForEmpty)
                 ModelState.AddModelError("RescueResultId", "与抢救不匹配。");
             //7-离室时，有抢救则必须有抢救结果。
-            if (rescueRoomInfo.IsLeave && rescueRoomInfo.IsRescue && db.RescueResults.Find(rescueRoomInfo.RescueResultId).IsUseForEmpty)
+            if (rescueRoomInfo.OutDepartmentTime.HasValue && rescueRoomInfo.IsRescue && db.RescueResults.Find(rescueRoomInfo.RescueResultId).IsUseForEmpty)
                 ModelState.AddModelError("RescueResultId", "离室时有抢救必须有抢救结果。");
             //8-绿色通道为允许附加数据才可以有附加数据。
             //if (!db.GreenPathCategories.Find(rescueRoomInfo.GreenPathCategoryId).IsHasAdditionalInfo && !string.IsNullOrEmpty(rescueRoomInfo.GreenPathCategoryRemarks))
@@ -352,7 +352,7 @@ namespace EmergencyInformationSystem.Controllers
             if (!rescueRoomInfo.IsRescue && !db.RescueResults.Find(rescueRoomInfo.RescueResultId).IsUseForEmpty)
                 ModelState.AddModelError("RescueResultId", "与抢救不匹配。");
             //7-离室时，有抢救则必须有抢救结果。
-            if (rescueRoomInfo.IsLeave && rescueRoomInfo.IsRescue && db.RescueResults.Find(rescueRoomInfo.RescueResultId).IsUseForEmpty)
+            if (rescueRoomInfo.OutDepartmentTime.HasValue && rescueRoomInfo.IsRescue && db.RescueResults.Find(rescueRoomInfo.RescueResultId).IsUseForEmpty)
                 ModelState.AddModelError("RescueResultId", "离室时有抢救必须有抢救结果。");
             //8-绿色通道为允许附加数据才可以有附加数据。
             //if (!db.GreenPathCategories.Find(rescueRoomInfo.GreenPathCategoryId).IsHasAdditionalInfo && !string.IsNullOrEmpty(rescueRoomInfo.GreenPathCategoryRemarks))

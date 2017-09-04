@@ -28,7 +28,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Index
         {
             var db = new EiSDbContext();
 
-            var query = db.ObserveRoomInfos.AsEnumerable();
+            var query = db.ObserveRoomInfos.AsQueryable();
 
             if (inDepartmentTimeStart != null)
                 query = query.Where(c => inDepartmentTimeStart.Value <= c.InDepartmentTime);
@@ -39,7 +39,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Index
             if (outDepartmentTimeEnd != null)
                 query = query.Where(c => c.OutDepartmentTime < outDepartmentTimeEnd);
             if (isLeave != null)
-                query = query.Where(c => c.IsLeave == isLeave);
+                query = query.Where(c => c.OutDepartmentTime.HasValue == isLeave);
             if (!string.IsNullOrEmpty(patientName))
                 query = query.Where(c => c.PatientName == patientName);
             if (!string.IsNullOrEmpty(outPatientNumber))

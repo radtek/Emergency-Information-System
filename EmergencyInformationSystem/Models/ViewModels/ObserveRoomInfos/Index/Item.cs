@@ -21,7 +21,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Index
         public Item(ObserveRoomInfo observeRoomInfo)
         {
             this.ObserveRoomInfoId = observeRoomInfo.ObserveRoomInfoId;
-            this.IsLeave = observeRoomInfo.IsLeave;
+            this.IsLeave = observeRoomInfo.OutDepartmentTime.HasValue;
 
             this.PatientName = observeRoomInfo.PatientName;
             this.OutPatientNumber = observeRoomInfo.OutPatientNumber;

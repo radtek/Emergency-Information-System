@@ -15,7 +15,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.GreenPaths.IndexAmi
         {
             this.GreenPathAmiId = origin.GreenPathAmiId;
             this.RescueRoomInfoId = origin.RescueRoomInfoId;
-            this.IsLeave = origin.RescueRoomInfo.IsLeave;
+            this.IsLeave = origin.RescueRoomInfo.OutDepartmentTime.HasValue;
 
             this.PatientName = origin.RescueRoomInfo.PatientName;
             this.OutPatientNumber = origin.RescueRoomInfo.OutPatientNumber;

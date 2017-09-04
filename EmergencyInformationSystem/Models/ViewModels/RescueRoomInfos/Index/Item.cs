@@ -21,7 +21,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Index
         public Item(RescueRoomInfo origin)
         {
             this.RescueRoomInfoId = origin.RescueRoomInfoId;
-            this.IsLeave = origin.IsLeave;
+            this.IsLeave = origin.OutDepartmentTime.HasValue;
 
             this.PatientName = origin.PatientName;
             this.OutPatientNumber = origin.OutPatientNumber;
