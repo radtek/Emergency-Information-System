@@ -10,7 +10,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Index
     /// <summary>
     /// 导航。
     /// </summary>    
-    public class Route
+    public class Route : RouteBase
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Route"/> class.
@@ -27,9 +27,9 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Index
         /// <param name="inRescueRoomWayId">入室方式ID。</param>
         /// <param name="destinationId">去向ID。</param>
         /// <param name="page">页码。</param>
-        /// <param name="perPage">每页项目数。</param>
+        /// <param name="perpage">每页项目数。</param>
         /// <param name="count">项目总数。</param>
-        public Route(DateTime? inDepartmentTimeStart, DateTime? inDepartmentTimeEnd, DateTime? outDepartmentTimeStart, DateTime? outDepartmentTimeEnd, int? greenPathCategoryId, bool? isRescue, bool? isLeave, string patientName, string outPatientNumber, int? inRescueRoomWayId, int? destinationId, int page, int perPage, int count)
+        public Route(DateTime? inDepartmentTimeStart, DateTime? inDepartmentTimeEnd, DateTime? outDepartmentTimeStart, DateTime? outDepartmentTimeEnd, int? greenPathCategoryId, bool? isRescue, bool? isLeave, string patientName, string outPatientNumber, int? inRescueRoomWayId, int? destinationId, int page, int perpage, int count) : base(page, perpage, count)
         {
             this.InDepartmentTimeStart = inDepartmentTimeStart;
             this.InDepartmentTimeEnd = inDepartmentTimeEnd;
@@ -42,11 +42,11 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Index
             this.OutPatientNumber = outPatientNumber;
             this.InRescueRoomWayId = inRescueRoomWayId;
             this.DestinationId = destinationId;
+        }
 
-            this.Page = page;
-            this.PerPage = perPage;
+        public Route() : base(0, 0, 0)
+        {
 
-            this.Count = count;
         }
 
 
@@ -118,44 +118,6 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Index
         /// </summary>
         [Display(Name = "去向")]
         public int? DestinationId { get; set; }
-
-
-
-
-
-        /// <summary>
-        /// 页码。
-        /// </summary>
-        public int Page { get; set; }
-
-        /// <summary>
-        /// 每页项目数。
-        /// </summary>
-        public int PerPage { get; set; }
-
-
-
-
-
-        /// <summary>
-        /// 项目总数。
-        /// </summary>
-        public int Count { get; set; }
-
-
-
-
-
-        /// <summary>
-        /// 最大页码。
-        /// </summary>
-        public int MaxPage
-        {
-            get
-            {
-                return (int)Math.Ceiling((double)this.Count / this.PerPage);
-            }
-        }
 
 
 

@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.Mvc;
 
 using EmergencyInformationSystem.Models.Domains.Entities;
-using EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Index;
 using EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Details;
 using EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Create;
 using EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Header;
@@ -20,38 +19,16 @@ namespace EmergencyInformationSystem.Controllers
         /// <summary>
         /// 一览。
         /// </summary>
-        /// <param name="inDepartmentTimeStart">入室时间起点。</param>
-        /// <param name="inDepartmentTimeEnd">入室时间结点。</param>
-        /// <param name="outDepartmentTimeStart">离室时间起点。</param>
-        /// <param name="outDepartmentTimeEnd">离室时间结点。</param>
-        /// <param name="greenPathCategoryId">绿色通道类型ID。</param>
-        /// <param name="isRescue">是否抢救。</param>
-        /// <param name="isLeave">是否离室。</param>
-        /// <param name="patientName">患者姓名。</param>
-        /// <param name="inRescueRoomWayId">入室方式ID。</param>
-        /// <param name="destinationId">去向ID。</param>
-        /// <param name="outPatientNumber">卡号。</param>
-        /// <param name="page">页码。</param>
-        /// <param name="perPage">每页项目数。</param>
-        public ActionResult Index(DateTime? inDepartmentTimeStart, DateTime? inDepartmentTimeEnd, DateTime? outDepartmentTimeStart, DateTime? outDepartmentTimeEnd, int? greenPathCategoryId, bool? isRescue, bool? isLeave, string patientName, string outPatientNumber, int? inRescueRoomWayId, int? destinationId, int page = 1, int perPage = 20)
+        public ActionResult Index([Bind()]Models.ViewModels.RescueRoomInfos.Index.Route route)
         {
-            var targetV = new Index(inDepartmentTimeStart, inDepartmentTimeEnd, outDepartmentTimeStart, outDepartmentTimeEnd, greenPathCategoryId, isRescue, isLeave, patientName, outPatientNumber, inRescueRoomWayId, destinationId, page, perPage);
+            var targetV = new Models.ViewModels.RescueRoomInfos.Index.Index(route);
 
-            var db = new EiSDbContext();
-
-            ViewBag.GreenPathCategoryId = new SelectList(db.GreenPathCategories, "GreenPathCategoryId", "GreenPathCategoryName", greenPathCategoryId);
-            ViewBag.InRescueRoomWayId = new SelectList(db.InRescueRoomWays, "InRescueRoomWayId", "InRescueRoomWayName", inRescueRoomWayId);
-            ViewBag.DestinationId = new SelectList(db.Destinations.Where(c => c.IsUseForRescueRoom), "DestinationId", "DestinationName", destinationId);
-            ViewBag.IsRescue = new SelectList(new List<SelectListItem>
-            {
-                new SelectListItem {Text="是",Value="True" },
-                new SelectListItem {Text="否",Value="False" }
-            }, "Value", "Text");
-            ViewBag.IsLeave = new SelectList(new List<SelectListItem>
-            {
-                new SelectListItem {Text="是",Value="true" },
-                new SelectListItem {Text="否",Value="false" }
-            }, "Value", "Text");
+            var targetW = new Models.ViewModels.RescueRoomInfos.Index.SelectionWorker(route);
+            ViewBag.GreenPathCategoryId = targetW.GreenPathCategories;
+            ViewBag.InRescueRoomWayId = targetW.InRescueRoomWays;
+            ViewBag.DestinationId = targetW.Destinations;
+            ViewBag.IsRescue = targetW.IsRescues;
+            ViewBag.IsLeave = targetW.IsLeaves;
 
             return View(targetV);
         }
