@@ -13,7 +13,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Create
     public class Create
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Create"/> class.
+        /// 初始化。
         /// </summary>
         public Create()
         {
