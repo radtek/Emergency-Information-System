@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.Mvc;
 
 using EmergencyInformationSystem.Models.Domains.Entities;
-using EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Index;
 using EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Details;
 using EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Create;
 using EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Header;
@@ -20,24 +19,12 @@ namespace EmergencyInformationSystem.Controllers
         /// <summary>
         /// 留观室病例。
         /// </summary>
-        /// <param name="inDepartmentTimeStart">入室时间起点。</param>
-        /// <param name="inDepartmentTimeEnd">入室时间结点。</param>
-        /// <param name="outDepartmentTimeStart">离室时间起点。</param>
-        /// <param name="outDepartmentTimeEnd">离室时间结点。</param>       
-        /// <param name="isLeave">是否离室。</param>       
-        /// <param name="patientName">患者姓名。</param>
-        /// <param name="outPatientNumber">卡号。</param>
-        /// <param name="page">页码。</param>
-        /// <param name="perPage">每页项目数。</param>
-        public ActionResult Index(DateTime? inDepartmentTimeStart, DateTime? inDepartmentTimeEnd, DateTime? outDepartmentTimeStart, DateTime? outDepartmentTimeEnd, bool? isLeave, string patientName, string outPatientNumber, int page = 1, int perPage = 20)
+        public ActionResult Index([Bind()]Models.ViewModels.ObserveRoomInfos.Index.Route route)
         {
-            var targetV = new Index(inDepartmentTimeStart, inDepartmentTimeEnd, outDepartmentTimeStart, outDepartmentTimeEnd, isLeave, patientName, outPatientNumber, page, perPage);
+            var targetV = new Models.ViewModels.ObserveRoomInfos.Index.Index(route);
 
-            ViewBag.IsLeave = new SelectList(new List<SelectListItem>
-            {
-                new SelectListItem {Text="是",Value="true" },
-                new SelectListItem {Text="否",Value="false" }
-            }, "Value", "Text");
+            var targetW = new Models.ViewModels.ObserveRoomInfos.Index.SelectionWorker(route);
+            ViewBag.IsLeave = targetW.IsLeaves;
 
             return View(targetV);
         }

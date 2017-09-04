@@ -360,6 +360,7 @@
     <Compile Include="Models\ViewModels\ObserveRoomInfos\Index\Index.cs" />
     <Compile Include="Models\ViewModels\ObserveRoomInfos\Index\Item.cs" />
     <Compile Include="Models\ViewModels\ObserveRoomInfos\Index\Route.cs" />
+    <Compile Include="Models\ViewModels\ObserveRoomInfos\Index\SelectionWorker.cs" />
     <Compile Include="Models\ViewModels\Reports\IndexObserveRoomDay\IndexObserveRoomDay.cs" />
     <Compile Include="Models\ViewModels\Reports\IndexObserveRoomDay\Item.cs" />
     <Compile Include="Models\ViewModels\Reports\StatisticsIndexObserveRoomDestination\StatisticsIndexObserveRoomDestination.cs" />
