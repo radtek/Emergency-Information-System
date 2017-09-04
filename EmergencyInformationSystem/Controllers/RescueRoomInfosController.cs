@@ -57,9 +57,7 @@ namespace EmergencyInformationSystem.Controllers
         /// <remarks>定位病人。</remarks>
         public ActionResult Create()
         {
-            var target = new Create();
-
-            return View(target);
+            return View();
         }
 
         /// <summary>
