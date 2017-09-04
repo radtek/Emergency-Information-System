@@ -15,7 +15,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Details
     public class Details
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Details"/> class.
+        /// 初始化。
         /// </summary>
         /// <param name="rescueRoomInfo">原抢救室病例。</param>
         public Details(RescueRoomInfo rescueRoomInfo)

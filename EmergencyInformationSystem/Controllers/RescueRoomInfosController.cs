@@ -19,6 +19,7 @@ namespace EmergencyInformationSystem.Controllers
         /// <summary>
         /// 一览。
         /// </summary>
+        /// <remarks>导航对象。</remarks>
         public ActionResult Index([Bind()]Models.ViewModels.RescueRoomInfos.Index.Route route)
         {
             var targetV = new Models.ViewModels.RescueRoomInfos.Index.Index(route);
