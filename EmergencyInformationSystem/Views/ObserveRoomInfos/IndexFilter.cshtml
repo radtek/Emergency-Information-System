@@ -2,44 +2,44 @@
 
 @using (Html.BeginForm())
 {
-    <table class="form-group">
-        <tr>
-            <td>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
                 @Html.DisplayNameFor(model => model.InDepartmentTimeStart)
-
-                <input type="datetime-local" name="InDepartmentTimeStart" class="form-inline" value=@((Model.InDepartmentTimeStart)?.ToString("yyyy-MM-ddTHH:mm")) />
-                <input type="datetime-local" name="InDepartmentTimeEnd" class="form-inline" value=@((Model.InDepartmentTimeEnd)?.ToString("yyyy-MM-ddTHH:mm")) />
-            </td>
-            <td>
-                &nbsp;&nbsp;
-
-                @Html.DisplayNameFor(model => model.IsLeave)
-                @Html.DropDownList("IsLeave", null, "--", new { @class = "form-inline" })
-            </td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>
+                <input type="datetime-local" name="InDepartmentTimeStart" class="form-control" value=@((Model.InDepartmentTimeStart)?.ToString("yyyy-MM-ddTHH:mm")) />
+            </div>
+            <div class="col-md-3">
+                @Html.DisplayNameFor(model => model.InDepartmentTimeEnd)
+                <input type="datetime-local" name="InDepartmentTimeEnd" class="form-control" value=@((Model.InDepartmentTimeEnd)?.ToString("yyyy-MM-ddTHH:mm")) />
+            </div>
+            <div class="col-md-3">
                 @Html.DisplayNameFor(model => model.OutDepartmentTimeStart)
-
-                <input type="datetime-local" name="OutDepartmentTimeStart" class="form-inline" value=@((Model.OutDepartmentTimeStart)?.ToString("yyyy-MM-ddTHH:mm")) />
-                <input type="datetime-local" name="OutDepartmentTimeEnd" class="form-inline" value=@((Model.OutDepartmentTimeEnd)?.ToString("yyyy-MM-ddTHH:mm")) />
-            </td>
-            <td>
-                &nbsp;&nbsp;
-
+                <input type="datetime-local" name="OutDepartmentTimeStart" class="form-control" value=@((Model.OutDepartmentTimeStart)?.ToString("yyyy-MM-ddTHH:mm")) />
+            </div>
+            <div class="col-md-3">
+                @Html.DisplayNameFor(model => model.OutDepartmentTimeEnd)
+                <input type="datetime-local" name="OutDepartmentTimeEnd" class="form-control" value=@((Model.OutDepartmentTimeEnd)?.ToString("yyyy-MM-ddTHH:mm")) />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                @Html.DisplayNameFor(model => model.IsLeave)
+                @Html.DropDownList("IsLeave", null, "--", new { @class = "form-control" })
+            </div>
+            <div class="col-md-3">
                 @Html.DisplayNameFor(model => model.PatientName)
-                @Html.EditorFor(model => model.PatientName, new { htmlAttributes = new { @class = "form-inline" } })
-
-                &nbsp;&nbsp;
-
+                @Html.EditorFor(model => model.PatientName, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            <div class="col-md-3">
                 @Html.DisplayNameFor(model => model.OutPatientNumber)
-                @Html.EditorFor(model => model.OutPatientNumber, new { htmlAttributes = new { @class = "form-inline" } })
-            </td>
-            <td>
+                @Html.EditorFor(model => model.OutPatientNumber, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
                 <input type="submit" formmethod="get" value="筛选" class="btn btn-default btn-show-modal" />
                 @Html.ActionLink("清空", "index", null, new { @class = "btn btn-default btn-show-modal" })
-            </td>
-        </tr>
-    </table>
+            </div>
+        </div>
+    </div>
 }

@@ -48,23 +48,25 @@ namespace EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Index
         /// <summary>
         /// 入室时间起点。
         /// </summary>
-        [Display(Name = "入室时间")]
+        [Display(Name = "入室时间起点")]
         public DateTime? InDepartmentTimeStart { get; set; }
 
         /// <summary>
         /// 入室时间结点。
         /// </summary>
+        [Display(Name = "入室时间结点")]
         public DateTime? InDepartmentTimeEnd { get; set; }
 
         /// <summary>
         /// 离室时间起点。
         /// </summary>
-        [Display(Name = "离室时间")]
+        [Display(Name = "离室时间起点")]
         public DateTime? OutDepartmentTimeStart { get; set; }
 
         /// <summary>
         /// 离室时间结点。
         /// </summary>
+        [Display(Name = "离室时间结点")]
         public DateTime? OutDepartmentTimeEnd { get; set; }
 
         /// <summary>
