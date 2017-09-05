@@ -17,18 +17,12 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Create
         /// <summary>
         /// Initializes a new instance of the <see cref="ItemJzjl"/> class.
         /// </summary>
-        /// <param name="outPatientNumber">卡号。</param>
-        /// <param name="KDJID">卡登记ID。</param>
         /// <param name="JZJL">门诊医师接诊记录。</param>
-        public ItemJzjl(string outPatientNumber,Guid KDJID,MZYS_JZJL JZJL)
+        public ItemJzjl(MZYS_JZJL JZJL)
         {
             var dbTrasen = new TrasenDbContext("TrasenConnection");
 
             this.ORIGIN_JZID = JZJL.JZID;
-            this.ORIGIN_KDJID = KDJID;
-            this.ORIGIN_BRXXID = JZJL.BRXXID;
-            this.ORIGIN_GHXXID = JZJL.GHXXID;
-            this.OutPatientNumber = outPatientNumber;
 
             this.FirstDoctorName = dbTrasen.JC_EMPLOYEE_PROPERTY.Where(c => c.EMPLOYEE_ID == JZJL.JSYSDM).FirstOrDefault()?.NAME;
             this.DiagnosisNameOrigin = JZJL.ZDMC;
@@ -43,26 +37,6 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Create
         /// 接诊ID。
         /// </summary>
         public Guid ORIGIN_JZID { get; set; }
-
-        /// <summary>
-        /// 卡登记ID。
-        /// </summary>
-        public Guid? ORIGIN_KDJID { get; set; }
-
-        /// <summary>
-        /// 病人信息ID。
-        /// </summary>
-        public Guid? ORIGIN_BRXXID { get; set; }
-
-        /// <summary>
-        /// 挂号信息ID。
-        /// </summary>
-        public Guid ORIGIN_GHXXID { get; set; }
-
-        /// <summary>
-        /// 卡号。
-        /// </summary>
-        public string OutPatientNumber { get; set; }
 
 
 

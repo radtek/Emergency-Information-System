@@ -18,14 +18,11 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Create
         /// Initializes a new instance of the <see cref="ItemObserveRoomInfo"/> class.
         /// </summary>
         /// <param name="observeRoomInfo">The observe room information.</param>
-        public ItemObserveRoomInfo(ObserveRoomInfo observeRoomInfo, string outPatientNumber, Guid JZID, Guid GHXXID, Guid BRXXID, Guid KDJID)
+        public ItemObserveRoomInfo(ObserveRoomInfo observeRoomInfo, Guid JZID)
         {
             this.ObserveRoomInfoId = observeRoomInfo.ObserveRoomInfoId;
-            this.OutPatientNumber = outPatientNumber;
             this.JZID = JZID;
-            this.GHXXID = GHXXID;
-            this.BRXXID = BRXXID;
-            this.KDJID = KDJID;
+
             if (observeRoomInfo.NextRescueRoomInfo == null)
             {
                 if (observeRoomInfo.Destination.IsGotoRescueRoom)
@@ -57,15 +54,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Create
 
         public Guid ObserveRoomInfoId { get; set; }
 
-        public string OutPatientNumber { get; set; }
-
         public Guid JZID { get; set; }
-
-        public Guid GHXXID { get; set; }
-
-        public Guid BRXXID { get; set; }
-
-        public Guid KDJID { get; set; }
 
         public bool IsUsable { get; set; }
 

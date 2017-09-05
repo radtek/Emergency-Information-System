@@ -31,7 +31,7 @@
                     @Html.DisplayFor(model => item.ReceiveTime)
                 </td>
                 <td class="text-center">
-                    @Html.ActionLink("选择", "Create3", new { item.OutPatientNumber, KDJID = item.ORIGIN_KDJID, BRXXID = item.ORIGIN_BRXXID, GHXXID = item.ORIGIN_GHXXID, JZID = item.ORIGIN_JZID }, new { @class = "label label-default btn-show-modal" })
+                    @Html.ActionLink("选择", "Create3", new { JZID = item.ORIGIN_JZID }, new { @class = "label label-default btn-show-modal" })
                 </td>
             </tr>
         }

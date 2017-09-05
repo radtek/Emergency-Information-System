@@ -28,7 +28,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Create
 
             var listJZJL = dbTrasen.MZYS_JZJL.Where(c => c.GHXXID == GHXX.GHXXID).OrderByDescending(c => c.JSSJ).ThenBy(c => c.JZID).ToList();
 
-            this.ListJzjl = listJZJL.Select(c => new ItemJzjl(outPatientNumber, KDJID, c)).ToList();
+            this.ListJzjl = listJZJL.Select(c => new ItemJzjl(c)).ToList();
         }
 
 

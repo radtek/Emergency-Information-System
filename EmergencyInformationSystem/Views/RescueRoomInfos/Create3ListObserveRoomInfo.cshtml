@@ -41,7 +41,7 @@
                     <td class="text-center">
                         @if (item.IsUsable)
                         {
-                            @Html.ActionLink("关联", "Create4", new { item.OutPatientNumber, item.JZID, item.GHXXID, item.BRXXID, item.KDJID, previousObserveRoomInfoId = item.ObserveRoomInfoId }, new { @class = "label label-default btn-show-modal" })
+                            @Html.ActionLink("关联", "Create4", new { item.JZID, previousObserveRoomInfoId = item.ObserveRoomInfoId }, new { @class = "label label-default btn-show-modal" })
                         }
                         else
                         {
