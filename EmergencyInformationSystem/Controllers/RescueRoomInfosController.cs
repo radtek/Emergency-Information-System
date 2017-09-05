@@ -148,7 +148,7 @@ namespace EmergencyInformationSystem.Controllers
             db.SaveChanges();
 
             return RedirectToAction("Edit", new { id = target.RescueRoomInfoId });
-        }       
+        }
 
         /// <summary>
         /// 编辑。
