@@ -41,6 +41,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Create
 
             var dbTrasen = new TrasenLib.TrasenDbContext("TrasenConnection");
 
+            //1.检测卡号存在。
             if (!dbTrasen.YY_KDJB.Any(c => c.KH == this.OutPatientNumber))
                 result.Add(new ValidationResult("卡号不存在", new string[] { "OutPatientNumber" }));
 
