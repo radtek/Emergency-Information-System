@@ -419,6 +419,8 @@
     <Compile Include="Models\ViewModels\RescueRoomInfos\Create\ItemJzjl.cs" />
     <Compile Include="Models\ViewModels\RescueRoomInfos\Create\ItemObserveRoomInfo.cs" />
     <Compile Include="Models\ViewModels\RescueRoomInfos\Details\Details.cs" />
+    <Compile Include="Models\ViewModels\RescueRoomInfos\Edit\Edit.cs" />
+    <Compile Include="Models\ViewModels\RescueRoomInfos\Edit\SelectionWorker.cs" />
     <Compile Include="Models\ViewModels\RescueRoomInfos\Header\Header.cs" />
     <Compile Include="Models\ViewModels\RescueRoomInfos\Index\Index.cs" />
     <Compile Include="Models\ViewModels\RescueRoomInfos\Index\Item.cs" />
