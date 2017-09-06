@@ -10,14 +10,15 @@ using EmergencyInformationSystem.Models.Domains.Entities;
 namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Create
 {
     /// <summary>
-    /// Class ItemObserveRoomInfo.
+    /// 留观室记录项。
     /// </summary>
     public class ItemObserveRoomInfo
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ItemObserveRoomInfo"/> class.
+        /// 初始化。
         /// </summary>
-        /// <param name="observeRoomInfo">The observe room information.</param>
+        /// <param name="observeRoomInfo">源留观室记录。</param>
+        /// <param name="JZID">接诊ID。</param>
         public ItemObserveRoomInfo(ObserveRoomInfo observeRoomInfo, Guid JZID)
         {
             this.ObserveRoomInfoId = observeRoomInfo.ObserveRoomInfoId;

@@ -15,7 +15,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Create
     public class Create4
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Create4"/> class.
+        /// 初始化。
         /// </summary>
         public Create4(Guid JZID, int? previousRescueRoomInfoId)
         {
@@ -45,6 +45,9 @@ namespace EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Create
             this.GHXXID = GHXX.GHXXID;
         }
 
+        /// <summary>
+        /// 初始化。
+        /// </summary>
         public Create4()
         {
 

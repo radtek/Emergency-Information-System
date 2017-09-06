@@ -5,8 +5,6 @@ using System.Web;
 
 using System.ComponentModel.DataAnnotations;
 
-using EmergencyInformationSystem.Models.Domains.Entities;
-
 namespace EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Details
 {
     /// <summary>
@@ -18,7 +16,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Details
         /// 初始化。
         /// </summary>
         /// <param name="target">原留观室病例。</param>
-        public Details(ObserveRoomInfo target)
+        public Details(Models.Domains.Entities.ObserveRoomInfo target)
         {
             this.ObserveRoomInfoId = target.ObserveRoomInfoId;
 
@@ -35,6 +33,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Details
 
             this.OutDepartmentTime = target.OutDepartmentTime;
             this.During = target.During;
+            this.DuringDetained = target.DuringDetained;
             this.DestinationNameFull = target.DestinationNameFull;
             this.HandleNurse = target.HandleNurse;
             this.DiagnosisName = target.DiagnosisName;
@@ -50,7 +49,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Details
 
 
 
-      
+
         [Display(Name = "入室时间")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}")]
         public DateTime InDepartmentTime { get; set; }
@@ -73,7 +72,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Details
 
         [Display(Name = "预约首选科室")]
         public string DestinationFirstName { get; set; }
-     
+
         [Display(Name = "预约首选时间")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}")]
         public DateTime? DestinationFirstTime { get; set; }
@@ -94,6 +93,9 @@ namespace EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Details
 
         [Display(Name = "停留时长")]
         public TimeSpan? During { get; set; }
+
+        [Display(Name = "连续滞留时长")]
+        public TimeSpan DuringDetained { get; set; }
 
         [Display(Name = "去向")]
         public string DestinationNameFull { get; set; }

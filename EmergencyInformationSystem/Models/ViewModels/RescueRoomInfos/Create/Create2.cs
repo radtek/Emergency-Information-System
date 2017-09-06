@@ -5,8 +5,6 @@ using System.Web;
 
 using TrasenLib;
 
-using EmergencyInformationSystem.Models.Domains.Entities;
-
 namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Create
 {
     /// <summary>

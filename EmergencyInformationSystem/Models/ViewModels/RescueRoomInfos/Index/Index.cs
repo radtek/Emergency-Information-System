@@ -13,8 +13,9 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Index
     public class Index
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Index"/> class.
+        /// 初始化。
         /// </summary>
+        /// <param name="route">导航对象。</param>
         public Index(Route route)
         {
             var db = new EiSDbContext();

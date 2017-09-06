@@ -5,8 +5,6 @@ using System.Web;
 
 using TrasenLib;
 
-using EmergencyInformationSystem.Models.Domains.Entities;
-
 namespace EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Create
 {
     /// <summary>
@@ -15,7 +13,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Create
     public class Create2
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Create2"/> class.
+        /// 初始化。
         /// </summary>
         /// <param name="outPatientNumber">卡号。</param>
         public Create2(string outPatientNumber)

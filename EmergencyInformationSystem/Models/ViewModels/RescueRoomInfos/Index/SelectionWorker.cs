@@ -7,6 +7,10 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Index
 {
     public class SelectionWorker
     {
+        /// <summary>
+        /// 初始化。
+        /// </summary>
+        /// <param name="route">导航对象。</param>
         public SelectionWorker(Route route)
         {
             var db = new Models.Domains.Entities.EiSDbContext();

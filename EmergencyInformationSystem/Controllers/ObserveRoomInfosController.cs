@@ -54,18 +54,18 @@ namespace EmergencyInformationSystem.Controllers
         /// <summary>
         /// 新增1 执行。
         /// </summary>
-        /// <param name="create">提交对象。</param>
+        /// <param name="targetV">提交对象。</param>
         /// <remarks>跳转到Create2。</remarks>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind()]Models.ViewModels.ObserveRoomInfos.Create.Create create)
+        public ActionResult Create([Bind()]Models.ViewModels.ObserveRoomInfos.Create.Create targetV)
         {
             if (ModelState.IsValid)
             {
-                return RedirectToAction("Create2", new { create.OutPatientNumber });
+                return RedirectToAction("Create2", new { targetV.OutPatientNumber });
             }
 
-            return View(create);
+            return View(targetV);
         }
 
         /// <summary>
@@ -161,7 +161,7 @@ namespace EmergencyInformationSystem.Controllers
         /// <summary>
         /// 编辑 执行。
         /// </summary>
-        /// <param name="observeRoomInfo">提交实例。</param>
+        /// <param name="targetV">提交实例。</param>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind()]Models.ViewModels.ObserveRoomInfos.Edit.Edit targetV)

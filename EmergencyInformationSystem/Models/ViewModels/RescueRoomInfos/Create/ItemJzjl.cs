@@ -15,7 +15,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Create
     public class ItemJzjl
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ItemJzjl"/> class.
+        /// 初始化。
         /// </summary>
         /// <param name="JZJL">门诊医师接诊记录。</param>
         public ItemJzjl(MZYS_JZJL JZJL)

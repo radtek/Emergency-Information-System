@@ -9,8 +9,16 @@ using EmergencyInformationSystem.Models.Domains.Entities;
 
 namespace EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Create
 {
+    /// <summary>
+    /// 抢救室记录项。
+    /// </summary>
     public class ItemRescueRoomInfo
     {
+        /// <summary>
+        /// 初始化。
+        /// </summary>
+        /// <param name="rescueRoomInfo">源抢救室记录。</param>
+        /// <param name="JZID">接诊ID。</param>
         public ItemRescueRoomInfo(RescueRoomInfo rescueRoomInfo, Guid JZID)
         {
             this.RescueRoomInfoId = rescueRoomInfo.RescueRoomInfoId;

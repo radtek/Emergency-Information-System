@@ -5,8 +5,6 @@ using System.Web;
 
 using System.ComponentModel.DataAnnotations;
 
-using EmergencyInformationSystem.Models.Domains.Entities;
-
 namespace EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Index
 {
     /// <summary>
@@ -17,36 +15,36 @@ namespace EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Index
         /// <summary>
         /// 初始化。
         /// </summary>
-        /// <param name="observeRoomInfo">原留观室病例。</param>
-        public Item(ObserveRoomInfo observeRoomInfo)
+        /// <param name="target">原留观室病例。</param>
+        public Item(Models.Domains.Entities.ObserveRoomInfo target)
         {
-            this.ObserveRoomInfoId = observeRoomInfo.ObserveRoomInfoId;
-            this.IsLeave = observeRoomInfo.OutDepartmentTime.HasValue;
+            this.ObserveRoomInfoId = target.ObserveRoomInfoId;
+            this.IsLeave = target.OutDepartmentTime.HasValue;
 
-            this.PatientName = observeRoomInfo.PatientName;
-            this.OutPatientNumber = observeRoomInfo.OutPatientNumber;
-            this.Sex = observeRoomInfo.Sex;
-            this.ReceiveAgeName = observeRoomInfo.ReceiveAgeName;
-            this.DiagnosisNameOrigin = observeRoomInfo.DiagnosisNameOrigin;
-            this.ReceiveTime = observeRoomInfo.ReceiveTime;
-            this.FirstDoctorName = observeRoomInfo.FirstDoctorName;
+            this.PatientName = target.PatientName;
+            this.OutPatientNumber = target.OutPatientNumber;
+            this.Sex = target.Sex;
+            this.ReceiveAgeName = target.ReceiveAgeName;
+            this.DiagnosisNameOrigin = target.DiagnosisNameOrigin;
+            this.ReceiveTime = target.ReceiveTime;
+            this.FirstDoctorName = target.FirstDoctorName;
 
-            this.InDepartmentTime = observeRoomInfo.InDepartmentTime;
-            this.BedNameFull = observeRoomInfo.BedNameFull;
-            this.FirstNurseName = observeRoomInfo.FirstNurseName;
-            this.InObserveRoomWayNameFull = observeRoomInfo.InObserveRoomWayNameFull;
-            this.AdditionalDiagnosis = observeRoomInfo.AdditionalDiagnosis;
+            this.InDepartmentTime = target.InDepartmentTime;
+            this.BedNameFull = target.BedNameFull;
+            this.FirstNurseName = target.FirstNurseName;
+            this.InObserveRoomWayNameFull = target.InObserveRoomWayNameFull;
+            this.AdditionalDiagnosis = target.AdditionalDiagnosis;
 
-            this.DestinationFirstName = observeRoomInfo.DestinationFirstName;
-            this.DestinationFirstTime = observeRoomInfo.DestinationFirstTime;
-            this.DestinationFirstContact = observeRoomInfo.DestinationFirstContact;
-            this.DestinationSecondName = observeRoomInfo.DestinationSecondName;
+            this.DestinationFirstName = target.DestinationFirstName;
+            this.DestinationFirstTime = target.DestinationFirstTime;
+            this.DestinationFirstContact = target.DestinationFirstContact;
+            this.DestinationSecondName = target.DestinationSecondName;
 
-            this.OutDepartmentTime = observeRoomInfo.OutDepartmentTime;
-            this.During = observeRoomInfo.During;
-            this.DestinationNameFull = observeRoomInfo.DestinationNameFull;
-            this.HandleNurse = observeRoomInfo.HandleNurse;
-            this.DiagnosisName = observeRoomInfo.DiagnosisName;
+            this.OutDepartmentTime = target.OutDepartmentTime;
+            this.During = target.During;
+            this.DestinationNameFull = target.DestinationNameFull;
+            this.HandleNurse = target.HandleNurse;
+            this.DiagnosisName = target.DiagnosisName;
         }
 
 
@@ -86,7 +84,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Index
 
 
 
-    
+
         [Display(Name = "入室时间")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}")]
         public DateTime InDepartmentTime { get; set; }
@@ -109,7 +107,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Index
 
         [Display(Name = "预约首选科室")]
         public string DestinationFirstName { get; set; }
-      
+
         [Display(Name = "预约首选时间")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}")]
         public DateTime? DestinationFirstTime { get; set; }

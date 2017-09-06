@@ -15,7 +15,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Create
     public class ItemGhxx
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ItemGhxx"/> class.
+        /// 初始化。
         /// </summary>
         /// <param name="GHXX">挂号信息。</param>
         public ItemGhxx(VI_MZ_GHXX GHXX)
@@ -45,7 +45,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Create
 
 
         /// <summary>
-        /// 急诊记录列表。
+        /// 接诊记录列表。
         /// </summary>
         public List<ItemJzjl> ListJzjl { get; set; }
     }
