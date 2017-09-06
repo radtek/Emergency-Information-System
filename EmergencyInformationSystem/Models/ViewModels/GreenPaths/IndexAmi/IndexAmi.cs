@@ -12,15 +12,17 @@ namespace EmergencyInformationSystem.Models.ViewModels.GreenPaths.IndexAmi
     /// </summary>
     public class IndexAmi
     {
-        public IndexAmi(int page, int perPage)
+        public IndexAmi(Route route)
         {
             var db = new EiSDbContext();
 
             var query = db.RescueRoomInfos.Where(c => c.GreenPathCategory.CodeName == "Ami").SelectMany(c => c.GreenPathAmis);
 
-            var queryCurrentPage = query.OrderByDescending(c => c.RescueRoomInfo.InDepartmentTime).ThenBy(c => c.GreenPathAmiId).Skip((page - 1) * perPage).Take(perPage);
+            route.Count = query.Count();
 
-            this.Route = new Route(page, perPage, query.Count());
+            var queryCurrentPage = query.OrderByDescending(c => c.RescueRoomInfo.InDepartmentTime).ThenBy(c => c.GreenPathAmiId).Skip((route.Page - 1) * route.PerPage).Take(route.PerPage);
+
+            this.Route = route;
 
             this.List = queryCurrentPage.ToList().Select(c => new Item(c)).ToList();
         }

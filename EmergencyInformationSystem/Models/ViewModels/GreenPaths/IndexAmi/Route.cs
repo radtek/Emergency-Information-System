@@ -5,52 +5,15 @@ using System.Web;
 
 namespace EmergencyInformationSystem.Models.ViewModels.GreenPaths.IndexAmi
 {
-    public class Route
+    public class Route : RouteBase
     {
-        public Route(int page, int perPage, int count)
+        public Route(int page, int perPage, int count) : base(page, perPage, count)
         {
-            this.Page = page;
-            this.PerPage = perPage;
-
-            this.Count = count;
         }
 
-
-
-
-
-        /// <summary>
-        /// 页码。
-        /// </summary>
-        public int Page { get; set; }
-
-        /// <summary>
-        /// 每页项目数。
-        /// </summary>
-        public int PerPage { get; set; }
-
-
-
-
-
-        /// <summary>
-        /// 项目总数。
-        /// </summary>
-        public int Count { get; set; }
-
-
-
-
-
-        /// <summary>
-        /// 最大页码。
-        /// </summary>
-        public int MaxPage
+        public Route() : base(0, 0, 0)
         {
-            get
-            {
-                return (int)Math.Ceiling((double)this.Count / this.PerPage);
-            }
+
         }
 
 

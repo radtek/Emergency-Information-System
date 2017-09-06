@@ -32,9 +32,9 @@ namespace EmergencyInformationSystem.Controllers
         /// </summary>
         /// <param name="page">页码。</param>
         /// <param name="perPage">每页项目数。</param>
-        public ActionResult IndexAmi(int page = 1, int perPage = 20)
+        public ActionResult IndexAmi(Route route)
         {
-            var targetV = new IndexAmi(page, perPage);
+            var targetV = new IndexAmi(route);
 
             return View(targetV);
         }

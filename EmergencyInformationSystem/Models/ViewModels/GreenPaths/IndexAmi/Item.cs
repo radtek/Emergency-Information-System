@@ -11,26 +11,26 @@ namespace EmergencyInformationSystem.Models.ViewModels.GreenPaths.IndexAmi
 {
     public class Item
     {
-        public Item(GreenPathAmi origin)
+        public Item(GreenPathAmi target)
         {
-            this.GreenPathAmiId = origin.GreenPathAmiId;
-            this.RescueRoomInfoId = origin.RescueRoomInfoId;
-            this.IsLeave = origin.RescueRoomInfo.OutDepartmentTime.HasValue;
+            this.GreenPathAmiId = target.GreenPathAmiId;
+            this.RescueRoomInfoId = target.RescueRoomInfoId;
+            this.IsLeave = target.RescueRoomInfo.OutDepartmentTime.HasValue;
 
-            this.PatientName = origin.RescueRoomInfo.PatientName;
-            this.OutPatientNumber = origin.RescueRoomInfo.OutPatientNumber;
-            this.InDepartmentTime = origin.RescueRoomInfo.InDepartmentTime;
+            this.PatientName = target.RescueRoomInfo.PatientName;
+            this.OutPatientNumber = target.RescueRoomInfo.OutPatientNumber;
+            this.InDepartmentTime = target.RescueRoomInfo.InDepartmentTime;
 
-            this.OccurrenceTime = origin.OccurrenceTime;
+            this.OccurrenceTime = target.OccurrenceTime;
 
-            this.EcgFirstTime = origin.EcgFirstTime;
-            this.EcgSecondTime = origin.EcgSecondTime;
-            this.Remarks = origin.Remarks;
+            this.EcgFirstTime = target.EcgFirstTime;
+            this.EcgSecondTime = target.EcgSecondTime;
+            this.Remarks = target.Remarks;
 
-            this.FinishPathTime = origin.FinishPathTime;
-            this.OutDepartmentTime = origin.RescueRoomInfo.OutDepartmentTime;
-            this.IsHeldUp = origin.IsHeldUp;
-            this.Problem = origin.Problem;
+            this.FinishPathTime = target.FinishPathTime;
+            this.OutDepartmentTime = target.RescueRoomInfo.OutDepartmentTime;
+            this.IsHeldUp = target.IsHeldUp;
+            this.Problem = target.Problem;
         }
 
 
@@ -47,21 +47,12 @@ namespace EmergencyInformationSystem.Models.ViewModels.GreenPaths.IndexAmi
 
 
 
-        /// <summary>
-        /// 患者姓名。
-        /// </summary>
         [Display(Name = "患者姓名")]
         public string PatientName { get; set; }
 
-        /// <summary>
-        /// 卡号。
-        /// </summary>
         [Display(Name = "卡号")]
         public string OutPatientNumber { get; set; }
 
-        /// <summary>
-        /// 入室时间。
-        /// </summary>        
         [Display(Name = "入室时间")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}")]
         public DateTime InDepartmentTime { get; set; }
@@ -78,23 +69,14 @@ namespace EmergencyInformationSystem.Models.ViewModels.GreenPaths.IndexAmi
 
 
 
-        /// <summary>
-        /// 首次心电图时间。
-        /// </summary>
         [Display(Name = "首次心电图时间")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}")]
         public DateTime? EcgFirstTime { get; set; }
 
-        /// <summary>
-        /// 再次心电图时间。
-        /// </summary>
         [Display(Name = "再次心电图时间")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}")]
         public DateTime? EcgSecondTime { get; set; }
 
-        /// <summary>
-        /// 备注。
-        /// </summary>
         [Display(Name = "备注")]
         public string Remarks { get; set; }
 
@@ -102,29 +84,18 @@ namespace EmergencyInformationSystem.Models.ViewModels.GreenPaths.IndexAmi
 
 
 
-        /// <summary>
-        /// 完成通道时间。
-        /// </summary>
         [Display(Name = "完成通道时间")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}")]
         public DateTime? FinishPathTime { get; set; }
 
-        /// <summary>
-        /// 离室时间。
-        /// </summary>
         [Display(Name = "离室时间")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}")]
 
         public DateTime? OutDepartmentTime { get; set; }
-        /// <summary>
-        /// 是否滞留。
-        /// </summary>
+
         [Display(Name = "滞留")]
         public bool IsHeldUp { get; set; }
 
-        /// <summary>
-        /// 存在问题。
-        /// </summary>
         [Display(Name = "存在问题")]
         public string Problem { get; set; }
     }
