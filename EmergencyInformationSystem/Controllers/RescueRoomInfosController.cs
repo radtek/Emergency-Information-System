@@ -4,11 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-using EmergencyInformationSystem.Models.Domains.Entities;
-using EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Details;
-using EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Create;
-using EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Header;
-
 namespace EmergencyInformationSystem.Controllers
 {
     /// <summary>
@@ -40,13 +35,13 @@ namespace EmergencyInformationSystem.Controllers
         /// <param name="id">抢救室病例ID。</param>
         public ActionResult Details(int id)
         {
-            var db = new EiSDbContext();
+            var db = new Models.Domains.Entities.EiSDbContext();
 
             var target = db.RescueRoomInfos.Find(id);
             if (target == null)
                 return HttpNotFound();
 
-            var targetV = new Details(target);
+            var targetV = new Models.ViewModels.RescueRoomInfos.Details.Details(target);
 
             return View(targetV);
         }
@@ -67,7 +62,7 @@ namespace EmergencyInformationSystem.Controllers
         /// <remarks>跳转到Create2。</remarks>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind()]Create create)
+        public ActionResult Create([Bind()]Models.ViewModels.RescueRoomInfos.Create.Create create)
         {
             if (ModelState.IsValid)
             {
@@ -84,7 +79,7 @@ namespace EmergencyInformationSystem.Controllers
         /// <remarks>定位接诊记录。</remarks>
         public ActionResult Create2(string outPatientNumber)
         {
-            var targetV = new Create2(outPatientNumber);
+            var targetV = new Models.ViewModels.RescueRoomInfos.Create.Create2(outPatientNumber);
 
             return View(targetV);
         }
@@ -99,14 +94,14 @@ namespace EmergencyInformationSystem.Controllers
         /// <param name="KDJID">卡登记ID。</param>
         public ActionResult Create3(Guid JZID)
         {
-            var db = new EiSDbContext();
+            var db = new Models.Domains.Entities.EiSDbContext();
 
             //查找是否已存在相同JZID的记录。若存在，则跳转到Details。
             var targetDump = db.RescueRoomInfos.Where(c => c.JZID == JZID).FirstOrDefault();
             if (targetDump != null)
                 return RedirectToAction("Details", new { id = targetDump.RescueRoomInfoId });
 
-            var targetV = new Create3(JZID);
+            var targetV = new Models.ViewModels.RescueRoomInfos.Create.Create3(JZID);
 
             //无留观室记录时，跳转到下一步。
             if (targetV.ListObserveRoomInfos.Count() != 0)
@@ -127,14 +122,14 @@ namespace EmergencyInformationSystem.Controllers
         /// <returns>表单。</returns>
         public ActionResult Create4(Guid JZID, Guid? previousObserveRoomInfoId)
         {
-            var db = new EiSDbContext();
+            var db = new Models.Domains.Entities.EiSDbContext();
 
             //查找是否已存在相同JZID的记录。若存在，则跳转到Details。
             var targetDump = db.RescueRoomInfos.Where(c => c.JZID == JZID).FirstOrDefault();
             if (targetDump != null)
                 return RedirectToAction("Details", new { id = targetDump.RescueRoomInfoId });
 
-            var targetV = new Create4(JZID, previousObserveRoomInfoId);
+            var targetV = new Models.ViewModels.RescueRoomInfos.Create.Create4(JZID, previousObserveRoomInfoId);
 
             var target = targetV.GetReturn();
 
@@ -156,7 +151,7 @@ namespace EmergencyInformationSystem.Controllers
         /// <param name="id">抢救室病例ID。</param>
         public ActionResult Edit(int id)
         {
-            var db = new EiSDbContext();
+            var db = new Models.Domains.Entities.EiSDbContext();
 
             var target = db.RescueRoomInfos.Find(id);
             if (target == null)
@@ -188,7 +183,7 @@ namespace EmergencyInformationSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                var db = new EiSDbContext();
+                var db = new Models.Domains.Entities.EiSDbContext();
 
                 var target = db.RescueRoomInfos.Find(targetV.RescueRoomInfoId);
                 if (target == null)
@@ -227,13 +222,13 @@ namespace EmergencyInformationSystem.Controllers
         /// <param name="id">抢救室病例ID。</param>
         public ActionResult Header(int id)
         {
-            var db = new EiSDbContext();
+            var db = new Models.Domains.Entities.EiSDbContext();
 
             var target = db.RescueRoomInfos.Find(id);
             if (target == null)
                 return HttpNotFound();
 
-            var targetV = new Header(target);
+            var targetV = new Models.ViewModels.RescueRoomInfos.Header.Header(target);
 
             return PartialView(targetV);
         }
