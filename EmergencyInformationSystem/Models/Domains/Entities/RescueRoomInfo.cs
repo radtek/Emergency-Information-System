@@ -201,7 +201,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
 
         /// <summary>
         /// 预约首选科室预约时间。
-        /// </summary>        
+        /// </summary>
         [Display(Name = "预约首选时间")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}")]
         public virtual DateTime? DestinationFirstTime { get; set; }
