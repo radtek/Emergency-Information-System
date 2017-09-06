@@ -9,32 +9,24 @@ namespace EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Create
 {
     public class Create3
     {
-        public Create3(string outPatientNumber, Guid JZID, Guid GHXXID, Guid BRXXID, Guid KDJID)
+        public Create3(Guid JZID)
         {
             var db = new EiSDbContext();
+            var dbTrasen = new TrasenLib.TrasenDbContext("TrasenConnection");
 
-            this.OutPatientNumber = outPatientNumber;
+            var MZYS_JZJL = dbTrasen.MZYS_JZJL.Where(c => c.JZID == JZID).FirstOrDefault();
+            var YY_KDJB = dbTrasen.YY_KDJB.Where(c => c.BRXXID == MZYS_JZJL.BRXXID).FirstOrDefault();
+
             this.JZID = JZID;
-            this.GHXXID = GHXXID;
-            this.BRXXID = BRXXID;
-            this.KDJID = KDJID;
 
-            this.ListRescueRoomInfos = db.RescueRoomInfos.Where(c => c.OutPatientNumber == outPatientNumber && c.OutDepartmentTime.HasValue && c.OutDepartmentTime <= DateTime.Now).OrderByDescending(c => c.OutDepartmentTime).Take(1).ToList().Select(c => new ItemRescueRoomInfo(c, outPatientNumber, JZID, GHXXID, BRXXID, KDJID)).ToList();
+            this.ListRescueRoomInfos = db.RescueRoomInfos.Where(c => c.OutPatientNumber == YY_KDJB.KH && c.OutDepartmentTime.HasValue && c.OutDepartmentTime <= DateTime.Now).OrderByDescending(c => c.OutDepartmentTime).Take(1).ToList().Select(c => new ItemRescueRoomInfo(c, JZID)).ToList();
         }
 
 
 
 
 
-        public string OutPatientNumber { get; set; }
-
         public Guid JZID { get; set; }
-
-        public Guid GHXXID { get; set; }
-
-        public Guid BRXXID { get; set; }
-
-        public Guid KDJID { get; set; }
 
 
 

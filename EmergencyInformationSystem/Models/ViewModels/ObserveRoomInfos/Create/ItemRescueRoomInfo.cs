@@ -11,14 +11,11 @@ namespace EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Create
 {
     public class ItemRescueRoomInfo
     {
-        public ItemRescueRoomInfo(RescueRoomInfo rescueRoomInfo,string outPatientNumber, Guid JZID, Guid GHXXID, Guid BRXXID, Guid KDJID)
+        public ItemRescueRoomInfo(RescueRoomInfo rescueRoomInfo, Guid JZID)
         {
             this.RescueRoomInfoId = rescueRoomInfo.RescueRoomInfoId;
-            this.OutPatientNumber = outPatientNumber;
             this.JZID = JZID;
-            this.GHXXID = GHXXID;
-            this.BRXXID = BRXXID;
-            this.KDJID = KDJID;
+
             if (rescueRoomInfo.NextObserveRoomInfo == null)
             {
                 if (rescueRoomInfo.Destination.IsGotoObserveRoom)
@@ -50,15 +47,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Create
 
         public int RescueRoomInfoId { get; set; }
 
-        public string OutPatientNumber { get; set; }
-
         public Guid JZID { get; set; }
-
-        public Guid GHXXID { get; set; }
-
-        public Guid BRXXID { get; set; }
-
-        public Guid KDJID { get; set; }
 
         public bool IsUsable { get; set; }
 

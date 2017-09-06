@@ -1,4 +1,4 @@
-﻿@model EmergencyInformationSystem.Models.Domains.Entities.ObserveRoomInfo
+﻿@model EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Edit.Edit
 
 @{
     ViewBag.Title = "留观室病例信息表 - 编辑";
@@ -21,7 +21,6 @@
     @Html.ValidationSummary(false, "", new { @class = "text-danger alert-danger" })
 
     @Html.HiddenFor(model => model.ObserveRoomInfoId)
-    @Html.HiddenFor(model => model.OutPatientNumber)
     @Html.HiddenFor(model => model.TimeStamp)
 
     <div class="container">
