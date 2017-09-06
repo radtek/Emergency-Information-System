@@ -36,8 +36,6 @@ namespace EmergencyInformationSystem.Controllers
         /// <summary>
         /// 一览。
         /// </summary>
-        /// <param name="page">页码。</param>
-        /// <param name="perPage">每页项目数。</param>
         public ActionResult IndexAmi(Route route)
         {
             var targetV = new IndexAmi(route);
