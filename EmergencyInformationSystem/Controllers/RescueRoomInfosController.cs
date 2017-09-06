@@ -18,8 +18,8 @@ namespace EmergencyInformationSystem.Controllers
         public ActionResult Index([Bind()]Models.ViewModels.RescueRoomInfos.Index.Route route)
         {
             var targetV = new Models.ViewModels.RescueRoomInfos.Index.Index(route);
-
             var targetW = new Models.ViewModels.RescueRoomInfos.Index.SelectionWorker(route);
+
             ViewBag.GreenPathCategoryId = targetW.GreenPathCategories;
             ViewBag.InRescueRoomWayId = targetW.InRescueRoomWays;
             ViewBag.DestinationId = targetW.Destinations;
@@ -87,11 +87,7 @@ namespace EmergencyInformationSystem.Controllers
         /// <summary>
         /// 新增3。
         /// </summary>
-        /// <param name="outPatientNumber">卡号。</param>
         /// <param name="JZID">门诊医师接诊记录ID。</param>
-        /// <param name="GHXXID">挂号信息ID。</param>
-        /// <param name="BRXXID">病人信息ID。</param>
-        /// <param name="KDJID">卡登记ID。</param>
         public ActionResult Create3(Guid JZID)
         {
             var db = new Models.Domains.Entities.EiSDbContext();
@@ -113,11 +109,7 @@ namespace EmergencyInformationSystem.Controllers
         /// <summary>
         /// 新增4。
         /// </summary>
-        /// <param name="outPatientNumber">卡号。</param>
         /// <param name="JZID">门诊医师接诊记录ID。</param>
-        /// <param name="GHXXID">挂号信息ID。</param>
-        /// <param name="BRXXID">病人信息ID。</param>
-        /// <param name="KDJID">卡登记ID。</param>
         /// <param name="previousObserveRoomInfoId">关联的留观室病例ID。</param>
         /// <returns>表单。</returns>
         public ActionResult Create4(Guid JZID, Guid? previousObserveRoomInfoId)
@@ -190,6 +182,7 @@ namespace EmergencyInformationSystem.Controllers
                     return HttpNotFound();
 
                 targetV.GetReturn(target);
+
                 Models.BusinessModels.TrasenInformationConvertor.FromEmployeeNumberToName(target);
 
                 db.SaveChanges();

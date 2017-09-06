@@ -15,7 +15,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Header
     public class Header
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Header"/> class.
+        /// 初始化。
         /// </summary>
         /// <param name="rescueRoomInfo">抢救室病例。</param>
         public Header(RescueRoomInfo rescueRoomInfo)
