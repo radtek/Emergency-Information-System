@@ -17,13 +17,13 @@ namespace EmergencyInformationSystem.Controllers
     public class ObserveRoomInfosController : Controller
     {
         /// <summary>
-        /// 留观室病例。
+        /// 一览。
         /// </summary>
         public ActionResult Index([Bind()]Models.ViewModels.ObserveRoomInfos.Index.Route route)
         {
             var targetV = new Models.ViewModels.ObserveRoomInfos.Index.Index(route);
-
             var targetW = new Models.ViewModels.ObserveRoomInfos.Index.SelectionWorker(route);
+
             ViewBag.IsLeave = targetW.IsLeaves;
 
             return View(targetV);
@@ -35,13 +35,13 @@ namespace EmergencyInformationSystem.Controllers
         /// <param name="id">留观室病例ID。</param>
         public ActionResult Details(Guid id)
         {
-            var db = new EiSDbContext();
+            var db = new Models.Domains.Entities.EiSDbContext();
 
             var target = db.ObserveRoomInfos.Find(id);
             if (target == null)
                 return HttpNotFound();
 
-            var targetV = new Details(target);
+            var targetV = new Models.ViewModels.ObserveRoomInfos.Details.Details(target);
 
             return View(targetV);
         }
