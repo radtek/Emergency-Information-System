@@ -13,8 +13,6 @@ namespace EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Index
         /// <param name="route">导航对象。</param>
         public SelectionWorker(Route route)
         {
-            var db = new Models.Domains.Entities.EiSDbContext();
-
             this.IsLeaves = new System.Web.Mvc.SelectList(
                 new List<System.Web.Mvc.SelectListItem>
                 {
