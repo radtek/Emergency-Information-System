@@ -1,4 +1,4 @@
-﻿@model EmergencyInformationSystem.Models.Domains.Entities.GreenPathAmi
+﻿@model EmergencyInformationSystem.Models.ViewModels.GreenPaths.DetailsAmiPrint.DetailsAmiPrint
 
 @{
     ViewBag.Title = "绿色通道信息表-急性心肌梗死";
@@ -27,41 +27,41 @@
         </tr>
         <tr>
             <td colspan="3">
-                @Html.DisplayNameFor(model => model.RescueRoomInfo.PatientName)
+                @Html.DisplayNameFor(model => model.PatientName)
                 :
-                @Html.DisplayFor(model => model.RescueRoomInfo.PatientName)
+                @Html.DisplayFor(model => model.PatientName)
             </td>
             <td colspan="2">
-                @Html.DisplayNameFor(model => model.RescueRoomInfo.OutPatientNumber)
+                @Html.DisplayNameFor(model => model.OutPatientNumber)
                 :
-                @Html.DisplayFor(model => model.RescueRoomInfo.OutPatientNumber)
+                @Html.DisplayFor(model => model.OutPatientNumber)
             </td>
             <td colspan="2">
-                @Html.DisplayNameFor(model => model.RescueRoomInfo.Sex)
+                @Html.DisplayNameFor(model => model.Sex)
                 :
-                @Html.DisplayFor(model => model.RescueRoomInfo.Sex)
+                @Html.DisplayFor(model => model.Sex)
             </td>
             <td colspan="2">
-                @Html.DisplayNameFor(model => model.RescueRoomInfo.ReceiveAgeName)
+                @Html.DisplayNameFor(model => model.ReceiveAgeName)
                 :
-                @Html.DisplayFor(model => model.RescueRoomInfo.ReceiveAgeName)
+                @Html.DisplayFor(model => model.ReceiveAgeName)
             </td>
             <td colspan="3">
-                @Html.DisplayNameFor(model => model.RescueRoomInfo.ReceiveTime)
+                @Html.DisplayNameFor(model => model.ReceiveTime)
                 :
-                @Html.DisplayFor(model => model.RescueRoomInfo.ReceiveTime)
+                @Html.DisplayFor(model => model.ReceiveTime)
             </td>
         </tr>
         <tr>
             <td colspan="3">
-                @Html.DisplayNameFor(model => model.RescueRoomInfo.FirstDoctorName)
+                @Html.DisplayNameFor(model => model.FirstDoctorName)
                 :
-                @Html.DisplayFor(model => model.RescueRoomInfo.FirstDoctorName)
+                @Html.DisplayFor(model => model.FirstDoctorName)
             </td>
             <td colspan="9">
-                @Html.DisplayNameFor(model => model.RescueRoomInfo.DiagnosisNameOrigin)
+                @Html.DisplayNameFor(model => model.DiagnosisNameOrigin)
                 :
-                @Html.DisplayFor(model => model.RescueRoomInfo.DiagnosisNameOrigin)
+                @Html.DisplayFor(model => model.DiagnosisNameOrigin)
             </td>
         </tr>
 
@@ -79,19 +79,19 @@
                 @Html.DisplayFor(model => model.OccurrenceTime)
             </td>
             <td colspan="3">
-                @Html.DisplayNameFor(model => model.RescueRoomInfo.InDepartmentTime)
+                @Html.DisplayNameFor(model => model.InDepartmentTime)
                 :
-                @Html.DisplayFor(model => model.RescueRoomInfo.InDepartmentTime)
+                @Html.DisplayFor(model => model.InDepartmentTime)
             </td>
             <td colspan="2">
-                @Html.DisplayNameFor(model => model.RescueRoomInfo.BedNameFull)
+                @Html.DisplayNameFor(model => model.BedNameFull)
                 :
-                @Html.DisplayFor(model => model.RescueRoomInfo.BedNameFull)
+                @Html.DisplayFor(model => model.BedNameFull)
             </td>
             <td colspan="4">
-                @Html.DisplayNameFor(model => model.RescueRoomInfo.InRescueRoomWayNameFull)
+                @Html.DisplayNameFor(model => model.InRescueRoomWayNameFull)
                 :
-                @Html.DisplayFor(model => model.RescueRoomInfo.InRescueRoomWayNameFull)
+                @Html.DisplayFor(model => model.InRescueRoomWayNameFull)
             </td>
         </tr>
         <tr>
@@ -106,9 +106,9 @@
                 @Html.DisplayFor(model => model.DuringInDepartmentToReceive)
             </td>
             <td colspan="3">
-                @Html.DisplayNameFor(model => model.RescueRoomInfo.FirstNurseName)
+                @Html.DisplayNameFor(model => model.FirstNurseName)
                 :
-                @Html.DisplayFor(model => model.RescueRoomInfo.FirstNurseName)
+                @Html.DisplayFor(model => model.FirstNurseName)
             </td>
             <td colspan="3"></td>
         </tr>
@@ -122,14 +122,14 @@
         </tr>
         <tr>
             <td colspan="3">
-                @Html.DisplayNameFor(model => model.RescueRoomInfo.CriticalLevel.CriticalLevelName)
+                @Html.DisplayNameFor(model => model.CriticalLevelName)
                 :
-                @Html.DisplayFor(model => model.RescueRoomInfo.CriticalLevel.CriticalLevelName)
+                @Html.DisplayFor(model => model.CriticalLevelName)
             </td>
             <td colspan="3">
-                @Html.DisplayNameFor(model => model.RescueRoomInfo.RescueResultNameFull)
+                @Html.DisplayNameFor(model => model.RescueResultNameFull)
                 :
-                @Html.DisplayFor(model => model.RescueRoomInfo.RescueResultNameFull)
+                @Html.DisplayFor(model => model.RescueResultNameFull)
             </td>
             <td colspan="6"></td>
         </tr>
@@ -157,228 +157,20 @@
         </tr>
 
         @*检查信息*@
-
-        <tr>
-            <td colspan="12">
-                <div class="print-table-header">检查信息</div>
-            </td>
-        </tr>
-        <tr class="text-center">
-            <td colspan="2">
-                @Html.DisplayNameFor(model => model.RescueRoomInfo.RescueRoomImageRecords.FirstOrDefault().BookTime)
-            </td>
-            <td colspan="2">
-                @Html.DisplayNameFor(model => model.RescueRoomInfo.RescueRoomImageRecords.FirstOrDefault().CheckTime)
-            </td>
-            <td colspan="2">
-                @Html.DisplayNameFor(model => model.RescueRoomInfo.RescueRoomImageRecords.FirstOrDefault().ReportTime)
-            </td>
-            <td colspan="2">
-                @Html.DisplayNameFor(model => model.RescueRoomInfo.RescueRoomImageRecords.FirstOrDefault().Part)
-            </td>
-            <td colspan="2">
-                @Html.DisplayNameFor(model => model.RescueRoomInfo.RescueRoomImageRecords.FirstOrDefault().Category)
-            </td>
-            <td colspan="2">
-                @Html.DisplayNameFor(model => model.RescueRoomInfo.RescueRoomImageRecords.FirstOrDefault().ImageCategory.ImageCategoryName)
-            </td>
-        </tr>
-        @if (Model.RescueRoomInfo.RescueRoomImageRecords.Count == 0)
-        {
-            <tr>
-                <td colspan="12">
-                    无
-                </td>
-            </tr>
-        }
-        else
-        {
-            foreach (var item in Model.RescueRoomInfo.RescueRoomImageRecords.OrderBy(c => c.BookTime))
-            {
-                <tr class="text-center">
-                    <td colspan="2">
-                        @Html.DisplayFor(c => item.BookTime)
-                    </td>
-                    <td colspan="2">
-                        @Html.DisplayFor(c => item.CheckTime)
-                    </td>
-                    <td colspan="2">
-                        @Html.DisplayFor(c => item.ReportTime)
-                    </td>
-                    <td colspan="2">
-                        @Html.DisplayFor(c => item.Part)
-                    </td>
-                    <td colspan="2">
-                        @Html.DisplayFor(c => item.Category)
-                    </td>
-                    <td colspan="2">
-                        @Html.DisplayFor(c => item.ImageCategory.ImageCategoryName)
-                    </td>
-                </tr>
-            }
-        }
+        
+        @Html.Partial("DetailsAmiPrint_ListRescueRoomImageRecord", Model.ListRescueRoomImageRecord)
 
         @*会诊信息*@
 
-        <tr>
-            <td colspan="12">
-                <div class="print-table-header">会诊信息</div>
-            </td>
-        </tr>
-        <tr class="text-center">
-            <td colspan="2">
-                @Html.DisplayNameFor(model => model.RescueRoomInfo.RescueRoomConsultations.FirstOrDefault().ConsultationDepartmentName)
-            </td>
-            <td colspan="3">
-                @Html.DisplayNameFor(model => model.RescueRoomInfo.RescueRoomConsultations.FirstOrDefault().RequestTime)
-            </td>
-            <td colspan="3">
-                @Html.DisplayNameFor(model => model.RescueRoomInfo.RescueRoomConsultations.FirstOrDefault().ArriveTime)
-            </td>
-            <td colspan="2">
-                @Html.DisplayNameFor(model => model.RescueRoomInfo.RescueRoomConsultations.FirstOrDefault().ConsultationDoctorName)
-            </td>
-            <td colspan="2">
-                @Html.DisplayNameFor(model => model.RescueRoomInfo.RescueRoomConsultations.FirstOrDefault().DuringRequestToArrive)
-            </td>
-        </tr>
-        @if (Model.RescueRoomInfo.RescueRoomConsultations.Count == 0)
-        {
-            <tr>
-                <td colspan="12">
-                    无
-                </td>
-            </tr>
-        }
-        else
-        {
-            foreach (var item in Model.RescueRoomInfo.RescueRoomConsultations.OrderBy(c => c.RequestTime))
-            {
-                <tr class="text-center">
-                    <td colspan="2">
-                        @Html.DisplayFor(c => item.ConsultationDepartmentName)
-                    </td>
-                    <td colspan="3">
-                        @Html.DisplayFor(c => item.RequestTime)
-                    </td>
-                    <td colspan="3">
-                        @Html.DisplayFor(c => item.ArriveTime)
-                    </td>
-                    <td colspan="2">
-                        @Html.DisplayFor(c => item.ConsultationDoctorName)
-                    </td>
-                    <td colspan="2">
-                        @Html.DisplayFor(c => item.DuringRequestToArrive)
-                    </td>
-                </tr>
-            }
-        }
+        @Html.Partial("DetailsAmiPrint_ListRescueRoomConsultation", Model.ListRescueRoomConsultation)
 
         @*用药信息*@
 
-        <tr>
-            <td colspan="12">
-                <div class="print-table-header">用药信息</div>
-            </td>
-        </tr>
-        <tr class="text-center">
-            <td colspan="3">
-                @Html.DisplayNameFor(model => model.RescueRoomInfo.RescueRoomDrugRecords.FirstOrDefault().PrescriptionTime)
-            </td>
-            <td colspan="1">
-                @Html.DisplayNameFor(model => model.RescueRoomInfo.RescueRoomDrugRecords.FirstOrDefault().ProductCode)
-            </td>
-            <td colspan="4">
-                @Html.DisplayNameFor(model => model.RescueRoomInfo.RescueRoomDrugRecords.FirstOrDefault().ProductName)
-            </td>
-            <td colspan="2">
-                @Html.DisplayNameFor(model => model.RescueRoomInfo.RescueRoomDrugRecords.FirstOrDefault().DosageQuantityFull)
-            </td>
-            <td colspan="2">
-                @Html.DisplayNameFor(model => model.RescueRoomInfo.RescueRoomDrugRecords.FirstOrDefault().Usage)
-            </td>
-        </tr>
-        @if (Model.RescueRoomInfo.RescueRoomDrugRecords.Count == 0)
-        {
-            <tr>
-                <td colspan="12">
-                    无
-                </td>
-            </tr>
-        }
-        else
-        {
-            foreach (var item in Model.RescueRoomInfo.RescueRoomDrugRecords.OrderBy(c => c.PrescriptionTime))
-            {
-                <tr class="text-center">
-                    <td colspan="3">
-                        @Html.DisplayFor(c => item.PrescriptionTime)
-                    </td>
-                    <td colspan="1">
-                        @Html.DisplayFor(c => item.ProductCode)
-                    </td>
-                    <td colspan="4">
-                        @Html.DisplayFor(c => item.ProductName)
-                    </td>
-                    <td colspan="2">
-                        @Html.DisplayFor(c => item.DosageQuantityFull)
-                    </td>
-                    <td colspan="2">
-                        @Html.DisplayFor(c => item.Usage)
-                    </td>
-                </tr>
-            }
-        }
+        @Html.Partial("DetailsAmiPrint_ListRescueRoomDrugRecord", Model.ListRescueRoomDrugRecord)
 
         @*治疗信息*@
 
-        <tr>
-            <td colspan="12">
-                <div class="print-table-header">治疗信息</div>
-            </td>
-        </tr>
-        <tr class="text-center">
-            <td colspan="3">
-                @Html.DisplayNameFor(model => model.RescueRoomInfo.RescueRoomTreatmentRecords.FirstOrDefault().PrescriptionTime)
-            </td>
-            <td colspan="1">
-                @Html.DisplayNameFor(model => model.RescueRoomInfo.RescueRoomTreatmentRecords.FirstOrDefault().ProductCode)
-            </td>
-            <td colspan="6">
-                @Html.DisplayNameFor(model => model.RescueRoomInfo.RescueRoomTreatmentRecords.FirstOrDefault().ProductName)
-            </td>
-            <td colspan="2">
-                @Html.DisplayNameFor(model => model.RescueRoomInfo.RescueRoomTreatmentRecords.FirstOrDefault().DosageQuantity)
-            </td>
-        </tr>
-        @if (Model.RescueRoomInfo.RescueRoomTreatmentRecords.Count == 0)
-        {
-            <tr>
-                <td colspan="12">
-                    无
-                </td>
-            </tr>
-        }
-        else
-        {
-            foreach (var item in Model.RescueRoomInfo.RescueRoomTreatmentRecords.OrderBy(c => c.PrescriptionTime))
-            {
-                <tr class="text-center">
-                    <td colspan="3">
-                        @Html.DisplayFor(c => item.PrescriptionTime)
-                    </td>
-                    <td colspan="1">
-                        @Html.DisplayFor(c => item.ProductCode)
-                    </td>
-                    <td colspan="6">
-                        @Html.DisplayFor(c => item.ProductName)
-                    </td>
-                    <td colspan="2">
-                        @Html.DisplayFor(c => item.DosageQuantity)
-                    </td>
-                </tr>
-            }
-        }
+        @Html.Partial("DetailsAmiPrint_ListRescueRoomTreatmentRecord", Model.ListRescueRoomTreatmentRecord)
 
         @*离室信息*@
         <tr>
@@ -393,9 +185,9 @@
                 @Html.DisplayFor(model => model.FinishPathTime)
             </td>
             <td colspan="3">
-                @Html.DisplayNameFor(model => model.RescueRoomInfo.OutDepartmentTime)
+                @Html.DisplayNameFor(model => model.OutDepartmentTime)
                 :
-                @Html.DisplayFor(model => model.RescueRoomInfo.OutDepartmentTime)
+                @Html.DisplayFor(model => model.OutDepartmentTime)
             </td>
             <td colspan="3">
                 @Html.DisplayNameFor(model => model.IsHeldUpString)
@@ -418,19 +210,19 @@
                 @Html.DisplayFor(model => model.During)
             </td>
             <td colspan="3">
-                @Html.DisplayNameFor(model => model.RescueRoomInfo.During)
+                @Html.DisplayNameFor(model => model.During)
                 :
-                @Html.DisplayFor(model => model.RescueRoomInfo.During)
+                @Html.DisplayFor(model => model.During)
             </td>
             <td colspan="3">
-                @Html.DisplayNameFor(model => model.RescueRoomInfo.DuringDetained)
+                @Html.DisplayNameFor(model => model.DuringDetained)
                 :
-                @Html.DisplayFor(model => model.RescueRoomInfo.DuringDetained)
+                @Html.DisplayFor(model => model.DuringDetained)
             </td>
             <td colspan="3">
-                @Html.DisplayNameFor(model => model.RescueRoomInfo.DestinationNameFull)
+                @Html.DisplayNameFor(model => model.DestinationNameFull)
                 :
-                @Html.DisplayFor(model => model.RescueRoomInfo.DestinationNameFull)
+                @Html.DisplayFor(model => model.DestinationNameFull)
             </td>
         </tr>
         <tr>

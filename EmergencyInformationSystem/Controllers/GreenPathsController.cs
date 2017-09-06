@@ -55,9 +55,11 @@ namespace EmergencyInformationSystem.Controllers
 
             var target = db.GreenPathAmis.Find(id);
             if (target == null)
-                return null;
+                return HttpNotFound();
 
-            return View(target);
+            var targetV = new Models.ViewModels.GreenPaths.DetailsAmi.DetailsAmi(target);
+
+            return View(targetV);
         }
 
         /// <summary>
@@ -70,9 +72,11 @@ namespace EmergencyInformationSystem.Controllers
 
             var target = db.GreenPathAmis.Find(id);
             if (target == null)
-                return null;
+                return HttpNotFound();
 
-            return View(target);
+            var targetV = new Models.ViewModels.GreenPaths.DetailsAmiPrint.DetailsAmiPrint(target);
+
+            return View(targetV);
         }
 
         /// <summary>

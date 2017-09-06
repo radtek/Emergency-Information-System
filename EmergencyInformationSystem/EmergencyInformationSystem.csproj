@@ -345,6 +345,12 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ViewModels\Api\IndexSubscription\IndexSubscription.cs" />
     <Compile Include="Models\ViewModels\Api\IndexSubscription\Item.cs" />
+    <Compile Include="Models\ViewModels\GreenPaths\DetailsAmiPrint\DetailsAmiPrint.cs" />
+    <Compile Include="Models\ViewModels\GreenPaths\DetailsAmiPrint\ItemRescueRoomConsultation.cs" />
+    <Compile Include="Models\ViewModels\GreenPaths\DetailsAmiPrint\ItemRescueRoomDrugRecord.cs" />
+    <Compile Include="Models\ViewModels\GreenPaths\DetailsAmiPrint\ItemRescueRoomImageRecord.cs" />
+    <Compile Include="Models\ViewModels\GreenPaths\DetailsAmiPrint\ItemRescueRoomTreatmentRecord.cs" />
+    <Compile Include="Models\ViewModels\GreenPaths\DetailsAmi\DetailsAmi.cs" />
     <Compile Include="Models\ViewModels\GreenPaths\IndexAmi\IndexAmi.cs" />
     <Compile Include="Models\ViewModels\GreenPaths\IndexAmi\Item.cs" />
     <Compile Include="Models\ViewModels\GreenPaths\IndexAmi\Route.cs" />
@@ -591,6 +597,10 @@
     <Content Include="Views\Reports\IndexSubscription_List.cshtml" />
     <Content Include="Views\Api\IndexSubscription.cshtml" />
     <Content Include="Views\Api\IndexSubscription_List.cshtml" />
+    <Content Include="Views\GreenPaths\DetailsAmiPrint_ListRescueRoomImageRecord.cshtml" />
+    <Content Include="Views\GreenPaths\DetailsAmiPrint_ListRescueRoomConsultation.cshtml" />
+    <Content Include="Views\GreenPaths\DetailsAmiPrint_ListRescueRoomDrugRecord.cshtml" />
+    <Content Include="Views\GreenPaths\DetailsAmiPrint_ListRescueRoomTreatmentRecord.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
