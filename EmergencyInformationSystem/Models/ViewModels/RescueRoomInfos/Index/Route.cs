@@ -9,7 +9,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Index
 {
     /// <summary>
     /// 导航。
-    /// </summary>    
+    /// </summary>
     public class Route : RouteBase
     {
         /// <summary>

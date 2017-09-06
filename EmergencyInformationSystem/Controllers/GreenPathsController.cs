@@ -15,6 +15,8 @@ namespace EmergencyInformationSystem.Controllers
     /// </summary>
     public class GreenPathsController : Controller
     {
+        #region 主界面
+
         /// <summary>
         /// 绿色通道主界面。
         /// </summary>
@@ -23,9 +25,13 @@ namespace EmergencyInformationSystem.Controllers
             return View();
         }
 
+        #endregion
 
 
 
+
+
+        #region AMI
 
         /// <summary>
         /// 一览。
@@ -179,5 +185,7 @@ namespace EmergencyInformationSystem.Controllers
 
             return View(greenPathAmi);
         }
+
+        #endregion
     }
 }
