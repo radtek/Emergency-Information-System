@@ -4,11 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-using EmergencyInformationSystem.Models.Domains.Entities;
-using EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Details;
-using EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Create;
-using EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Header;
-
 namespace EmergencyInformationSystem.Controllers
 {
     /// <summary>
@@ -19,6 +14,7 @@ namespace EmergencyInformationSystem.Controllers
         /// <summary>
         /// 一览。
         /// </summary>
+        /// <param name="route">导航对象</param>
         public ActionResult Index([Bind()]Models.ViewModels.ObserveRoomInfos.Index.Route route)
         {
             var targetV = new Models.ViewModels.ObserveRoomInfos.Index.Index(route);
@@ -62,7 +58,7 @@ namespace EmergencyInformationSystem.Controllers
         /// <remarks>跳转到Create2。</remarks>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind()]Create create)
+        public ActionResult Create([Bind()]Models.ViewModels.ObserveRoomInfos.Create.Create create)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +75,7 @@ namespace EmergencyInformationSystem.Controllers
         /// <remarks>定位接诊记录。</remarks>
         public ActionResult Create2(string outPatientNumber)
         {
-            var targetV = new Create2(outPatientNumber);
+            var targetV = new Models.ViewModels.ObserveRoomInfos.Create.Create2(outPatientNumber);
 
             return View(targetV);
         }
@@ -90,14 +86,14 @@ namespace EmergencyInformationSystem.Controllers
         /// <param name="JZID">门诊医师接诊记录ID。</param>
         public ActionResult Create3(Guid JZID)
         {
-            var db = new EiSDbContext();
+            var db = new Models.Domains.Entities.EiSDbContext();
 
             //查找是否已存在相同JZID的记录。若存在，则跳转到Details。
             var targetDump = db.ObserveRoomInfos.Where(c => c.JZID == JZID).FirstOrDefault();
             if (targetDump != null)
                 return RedirectToAction("Details", new { id = targetDump.ObserveRoomInfoId });
 
-            var targetV = new Create3(JZID);
+            var targetV = new Models.ViewModels.ObserveRoomInfos.Create.Create3(JZID);
 
             //无抢救室记录时，跳转到下一步。
             if (targetV.ListRescueRoomInfos.Count() != 0)
@@ -111,9 +107,10 @@ namespace EmergencyInformationSystem.Controllers
         /// </summary>
         /// <param name="JZID">门诊医师接诊记录ID。</param>
         /// <param name="previousRescueRoomInfoId">关联的抢救室病例ID。</param>
+        /// <returns>表单。</returns>
         public ActionResult Create4(Guid JZID, int? previousRescueRoomInfoId)
         {
-            var db = new EiSDbContext();
+            var db = new Models.Domains.Entities.EiSDbContext();
 
             //查找是否已存在相同JZID的记录。若存在，则跳转到Details。
             var targetDump = db.ObserveRoomInfos.Where(c => c.JZID == JZID).FirstOrDefault();
@@ -142,7 +139,7 @@ namespace EmergencyInformationSystem.Controllers
         /// <param name="id">留观室病例ID。</param>
         public ActionResult Edit(Guid id)
         {
-            var db = new EiSDbContext();
+            var db = new Models.Domains.Entities.EiSDbContext();
 
             var target = db.ObserveRoomInfos.Find(id);
             if (target == null)
@@ -208,13 +205,13 @@ namespace EmergencyInformationSystem.Controllers
         /// <param name="id">留观室病例ID。</param>
         public ActionResult Header(Guid id)
         {
-            var db = new EiSDbContext();
+            var db = new Models.Domains.Entities.EiSDbContext();
 
             var target = db.ObserveRoomInfos.Find(id);
             if (target == null)
                 return HttpNotFound();
 
-            var targetV = new Header(target);
+            var targetV = new Models.ViewModels.ObserveRoomInfos.Header.Header(target);
 
             return PartialView(targetV);
         }
