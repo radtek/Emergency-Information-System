@@ -67,7 +67,6 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Create
         [Display(Name = "患者姓名")]
         public string PatientName { get; set; }
 
-        [Required]
         [Display(Name = "卡号")]
         public string OutPatientNumber { get; set; }
 
