@@ -16,11 +16,16 @@
 @*标题区*@
 <h2>@ViewBag.Title</h2>
 
+<br />
+
 @*表单区*@
 @using (Html.BeginForm())
 {
     <table>
         <tr>
+            <td>
+                <span>离室时间（0时）</span>
+            </td>
             <td>
                 <input type="date" name="start" value=@Model.Start.ToString("yyyy-MM-dd") class="form-control" />
             </td>
