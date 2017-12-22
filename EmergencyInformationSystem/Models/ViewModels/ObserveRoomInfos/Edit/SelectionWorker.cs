@@ -11,7 +11,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Edit
         {
             var db = new Models.Domains.Entities.EiSDbContext();
 
-            this.Beds = new System.Web.Mvc.SelectList(db.Beds.Where(c => c.IsUseForRescueRoom), "BedId", "BedName", targetV.BedId);
+            this.Beds = new System.Web.Mvc.SelectList(db.Beds.Where(c => c.IsUseForObserveRoom), "BedId", "BedName", targetV.BedId);
             this.InObserveRoomWays = new System.Web.Mvc.SelectList(db.InObserveRoomWays, "InObserveRoomWayId", "InObserveRoomWayName", targetV.InObserveRoomWayId);
             this.Destinations = new System.Web.Mvc.SelectList(db.Destinations.Where(c => c.IsUseForRescueRoom).OrderBy(c => c.Priority2), "DestinationId", "DestinationName", targetV.DestinationId);
             this.DestinationFirsts = new System.Web.Mvc.SelectList(db.Destinations.Where(c => c.IsUseForSubscription).OrderBy(c => c.Priority2), "DestinationId", "DestinationName", targetV.DestinationFirstId);
