@@ -57,7 +57,7 @@
             <div class="form-group col-md-offset-1 row RescueRoomSecondTitleEditBlock">
                 @Html.LabelFor(model => model.BedId, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-4">
-                    @Html.DropDownList("BedId", null, new { @class = "form-control" })
+                    @Html.DropDownList("BedId", null, "", new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.BedId, "", new { @class = "text-danger" })
                 </div>
                 <div class="col-md-2">
@@ -79,7 +79,7 @@
             <div class="form-group col-md-offset-1 row RescueRoomSecondTitleEditBlock">
                 @Html.LabelFor(model => model.InRescueRoomWayId, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownList("InRescueRoomWayId", null, new { @class = "form-control", data_url_action = Url.Action("GetInRescueRoomWay", "ServicesQuery") })
+                    @Html.DropDownList("InRescueRoomWayId", null, "", new { @class = "form-control", data_url_action = Url.Action("GetInRescueRoomWay", "ServicesQuery") })
                     @Html.ValidationMessageFor(model => model.InRescueRoomWayId, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -112,7 +112,7 @@
             <div class="form-group col-md-offset-1 row RescueRoomSecondTitleEditBlock">
                 @Html.LabelFor(model => model.CriticalLevelId, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownList("CriticalLevelId", null, new { @class = "form-control" })
+                    @Html.DropDownList("CriticalLevelId", null, "", new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.CriticalLevelId, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -128,7 +128,7 @@
             <div id="DivRescueResultId" class="form-group col-md-offset-1 row RescueRoomSecondTitleEditBlock">
                 @Html.LabelFor(model => model.RescueResultId, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownList("RescueResultId", null, new { @class = "form-control" })
+                    @Html.DropDownList("RescueResultId", null, "", new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.RescueResultId, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -136,7 +136,7 @@
             <div class="form-group col-md-offset-1 row RescueRoomSecondTitleEditBlock">
                 @Html.LabelFor(model => model.GreenPathCategoryId, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownList("GreenPathCategoryId", null, new { @class = "form-control", data_url_action = Url.Action("GetGreenPathCategory", "ServicesQuery") })
+                    @Html.DropDownList("GreenPathCategoryId", null, "", new { @class = "form-control", data_url_action = Url.Action("GetGreenPathCategory", "ServicesQuery") })
                     @Html.ValidationMessageFor(model => model.GreenPathCategoryId, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -177,7 +177,7 @@
             <div class="form-group col-md-offset-1 row RescueRoomSecondTitleEditBlock">
                 @Html.LabelFor(model => model.DestinationFirstId, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownList("DestinationFirstId", null, new { @class = "form-control", data_url_action = Url.Action("GetDestination", "ServicesQuery") })
+                    @Html.DropDownList("DestinationFirstId", null, "", new { @class = "form-control", data_url_action = Url.Action("GetDestination", "ServicesQuery") })
                     @Html.ValidationMessageFor(model => model.DestinationFirstId, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -207,7 +207,7 @@
             <div id="DivDestinationSecondId" hidden="hidden" class="form-group col-md-offset-1 row RescueRoomSecondTitleEditBlock">
                 @Html.LabelFor(model => model.DestinationSecondId, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownList("DestinationSecondId", null, new { @class = "form-control" })
+                    @Html.DropDownList("DestinationSecondId", null, "", new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.DestinationSecondId, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -224,7 +224,7 @@
             <div class="form-group col-md-offset-1 row RescueRoomSecondTitleEditBlock">
                 @Html.LabelFor(model => model.DestinationId, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownList("DestinationId", null, new { @class = "form-control", data_url_action = Url.Action("GetDestination", "ServicesQuery") })
+                    @Html.DropDownList("DestinationId", null, "", new { @class = "form-control", data_url_action = Url.Action("GetDestination", "ServicesQuery") })
                     @Html.ValidationMessageFor(model => model.DestinationId, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -240,7 +240,7 @@
             <div id="DivTransferReasonId" class="form-group col-md-offset-1 row RescueRoomSecondTitleEditBlock" hidden="hidden">
                 @Html.LabelFor(model => model.TransferReasonId, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownList("TransferReasonId", null, new { @class = "form-control" })
+                    @Html.DropDownList("TransferReasonId", null, "", new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.TransferReasonId, "", new { @class = "text-danger" })
                 </div>
             </div>

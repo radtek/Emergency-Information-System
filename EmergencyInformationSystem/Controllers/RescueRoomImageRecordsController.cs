@@ -17,17 +17,11 @@ namespace EmergencyInformationSystem.Controllers
         /// 一览——部分。
         /// </summary>
         /// <param name="rescueRoomInfoId">归属的抢救室病例ID。</param>
-        public ActionResult IndexPartial(int rescueRoomInfoId)
+        public ActionResult IndexPartial(Guid rescueRoomInfoId)
         {
-            var db = new EiSDbContext();
+            var targetV = new Models.ViewModels.RescueRoomImageRecords.IndexPartial.IndexPartial(rescueRoomInfoId);
 
-            var target = db.RescueRoomInfos.Find(rescueRoomInfoId);
-            if (target == null)
-                return null;
-
-            var query = target.RescueRoomImageRecords.OrderBy(c => c.BookTime);
-
-            return PartialView(query);
+            return PartialView(targetV);
         }
 
 
@@ -38,7 +32,7 @@ namespace EmergencyInformationSystem.Controllers
         /// 刷新。
         /// </summary>
         /// <param name="id">归属的抢救室病例ID。</param>
-        public ActionResult Refresh(int rescueRoomInfoId)
+        public ActionResult Refresh(Guid rescueRoomInfoId)
         {
             var db = new EiSDbContext();
 
@@ -71,7 +65,9 @@ namespace EmergencyInformationSystem.Controllers
                 newRescueRoomImageRecord.ReportTime = (DateTime?)row["REPTIME"];
                 newRescueRoomImageRecord.Part = (string)row["CHKPARTS"];
                 newRescueRoomImageRecord.Category = (string)row["CHKTYPENAME"];
-                newRescueRoomImageRecord.ImageCategoryId = int.Parse(row["IMGTYPE"].ToString());
+                var originCode = row["IMGTYPE"].ToString();
+                var imageCategory = db.ImageCategories.FirstOrDefault(c => c.OriginCode == originCode);
+                newRescueRoomImageRecord.ImageCategoryId = imageCategory.ImageCategoryId;
 
                 newRescueRoomImageRecord.UpdateTime = DateTime.Now;
 

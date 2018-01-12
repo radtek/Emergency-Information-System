@@ -20,7 +20,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
         public ItemRescue(DateTime start, DateTime end, int level, int countAll, IEnumerable<Models.Domains.Entities.RescueRoomInfo> group) : base(start, end, level, countAll, group)
         {
             this.IsRescue = countAll > 0 ? group.First().IsRescue : false;
-            this.RescueResultId = countAll > 0 ? group.First().RescueResultId : 0;
+            this.RescueResultId = countAll > 0 ? group.First().RescueResultId : null;
 
             switch (level)
             {
@@ -64,6 +64,6 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
 
         public bool IsRescue { get; set; }
 
-        public int RescueResultId { get; set; }
+        public Guid? RescueResultId { get; set; }
     }
 }

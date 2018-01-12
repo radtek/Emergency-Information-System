@@ -7,7 +7,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsIndexRe
 {
     public class StatisticsIndexRescueRoomGeneral
     {
-        public StatisticsIndexRescueRoomGeneral(DateTime start, DateTime end, bool? isRescue, int? rescueResultId, int? inRescueRoomWayId, bool? inRescueRoomWayIsHasAdditionalInfo, string inRescueRoomWayRemarks, int? destinationId, bool? destinationIsHasAdditionalInfo, string destinationRemarks, bool? destinationIsTransfer, string transferTarget, bool? destinationIsProfessional, string professionalTarget)
+        public StatisticsIndexRescueRoomGeneral(DateTime start, DateTime end, bool? isRescue, Guid? rescueResultId, Guid? inRescueRoomWayId, bool? inRescueRoomWayIsHasAdditionalInfo, string inRescueRoomWayRemarks, Guid? destinationId, bool? destinationIsHasAdditionalInfo, string destinationRemarks, bool? destinationIsTransfer, string transferTarget, bool? destinationIsProfessional, string professionalTarget)
         {
             var db = new Models.Domains.Entities.EiSDbContext();
 

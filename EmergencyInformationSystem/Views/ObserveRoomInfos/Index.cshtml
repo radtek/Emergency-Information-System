@@ -26,6 +26,9 @@
 @*列表区*@
 @Html.Partial("IndexList", Model.List)
 
+@*导航区*@
+@Html.Partial("IndexNavigator", Model.Route)
+
 @section scripts{
     @Scripts.Render("~/bundles/EisNormal")
 }

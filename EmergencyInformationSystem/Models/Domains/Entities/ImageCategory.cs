@@ -36,7 +36,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// 影像类型ID。
         /// </summary>
         [Key]
-        public virtual int ImageCategoryId { get; set; }
+        public virtual Guid ImageCategoryId { get; set; }
 
 
 
@@ -45,8 +45,19 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// <summary>
         /// 影像类型名称。
         /// </summary>
-        [Display(Name = "影像类型")]
+        //[Display(Name = "影像类型")]
+        [Required(AllowEmptyStrings = false)]
+        [Index(IsUnique = true)]
+        [MaxLength(30)]
         public virtual string ImageCategoryName { get; set; }
+
+
+
+
+
+        [Index(IsUnique = true)]
+        [MaxLength(30)]
+        public virtual string OriginCode { get; set; }
 
 
 

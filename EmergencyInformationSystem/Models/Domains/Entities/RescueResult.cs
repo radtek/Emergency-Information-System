@@ -36,7 +36,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// 抢救效果ID。
         /// </summary>
         [Key]
-        public virtual int RescueResultId { get; set; }
+        public virtual Guid RescueResultId { get; set; }
 
 
 
@@ -45,13 +45,18 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// <summary>
         /// 抢救效果名称。
         /// </summary>
-        [Display(Name = "抢救效果")]
+        //[Display(Name = "抢救效果")]
+        [Required(AllowEmptyStrings = false)]
+        [Index(IsUnique = true)]
+        [MaxLength(30)]
         public virtual string RescueResultName { get; set; }
 
-        /// <summary>
-        /// 是否用于表示空。
-        /// </summary>
-        public virtual bool IsUseForEmpty { get; set; }
+        ///// <summary>
+        ///// 是否用于表示空。
+        ///// </summary>
+        //public virtual bool IsUseForEmpty { get; set; }
+
+        public virtual int Priority { get; set; }
 
 
 

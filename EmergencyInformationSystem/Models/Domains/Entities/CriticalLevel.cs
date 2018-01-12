@@ -36,7 +36,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// 危重等级ID。
         /// </summary>
         [Key]
-        public virtual int CriticalLevelId { get; set; }
+        public virtual Guid CriticalLevelId { get; set; }
 
 
 
@@ -45,7 +45,9 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// <summary>
         /// 危重等级名称。
         /// </summary>
-        [Display(Name = "危重等级")]
+        [Required(AllowEmptyStrings = false)]
+        [Index(IsUnique = true)]
+        [MaxLength(30)]
         public virtual string CriticalLevelName { get; set; }
 
 

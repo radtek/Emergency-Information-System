@@ -53,7 +53,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Create
 
 
 
-        public int RescueRoomInfoId { get; set; }
+        public Guid RescueRoomInfoId { get; set; }
 
         public Guid JZID { get; set; }
 

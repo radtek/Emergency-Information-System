@@ -36,7 +36,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.IndexRescueRoomHa
 
 
 
-        public int RescueRoomInfoId { get; set; }
+        public Guid RescueRoomInfoId { get; set; }
 
 
 

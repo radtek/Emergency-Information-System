@@ -22,7 +22,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsIndexRe
         /// <param name="isClassifiedToOther">if set to <c>true</c> [is classified to other].</param>
         /// <param name="destinationId">The destination identifier.</param>
         /// <param name="destinationRemarks">The destination remarks.</param>
-        public StatisticsIndexRescueRoomDestination(DateTime time, bool? isClassifiedToInDepartment, bool? isClassifiedToOutDepartment, bool? isClassifiedLeave, bool? isClassifiedToOther, int? destinationId, string destinationRemarks, int level)
+        public StatisticsIndexRescueRoomDestination(DateTime time, bool? isClassifiedToInDepartment, bool? isClassifiedToOutDepartment, bool? isClassifiedLeave, bool? isClassifiedToOther, Guid? destinationId, string destinationRemarks, int level)
         {
             var db = new EiSDbContext();
 

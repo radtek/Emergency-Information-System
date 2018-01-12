@@ -46,7 +46,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// 归属的抢救室病例ID。
         /// </summary>
         [ForeignKey("RescueRoomInfo")]
-        public virtual int RescueRoomInfoId { get; set; }
+        public virtual Guid RescueRoomInfoId { get; set; }
 
 
 
@@ -55,22 +55,22 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// <summary>
         /// 申请时间。
         /// </summary>
-        [Display(Name = "申请时间")]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}")]
+        //[Display(Name = "申请时间")]
+        //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}")]
         public virtual DateTime RequestTime { get; set; }
 
         /// <summary>
         /// 到达时间。
         /// </summary>
-        [Display(Name = "到达时间")]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}")]
+        //[Display(Name = "到达时间")]
+        //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}")]
         public virtual DateTime? ArriveTime { get; set; }
 
         /// <summary>
         /// 会诊医师姓名。
         /// </summary>
-        [Required]
-        [Display(Name = "会诊医师")]
+        [Required(AllowEmptyStrings = false)]
+        //[Display(Name = "会诊医师")]
         public virtual string ConsultationDoctorName { get; set; }
 
         /// <summary>
@@ -78,8 +78,8 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// </summary>
         /// <remarks>关联“去向”。</remarks>
         [ForeignKey("ConsultationDepartment")]
-        [Display(Name = "会诊科室")]
-        public virtual int ConsultationDepartmentId { get; set; }
+        //[Display(Name = "会诊科室")]
+        public virtual Guid ConsultationDepartmentId { get; set; }
 
 
 
@@ -119,7 +119,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// <summary>
         /// 会诊科室名称——去向名称。
         /// </summary>
-        [Display(Name = "会诊科室")]
+        //[Display(Name = "会诊科室")]
         public string ConsultationDepartmentName
         {
             get
@@ -131,7 +131,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// <summary>
         /// 申请到到达会诊时长。
         /// </summary>
-        [Display(Name = "申请到到达")]
+        //[Display(Name = "申请到到达")]
         public TimeSpan? DuringRequestToArrive
         {
             get

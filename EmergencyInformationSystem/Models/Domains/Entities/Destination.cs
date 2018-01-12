@@ -36,7 +36,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// 去向ID。
         /// </summary>
         [Key]
-        public virtual int DestinationId { get; set; }
+        public virtual Guid DestinationId { get; set; }
 
 
 
@@ -45,7 +45,9 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// <summary>
         /// 去向名称。
         /// </summary>
-        [Display(Name = "去向")]
+        [Required(AllowEmptyStrings = false)]
+        [Index(IsUnique = true)]
+        [MaxLength(30)]
         public virtual string DestinationName { get; set; }
 
         /// <summary>
@@ -88,16 +90,16 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// </summary>
         public virtual bool IsClassifiedToOther { get; set; }
 
-        /// <summary>
-        /// 是否用于表示空。
-        /// </summary>
-        public virtual bool IsUseForEmpty { get; set; }
+        ///// <summary>
+        ///// 是否用于表示空。
+        ///// </summary>
+        //public virtual bool IsUseForEmpty { get; set; }
 
-        /// <summary>
-        /// 优先级。
-        /// </summary>
-        [Obsolete]
-        public virtual bool Priority { get; set; }
+        ///// <summary>
+        ///// 优先级。
+        ///// </summary>
+        //[Obsolete]
+        //public virtual bool Priority { get; set; }
 
         /// <summary>
         /// 优先级2。
@@ -150,6 +152,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// 去向类别。
         /// </summary>
         /// <remarks>用于表示去向的类别。如果同时归属多个分类，则用“|”串联。</remarks>
+        [Obsolete]
         public string DestinationCategoryNameConcat
         {
             get

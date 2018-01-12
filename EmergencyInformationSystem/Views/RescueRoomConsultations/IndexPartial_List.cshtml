@@ -1,0 +1,47 @@
+﻿@model IEnumerable<EmergencyInformationSystem.Models.ViewModels.RescueRoomConsultations.IndexPartial.Item>
+
+<table class="table table-bordered table-condensed table-hover">
+    <thead>
+        <tr>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.ConsultationDepartmentName)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.ConsultationDoctorName)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.RequestTime)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.ArriveTime)
+            </th>
+            <th>
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.ConsultationDepartmentName)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.ConsultationDoctorName)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.RequestTime)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.ArriveTime)
+                </td>
+                <td class="text-center">
+                    @*待完善*@
+                    @Html.ActionLink("编辑", "Edit", "RescueRoomConsultations", new { id = item.RescueRoomConsultationId, GoToGreenPath = true }, new { @class = "btn-show-modal" })
+                    @* 这里默认为返回绿色通道表单。如需修改，则需改变本视图的模型（新增视图模型）。 *@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

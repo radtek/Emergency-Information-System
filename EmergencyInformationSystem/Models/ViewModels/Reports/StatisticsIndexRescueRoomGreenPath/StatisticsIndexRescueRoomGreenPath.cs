@@ -19,7 +19,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsIndexRe
         /// <param name="isGreenPath">if set to <c>true</c> [is green path].</param>
         /// <param name="greenPathCategoryId">The green path category identifier.</param>
         /// <param name="greenPathCategoryRemarks">The green path category remarks.</param>
-        public StatisticsIndexRescueRoomGreenPath(DateTime time, bool? isGreenPath, int? greenPathCategoryId, string greenPathCategoryRemarks, int level)
+        public StatisticsIndexRescueRoomGreenPath(DateTime time, bool? isGreenPath, Guid? greenPathCategoryId, string greenPathCategoryRemarks, int level)
         {
             var db = new EiSDbContext();
 

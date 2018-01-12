@@ -1,4 +1,4 @@
-﻿@model EmergencyInformationSystem.Models.Domains.Entities.RescueRoomConsultation
+﻿@model EmergencyInformationSystem.Models.ViewModels.RescueRoomConsultations.Create.Create
 
 @{
     ViewBag.Title = "会诊信息 - 新增";
@@ -20,7 +20,7 @@
     @Html.ValidationSummary(false, "", new { @class = "text-danger alert alert-danger" })
 
     @Html.HiddenFor(c => c.RescueRoomInfoId)
-    @Html.Hidden("goToGreenPath");
+    @Html.HiddenFor(c => c.GoToGreenPath)
 
     <div class="container">
         @*标题*@
@@ -74,7 +74,7 @@
             <div class="form-group col-md-offset-1 row RescueRoomSecondTitleEditBlock">
                 @Html.LabelFor(model => model.ConsultationDepartmentId, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownList("ConsultationDepartmentId", null, new { @class = "form-control" })
+                    @Html.DropDownList("ConsultationDepartmentId", null, "", new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.ConsultationDepartmentId, "", new { @class = "text-danger" })
                 </div>
             </div>

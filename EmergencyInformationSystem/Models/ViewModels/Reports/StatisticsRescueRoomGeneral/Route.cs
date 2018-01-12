@@ -26,15 +26,15 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
 
         public bool? IsRescue { get; set; }
 
-        public int? RescueResultId { get; set; }
+        public Guid? RescueResultId { get; set; }
 
-        public int? InRescueRoomWayId { get; set; }
+        public Guid? InRescueRoomWayId { get; set; }
 
         public bool? InRescueRoomWayIsHasAdditionalInfo { get; set; }
 
         public string InRescueRoomWayRemarks { get; set; }
 
-        public int? DestinationId { get; set; }
+        public Guid? DestinationId { get; set; }
 
         public bool? DestinationIsHasAdditionalInfo { get; set; }
 

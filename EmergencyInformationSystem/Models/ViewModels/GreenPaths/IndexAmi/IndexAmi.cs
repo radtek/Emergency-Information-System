@@ -20,7 +20,8 @@ namespace EmergencyInformationSystem.Models.ViewModels.GreenPaths.IndexAmi
 
             route.Count = query.Count();
 
-            var queryCurrentPage = query.OrderByDescending(c => c.RescueRoomInfo.InDepartmentTime).ThenBy(c => c.GreenPathAmiId).Skip((route.Page - 1) * route.PerPage).Take(route.PerPage);
+            var queryOrdered = query.OrderByDescending(c => c.RescueRoomInfo.InDepartmentTime).ThenBy(c => c.GreenPathAmiId);
+            var queryCurrentPage = queryOrdered.Skip((route.Page - 1) * route.PerPage).Take(route.PerPage);
 
             this.Route = route;
 

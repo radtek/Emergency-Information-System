@@ -32,14 +32,20 @@ namespace EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Index
                 query = query.Where(c => c.OutDepartmentTime < route.OutDepartmentTimeEnd);
             if (route.IsLeave != null)
                 query = query.Where(c => c.OutDepartmentTime.HasValue == route.IsLeave);
-            if (!string.IsNullOrEmpty(route.PatientName))
+            if (!string.IsNullOrWhiteSpace(route.PatientName))
+            {
+                route.PatientName = route.PatientName.Trim();
                 query = query.Where(c => c.PatientName == route.PatientName);
+            }
             if (!string.IsNullOrEmpty(route.OutPatientNumber))
+            {
+                route.OutPatientNumber = route.OutPatientNumber.Trim();
                 query = query.Where(c => c.OutPatientNumber == route.OutPatientNumber);
+            }
 
             route.Count = query.Count();
-
-            var queryCurrentPage = query.OrderByDescending(c => c.InDepartmentTime).ThenBy(c => c.ObserveRoomInfoId).Skip((route.Page - 1) * route.PerPage).Take(route.PerPage);
+            var queryOrdered = query.OrderByDescending(c => c.InDepartmentTime).ThenBy(c => c.ObserveRoomInfoId);
+            var queryCurrentPage = queryOrdered.Skip((route.Page - 1) * route.PerPage).Take(route.PerPage);
 
             this.Route = route;
 

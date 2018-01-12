@@ -19,7 +19,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsObserve
         /// <param name="time">The time.</param>
         public DestinationThird(IGrouping<string, ObserveRoomInfo> group, DateTime time)
         {
-            this.DestinationId = group.First().DestinationId;
+            this.DestinationId = group.First().DestinationId.Value;
             this.DestinationRemarks = group.Key;
             this.Time = time;
             this.Level = 3;
@@ -38,7 +38,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsObserve
         /// <summary>
         /// 去向ID。
         /// </summary>
-        public int DestinationId { get; set; }
+        public Guid DestinationId { get; set; }
 
         /// <summary>
         /// 去向明细。

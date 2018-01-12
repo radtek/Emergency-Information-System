@@ -218,105 +218,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201610141247415_Initial.cs" />
-    <Compile Include="Migrations\201610141247415_Initial.Designer.cs">
-      <DependentUpon>201610141247415_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610141527485_Change.cs" />
-    <Compile Include="Migrations\201610141527485_Change.Designer.cs">
-      <DependentUpon>201610141527485_Change.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610141530051_CheckAllTimeStampAndUpdateTime.cs" />
-    <Compile Include="Migrations\201610141530051_CheckAllTimeStampAndUpdateTime.Designer.cs">
-      <DependentUpon>201610141530051_CheckAllTimeStampAndUpdateTime.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610141658289_BedAddField.cs" />
-    <Compile Include="Migrations\201610141658289_BedAddField.Designer.cs">
-      <DependentUpon>201610141658289_BedAddField.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610180915473_InRescueRoomWayAddField.cs" />
-    <Compile Include="Migrations\201610180915473_InRescueRoomWayAddField.Designer.cs">
-      <DependentUpon>201610180915473_InRescueRoomWayAddField.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610181236086_InObserveRoomWayAddField.cs" />
-    <Compile Include="Migrations\201610181236086_InObserveRoomWayAddField.Designer.cs">
-      <DependentUpon>201610181236086_InObserveRoomWayAddField.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610201137536_RescueRoomConsultationChangeKeyName.cs" />
-    <Compile Include="Migrations\201610201137536_RescueRoomConsultationChangeKeyName.Designer.cs">
-      <DependentUpon>201610201137536_RescueRoomConsultationChangeKeyName.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610251422048_ConnectRescueRoomInfoAndObserveRoomInfo.cs" />
-    <Compile Include="Migrations\201610251422048_ConnectRescueRoomInfoAndObserveRoomInfo.Designer.cs">
-      <DependentUpon>201610251422048_ConnectRescueRoomInfoAndObserveRoomInfo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611021312465_DestinationAddField.cs" />
-    <Compile Include="Migrations\201611021312465_DestinationAddField.Designer.cs">
-      <DependentUpon>201611021312465_DestinationAddField.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612071039100_Change1.cs" />
-    <Compile Include="Migrations\201612071039100_Change1.Designer.cs">
-      <DependentUpon>201612071039100_Change1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612151034499_AddClassRescueRoomDrugRecordDefinition.cs" />
-    <Compile Include="Migrations\201612151034499_AddClassRescueRoomDrugRecordDefinition.Designer.cs">
-      <DependentUpon>201612151034499_AddClassRescueRoomDrugRecordDefinition.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612151038591_RescueRoomDrugRecordDefinitionAddField.cs" />
-    <Compile Include="Migrations\201612151038591_RescueRoomDrugRecordDefinitionAddField.Designer.cs">
-      <DependentUpon>201612151038591_RescueRoomDrugRecordDefinitionAddField.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612151040116_RescueRoomDrugRecordDefinitionAddField2.cs" />
-    <Compile Include="Migrations\201612151040116_RescueRoomDrugRecordDefinitionAddField2.Designer.cs">
-      <DependentUpon>201612151040116_RescueRoomDrugRecordDefinitionAddField2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612200840257_change2.cs" />
-    <Compile Include="Migrations\201612200840257_change2.Designer.cs">
-      <DependentUpon>201612200840257_change2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612200848436_change3.cs" />
-    <Compile Include="Migrations\201612200848436_change3.Designer.cs">
-      <DependentUpon>201612200848436_change3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612200928314_AddClassRescueRoomTreatmentRecord.cs" />
-    <Compile Include="Migrations\201612200928314_AddClassRescueRoomTreatmentRecord.Designer.cs">
-      <DependentUpon>201612200928314_AddClassRescueRoomTreatmentRecord.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612200944059_AddClassRescueRoomTreatmentRecordDefinition.cs" />
-    <Compile Include="Migrations\201612200944059_AddClassRescueRoomTreatmentRecordDefinition.Designer.cs">
-      <DependentUpon>201612200944059_AddClassRescueRoomTreatmentRecordDefinition.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612210407363_ChangeForGreenPath.cs" />
-    <Compile Include="Migrations\201612210407363_ChangeForGreenPath.Designer.cs">
-      <DependentUpon>201612210407363_ChangeForGreenPath.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612210459106_ChangeForGreenPath2.cs" />
-    <Compile Include="Migrations\201612210459106_ChangeForGreenPath2.Designer.cs">
-      <DependentUpon>201612210459106_ChangeForGreenPath2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612210500211_ChangeForGreenPath3.cs" />
-    <Compile Include="Migrations\201612210500211_ChangeForGreenPath3.Designer.cs">
-      <DependentUpon>201612210500211_ChangeForGreenPath3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612210516352_ChangeForGreenPath4.cs" />
-    <Compile Include="Migrations\201612210516352_ChangeForGreenPath4.Designer.cs">
-      <DependentUpon>201612210516352_ChangeForGreenPath4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612281037268_DestinationTransfer.cs" />
-    <Compile Include="Migrations\201612281037268_DestinationTransfer.Designer.cs">
-      <DependentUpon>201612281037268_DestinationTransfer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201701041054244_ChangeForAdditionalDiagnosis.cs" />
-    <Compile Include="Migrations\201701041054244_ChangeForAdditionalDiagnosis.Designer.cs">
-      <DependentUpon>201701041054244_ChangeForAdditionalDiagnosis.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201701060732180_DestinationAddField1.cs" />
-    <Compile Include="Migrations\201701060732180_DestinationAddField1.Designer.cs">
-      <DependentUpon>201701060732180_DestinationAddField1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201701060734179_ChangeForPorfessional.cs" />
-    <Compile Include="Migrations\201701060734179_ChangeForPorfessional.Designer.cs">
-      <DependentUpon>201701060734179_ChangeForPorfessional.cs</DependentUpon>
+    <Compile Include="Migrations\201801080320223_Initial.cs" />
+    <Compile Include="Migrations\201801080320223_Initial.Designer.cs">
+      <DependentUpon>201801080320223_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -351,6 +255,7 @@
     <Compile Include="Models\ViewModels\GreenPaths\DetailsAmiPrint\ItemRescueRoomImageRecord.cs" />
     <Compile Include="Models\ViewModels\GreenPaths\DetailsAmiPrint\ItemRescueRoomTreatmentRecord.cs" />
     <Compile Include="Models\ViewModels\GreenPaths\DetailsAmi\DetailsAmi.cs" />
+    <Compile Include="Models\ViewModels\GreenPaths\EditAmi\EditAmi.cs" />
     <Compile Include="Models\ViewModels\GreenPaths\IndexAmi\IndexAmi.cs" />
     <Compile Include="Models\ViewModels\GreenPaths\IndexAmi\Item.cs" />
     <Compile Include="Models\ViewModels\GreenPaths\IndexAmi\Route.cs" />
@@ -416,9 +321,17 @@
     <Compile Include="Models\ViewModels\Reports\StatisticsRescueRoomMonth\RescueFirst.cs" />
     <Compile Include="Models\ViewModels\Reports\StatisticsRescueRoomMonth\RescueSecond.cs" />
     <Compile Include="Models\ViewModels\Reports\StatisticsRescueRoomMonth\StatisticsRescueRoomMonth.cs" />
-    <Compile Include="Models\ViewModels\RescueRoomDrugRecords\IndexPartial.cs" />
-    <Compile Include="Models\ViewModels\RescueRoomDrugRecords\ItemFirst.cs" />
-    <Compile Include="Models\ViewModels\RescueRoomDrugRecords\ItemSecond.cs" />
+    <Compile Include="Models\ViewModels\RescueRoomConsultations\Create\Create.cs" />
+    <Compile Include="Models\ViewModels\RescueRoomConsultations\Create\SelectionWorker.cs" />
+    <Compile Include="Models\ViewModels\RescueRoomConsultations\Edit\Edit.cs" />
+    <Compile Include="Models\ViewModels\RescueRoomConsultations\Edit\SelectionWorker.cs" />
+    <Compile Include="Models\ViewModels\RescueRoomConsultations\IndexPartial\IndexPartial.cs" />
+    <Compile Include="Models\ViewModels\RescueRoomConsultations\IndexPartial\Item.cs" />
+    <Compile Include="Models\ViewModels\RescueRoomDrugRecords\IndexPartial\IndexPartial.cs" />
+    <Compile Include="Models\ViewModels\RescueRoomDrugRecords\IndexPartial\ItemFirst.cs" />
+    <Compile Include="Models\ViewModels\RescueRoomDrugRecords\IndexPartial\ItemSecond.cs" />
+    <Compile Include="Models\ViewModels\RescueRoomImageRecords\IndexPartial\IndexPartial.cs" />
+    <Compile Include="Models\ViewModels\RescueRoomImageRecords\IndexPartial\Item.cs" />
     <Compile Include="Models\ViewModels\RescueRoomInfos\Create\Create.cs" />
     <Compile Include="Models\ViewModels\RescueRoomInfos\Create\Create2.cs" />
     <Compile Include="Models\ViewModels\RescueRoomInfos\Create\Create3.cs" />
@@ -434,6 +347,9 @@
     <Compile Include="Models\ViewModels\RescueRoomInfos\Index\Item.cs" />
     <Compile Include="Models\ViewModels\RescueRoomInfos\Index\Route.cs" />
     <Compile Include="Models\ViewModels\RescueRoomInfos\Index\SelectionWorker.cs" />
+    <Compile Include="Models\ViewModels\RescueRoomTreatmentRecords\IndexPartial\IndexPartial.cs" />
+    <Compile Include="Models\ViewModels\RescueRoomTreatmentRecords\IndexPartial\ItemFirst.cs" />
+    <Compile Include="Models\ViewModels\RescueRoomTreatmentRecords\IndexPartial\ItemSecond.cs" />
     <Compile Include="Models\ViewModels\RouteBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -467,7 +383,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -525,13 +443,13 @@
     <Content Include="Views\ObserveRoomInfos\Create2ListJzjl.cshtml" />
     <Content Include="Views\ObserveRoomInfos\Create4.cshtml" />
     <Content Include="Views\ObserveRoomInfos\Edit.cshtml" />
-    <Content Include="Views\RescueRoomConsultations\IndexPartial.cshtml" />
+    <Content Include="Views\RescueRoomConsultations\IndexPartial_List.cshtml" />
     <Content Include="Views\RescueRoomConsultations\Create.cshtml" />
     <Content Include="Views\RescueRoomConsultations\Edit.cshtml" />
     <Content Include="Views\GreenPaths\DetailsAmi.cshtml" />
     <Content Include="Views\GreenPaths\EditAmi.cshtml" />
-    <Content Include="Views\RescueRoomImageRecords\IndexPartial.cshtml" />
-    <Content Include="Views\RescueRoomDrugRecords\IndexPartial.cshtml" />
+    <Content Include="Views\RescueRoomImageRecords\IndexPartial_List.cshtml" />
+    <Content Include="Views\RescueRoomDrugRecords\IndexPartial_ListSecond.cshtml" />
     <Content Include="Views\Reports\Index.cshtml" />
     <Content Include="Views\Reports\IndexRescueRoomHandOver.cshtml" />
     <Content Include="Views\Reports\IndexRescueRoomHandOver_List.cshtml" />
@@ -579,7 +497,6 @@
     <Content Include="Views\Reports\StatisticsIndexObserveRoomDuring_List.cshtml" />
     <Content Include="Views\Reports\StatisticsIndexObserveRoomDestination.cshtml" />
     <Content Include="Views\Reports\StatisticsIndexObserveRoomDestination_List.cshtml" />
-    <Content Include="Views\RescueRoomDrugRecords\IndexPartialPart.cshtml" />
     <Content Include="Views\RescueRoomTreatmentRecords\IndexPartial.cshtml" />
     <Content Include="Views\RescueRoomTreatmentRecords\IndexPartialPart.cshtml" />
     <Content Include="Views\GreenPaths\DetailsAmiPrint.cshtml" />
@@ -601,6 +518,12 @@
     <Content Include="Views\GreenPaths\DetailsAmiPrint_ListRescueRoomConsultation.cshtml" />
     <Content Include="Views\GreenPaths\DetailsAmiPrint_ListRescueRoomDrugRecord.cshtml" />
     <Content Include="Views\GreenPaths\DetailsAmiPrint_ListRescueRoomTreatmentRecord.cshtml" />
+    <Content Include="Views\RescueRoomConsultations\IndexPartial.cshtml" />
+    <Content Include="Views\RescueRoomImageRecords\IndexPartial.cshtml" />
+    <Content Include="Views\RescueRoomDrugRecords\IndexPartial.cshtml" />
+    <Content Include="Views\RescueRoomDrugRecords\IndexPartial_ListFirst.cshtml" />
+    <Content Include="Views\RescueRoomTreatmentRecords\IndexPartial_ListFirst.cshtml" />
+    <Content Include="Views\RescueRoomTreatmentRecords\IndexPartial_ListSecond.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -615,80 +538,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201610141247415_Initial.resx">
-      <DependentUpon>201610141247415_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610141527485_Change.resx">
-      <DependentUpon>201610141527485_Change.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610141530051_CheckAllTimeStampAndUpdateTime.resx">
-      <DependentUpon>201610141530051_CheckAllTimeStampAndUpdateTime.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610141658289_BedAddField.resx">
-      <DependentUpon>201610141658289_BedAddField.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610180915473_InRescueRoomWayAddField.resx">
-      <DependentUpon>201610180915473_InRescueRoomWayAddField.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610181236086_InObserveRoomWayAddField.resx">
-      <DependentUpon>201610181236086_InObserveRoomWayAddField.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610201137536_RescueRoomConsultationChangeKeyName.resx">
-      <DependentUpon>201610201137536_RescueRoomConsultationChangeKeyName.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610251422048_ConnectRescueRoomInfoAndObserveRoomInfo.resx">
-      <DependentUpon>201610251422048_ConnectRescueRoomInfoAndObserveRoomInfo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611021312465_DestinationAddField.resx">
-      <DependentUpon>201611021312465_DestinationAddField.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612071039100_Change1.resx">
-      <DependentUpon>201612071039100_Change1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612151034499_AddClassRescueRoomDrugRecordDefinition.resx">
-      <DependentUpon>201612151034499_AddClassRescueRoomDrugRecordDefinition.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612151038591_RescueRoomDrugRecordDefinitionAddField.resx">
-      <DependentUpon>201612151038591_RescueRoomDrugRecordDefinitionAddField.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612151040116_RescueRoomDrugRecordDefinitionAddField2.resx">
-      <DependentUpon>201612151040116_RescueRoomDrugRecordDefinitionAddField2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612200840257_change2.resx">
-      <DependentUpon>201612200840257_change2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612200848436_change3.resx">
-      <DependentUpon>201612200848436_change3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612200928314_AddClassRescueRoomTreatmentRecord.resx">
-      <DependentUpon>201612200928314_AddClassRescueRoomTreatmentRecord.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612200944059_AddClassRescueRoomTreatmentRecordDefinition.resx">
-      <DependentUpon>201612200944059_AddClassRescueRoomTreatmentRecordDefinition.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612210407363_ChangeForGreenPath.resx">
-      <DependentUpon>201612210407363_ChangeForGreenPath.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612210459106_ChangeForGreenPath2.resx">
-      <DependentUpon>201612210459106_ChangeForGreenPath2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612210500211_ChangeForGreenPath3.resx">
-      <DependentUpon>201612210500211_ChangeForGreenPath3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612210516352_ChangeForGreenPath4.resx">
-      <DependentUpon>201612210516352_ChangeForGreenPath4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612281037268_DestinationTransfer.resx">
-      <DependentUpon>201612281037268_DestinationTransfer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201701041054244_ChangeForAdditionalDiagnosis.resx">
-      <DependentUpon>201701041054244_ChangeForAdditionalDiagnosis.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201701060732180_DestinationAddField1.resx">
-      <DependentUpon>201701060732180_DestinationAddField1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201701060734179_ChangeForPorfessional.resx">
-      <DependentUpon>201701060734179_ChangeForPorfessional.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201801080320223_Initial.resx">
+      <DependentUpon>201801080320223_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

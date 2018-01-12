@@ -27,7 +27,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
             }
             else
             {
-                this.List = group.OrderBy(c => c.RescueResultId).GroupBy(c => c.RescueResultId).Select(c => new RescueSecond(c, time)).ToList();
+                this.List = group.OrderBy(c => c.RescueResultId).GroupBy(c => c.RescueResultId.Value).Select(c => new RescueSecond(c, time)).ToList();
             }
         }
 

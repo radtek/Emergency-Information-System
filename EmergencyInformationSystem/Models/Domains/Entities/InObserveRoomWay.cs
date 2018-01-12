@@ -36,7 +36,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// 进入留观室方式ID。
         /// </summary>
         [Key]
-        public virtual int InObserveRoomWayId { get; set; }
+        public virtual Guid InObserveRoomWayId { get; set; }
 
 
 
@@ -45,7 +45,10 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// <summary>
         /// 进入留观室方式名称。
         /// </summary>
-        [Display(Name = "入室方式")]
+        //[Display(Name = "入室方式")]
+        [Required(AllowEmptyStrings = false)]
+        [Index(IsUnique = true)]
+        [MaxLength(30)]
         public virtual string InObserveRoomWayName { get; set; }
 
         /// <summary>
@@ -53,10 +56,12 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// </summary>
         public virtual bool IsHasAdditionalInfo { get; set; }
 
-        /// <summary>
-        /// 是否用于表示空。
-        /// </summary>
-        public virtual bool IsUseForEmpty { get; set; }
+        ///// <summary>
+        ///// 是否用于表示空。
+        ///// </summary>
+        //public virtual bool IsUseForEmpty { get; set; }
+
+        public virtual int Priority { get; set; }
 
 
 

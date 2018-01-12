@@ -27,6 +27,9 @@
 @*列表区*@
 @Html.Partial("IndexAmiList", Model.List)
 
+@*导航区*@
+@Html.Partial("IndexAmiNavigator", Model.Route)
+
 @section scripts{
     @Scripts.Render("~/bundles/EisNormal")
 }

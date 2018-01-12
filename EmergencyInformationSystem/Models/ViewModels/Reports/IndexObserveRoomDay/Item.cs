@@ -26,7 +26,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.IndexObserveRoomD
             this.InDepartmentTime = target.InDepartmentTime;
             this.OutDepartmentTime = target.OutDepartmentTime;
             this.During = target.During;
-            this.DestinationName = target.Destination.DestinationName;
+            this.DestinationName = target.Destination?.DestinationName;
             this.DiagnosisName = target.DiagnosisName;
         }
 

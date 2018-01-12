@@ -46,7 +46,8 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// 归属的抢救室病例ID。
         /// </summary>
         [ForeignKey("RescueRoomInfo")]
-        public virtual int RescueRoomInfoId { get; set; }
+        [Index(IsUnique = true)]
+        public virtual Guid RescueRoomInfoId { get; set; }
 
 
 
@@ -55,8 +56,6 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// <summary>
         /// 发病时间。
         /// </summary>
-        [Display(Name = "发病时间")]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}")]
         public virtual DateTime? OccurrenceTime { get; set; }
 
 
@@ -66,21 +65,16 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// <summary>
         /// 首次心电图时间。
         /// </summary>
-        [Display(Name = "首次心电图时间")]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}")]
         public virtual DateTime? EcgFirstTime { get; set; }
 
         /// <summary>
         /// 再次心电图时间。
         /// </summary>
-        [Display(Name = "再次心电图时间")]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}")]
         public virtual DateTime? EcgSecondTime { get; set; }
 
         /// <summary>
         /// 备注。
         /// </summary>
-        [Display(Name = "备注")]
         public virtual string Remarks { get; set; }
 
 
@@ -90,20 +84,16 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// <summary>
         /// 完成通道时间。
         /// </summary>
-        [Display(Name = "完成通道时间")]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}")]
         public virtual DateTime? FinishPathTime { get; set; }
 
         /// <summary>
         /// 是否滞留。
         /// </summary>
-        [Display(Name = "滞留")]
         public virtual bool IsHeldUp { get; set; }
 
         /// <summary>
         /// 存在问题。
         /// </summary>
-        [Display(Name = "存在问题")]
         public virtual string Problem { get; set; }
 
 
@@ -139,7 +129,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// <summary>
         /// 发病到入室时长。
         /// </summary>
-        [Display(Name = "发病到入室")]
+        //[Display(Name = "发病到入室")]
         public TimeSpan? DuringOccurrenceToInDepartment
         {
             get
@@ -154,7 +144,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// <summary>
         /// 入室到接诊时长。
         /// </summary>
-        [Display(Name = "入室到接诊")]
+        //[Display(Name = "入室到接诊")]
         public TimeSpan? DuringInDepartmentToReceive
         {
             get
@@ -169,7 +159,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// <summary>
         /// 入室到首次心电图时长。
         /// </summary>
-        [Display(Name = "入室到首次心电图")]
+        //[Display(Name = "入室到首次心电图")]
         public TimeSpan? DuringInDepartmentToEcgFirst
         {
             get
@@ -184,7 +174,6 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// <summary>
         /// 入室到再次心电图时长。
         /// </summary>
-        [Display(Name = "入室到再次心电图")]
         public TimeSpan? DuringInDepartmentToEcgSecond
         {
             get
@@ -199,7 +188,6 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// <summary>
         /// 通道停留时长。
         /// </summary>
-        [Display(Name = "通道停留时长")]
         public TimeSpan? During
         {
             get
@@ -225,7 +213,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// <summary>
         /// 是否滞留名称。
         /// </summary>
-        [Display(Name = "滞留")]
+        //[Display(Name = "滞留")]
         public string IsHeldUpString
         {
             get
@@ -237,7 +225,6 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// <summary>
         /// 通道滞留时长。
         /// </summary>
-        [Display(Name = "通道滞留时长")]
         public TimeSpan? DuringPathHeldUp
         {
             get

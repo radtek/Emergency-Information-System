@@ -32,7 +32,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsIndexRe
 
 
 
-        public int RescueRoomInfoId { get; set; }
+        public Guid RescueRoomInfoId { get; set; }
 
 
 

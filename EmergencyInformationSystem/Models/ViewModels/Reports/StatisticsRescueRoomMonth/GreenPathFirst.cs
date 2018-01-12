@@ -32,7 +32,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
             }
             else
             {
-                this.List = group.OrderBy(c => c.GreenPathCategoryId).GroupBy(c => c.GreenPathCategoryId).Select(c => new GreenPathSecond(c, time)).ToList();
+                this.List = group.OrderBy(c => c.GreenPathCategoryId).GroupBy(c => c.GreenPathCategoryId.Value).Select(c => new GreenPathSecond(c, time)).ToList();
             }
         }
 

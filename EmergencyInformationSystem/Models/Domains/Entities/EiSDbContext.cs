@@ -15,7 +15,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// <summary>
         /// 初始化实例<see cref="EiSDbContext"/>。
         /// </summary>
-        public EiSDbContext() : base("LocalConnection")
+        public EiSDbContext() : base("EiSConnection")
         {
         }
 

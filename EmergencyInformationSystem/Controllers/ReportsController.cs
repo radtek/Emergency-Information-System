@@ -86,7 +86,7 @@ namespace EmergencyInformationSystem.Controllers
         /// <param name="isRescue">是否抢救。</param>
         /// <param name="rescueResultId">抢救结果ID。</param>
         /// <param name="level">统计项级别。</param>
-        public ActionResult StatisticsIndexRescueRoomRescue(DateTime time, bool isRescue, int? rescueResultId, int level)
+        public ActionResult StatisticsIndexRescueRoomRescue(DateTime time, bool isRescue, Guid? rescueResultId, int level)
         {
             var targetV = new Models.ViewModels.Reports.StatisticsIndexRescueRoomRescue.StatisticsIndexRescueRoomRescue(time, isRescue, rescueResultId, level);
 
@@ -101,7 +101,7 @@ namespace EmergencyInformationSystem.Controllers
         /// <param name="greenPathCategoryId">绿色通道类别ID。</param>
         /// <param name="greenPathCategoryRemarks">绿色通道明细。</param>
         /// <param name="level">统计项级别。</param>
-        public ActionResult StatisticsIndexRescueRoomGreenPath(DateTime time, bool? isGreenPath, int? greenPathCategoryId, string greenPathCategoryRemarks, int level)
+        public ActionResult StatisticsIndexRescueRoomGreenPath(DateTime time, bool? isGreenPath, Guid? greenPathCategoryId, string greenPathCategoryRemarks, int level)
         {
             var targetV = new Models.ViewModels.Reports.StatisticsIndexRescueRoomGreenPath.StatisticsIndexRescueRoomGreenPath(time, isGreenPath, greenPathCategoryId, greenPathCategoryRemarks, level);
 
@@ -134,7 +134,7 @@ namespace EmergencyInformationSystem.Controllers
         /// <param name="destinationId">去向ID。</param>
         /// <param name="destinationRemarks">去向明细。</param>
         /// <param name="level">统计项级别。</param>
-        public ActionResult StatisticsIndexRescueRoomDestination(DateTime time, bool? isClassifiedToInDepartment, bool? isClassifiedToOutDepartment, bool? isClassifiedLeave, bool? isClassifiedToOther, int? destinationId, string destinationRemarks, int level)
+        public ActionResult StatisticsIndexRescueRoomDestination(DateTime time, bool? isClassifiedToInDepartment, bool? isClassifiedToOutDepartment, bool? isClassifiedLeave, bool? isClassifiedToOther, Guid? destinationId, string destinationRemarks, int level)
         {
             var targetV = new Models.ViewModels.Reports.StatisticsIndexRescueRoomDestination.StatisticsIndexRescueRoomDestination(time, isClassifiedToInDepartment, isClassifiedToOutDepartment, isClassifiedLeave, isClassifiedToOther, destinationId, destinationRemarks, level);
 
@@ -157,7 +157,7 @@ namespace EmergencyInformationSystem.Controllers
             return View(targetV);
         }
 
-        public ActionResult StatisticsIndexRescueRoomGeneral(DateTime start, DateTime end, bool? isRescue, int? rescueResultId, int? inRescueRoomWayId, bool? inRescueRoomWayIsHasAdditionalInfo, string inRescueRoomWayRemarks, int? destinationId, bool? destinationIsHasAdditionalInfo, string destinationRemarks, bool? destinationIsTransfer, string transferTarget, bool? destinationIsProfessional, string professionalTarget)
+        public ActionResult StatisticsIndexRescueRoomGeneral(DateTime start, DateTime end, bool? isRescue, Guid? rescueResultId, Guid? inRescueRoomWayId, bool? inRescueRoomWayIsHasAdditionalInfo, string inRescueRoomWayRemarks, Guid? destinationId, bool? destinationIsHasAdditionalInfo, string destinationRemarks, bool? destinationIsTransfer, string transferTarget, bool? destinationIsProfessional, string professionalTarget)
         {
             var targetV = new Models.ViewModels.Reports.StatisticsIndexRescueRoomGeneral.StatisticsIndexRescueRoomGeneral(start, end, isRescue, rescueResultId, inRescueRoomWayId, inRescueRoomWayIsHasAdditionalInfo, inRescueRoomWayRemarks, destinationId, destinationIsHasAdditionalInfo, destinationRemarks, destinationIsTransfer, transferTarget, destinationIsProfessional, professionalTarget);
 
@@ -240,7 +240,7 @@ namespace EmergencyInformationSystem.Controllers
         /// <param name="destinationId">去向ID。</param>
         /// <param name="destinationRemarks">去向明细。</param>
         /// <param name="level">统计项级别。</param>
-        public ActionResult StatisticsIndexObserveRoomDestination(DateTime time, bool? isClassifiedToInDepartment, bool? isClassifiedToOutDepartment, bool? isClassifiedLeave, bool? isClassifiedToOther, int? destinationId, string destinationRemarks, int level)
+        public ActionResult StatisticsIndexObserveRoomDestination(DateTime time, bool? isClassifiedToInDepartment, bool? isClassifiedToOutDepartment, bool? isClassifiedLeave, bool? isClassifiedToOther, Guid? destinationId, string destinationRemarks, int level)
         {
             var targetV = new Models.ViewModels.Reports.StatisticsIndexObserveRoomDestination.StatisticsIndexObserveRoomDestination(time, isClassifiedToInDepartment, isClassifiedToOutDepartment, isClassifiedLeave, isClassifiedToOther, destinationId, destinationRemarks, level);
 

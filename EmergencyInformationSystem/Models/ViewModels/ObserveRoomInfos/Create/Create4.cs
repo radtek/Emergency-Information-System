@@ -17,7 +17,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Create
         /// <summary>
         /// 初始化。
         /// </summary>
-        public Create4(Guid JZID, int? previousRescueRoomInfoId)
+        public Create4(Guid JZID, Guid? previousRescueRoomInfoId)
         {
             this.PreviousRescueRoomInfoId = previousRescueRoomInfoId;
             this.JZID = JZID;
@@ -57,7 +57,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Create
 
 
 
-        public int? PreviousRescueRoomInfoId { get; set; }
+        public Guid? PreviousRescueRoomInfoId { get; set; }
 
 
 
@@ -117,12 +117,6 @@ namespace EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Create
             target.FirstDoctorName = this.FirstDoctorName;
 
             target.InDepartmentTime = DateTime.Now;
-            target.BedId = 1;
-            target.InObserveRoomWayId = 1;
-            target.DestinationFirstId = 1;
-            target.DestinationSecondId = 1;
-            target.DestinationId = 1;
-            target.TransferReasonId = 1;
 
             target.KDJID = this.KDJID;
             target.BRXXID = this.BRXXID;

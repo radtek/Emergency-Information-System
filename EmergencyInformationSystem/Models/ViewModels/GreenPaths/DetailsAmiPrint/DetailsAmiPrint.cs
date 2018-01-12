@@ -31,7 +31,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.GreenPaths.DetailsAmiPrin
             this.DuringInDepartmentToReceive = target.DuringInDepartmentToReceive;
             this.FirstNurseName = target.RescueRoomInfo.FirstNurseName;
 
-            this.CriticalLevelName = target.RescueRoomInfo.CriticalLevel.CriticalLevelName;
+            this.CriticalLevelName = target.RescueRoomInfo.CriticalLevel?.CriticalLevelName;
             this.RescueResultNameFull = target.RescueRoomInfo.RescueResultNameFull;
             this.EcgFirstTime = target.EcgFirstTime;
             this.EcgSecondTime = target.EcgSecondTime;
@@ -61,7 +61,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.GreenPaths.DetailsAmiPrin
 
         public Guid GreenPathAmiId { get; set; }
 
-        public int RescueRoomInfoId { get; set; }
+        public Guid RescueRoomInfoId { get; set; }
 
         public bool IsHeldUp { get; set; }
 

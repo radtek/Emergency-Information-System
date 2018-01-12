@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data.Entity;
 
 using EmergencyInformationSystem.Models.Domains.Entities;
 
@@ -36,18 +37,24 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Index
                 query = query.Where(c => c.IsRescue == route.IsRescue);
             if (route.IsLeave != null)
                 query = query.Where(c => c.OutDepartmentTime.HasValue == route.IsLeave);
-            if (!string.IsNullOrEmpty(route.PatientName))
+            if (!string.IsNullOrWhiteSpace(route.PatientName))
+            {
+                route.PatientName = route.PatientName.Trim();
                 query = query.Where(c => c.PatientName == route.PatientName);
-            if (!string.IsNullOrEmpty(route.OutPatientNumber))
+            }
+            if (!string.IsNullOrWhiteSpace(route.OutPatientNumber))
+            {
+                route.OutPatientNumber = route.OutPatientNumber.Trim();
                 query = query.Where(c => c.OutPatientNumber == route.OutPatientNumber);
+            }
             if (route.InRescueRoomWayId != null)
                 query = query.Where(c => c.InRescueRoomWayId == route.InRescueRoomWayId);
             if (route.DestinationId != null)
                 query = query.Where(c => c.DestinationId == route.DestinationId);
 
             route.Count = query.Count();
-
-            var queryCurrentPage = query.OrderByDescending(c => c.InDepartmentTime).ThenBy(c => c.RescueRoomInfoId).Skip((route.Page - 1) * route.PerPage).Take(route.PerPage);
+            var queryOrdered = query.OrderByDescending(c => c.InDepartmentTime).ThenBy(c => c.RescueRoomInfoId);
+            var queryCurrentPage = queryOrdered.Skip((route.Page - 1) * route.PerPage).Take(route.PerPage);
 
             this.Route = route;
 

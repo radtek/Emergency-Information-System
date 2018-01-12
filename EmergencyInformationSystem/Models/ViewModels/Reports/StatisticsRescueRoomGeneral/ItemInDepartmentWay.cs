@@ -11,7 +11,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
     {
         public ItemInDepartmentWay(DateTime start, DateTime end, int level, int countAll, IEnumerable<Models.Domains.Entities.RescueRoomInfo> group) : base(start, end, level, countAll, group)
         {
-            this.InRescueRoomWayId = countAll > 0 ? group.First().InRescueRoomWayId : 0;
+            this.InRescueRoomWayId = countAll > 0 ? group.First().InRescueRoomWayId : null;
             this.InRescueRoomWayIsHasAdditionalInfo = countAll > 0 ? group.First().InRescueRoomWay.IsHasAdditionalInfo : false;
             this.InRescueRoomWayRemarks = countAll > 0 ? group.First().InRescueRoomWayRemarks : string.Empty;
 
@@ -56,7 +56,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
 
 
 
-        public int InRescueRoomWayId { get; set; }
+        public Guid? InRescueRoomWayId { get; set; }
 
         public bool InRescueRoomWayIsHasAdditionalInfo { get; set; }
 

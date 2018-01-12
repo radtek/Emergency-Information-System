@@ -17,7 +17,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
         /// </summary>
         /// <param name="group">The group.</param>
         /// <param name="time">The time.</param>
-        public RescueSecond(IGrouping<int, RescueRoomInfo> group, DateTime time)
+        public RescueSecond(IGrouping<Guid, RescueRoomInfo> group, DateTime time)
         {
             this.IsRescue = group.First().IsRescue;
             this.RescueResultId = group.Key;
@@ -42,7 +42,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
         /// <summary>
         /// 抢救结果ID。
         /// </summary>
-        public int RescueResultId { get; set; }
+        public Guid RescueResultId { get; set; }
 
         /// <summary>
         /// 统计项归属的时间点。

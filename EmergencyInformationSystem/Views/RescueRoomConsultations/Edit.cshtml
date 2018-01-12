@@ -1,4 +1,4 @@
-﻿@model EmergencyInformationSystem.Models.Domains.Entities.RescueRoomConsultation
+﻿@model EmergencyInformationSystem.Models.ViewModels.RescueRoomConsultations.Edit.Edit
 
 @{
     ViewBag.Title = "会诊信息 - 编辑";
@@ -21,9 +21,8 @@
 
     @Html.HiddenFor(model => model.RescueRoomConsultationId)
     @Html.HiddenFor(model => model.RescueRoomInfoId)
+    @Html.HiddenFor(model => model.GoToGreenPath)
     @Html.HiddenFor(model => model.TimeStamp)
-
-    @Html.Hidden("goToGreenPath");
 
     <div class="container">
         @*标题*@

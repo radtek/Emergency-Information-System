@@ -11,6 +11,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
     /// <summary>
     /// 绿色通道——急性脑卒中。
     /// </summary>
+    [Obsolete]
     [Table("GreenPathStks")]
     public class GreenPathStk
     {
@@ -39,7 +40,8 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// 归属的抢救室病例ID。
         /// </summary>
         [ForeignKey("RescueRoomInfo")]
-        public virtual int RescueRoomInfoId { get; set; }
+        [Index(IsUnique = true)]
+        public virtual Guid RescueRoomInfoId { get; set; }
 
 
 

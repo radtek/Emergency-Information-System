@@ -36,7 +36,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// 抢救室用药项定义项ID。
         /// </summary>
         [Key]
-        public virtual int RescueRoomDrugRecordDefinitionId { get; set; }
+        public virtual Guid RescueRoomDrugRecordDefinitionId { get; set; }
 
 
 
@@ -45,6 +45,8 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// <summary>
         /// 药品代码。
         /// </summary>
+        [Index(IsUnique = true)]
+        [MaxLength(30)]
         public virtual string DrugCode { get; set; }
 
         /// <summary>

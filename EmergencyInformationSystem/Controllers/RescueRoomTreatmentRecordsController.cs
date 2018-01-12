@@ -19,17 +19,11 @@ namespace EmergencyInformationSystem.Controllers
         /// 一览。
         /// </summary>
         /// <param name="rescueRoomInfoId">归属的抢救室病例ID。</param>
-        public ActionResult IndexPartial(int rescueRoomInfoId)
+        public ActionResult IndexPartial(Guid rescueRoomInfoId)
         {
-            var db = new EiSDbContext();
+            var targetV = new Models.ViewModels.RescueRoomTreatmentRecords.IndexPartial.IndexPartial(rescueRoomInfoId);
 
-            var target = db.RescueRoomInfos.Find(rescueRoomInfoId);
-            if (target == null)
-                return null;
-
-            var list = target.RescueRoomTreatmentRecords.OrderBy(c => c.PrescriptionTime).ThenBy(c => c.CFID).ThenBy(c => c.ProductCode).GroupBy(c => c.CFID).ToList();
-
-            return PartialView(list);
+            return PartialView(targetV);
         }
 
 
@@ -40,7 +34,7 @@ namespace EmergencyInformationSystem.Controllers
         /// 刷新。
         /// </summary>
         /// <param name="rescueRoomInfoId">归属的抢救室病例ID。</param>
-        public ActionResult Refresh(int rescueRoomInfoId)
+        public ActionResult Refresh(Guid rescueRoomInfoId)
         {
             var db = new EiSDbContext();
             var dbTrasen = new TrasenDbContext("TrasenConnection");

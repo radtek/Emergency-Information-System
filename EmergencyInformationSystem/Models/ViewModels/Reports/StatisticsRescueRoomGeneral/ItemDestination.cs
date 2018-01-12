@@ -9,7 +9,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
     {
         public ItemDestination(DateTime start, DateTime end, int level, int countAll, IEnumerable<Models.Domains.Entities.RescueRoomInfo> group) : base(start, end, level, countAll, group)
         {
-            this.DestinationId = countAll > 0 ? group.First().DestinationId : 0;
+            this.DestinationId = countAll > 0 ? group.First().DestinationId : null;
             this.DestinationIsHasAdditionalInfo = countAll > 0 ? group.First().Destination.IsHasAdditionalInfo : false;
             this.DestinationRemarks = countAll > 0 ? group.First().DestinationRemarks : string.Empty;
             this.DestinationIsTransfer = countAll > 0 ? group.First().Destination.IsTransfer : false;
@@ -76,7 +76,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
 
 
 
-        public int DestinationId { get; set; }
+        public Guid? DestinationId { get; set; }
 
         public bool DestinationIsHasAdditionalInfo { get; set; }
 

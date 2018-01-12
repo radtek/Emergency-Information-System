@@ -54,7 +54,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.Api.IndexSubscription
 
 
 
-        public int? RescueRoomInfoId { get; set; }
+        public Guid? RescueRoomInfoId { get; set; }
 
         public Guid? ObserveRoomInfoId { get; set; }
 
@@ -67,7 +67,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.Api.IndexSubscription
         [Display(Name = "患者姓名")]
         public string PatientName { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = false)]
         [Display(Name = "卡号")]
         public string OutPatientNumber { get; set; }
 

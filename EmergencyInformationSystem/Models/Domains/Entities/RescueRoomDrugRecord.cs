@@ -46,7 +46,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// 归属的抢救室病例ID。
         /// </summary>
         [ForeignKey("RescueRoomInfo")]
-        public virtual int RescueRoomInfoId { get; set; }
+        public virtual Guid RescueRoomInfoId { get; set; }
 
 
 
@@ -55,44 +55,44 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// <summary>
         /// 项目代码。
         /// </summary>
-        [Display(Name = "代码")]
+        //[Display(Name = "代码")]
         public virtual string ProductCode { get; set; }
 
         /// <summary>
         /// 品名。
         /// </summary>
-        [Display(Name = "品名")]
+        //[Display(Name = "品名")]
         public virtual string ProductName { get; set; }
 
         /// <summary>
         /// 商品名。
         /// </summary>
-        [Display(Name = "商品名")]
+        //[Display(Name = "商品名")]
         public virtual string GoodsName { get; set; }
 
         /// <summary>
         /// 用量。
         /// </summary>
-        [Display(Name = "用量")]
+        //[Display(Name = "用量")]
         public virtual decimal DosageQuantity { get; set; }
 
         /// <summary>
         /// 用量单位。
         /// </summary>
-        [Display(Name = "用量单位")]
+        //[Display(Name = "用量单位")]
         public virtual string DosageUnit { get; set; }
 
         /// <summary>
         /// 处方时间。
         /// </summary>
-        [Display(Name = "处方时间")]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}")]
+        //[Display(Name = "处方时间")]
+        //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}")]
         public virtual DateTime? PrescriptionTime { get; set; }
 
         /// <summary>
         /// 用法。
         /// </summary>
-        [Display(Name = "用法")]
+        //[Display(Name = "用法")]
         public virtual string Usage { get; set; }
 
 
@@ -103,6 +103,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// “创星”“处方明细ID”。
         /// </summary>
         /// <remarks>dbo.MZ_CFMXB的CFMXID。</remarks>
+        [Index(IsUnique = true)]
         public virtual Guid CFMXID { get; set; }
 
         /// <summary>
@@ -144,7 +145,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// <summary>
         /// 用量-完整。
         /// </summary>
-        [Display(Name = "用量")]
+        //[Display(Name = "用量")]
         public string DosageQuantityFull
         {
             get

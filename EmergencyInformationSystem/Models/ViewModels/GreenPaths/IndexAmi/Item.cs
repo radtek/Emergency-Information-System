@@ -39,7 +39,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.GreenPaths.IndexAmi
 
         public Guid GreenPathAmiId { get; set; }
 
-        public int RescueRoomInfoId { get; set; }
+        public Guid RescueRoomInfoId { get; set; }
 
         public bool IsLeave { get; set; }
 

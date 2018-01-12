@@ -11,10 +11,10 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Edit
         {
             var db = new Models.Domains.Entities.EiSDbContext();
 
-            this.Beds = new System.Web.Mvc.SelectList(db.Beds.Where(c => c.IsUseForRescueRoom), "BedId", "BedName", targetV.BedId);
-            this.InRescueRoomWays = new System.Web.Mvc.SelectList(db.InRescueRoomWays, "InRescueRoomWayId", "InRescueRoomWayName", targetV.InRescueRoomWayId);
-            this.GreenPathCategories = new System.Web.Mvc.SelectList(db.GreenPathCategories, "GreenPathCategoryId", "GreenPathCategoryName", targetV.GreenPathCategoryId);
-            this.RescueResults = new System.Web.Mvc.SelectList(db.RescueResults, "RescueResultId", "RescueResultName", targetV.RescueResultId);
+            this.Beds = new System.Web.Mvc.SelectList(db.Beds.Where(c => c.IsUseForRescueRoom).OrderBy(c => c.Priority), "BedId", "BedName", targetV.BedId);
+            this.InRescueRoomWays = new System.Web.Mvc.SelectList(db.InRescueRoomWays.OrderBy(c => c.Priority), "InRescueRoomWayId", "InRescueRoomWayName", targetV.InRescueRoomWayId);
+            this.GreenPathCategories = new System.Web.Mvc.SelectList(db.GreenPathCategories.OrderBy(c => c.Priority), "GreenPathCategoryId", "GreenPathCategoryName", targetV.GreenPathCategoryId);
+            this.RescueResults = new System.Web.Mvc.SelectList(db.RescueResults.OrderBy(c => c.Priority), "RescueResultId", "RescueResultName", targetV.RescueResultId);
             this.Destinations = new System.Web.Mvc.SelectList(db.Destinations.Where(c => c.IsUseForRescueRoom).OrderBy(c => c.Priority2), "DestinationId", "DestinationName", targetV.DestinationId);
             this.CriticalLevels = new System.Web.Mvc.SelectList(db.CriticalLevels, "CriticalLevelId", "CriticalLevelName", targetV.CriticalLevelId);
             this.DestinationFirsts = new System.Web.Mvc.SelectList(db.Destinations.Where(c => c.IsUseForSubscription).OrderBy(c => c.Priority2), "DestinationId", "DestinationName", targetV.DestinationFirstId);

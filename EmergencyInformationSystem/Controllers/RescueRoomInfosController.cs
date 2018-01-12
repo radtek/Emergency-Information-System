@@ -33,7 +33,7 @@ namespace EmergencyInformationSystem.Controllers
         /// 详情。
         /// </summary>
         /// <param name="id">抢救室病例ID。</param>
-        public ActionResult Details(int id)
+        public ActionResult Details(Guid id)
         {
             var db = new Models.Domains.Entities.EiSDbContext();
 
@@ -117,9 +117,10 @@ namespace EmergencyInformationSystem.Controllers
             var db = new Models.Domains.Entities.EiSDbContext();
 
             //查找是否已存在相同JZID的记录。若存在，则跳转到Details。
-            var targetDump = db.RescueRoomInfos.Where(c => c.JZID == JZID).FirstOrDefault();
-            if (targetDump != null)
-                return RedirectToAction("Details", new { id = targetDump.RescueRoomInfoId });
+            //**不需查找，已添加索引**
+            //var targetDump = db.RescueRoomInfos.Where(c => c.JZID == JZID).FirstOrDefault();
+            //if (targetDump != null)
+            //    return RedirectToAction("Details", new { id = targetDump.RescueRoomInfoId });
 
             var targetV = new Models.ViewModels.RescueRoomInfos.Create.Create4(JZID, previousObserveRoomInfoId);
 
@@ -141,7 +142,7 @@ namespace EmergencyInformationSystem.Controllers
         /// 编辑。
         /// </summary>
         /// <param name="id">抢救室病例ID。</param>
-        public ActionResult Edit(int id)
+        public ActionResult Edit(Guid id)
         {
             var db = new Models.Domains.Entities.EiSDbContext();
 
@@ -213,7 +214,7 @@ namespace EmergencyInformationSystem.Controllers
         /// 眉栏。
         /// </summary>
         /// <param name="id">抢救室病例ID。</param>
-        public ActionResult Header(int id)
+        public ActionResult Header(Guid id)
         {
             var db = new Models.Domains.Entities.EiSDbContext();
 

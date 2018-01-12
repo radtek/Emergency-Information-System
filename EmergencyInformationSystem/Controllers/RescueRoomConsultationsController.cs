@@ -19,17 +19,11 @@ namespace EmergencyInformationSystem.Controllers
         /// 一览。
         /// </summary>
         /// <param name="rescueRoomInfoId">归属的抢救室病例ID。</param>
-        public ActionResult IndexPartial(int rescueRoomInfoId)
+        public ActionResult IndexPartial(Guid rescueRoomInfoId)
         {
-            var db = new EiSDbContext();
+            var targetV = new Models.ViewModels.RescueRoomConsultations.IndexPartial.IndexPartial(rescueRoomInfoId);
 
-            var target = db.RescueRoomInfos.Find(rescueRoomInfoId);
-            if (target == null)
-                return null;
-
-            var query = target.RescueRoomConsultations.OrderBy(c => c.RequestTime).ToList();
-
-            return PartialView(query);
+            return PartialView(targetV);
         }
 
         /// <summary>
@@ -37,7 +31,7 @@ namespace EmergencyInformationSystem.Controllers
         /// </summary>
         /// <param name="rescueRoomInfoId">归属的抢救室病例ID。</param>
         /// <param name="goToGreenPath">指定跳转到绿色通道表单。（后续参数忽略）</param>
-        public ActionResult Create(int rescueRoomInfoId, bool goToGreenPath = false)
+        public ActionResult Create(Guid rescueRoomInfoId, bool goToGreenPath = false)
         {
             var db = new EiSDbContext();
 
@@ -45,16 +39,16 @@ namespace EmergencyInformationSystem.Controllers
             if (rescueRoomInfo == null)
                 return HttpNotFound();
 
-            var target = new RescueRoomConsultation();
+            var targetV = new Models.ViewModels.RescueRoomConsultations.Create.Create();
+            var targetW = new Models.ViewModels.RescueRoomConsultations.Create.SelectionWorker(targetV);
 
-            target.RescueRoomInfoId = rescueRoomInfoId;
-            target.RequestTime = DateTime.Today;
+            targetV.RescueRoomInfoId = rescueRoomInfoId;
+            targetV.RequestTime = DateTime.Today;
+            targetV.GoToGreenPath = goToGreenPath;
 
-            ViewBag.GoToGreenPath = goToGreenPath; //不添加视图模型的情况下实现。
+            ViewBag.ConsultationDepartmentId = targetW.ConsultationDepartments;
 
-            ViewBag.ConsultationDepartmentId = new SelectList(db.Destinations.Where(c => c.IsUseForConsultation).OrderBy(c => c.Priority2), "DestinationId", "DestinationName");
-
-            return View(target);
+            return View(targetV);
         }
 
         /// <summary>
@@ -64,43 +58,34 @@ namespace EmergencyInformationSystem.Controllers
         /// <param name="goToGreenPath">指定跳转到绿色通道表单。（后续参数忽略）</param>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind()]RescueRoomConsultation rescueRoomConsultation, bool goToGreenPath = false)
+        public ActionResult Create([Bind()]Models.ViewModels.RescueRoomConsultations.Create.Create targetV)
         {
-            var db = new EiSDbContext();
-
-            //1.会诊到达时间不可早于会诊申请时间。
-            if (rescueRoomConsultation.ArriveTime.HasValue && rescueRoomConsultation.ArriveTime.Value < rescueRoomConsultation.RequestTime)
-                ModelState.AddModelError("ArriveTime", "不可早于申请时间。");
-            //2.科室不能为空。
-            if(db.Destinations.Find(rescueRoomConsultation.ConsultationDepartmentId).IsUseForEmpty)
-                ModelState.AddModelError("ConsultationDepartmentId", "不可为空。");
-
             if (ModelState.IsValid)
             {
-                rescueRoomConsultation.RescueRoomConsultationId = Guid.NewGuid();
-                rescueRoomConsultation.UpdateTime = DateTime.Now;
+                var db = new EiSDbContext();
 
-                Models.BusinessModels.TrasenInformationConvertor.FromEmployeeNumberToName(rescueRoomConsultation);
+                var target = targetV.GetReturn();
 
-                db.RescueRoomConsultations.Add(rescueRoomConsultation);
+                Models.BusinessModels.TrasenInformationConvertor.FromEmployeeNumberToName(target);
+
+                db.RescueRoomConsultations.Add(target);
                 db.SaveChanges();
 
                 //处理返回页面
-                if (goToGreenPath == true)
+                if (targetV.GoToGreenPath == true)
                 {
-                    var rescueRoomInfo = db.RescueRoomInfos.Find(rescueRoomConsultation.RescueRoomInfoId);
+                    var rescueRoomInfo = db.RescueRoomInfos.Find(targetV.RescueRoomInfoId);
 
                     return RedirectToAction(rescueRoomInfo.GreenPathActionName, "GreenPaths", new { id = rescueRoomInfo.GreenPathId });
                 }
 
-                return RedirectToAction("Details", "RescueRoomInfos", new { id = rescueRoomConsultation.RescueRoomInfoId });
+                return RedirectToAction("Details", "RescueRoomInfos", new { id = targetV.RescueRoomInfoId });
             }
 
-            ViewBag.GoToGreenPath = goToGreenPath; //不添加视图模型的情况下实现。
+            var targetW = new Models.ViewModels.RescueRoomConsultations.Create.SelectionWorker(targetV);
+            ViewBag.ConsultationDepartmentId = targetW.ConsultationDepartments;
 
-            ViewBag.ConsultationDepartmentId = new SelectList(db.Destinations.Where(c => c.IsUseForConsultation).OrderBy(c => c.Priority2), "DestinationId", "DestinationName");
-
-            return View(rescueRoomConsultation);
+            return View(targetV);
         }
 
         /// <summary>
@@ -116,11 +101,12 @@ namespace EmergencyInformationSystem.Controllers
             if (target == null)
                 return HttpNotFound();
 
-            ViewBag.GoToGreenPath = goToGreenPath;
+            var targetV = new Models.ViewModels.RescueRoomConsultations.Edit.Edit(target, goToGreenPath);
+            var targetW = new Models.ViewModels.RescueRoomConsultations.Edit.SelectionWorker(targetV);
 
-            ViewBag.ConsultationDepartmentId = new SelectList(db.Destinations.Where(c => c.IsUseForConsultation).OrderBy(c => c.Priority2), "DestinationId", "DestinationName", target.ConsultationDepartmentId);
+            ViewBag.ConsultationDepartmentId = targetW.ConsultationDepartments;
 
-            return View(target);
+            return View(targetV);
         }
 
         /// <summary>
@@ -130,48 +116,35 @@ namespace EmergencyInformationSystem.Controllers
         /// <param name="goToGreenPath">指定跳转到绿色通道表单。（后续参数忽略）</param>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind()]RescueRoomConsultation rescueRoomConsultation, bool goToGreenPath = false)
+        public ActionResult Edit([Bind()]Models.ViewModels.RescueRoomConsultations.Edit.Edit targetV)
         {
-            var db = new EiSDbContext();
-
-            //1.会诊到达时间不可早于会诊申请时间。
-            if (rescueRoomConsultation.ArriveTime.HasValue && rescueRoomConsultation.ArriveTime.Value < rescueRoomConsultation.RequestTime)
-                ModelState.AddModelError("ArriveTime", "不可早于申请时间。");
-            //2.科室不能为空。
-            if (db.Destinations.Find(rescueRoomConsultation.ConsultationDepartmentId).IsUseForEmpty)
-                ModelState.AddModelError("ConsultationDepartmentId", "不可为空。");
-
             if (ModelState.IsValid)
             {
-                var target = db.RescueRoomConsultations.Find(rescueRoomConsultation.RescueRoomConsultationId);
+                var db = new Models.Domains.Entities.EiSDbContext();
+                var target = db.RescueRoomConsultations.Find(targetV.RescueRoomConsultationId);
 
-                target.ArriveTime = rescueRoomConsultation.ArriveTime;
-                target.RequestTime = rescueRoomConsultation.RequestTime;
-                target.ConsultationDoctorName = rescueRoomConsultation.ConsultationDoctorName;
-                target.ConsultationDepartmentId = rescueRoomConsultation.ConsultationDepartmentId;
-
-                target.UpdateTime = DateTime.Now;
+                targetV.GetReturn(target);
 
                 Models.BusinessModels.TrasenInformationConvertor.FromEmployeeNumberToName(target);
 
                 db.SaveChanges();
 
                 //处理返回页面
-                if (goToGreenPath == true)
+                if (targetV.GoToGreenPath)
                 {
-                    var rescueRoomInfo = db.RescueRoomInfos.Find(rescueRoomConsultation.RescueRoomInfoId);
+                    var rescueRoomInfo = db.RescueRoomInfos.Find(targetV.RescueRoomInfoId);
 
                     return RedirectToAction(rescueRoomInfo.GreenPathActionName, "GreenPaths", new { id = rescueRoomInfo.GreenPathId });
                 }
 
-                return RedirectToAction("Details", "RescueRoomInfos", new { id = rescueRoomConsultation.RescueRoomInfoId });
+                return RedirectToAction("Details", "RescueRoomInfos", new { id = targetV.RescueRoomInfoId });
             }
 
-            ViewBag.GoToGreenPath = goToGreenPath; //不添加视图模型的情况下实现。
+            var targetW = new Models.ViewModels.RescueRoomConsultations.Edit.SelectionWorker(targetV);
 
-            ViewBag.ConsultationDepartmentId = new SelectList(db.Destinations.Where(c => c.IsUseForConsultation).OrderBy(c => c.Priority2), "DestinationId", "DestinationName", rescueRoomConsultation.ConsultationDepartmentId);
+            ViewBag.ConsultationDepartmentId = targetW.ConsultationDepartments;
 
-            return View(rescueRoomConsultation);
-        }        
+            return View(targetV);
+        }
     }
 }

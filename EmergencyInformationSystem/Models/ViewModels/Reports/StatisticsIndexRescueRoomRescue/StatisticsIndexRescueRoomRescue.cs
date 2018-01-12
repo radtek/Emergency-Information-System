@@ -18,7 +18,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsIndexRe
         /// <param name="time">指定的月报表涵盖时间点，只使用其中日期部分。</param>
         /// <param name="isRescue">是否抢救。</param>
         /// <param name="rescueResultId">抢救结果ID。</param>
-        public StatisticsIndexRescueRoomRescue(DateTime time, bool isRescue, int? rescueResultId, int level)
+        public StatisticsIndexRescueRoomRescue(DateTime time, bool isRescue, Guid? rescueResultId, int level)
         {
             var db = new EiSDbContext();
 

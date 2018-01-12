@@ -9,7 +9,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsIndexOb
 {
     public class StatisticsIndexObserveRoomDestination
     {
-        public StatisticsIndexObserveRoomDestination(DateTime time, bool? isClassifiedToInDepartment, bool? isClassifiedToOutDepartment, bool? isClassifiedLeave, bool? isClassifiedToOther, int? destinationId, string destinationRemarks, int level)
+        public StatisticsIndexObserveRoomDestination(DateTime time, bool? isClassifiedToInDepartment, bool? isClassifiedToOutDepartment, bool? isClassifiedLeave, bool? isClassifiedToOther, Guid? destinationId, string destinationRemarks, int level)
         {
             var db = new EiSDbContext();
 

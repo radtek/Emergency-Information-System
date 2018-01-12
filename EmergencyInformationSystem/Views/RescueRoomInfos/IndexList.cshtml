@@ -30,7 +30,7 @@
             <th class="alert-success text-center" width="130">
                 @Html.DisplayNameFor(model => model.InDepartmentTime)
             </th>
-            <th class="alert-success text-center" width="60">
+            <th class="alert-success text-center" width="90">
                 @Html.DisplayNameFor(model => model.BedNameFull)
             </th>
             <th class="alert-success text-center" width="80">
@@ -123,7 +123,7 @@
                 <td class="text-center">
                     @Html.DisplayFor(modelItem => item.InDepartmentTime)
                 </td>
-                <td class="text-center">
+                <td>
                     @Html.DisplayFor(modelItem => item.BedNameFull)
                 </td>
                 <td class="text-center">
@@ -186,9 +186,9 @@
             </tr>
         }
     </tbody>
-    <tbody id="IndexList_TableBody_Display" hidden="hidden">
+    @*<tbody id="IndexList_TableBody_Display" hidden="hidden">
         <tr>
             <td colspan="25">载入中…</td>
         </tr>
-    </tbody>
+    </tbody>*@
 </table>

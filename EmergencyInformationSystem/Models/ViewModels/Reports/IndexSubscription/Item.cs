@@ -54,7 +54,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.IndexSubscription
 
 
 
-        public int? RescueRoomInfoId { get; set; }
+        public Guid? RescueRoomInfoId { get; set; }
 
         public Guid? ObserveRoomInfoId { get; set; }
 

@@ -108,14 +108,15 @@ namespace EmergencyInformationSystem.Controllers
         /// <param name="JZID">门诊医师接诊记录ID。</param>
         /// <param name="previousRescueRoomInfoId">关联的抢救室病例ID。</param>
         /// <returns>表单。</returns>
-        public ActionResult Create4(Guid JZID, int? previousRescueRoomInfoId)
+        public ActionResult Create4(Guid JZID, Guid? previousRescueRoomInfoId)
         {
             var db = new Models.Domains.Entities.EiSDbContext();
 
             //查找是否已存在相同JZID的记录。若存在，则跳转到Details。
-            var targetDump = db.ObserveRoomInfos.Where(c => c.JZID == JZID).FirstOrDefault();
-            if (targetDump != null)
-                return RedirectToAction("Details", new { id = targetDump.ObserveRoomInfoId });
+            //**不需查找，已添加索引**
+            //var targetDump = db.ObserveRoomInfos.Where(c => c.JZID == JZID).FirstOrDefault();
+            //if (targetDump != null)
+            //    return RedirectToAction("Details", new { id = targetDump.ObserveRoomInfoId });
 
             var targetV = new Models.ViewModels.ObserveRoomInfos.Create.Create4(JZID, previousRescueRoomInfoId);
 

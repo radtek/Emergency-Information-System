@@ -46,7 +46,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// 归属的抢救室病例ID。
         /// </summary>
         [ForeignKey("RescueRoomInfo")]
-        public virtual int RescueRoomInfoId { get; set; }
+        public virtual Guid RescueRoomInfoId { get; set; }
 
 
 
@@ -55,42 +55,42 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// <summary>
         /// 登记时间。
         /// </summary>
-        [Display(Name = "登记时间")]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}")]
+        //[Display(Name = "登记时间")]
+        //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}")]
         public virtual DateTime? BookTime { get; set; }
 
         /// <summary>
         /// 检查时间。
         /// </summary>
-        [Display(Name = "检查时间")]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}")]
+        //[Display(Name = "检查时间")]
+        //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}")]
         public virtual DateTime? CheckTime { get; set; }
 
         /// <summary>
         /// 报告时间。
         /// </summary>
-        [Display(Name = "报告时间")]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}")]
+        //[Display(Name = "报告时间")]
+        //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}")]
         public virtual DateTime? ReportTime { get; set; }
 
         /// <summary>
         /// 检查部位。
         /// </summary>
-        [Display(Name = "检查部位")]
+        //[Display(Name = "检查部位")]
         public virtual string Part { get; set; }
 
         /// <summary>
         /// 检查项目。
         /// </summary>
-        [Display(Name = "检查项目")]
+        //[Display(Name = "检查项目")]
         public virtual string Category { get; set; }
 
         /// <summary>
         /// 影像类型ID。
         /// </summary>
         /// <remarks>原始字段本地解析。</remarks>
-        [ForeignKey("ImageCategory")]
-        public virtual int ImageCategoryId { get; set; }
+        //[ForeignKey("ImageCategory")]
+        public virtual Guid ImageCategoryId { get; set; }
 
 
 
@@ -99,6 +99,8 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// <summary>
         /// “PACS系统”“ID”。
         /// </summary>
+        [Index(IsUnique = true)]
+        [MaxLength(30)]
         public virtual string BOOKID { get; set; }
 
 

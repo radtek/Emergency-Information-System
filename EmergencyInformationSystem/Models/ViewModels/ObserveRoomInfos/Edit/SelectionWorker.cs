@@ -11,8 +11,8 @@ namespace EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Edit
         {
             var db = new Models.Domains.Entities.EiSDbContext();
 
-            this.Beds = new System.Web.Mvc.SelectList(db.Beds.Where(c => c.IsUseForObserveRoom), "BedId", "BedName", targetV.BedId);
-            this.InObserveRoomWays = new System.Web.Mvc.SelectList(db.InObserveRoomWays, "InObserveRoomWayId", "InObserveRoomWayName", targetV.InObserveRoomWayId);
+            this.Beds = new System.Web.Mvc.SelectList(db.Beds.Where(c => c.IsUseForObserveRoom).OrderBy(c => c.Priority), "BedId", "BedName", targetV.BedId);
+            this.InObserveRoomWays = new System.Web.Mvc.SelectList(db.InObserveRoomWays.OrderBy(c => c.Priority), "InObserveRoomWayId", "InObserveRoomWayName", targetV.InObserveRoomWayId);
             this.Destinations = new System.Web.Mvc.SelectList(db.Destinations.Where(c => c.IsUseForRescueRoom).OrderBy(c => c.Priority2), "DestinationId", "DestinationName", targetV.DestinationId);
             this.DestinationFirsts = new System.Web.Mvc.SelectList(db.Destinations.Where(c => c.IsUseForSubscription).OrderBy(c => c.Priority2), "DestinationId", "DestinationName", targetV.DestinationFirstId);
             this.DestinationSeconds = new System.Web.Mvc.SelectList(db.Destinations.Where(c => c.IsUseForSubscription).OrderBy(c => c.Priority2), "DestinationId", "DestinationName", targetV.DestinationSecondId);

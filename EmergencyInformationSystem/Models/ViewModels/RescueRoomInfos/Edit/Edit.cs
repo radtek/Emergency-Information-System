@@ -54,7 +54,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Edit
 
 
 
-        public int RescueRoomInfoId { get; set; }
+        public Guid RescueRoomInfoId { get; set; }
 
 
 
@@ -65,13 +65,13 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Edit
         public DateTime InDepartmentTime { get; set; }
 
         [Display(Name = "床位")]
-        public int BedId { get; set; }
+        public Guid? BedId { get; set; }
 
         [Display(Name = "首诊护士")]
         public string FirstNurseName { get; set; }
 
         [Display(Name = "入室方式")]
-        public int InRescueRoomWayId { get; set; }
+        public Guid? InRescueRoomWayId { get; set; }
 
         [Display(Name = "入室方式明细")]
         public string InRescueRoomWayRemarks { get; set; }
@@ -84,16 +84,16 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Edit
 
 
         [Display(Name = "危重等级")]
-        public int CriticalLevelId { get; set; }
+        public Guid? CriticalLevelId { get; set; }
 
         [Display(Name = "抢救")]
         public bool IsRescue { get; set; }
 
         [Display(Name = "抢救效果")]
-        public int RescueResultId { get; set; }
+        public Guid? RescueResultId { get; set; }
 
         [Display(Name = "绿色通道")]
-        public int GreenPathCategoryId { get; set; }
+        public Guid? GreenPathCategoryId { get; set; }
 
         [Display(Name = "绿色通道明细")]
         public string GreenPathCategoryRemarks { get; set; }
@@ -109,7 +109,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Edit
 
 
         [Display(Name = "预约首选科室")]
-        public int DestinationFirstId { get; set; }
+        public Guid? DestinationFirstId { get; set; }
 
         [Display(Name = "预约首选时间")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}")]
@@ -119,7 +119,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Edit
         public string DestinationFirstContact { get; set; }
 
         [Display(Name = "预约次选科室")]
-        public int DestinationSecondId { get; set; }
+        public Guid? DestinationSecondId { get; set; }
 
 
 
@@ -130,7 +130,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Edit
         public DateTime? OutDepartmentTime { get; set; }
 
         [Display(Name = "去向")]
-        public int DestinationId { get; set; }
+        public Guid? DestinationId { get; set; }
 
         [Display(Name = "去向明细")]
         public string DestinationRemarks { get; set; }
@@ -142,7 +142,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Edit
         public string DiagnosisName { get; set; }
 
         [Display(Name = "转院原因")]
-        public int? TransferReasonId { get; set; }
+        public Guid? TransferReasonId { get; set; }
 
         [Display(Name = "转往医院")]
         public string TransferTarget { get; set; }
@@ -211,11 +211,11 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Edit
                 result.Add(new ValidationResult("“入室时间”不能晚于当前时间", new string[] { "InDepartmentTime" }));
 
             //2.入室方式必填。
-            if (db.InRescueRoomWays.Find(this.InRescueRoomWayId).IsUseForEmpty)
+            if (!this.InRescueRoomWayId.HasValue)
                 result.Add(new ValidationResult("“入室方式”不可为空", new string[] { "InRescueRoomWayId" }));
 
             //3.首诊护士必填。
-            if (string.IsNullOrEmpty(this.FirstNurseName))
+            if (string.IsNullOrWhiteSpace(this.FirstNurseName))
                 result.Add(new ValidationResult("“首诊护士”不可为空", new string[] { "FirstNurseName" }));
 
             //4.入室方式为允许附加数据才可以有附加数据。
@@ -223,15 +223,15 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Edit
             //    ModelState.AddModelError("InRescueRoomWayRemarks", "与入院方式不匹配。");
 
             //5.入室方式为允许附加数据，必须有具体名称。
-            if (db.InRescueRoomWays.Find(this.InRescueRoomWayId).IsHasAdditionalInfo && string.IsNullOrEmpty(this.InRescueRoomWayRemarks))
+            if (this.InRescueRoomWayId.HasValue && db.InRescueRoomWays.Find(this.InRescueRoomWayId).IsHasAdditionalInfo && string.IsNullOrWhiteSpace(this.InRescueRoomWayRemarks))
                 result.Add(new ValidationResult("“入室方式明细”不可为空", new string[] { "InRescueRoomWayRemarks" }));
 
             //6.有抢救才能有抢救结果。
-            if (!this.IsRescue && !db.RescueResults.Find(this.RescueResultId).IsUseForEmpty)
+            if (!this.IsRescue && this.RescueResultId.HasValue)
                 result.Add(new ValidationResult("与“抢救”不匹配", new string[] { "RescueResultId" }));
 
             //7.离室时，有抢救则必须有抢救结果。
-            if (this.OutDepartmentTime.HasValue && this.IsRescue && db.RescueResults.Find(this.RescueResultId).IsUseForEmpty)
+            if (this.OutDepartmentTime.HasValue && this.IsRescue && !this.RescueResultId.HasValue)
                 result.Add(new ValidationResult("离室时，有“抢救”必须有“抢救结果”", new string[] { "RescueResultId" }));
 
             //8.绿色通道为允许附加数据才可以有附加数据。
@@ -239,11 +239,11 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Edit
             //    ModelState.AddModelError("GreenPathCategoryRemarks", "与绿色通道病种不匹配。");
 
             //9.绿色通道为允许附加数据,必须有具体名称。
-            if (db.GreenPathCategories.Find(this.GreenPathCategoryId).IsHasAdditionalInfo && string.IsNullOrEmpty(this.GreenPathCategoryRemarks))
+            if (this.GreenPathCategoryId.HasValue && db.GreenPathCategories.Find(this.GreenPathCategoryId).IsHasAdditionalInfo && string.IsNullOrWhiteSpace(this.GreenPathCategoryRemarks))
                 result.Add(new ValidationResult("“绿色通道明细”不可为空", new string[] { "GreenPathCategoryRemarks" }));
 
             //10.有预约首选科室，必须有预约首选时间。
-            if (!db.Destinations.Find(this.DestinationFirstId).IsUseForEmpty && !this.DestinationFirstTime.HasValue)
+            if (this.DestinationFirstId.HasValue && !this.DestinationFirstTime.HasValue)
                 result.Add(new ValidationResult("“预约时间”不可为空", new string[] { "DestinationFirstTime" }));
 
             //11.预约首选时间不能早于入室时间。
@@ -251,11 +251,11 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Edit
                 result.Add(new ValidationResult("“预约时间”不能早于“入室时间”", new string[] { "DestinationFirstTime" }));
 
             //12.有预约首选科室，必须有预约首选医师。
-            if (!db.Destinations.Find(this.DestinationFirstId).IsUseForEmpty && string.IsNullOrEmpty(this.DestinationFirstContact))
+            if (this.DestinationFirstId.HasValue && string.IsNullOrWhiteSpace(this.DestinationFirstContact))
                 result.Add(new ValidationResult("“预约医师”不可为空", new string[] { "DestinationFirstContact" }));
 
             //13.有预约次选科室，必须有预约首选科室。
-            if (!db.Destinations.Find(this.DestinationSecondId).IsUseForEmpty && db.Destinations.Find(this.DestinationFirstId).IsUseForEmpty)
+            if (this.DestinationSecondId.HasValue && !this.DestinationFirstId.HasValue)
                 result.Add(new ValidationResult("必须先填写“预约首选科室”", new string[] { "DestinationSecondId" }));
 
             //14.有离室时间，必须有去向。
@@ -275,27 +275,27 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Edit
             //    ModelState.AddModelError("DestinationRemarks", "与去向不匹配。");
 
             //18.去向为允许附加数据,必须填写去向详细。
-            if (db.Destinations.Find(this.DestinationId).IsHasAdditionalInfo && string.IsNullOrEmpty(this.DestinationRemarks))
+            if (this.DestinationId.HasValue && db.Destinations.Find(this.DestinationId).IsHasAdditionalInfo && string.IsNullOrWhiteSpace(this.DestinationRemarks))
                 result.Add(new ValidationResult("“去向明细”不可为空", new string[] { "DestinationRemarks" }));
 
             //19.有去向，必须有离室时间。
-            if (!db.Destinations.Find(this.DestinationId).IsUseForEmpty && !this.OutDepartmentTime.HasValue)
+            if (this.DestinationId.HasValue && !this.OutDepartmentTime.HasValue)
                 result.Add(new ValidationResult("“离室时间”不可为空", new string[] { "OutDepartmentTime" }));
 
             //20.有去向，必须有经手护士。
-            if (!db.Destinations.Find(this.DestinationId).IsUseForEmpty && string.IsNullOrEmpty(this.HandleNurse))
+            if (this.DestinationId.HasValue && string.IsNullOrWhiteSpace(this.HandleNurse))
                 result.Add(new ValidationResult("“经手护士”不可为空", new string[] { "HandleNurse" }));
 
             //21.去向为转院时，必须有转院原因。
-            if (db.Destinations.Find(this.DestinationId).IsTransfer && db.TransferReasons.Find(this.TransferReasonId).IsUseForEmpty)
+            if (this.DestinationId.HasValue && db.Destinations.Find(this.DestinationId).IsTransfer && !this.TransferReasonId.HasValue)
                 result.Add(new ValidationResult("“转院原因”不可为空", new string[] { "TransferReasonId" }));
 
             //22.去向为转院时，必须有转往医院。
-            if (db.Destinations.Find(this.DestinationId).IsTransfer && string.IsNullOrEmpty(this.TransferTarget))
+            if (this.DestinationId.HasValue && db.Destinations.Find(this.DestinationId).IsTransfer && string.IsNullOrWhiteSpace(this.TransferTarget))
                 result.Add(new ValidationResult("“转往医院”不可为空", new string[] { "TransferTarget" }));
 
             //23.去向为专科时，必须有专科名称
-            if (db.Destinations.Find(this.DestinationId).IsProfessional && string.IsNullOrEmpty(this.ProfessionalTarget))
+            if (this.DestinationId.HasValue && db.Destinations.Find(this.DestinationId).IsProfessional && string.IsNullOrWhiteSpace(this.ProfessionalTarget))
                 result.Add(new ValidationResult("“专科名称”不可为空", new string[] { "ProfessionalTarget" }));
 
             return result;

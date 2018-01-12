@@ -47,6 +47,11 @@ namespace EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Index
             this.DiagnosisName = target.DiagnosisName;
         }
 
+        public Item()
+        {
+
+        }
+
 
 
 

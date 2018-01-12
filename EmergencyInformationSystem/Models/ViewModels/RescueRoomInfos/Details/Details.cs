@@ -28,7 +28,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Details
             this.InRescueRoomWayNameFull = target.InRescueRoomWayNameFull;
             this.AdditionalDiagnosis = target.AdditionalDiagnosis;
 
-            this.CriticalLevelName = target.CriticalLevel.CriticalLevelName;
+            this.CriticalLevelName = target.CriticalLevel?.CriticalLevelName;
             this.RescueResultNameFull = target.RescueResultNameFull;
             this.GreenPathCategoryNameFull = target.GreenPathCategoryNameFull;
             this.Antibiotic = target.Antibiotic;
@@ -52,7 +52,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Details
 
 
 
-        public int RescueRoomInfoId { get; set; }
+        public Guid RescueRoomInfoId { get; set; }
 
         public string GreenPathActionName { get; set; }
 

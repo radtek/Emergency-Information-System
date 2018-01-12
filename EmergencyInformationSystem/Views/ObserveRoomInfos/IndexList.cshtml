@@ -30,7 +30,7 @@
             <th class="alert-success text-center" width="130">
                 @Html.DisplayNameFor(model => model.InDepartmentTime)
             </th>
-            <th class="alert-success text-center" width="60">
+            <th class="alert-success text-center" width="90">
                 @Html.DisplayNameFor(model => model.BedNameFull)
             </th>
             <th class="alert-success text-center" width="80">
@@ -75,80 +75,81 @@
             </th>
         </tr>
     </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr @(item.IsLeave ? "" : "class=danger")>
+                @*眉栏*@
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.PatientName)
+                </td>
+                <td class="text-center">
+                    @Html.ActionLink(item.OutPatientNumber, "Details", new { id = item.ObserveRoomInfoId }, new { @class = "btn-show-modal" })
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Sex)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.ReceiveAgeName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiagnosisNameOrigin)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.ReceiveTime)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.FirstDoctorName)
+                </td>
 
-    @foreach (var item in Model)
-    {
-        <tr @(item.IsLeave ? "" : "class=danger")>
-            @*眉栏*@
-            <td class="text-center">
-                @Html.DisplayFor(modelItem => item.PatientName)
-            </td>
-            <td class="text-center">
-                @Html.ActionLink(item.OutPatientNumber, "Details", new { id = item.ObserveRoomInfoId }, new { @class= "btn-show-modal" })
-            </td>
-            <td class="text-center">
-                @Html.DisplayFor(modelItem => item.Sex)
-            </td>
-            <td class="text-center">
-                @Html.DisplayFor(modelItem => item.ReceiveAgeName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DiagnosisNameOrigin)
-            </td>
-            <td class="text-center">
-                @Html.DisplayFor(modelItem => item.ReceiveTime)
-            </td>
-            <td class="text-center">
-                @Html.DisplayFor(modelItem => item.FirstDoctorName)
-            </td>
+                @*入室*@
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.InDepartmentTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BedNameFull)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.FirstNurseName)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.InObserveRoomWayNameFull)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.AdditionalDiagnosis)
+                </td>
 
-            @*入室*@
-            <td class="text-center">
-                @Html.DisplayFor(modelItem => item.InDepartmentTime)
-            </td>
-            <td class="text-center">
-                @Html.DisplayFor(modelItem => item.BedNameFull)
-            </td>
-            <td class="text-center">
-                @Html.DisplayFor(modelItem => item.FirstNurseName)
-            </td>
-            <td class="text-center">
-                @Html.DisplayFor(modelItem => item.InObserveRoomWayNameFull)
-            </td>
-            <td class="text-center">
-                @Html.DisplayFor(modelItem => item.AdditionalDiagnosis)
-            </td>
+                @*预约*@
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.DestinationFirstName)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.DestinationFirstTime)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.DestinationFirstContact)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.DestinationSecondName)
+                </td>
 
-            @*预约*@
-            <td class="text-center">
-                @Html.DisplayFor(modelItem => item.DestinationFirstName)
-            </td>
-            <td class="text-center">
-                @Html.DisplayFor(modelItem => item.DestinationFirstTime)
-            </td>
-            <td class="text-center">
-                @Html.DisplayFor(modelItem => item.DestinationFirstContact)
-            </td>
-            <td class="text-center">
-                @Html.DisplayFor(modelItem => item.DestinationSecondName)
-            </td>
-
-            @*离室*@
-            <td class="text-center">
-                @Html.DisplayFor(modelItem => item.OutDepartmentTime)
-            </td>
-            <td class="text-center">
-                @Html.DisplayFor(modelItem => item.During)
-            </td>
-            <td class="text-center">
-                @Html.DisplayFor(modelItem => item.DestinationNameFull)
-            </td>
-            <td class="text-center">
-                @Html.DisplayFor(modelItem => item.HandleNurse)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DiagnosisName)
-            </td>
-        </tr>
-    }
+                @*离室*@
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.OutDepartmentTime)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.During)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.DestinationNameFull)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.HandleNurse)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiagnosisName)
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>

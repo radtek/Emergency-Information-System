@@ -107,6 +107,8 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Create
         {
             var target = new Models.Domains.Entities.RescueRoomInfo();
 
+            target.RescueRoomInfoId = Guid.NewGuid();
+
             target.PatientName = this.PatientName;
             target.OutPatientNumber = this.OutPatientNumber;
             target.Sex = this.Sex;
@@ -116,15 +118,6 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Create
             target.FirstDoctorName = this.FirstDoctorName;
 
             target.InDepartmentTime = DateTime.Now;
-            target.BedId = 1;
-            target.InRescueRoomWayId = 5;
-            target.CriticalLevelId = 1;
-            target.RescueResultId = 1;
-            target.GreenPathCategoryId = 9;
-            target.DestinationFirstId = 1;
-            target.DestinationSecondId = 1;
-            target.DestinationId = 1;
-            target.TransferReasonId = 1;
 
             target.KDJID = this.KDJID;
             target.BRXXID = this.BRXXID;

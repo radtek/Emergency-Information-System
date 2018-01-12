@@ -1,0 +1,22 @@
+﻿@model IEnumerable<EmergencyInformationSystem.Models.ViewModels.RescueRoomTreatmentRecords.IndexPartial.ItemSecond>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td class="text-center">
+            @Html.DisplayFor(modelItem => item.PrescriptionTime)
+        </td>
+        <td class="text-center">
+            @Html.DisplayFor(modelItem => item.ProductName)
+        </td>
+        <td class="text-center">
+            @Html.DisplayFor(modelItem => item.DosageQuantity)
+        </td>
+        <td class="text-center">
+            @Html.DisplayFor(modelItem => item.DosageUnit)
+        </td>
+        <td class="text-center">
+            @Html.DisplayFor(modelItem => item.Usage)
+        </td>
+    </tr>
+}

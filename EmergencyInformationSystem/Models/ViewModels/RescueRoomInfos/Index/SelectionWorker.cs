@@ -15,16 +15,16 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Index
         {
             var db = new Models.Domains.Entities.EiSDbContext();
 
-            this.GreenPathCategories = new System.Web.Mvc.SelectList(db.GreenPathCategories, "GreenPathCategoryId", "GreenPathCategoryName", route.GreenPathCategoryId);
-            this.InRescueRoomWays = new System.Web.Mvc.SelectList(db.InRescueRoomWays, "InRescueRoomWayId", "InRescueRoomWayName", route.InRescueRoomWayId);
-            this.Destinations = new System.Web.Mvc.SelectList(db.Destinations, "DestinationId", "DestinationName", route.DestinationId);
+            this.GreenPathCategories = new System.Web.Mvc.SelectList(db.GreenPathCategories.OrderBy(c => c.Priority), "GreenPathCategoryId", "GreenPathCategoryName", route.GreenPathCategoryId);
+            this.InRescueRoomWays = new System.Web.Mvc.SelectList(db.InRescueRoomWays.OrderBy(c => c.Priority), "InRescueRoomWayId", "InRescueRoomWayName", route.InRescueRoomWayId);
+            this.Destinations = new System.Web.Mvc.SelectList(db.Destinations.OrderBy(c => c.Priority2), "DestinationId", "DestinationName", route.DestinationId);
             this.IsRescues = new System.Web.Mvc.SelectList(
                 new List<System.Web.Mvc.SelectListItem>
                 {
                     new System.Web.Mvc.SelectListItem {Text="是",Value="True" },
                     new System.Web.Mvc.SelectListItem {Text="否",Value="False" }
                 }, "Value", "Text");
-            this.IsLeaves= new System.Web.Mvc.SelectList(
+            this.IsLeaves = new System.Web.Mvc.SelectList(
                 new List<System.Web.Mvc.SelectListItem>
                 {
                     new System.Web.Mvc.SelectListItem {Text="是",Value="true" },

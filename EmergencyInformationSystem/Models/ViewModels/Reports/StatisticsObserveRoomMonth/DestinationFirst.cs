@@ -32,7 +32,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsObserve
             if (string.IsNullOrEmpty(this.DestinationCategoryNameConcat))
                 this.DestinationCategoryNameConcat = "--";
 
-            this.List = group.OrderBy(c => c.Destination.Priority2).GroupBy(c => c.DestinationId).Select(c => new DestinationSecond(c, time)).ToList();
+            this.List = group.OrderBy(c => c.Destination.Priority2).GroupBy(c => c.DestinationId.Value).Select(c => new DestinationSecond(c, time)).ToList();
         }
 
 

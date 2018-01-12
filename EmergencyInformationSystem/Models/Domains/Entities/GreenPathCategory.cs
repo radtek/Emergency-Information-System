@@ -31,12 +31,12 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
 
 
         #region 实体属性
-        
+
         /// <summary>
         /// 绿色通道类型ID。
         /// </summary>
         [Key]
-        public virtual int GreenPathCategoryId { get; set; }
+        public virtual Guid GreenPathCategoryId { get; set; }
 
 
 
@@ -45,7 +45,10 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// <summary>
         /// 绿色通道类型名称。
         /// </summary>
-        [Display(Name = "绿色通道")]
+        //[Display(Name = "绿色通道")]
+        [Required(AllowEmptyStrings = false)]
+        [Index(IsUnique = true)]
+        [MaxLength(30)]
         public virtual string GreenPathCategoryName { get; set; }
 
         /// <summary>
@@ -53,16 +56,21 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// </summary>
         public virtual bool IsHasAdditionalInfo { get; set; }
 
-        /// <summary>
-        /// 是否用于表示空。
-        /// </summary>
-        public virtual bool IsUseForEmpty { get; set; }
+        ///// <summary>
+        ///// 是否用于表示空。
+        ///// </summary>
+        ////public virtual bool IsUseForEmpty { get; set; }
 
         /// <summary>
         /// 代码名称。
         /// </summary>
         /// <remarks>用于程序内部。</remarks>
+        [Required(AllowEmptyStrings = false)]
+        [Index(IsUnique = true)]
+        [MaxLength(30)]
         public virtual string CodeName { get; set; }
+
+        public virtual int Priority { get; set; }
 
 
 

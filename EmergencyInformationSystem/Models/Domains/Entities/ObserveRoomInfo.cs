@@ -45,46 +45,46 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// <summary>
         /// 患者姓名。
         /// </summary>
-        [Display(Name = "患者姓名")]
+        //[Display(Name = "患者姓名")]
         public virtual string PatientName { get; set; }
 
         /// <summary>
         /// 卡号。
         /// </summary>
-        [Required]
-        [Display(Name = "卡号")]
+        [Required(AllowEmptyStrings = false)]
+        //[Display(Name = "卡号")]
         public virtual string OutPatientNumber { get; set; }
 
         /// <summary>
         /// 性别。
         /// </summary>
-        [Display(Name = "性别")]
+        //[Display(Name = "性别")]
         public virtual string Sex { get; set; }
 
         /// <summary>
         /// 出生日期。
         /// </summary>
-        [Display(Name = "出生日期")]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
+        //[Display(Name = "出生日期")]
+        //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
         public virtual DateTime? BirthDate { get; set; }
 
         /// <summary>
         /// 急诊选择接诊诊断名称。
         /// </summary>
-        [Display(Name = "入室诊断")]
+        //[Display(Name = "入室诊断")]
         public virtual string DiagnosisNameOrigin { get; set; }
 
         /// <summary>
         /// 急诊选择接诊时间。
         /// </summary>
-        [Display(Name = "接诊时间")]
+        //[Display(Name = "接诊时间")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm:ss}")]
         public virtual DateTime? ReceiveTime { get; set; }
 
         /// <summary>
         /// 急诊选择接诊医师姓名。
         /// </summary>
-        [Display(Name = "首诊医师")]
+        //[Display(Name = "首诊医师")]
         public virtual string FirstDoctorName { get; set; }
 
 
@@ -94,23 +94,23 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// <summary>
         /// 入室时间。
         /// </summary>
-        [Display(Name = "入室时间")]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}")]
+        //[Display(Name = "入室时间")]
+        //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}")]
         public virtual DateTime InDepartmentTime { get; set; }
 
         /// <summary>
         /// 床位号。
         /// </summary>
         [Obsolete]
-        [Display(Name = "床位")]
+        //[Display(Name = "床位")]
         public virtual string BedNumber { get; set; }
 
         /// <summary>
         /// 床位ID。
         /// </summary>
         [ForeignKey("Bed")]
-        [Display(Name = "床位")]
-        public virtual int BedId { get; set; }
+        //[Display(Name = "床位")]
+        public virtual Guid? BedId { get; set; }
 
         /// <summary>
         /// 首诊护士姓名。
@@ -122,20 +122,20 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// 进入留观室方式ID。
         /// </summary>
         [ForeignKey("InObserveRoomWay")]
-        [Display(Name = "入室方式")]
-        public virtual int InObserveRoomWayId { get; set; }
+        //[Display(Name = "入室方式")]
+        public virtual Guid? InObserveRoomWayId { get; set; }
 
         /// <summary>
         /// 进入留观室方式明细。
         /// </summary>
         /// <remarks>有额外信息时才有意义。</remarks>
-        [Display(Name = "入室方式明细")]
+        //[Display(Name = "入室方式明细")]
         public virtual string InObserveRoomWayRemarks { get; set; }
 
         /// <summary>
         /// 补充诊断。
         /// </summary>
-        [Display(Name = "补充诊断")]
+        //[Display(Name = "补充诊断")]
         public virtual string AdditionalDiagnosis { get; set; }
 
 
@@ -146,28 +146,28 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// 预约首选科室ID——去向ID。
         /// </summary>
         [ForeignKey("DestinationFirst")]
-        [Display(Name = "预约首选科室")]
-        public virtual int DestinationFirstId { get; set; }
+        //[Display(Name = "预约首选科室")]
+        public virtual Guid? DestinationFirstId { get; set; }
 
         /// <summary>
         /// 预约首选科室预约时间。
         /// </summary>        
-        [Display(Name = "预约首选时间")]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}")]
+        //[Display(Name = "预约首选时间")]
+        //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}")]
         public virtual DateTime? DestinationFirstTime { get; set; }
 
         /// <summary>
         /// 预约首选科室联系人。
         /// </summary>
-        [Display(Name = "预约首选医师")]
+        //[Display(Name = "预约首选医师")]
         public virtual string DestinationFirstContact { get; set; }
 
         /// <summary>
         /// 预约次选科室ID——去向ID。
         /// </summary>
         [ForeignKey("DestinationSecond")]
-        [Display(Name = "预约次选科室")]
-        public virtual int DestinationSecondId { get; set; }
+        //[Display(Name = "预约次选科室")]
+        public virtual Guid? DestinationSecondId { get; set; }
 
 
 
@@ -176,53 +176,53 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// <summary>
         /// 离室时间。
         /// </summary>
-        [Display(Name = "离室时间")]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}")]
+        //[Display(Name = "离室时间")]
+        //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}")]
         public virtual DateTime? OutDepartmentTime { get; set; }
 
         /// <summary>
         /// 去向ID。
         /// </summary>
         [ForeignKey("Destination")]
-        [Display(Name = "去向")]
-        public virtual int DestinationId { get; set; }
+        //[Display(Name = "去向")]
+        public virtual Guid? DestinationId { get; set; }
 
         /// <summary>
         /// 去向明细。
         /// </summary>
         /// <remarks>有额外信息时才有意义。</remarks>
-        [Display(Name = "去向明细")]
+        //[Display(Name = "去向明细")]
         public virtual string DestinationRemarks { get; set; }
 
         /// <summary>
         /// 经手护士。
         /// </summary>
-        [Display(Name = "经手护士")]
+        //[Display(Name = "经手护士")]
         public virtual string HandleNurse { get; set; }
 
         /// <summary>
         /// 离室诊断名称。
         /// </summary>
-        [Display(Name = "离室诊断")]
+        //[Display(Name = "离室诊断")]
         public virtual string DiagnosisName { get; set; }
 
         /// <summary>
         /// 转院原因ID。
         /// </summary>
-        [Display(Name = "转院原因")]
+        //[Display(Name = "转院原因")]
         [ForeignKey("TransferReason")]
-        public virtual int? TransferReasonId { get; set; }
+        public virtual Guid? TransferReasonId { get; set; }
 
         /// <summary>
         /// 转往医院。
         /// </summary>
-        [Display(Name = "转往医院")]
+        //[Display(Name = "转往医院")]
         public virtual string TransferTarget { get; set; }
 
         /// <summary>
         /// 专科名称。
         /// </summary>
-        [Display(Name = "专科名称")]
+        //[Display(Name = "专科名称")]
         public virtual string ProfessionalTarget { get; set; }
 
 
@@ -251,6 +251,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// “创星”“接诊信息ID”。
         /// </summary>
         /// <remarks>dbo.MZYS_JZJL的JZID。</remarks>
+        [Index(IsUnique = true)]
         public virtual Guid? JZID { get; set; }
 
 
@@ -321,7 +322,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// <summary>
         /// 就诊年龄名称。
         /// </summary>
-        [Display(Name = "就诊年龄")]
+        //[Display(Name = "就诊年龄")]
         public string ReceiveAgeName
         {
             get
@@ -359,12 +360,12 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// <summary>
         /// 床位名称-完整。
         /// </summary>
-        [Display(Name = "床位")]
+        //[Display(Name = "床位")]
         public string BedNameFull
         {
             get
             {
-                if (this.Bed == null || this.Bed.IsUseForEmpty)
+                if (this.BedId == null)
                     return this.BedNumber;
                 else
                     return this.Bed.BedName;
@@ -375,12 +376,14 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// 进入留观室方式名称-完整。
         /// </summary>
         /// <remarks>整合附加信息。</remarks>
-        [Display(Name = "入室方式")]
+        //[Display(Name = "入室方式")]
         public string InObserveRoomWayNameFull
         {
             get
             {
-                if (!this.InObserveRoomWay.IsHasAdditionalInfo)
+                if (this.InObserveRoomWayId == null)
+                    return null;
+                else if (!this.InObserveRoomWay.IsHasAdditionalInfo)
                     return this.InObserveRoomWay.InObserveRoomWayName;
                 else
                     return this.InObserveRoomWay.InObserveRoomWayName + " - " + this.InObserveRoomWayRemarks;
@@ -390,11 +393,12 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// <summary>
         /// 预约首选科室名称——去向名称。
         /// </summary>
-        [Display(Name = "预约首选科室")]
         public string DestinationFirstName
         {
             get
             {
+                if (this.DestinationFirstId == null)
+                    return null;
                 return this.DestinationFirst.DestinationName;
             }
         }
@@ -402,11 +406,12 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// <summary>
         /// 预约次选科室名称——去向名称。
         /// </summary>
-        [Display(Name = "预约次选科室")]
         public string DestinationSecondName
         {
             get
             {
+                if (this.DestinationSecondId == null)
+                    return null;
                 return this.DestinationSecond.DestinationName;
             }
         }
@@ -438,7 +443,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// 停留时长。
         /// </summary>
         /// <remarks>入室时间至离室时间的间隔。</remarks>
-        [Display(Name = "停留时长")]
+        //[Display(Name = "停留时长")]
         public TimeSpan? During
         {
             get
@@ -466,7 +471,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// 连续滞留时长。
         /// </summary>
         /// <remarks>从最初入室到当前（未离室）或离室时的累积时长。</remarks>
-        [Display(Name = "连续滞留时长")]
+        //[Display(Name = "连续滞留时长")]
         public TimeSpan DuringDetained
         {
             get
@@ -514,11 +519,12 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// 去向名称-完整。
         /// </summary>
         /// <remarks>整合附加信息。</remarks>
-        [Display(Name = "去向")]
         public string DestinationNameFull
         {
             get
             {
+                if (this.DestinationId == null)
+                    return null;
                 if (this.Destination.IsHasAdditionalInfo)
                     return this.Destination.DestinationName + " - " + this.DestinationRemarks;
                 else if (this.Destination.IsTransfer)
@@ -535,7 +541,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         {
             get
             {
-                if (this.Destination.IsUseForEmpty || this.DestinationFirst.IsUseForEmpty)
+                if (this.DestinationId == null || this.DestinationFirstId == null)
                     return null;
 
                 if (this.DestinationId == this.DestinationFirstId)
@@ -552,7 +558,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         {
             get
             {
-                if (this.Destination.IsUseForEmpty || this.DestinationSecond.IsUseForEmpty)
+                if (this.DestinationId == null || this.DestinationSecondId == null)
                     return null;
 
                 if (this.DestinationId == this.DestinationSecondId)

@@ -24,12 +24,12 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.IndexRescueRoomDa
             this.DiagnosisNameOrigin = target.DiagnosisNameOrigin;
             this.FirstDoctorName = target.FirstDoctorName;
             this.InDepartmentTime = target.InDepartmentTime;
-            this.CriticalLevelName = target.CriticalLevel.CriticalLevelName;
+            this.CriticalLevelName = target.CriticalLevel?.CriticalLevelName;
             this.RescueResultNameFull = target.RescueResultNameFull;
             this.GreenPathCategoryNameFull = target.GreenPathCategoryNameFull;
             this.OutDepartmentTime = target.OutDepartmentTime;
             this.During = target.During;
-            this.DestinationName = target.Destination.DestinationName;
+            this.DestinationName = target.Destination?.DestinationName;
             this.DiagnosisName = target.DiagnosisName;
         }
 
@@ -37,7 +37,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.IndexRescueRoomDa
 
 
 
-        public int RescueRoomInfoId { get; set; }
+        public Guid RescueRoomInfoId { get; set; }
 
         public bool IsLeave { get; set; }
 

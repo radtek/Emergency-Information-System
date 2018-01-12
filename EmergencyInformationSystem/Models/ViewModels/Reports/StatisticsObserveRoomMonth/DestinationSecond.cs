@@ -17,7 +17,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsObserve
         /// </summary>
         /// <param name="group">The group.</param>
         /// <param name="time">The time.</param>
-        public DestinationSecond(IGrouping<int, ObserveRoomInfo> group, DateTime time)
+        public DestinationSecond(IGrouping<Guid, ObserveRoomInfo> group, DateTime time)
         {
             this.DestinationId = group.Key;
             this.Time = time;
@@ -42,7 +42,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsObserve
 
 
 
-        public int DestinationId { get; set; }
+        public Guid DestinationId { get; set; }
 
         public DateTime Time { get; set; }
 

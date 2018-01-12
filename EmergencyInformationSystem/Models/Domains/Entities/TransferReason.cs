@@ -36,7 +36,7 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// 转院原因ID。
         /// </summary>
         [Key]
-        public virtual int TransferReasonId { get; set; }
+        public virtual Guid TransferReasonId { get; set; }
 
 
 
@@ -45,13 +45,16 @@ namespace EmergencyInformationSystem.Models.Domains.Entities
         /// <summary>
         /// 转院原因名称。
         /// </summary>
-        [Display(Name = "转院原因")]
+        //[Display(Name = "转院原因")]
+        [Required(AllowEmptyStrings = false)]
+        [Index(IsUnique = true)]
+        [MaxLength(30)]
         public virtual string TransferReasonName { get; set; }
 
-        /// <summary>
-        /// 是否用于表示空。
-        /// </summary>
-        public virtual bool IsUseForEmpty { get; set; }
+        ///// <summary>
+        ///// 是否用于表示空。
+        ///// </summary>
+        //public virtual bool IsUseForEmpty { get; set; }
 
 
 

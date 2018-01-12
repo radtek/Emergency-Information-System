@@ -29,7 +29,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Index
         /// <param name="page">页码。</param>
         /// <param name="perpage">每页项目数。</param>
         /// <param name="count">项目总数。</param>
-        public Route(DateTime? inDepartmentTimeStart, DateTime? inDepartmentTimeEnd, DateTime? outDepartmentTimeStart, DateTime? outDepartmentTimeEnd, int? greenPathCategoryId, bool? isRescue, bool? isLeave, string patientName, string outPatientNumber, int? inRescueRoomWayId, int? destinationId, int page, int perpage, int count) : base(page, perpage, count)
+        public Route(DateTime? inDepartmentTimeStart, DateTime? inDepartmentTimeEnd, DateTime? outDepartmentTimeStart, DateTime? outDepartmentTimeEnd, Guid? greenPathCategoryId, bool? isRescue, bool? isLeave, string patientName, string outPatientNumber, Guid? inRescueRoomWayId, Guid? destinationId, int page, int perpage, int count) : base(page, perpage, count)
         {
             this.InDepartmentTimeStart = inDepartmentTimeStart;
             this.InDepartmentTimeEnd = inDepartmentTimeEnd;
@@ -69,7 +69,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Index
         public DateTime? OutDepartmentTimeEnd { get; set; }
 
         [Display(Name = "绿色通道")]
-        public int? GreenPathCategoryId { get; set; }
+        public Guid? GreenPathCategoryId { get; set; }
 
         [Display(Name = "抢救")]
         public bool? IsRescue { get; set; }
@@ -84,10 +84,10 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Index
         public string OutPatientNumber { get; set; }
 
         [Display(Name = "入室方式")]
-        public int? InRescueRoomWayId { get; set; }
+        public Guid? InRescueRoomWayId { get; set; }
 
         [Display(Name = "去向")]
-        public int? DestinationId { get; set; }
+        public Guid? DestinationId { get; set; }
 
 
 

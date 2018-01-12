@@ -27,7 +27,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos.Create
         /// <summary>
         /// 卡号。
         /// </summary>
-        [Required]
+        [Required(AllowEmptyStrings = false)]
         [Display(Name = "卡号")]
         public string OutPatientNumber { get; set; }
 

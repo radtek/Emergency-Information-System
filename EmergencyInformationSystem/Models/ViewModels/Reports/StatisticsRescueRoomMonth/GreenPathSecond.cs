@@ -17,7 +17,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
         /// </summary>
         /// <param name="group">The group.</param>
         /// <param name="time">The time.</param>
-        public GreenPathSecond(IGrouping<int, RescueRoomInfo> group, DateTime time)
+        public GreenPathSecond(IGrouping<Guid, RescueRoomInfo> group, DateTime time)
         {
             this.GreenPathCategoryId = group.Key;
             this.Time = time;
@@ -43,7 +43,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.Reports.StatisticsRescueR
         /// <summary>
         /// 绿色通道病种ID。
         /// </summary>
-        public int GreenPathCategoryId { get; set; }
+        public Guid GreenPathCategoryId { get; set; }
 
         /// <summary>
         /// 统计项归属的时间点。
