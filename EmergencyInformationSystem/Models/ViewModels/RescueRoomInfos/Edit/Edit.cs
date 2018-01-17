@@ -259,12 +259,12 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos.Edit
                 result.Add(new ValidationResult("必须先填写“预约首选科室”", new string[] { "DestinationSecondId" }));
 
             //14.有离室时间，必须有去向。
-            //if (rescueRoomInfo.IsLeave && db.Destinations.Find(rescueRoomInfo.DestinationId).IsUseForEmpty)
-            //    ModelState.AddModelError("DestinationId", "离室时必填。");
+            if (this.OutDepartmentTime.HasValue && this.DestinationId == null)
+                result.Add(new ValidationResult("离室时必填", new string[] { "DestinationId" }));
 
             //15.有离室时间，必须有经手护士。
-            //if (rescueRoomInfo.IsLeave && string.IsNullOrEmpty(rescueRoomInfo.HandleNurse))
-            //    ModelState.AddModelError("HandleNurse", "离室时必填。");
+            if (this.OutDepartmentTime.HasValue && string.IsNullOrWhiteSpace(this.HandleNurse))
+                result.Add(new ValidationResult("离室时必填", new string[] { "HandleNurse" }));
 
             //16.离室时间必须不早于入室时间。
             if (this.OutDepartmentTime.HasValue && this.InDepartmentTime > this.OutDepartmentTime)
