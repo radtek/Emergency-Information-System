@@ -1,0 +1,32 @@
+﻿@model EmergencyInformationSystem.Models.ViewModels.ResuscitateRoomInfos.Index.Route
+
+<div class="btn-group" style="padding-bottom:10px">
+    @if (Model.Page > 1)
+    {
+        @Html.ActionLink("首页", "Index", Model.GetRoute(1), new { @class = "btn btn-default btn-show-modal" });
+        @Html.ActionLink("上一页", "Index", Model.GetRoute(Model.Page - 1), new { @class = "btn btn-default btn-show-modal" });
+    }
+    else
+    {
+        @Html.ActionLink("首页", "", "", new { @class = "btn btn-default", disabled = "disabled" });
+        @Html.ActionLink("上一页", "", "", new { @class = "btn btn-default", disabled = "disabled" });
+    }
+
+    <label class="btn btn-info">
+        第 @(Model.Page) 页 共 @(Model.MaxPage) 页 （共 @(Model.Count) 项）
+    </label>
+
+    @if (Model.Page < Model.MaxPage)
+    {
+        @Html.ActionLink("下一页", "Index", Model.GetRoute(Model.Page + 1), new { @class = "btn btn-default btn-show-modal" });
+        @Html.ActionLink("末页", "Index", Model.GetRoute(Model.MaxPage), new { @class = "btn btn-default btn-show-modal" });
+    }
+    else
+    {
+        @Html.ActionLink("下一页", "", "", new { @class = "btn btn-default", disabled = "disabled" });
+        @Html.ActionLink("末页", "", "", new { @class = "btn btn-default", disabled = "disabled" });
+    }
+</div>
+<div class="btn-group" style="padding-bottom:10px">
+    @Html.ActionLink("新增", "Create", "GeneralInfos", new { roomId = new Guid("61517C35-3AB1-4FD0-A2E1-09E9405562CC") }, new { @class = "btn btn-primary btn-show-modal" })
+</div>

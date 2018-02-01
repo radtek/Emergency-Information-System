@@ -1,0 +1,40 @@
+﻿@model EmergencyInformationSystem.Models.ViewModels.GeneralInfos.Header.Header
+
+<div class="row RescueRoomHeaderRow">
+    <div class="col-md-3 RescueRoomHeaderCell">
+        @Html.DisplayNameFor(model => model.PatientName)
+        :
+        <ins>@Html.DisplayFor(model => model.PatientName)</ins>
+    </div>
+    <div class="col-md-2 RescueRoomHeaderCell">
+        @Html.DisplayNameFor(model => model.OutPatientNumber)
+        :
+        <ins>@Html.DisplayFor(model => model.OutPatientNumber)</ins>
+    </div>
+    <div class="col-md-2 RescueRoomHeaderCell">
+        @Html.DisplayNameFor(model => model.Sex)
+        :
+        <ins>@Html.DisplayFor(model => model.Sex)</ins>
+    </div>
+    <div class="col-md-2 RescueRoomHeaderCell">
+        @Html.DisplayNameFor(model => model.ReceiveAgeName)
+        :
+        <ins>@Html.DisplayFor(model => model.ReceiveAgeName)</ins>
+    </div>
+    <div class="col-md-3 RescueRoomHeaderCell">
+        @Html.DisplayNameFor(model => model.ReceiveTime)
+        :
+        <ins>@Html.DisplayFor(model => model.ReceiveTime)</ins>
+    </div>
+
+    <div class="col-md-3 RescueRoomHeaderCell">
+        @Html.DisplayNameFor(model => model.FirstDoctorName)
+        :
+        <ins>@Html.DisplayFor(model => model.FirstDoctorName)</ins>
+    </div>
+    <div class="col-md-9 RescueRoomHeaderCell">
+        @Html.DisplayNameFor(model => model.DiagnosisNameOrigin)
+        :
+        <ins>@Html.DisplayFor(model => model.DiagnosisNameOrigin)</ins>
+    </div>
+</div>

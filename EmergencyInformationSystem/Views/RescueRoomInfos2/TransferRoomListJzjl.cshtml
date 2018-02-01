@@ -1,0 +1,45 @@
+﻿@model IEnumerable<EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos2.TransferRoom.ItemJzjl>
+
+<table class="table table-bordered table-condensed table-hover">
+    <thead>
+        <tr>
+            <th class="text-center" width="15%">
+                @Html.DisplayNameFor(model => model.FirstDoctorName)
+            </th>
+            <th class="text-center" width="65%">
+                @Html.DisplayNameFor(model => model.DiagnosisNameOrigin)
+            </th>
+            <th class="text-center" width="15%">
+                @Html.DisplayNameFor(model => model.ReceiveTime)
+            </th>
+            <th width="5%">
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="text-center">
+                    @Html.DisplayFor(model => item.FirstDoctorName)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(model => item.DiagnosisNameOrigin)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(model => item.ReceiveTime)
+                </td>
+                <td class="text-center">
+                    @if (string.IsNullOrEmpty(item.ExistRoomName))
+                    {
+                        @Html.ActionLink("选择", "TransferRoom2", new { JZID = item.ORIGIN_JZID, id = item.GeneralRoomInfoId }, new { @class = "label label-default btn-show-modal" })
+                    }
+                    else
+                    {
+                        <span>已在</span>@(item.ExistRoomName)
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -68,5 +68,17 @@ namespace EmergencyInformationSystem.Models.Domains2.Entities
 
 
         public virtual GeneralRoomInfo GeneralRoomInfo { get; set; }
+
+
+
+
+
+        public string DosageQuantityFull
+        {
+            get
+            {
+                return this.DosageQuantity + " " + this.DosageUnit;
+            }
+        }
     }
 }

@@ -204,16 +204,21 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ApiController.cs" />
+    <Compile Include="Controllers\GeneralInfosController.cs" />
     <Compile Include="Controllers\GreenPathsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IntensiveCareRoomInfosController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ObserveRoomInfos2Controller.cs" />
     <Compile Include="Controllers\ObserveRoomInfosController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\RescueRoomConsultationsController.cs" />
+    <Compile Include="Controllers\RescueRoomInfos2Controller.cs" />
     <Compile Include="Controllers\RescueRoomTreatmentRecordsController.cs" />
     <Compile Include="Controllers\RescueRoomDrugRecordsController.cs" />
     <Compile Include="Controllers\RescueRoomImageRecordsController.cs" />
     <Compile Include="Controllers\RescueRoomInfosController.cs" />
+    <Compile Include="Controllers\ResuscitateRoomInfosController.cs" />
     <Compile Include="Controllers\ServicesQueryController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -249,6 +254,16 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ViewModels\Api\IndexSubscription\IndexSubscription.cs" />
     <Compile Include="Models\ViewModels\Api\IndexSubscription\Item.cs" />
+    <Compile Include="Models\ViewModels\GeneralInfos\Create\Create.cs" />
+    <Compile Include="Models\ViewModels\GeneralInfos\Create\Create2.cs" />
+    <Compile Include="Models\ViewModels\GeneralInfos\Create\Create3.cs" />
+    <Compile Include="Models\ViewModels\GeneralInfos\Create\ItemGhxx.cs" />
+    <Compile Include="Models\ViewModels\GeneralInfos\Create\ItemJzjl.cs" />
+    <Compile Include="Models\ViewModels\GeneralInfos\Header\Header.cs" />
+    <Compile Include="Models\ViewModels\GeneralInfos\RelatedIndex\Item.cs" />
+    <Compile Include="Models\ViewModels\GeneralInfos\RelatedIndex\RelatedIndex.cs" />
+    <Compile Include="Models\ViewModels\GeneralInfos\TransferRoom\SelectionWorker.cs" />
+    <Compile Include="Models\ViewModels\GeneralInfos\TransferRoom\TransferRoom.cs" />
     <Compile Include="Models\ViewModels\GreenPaths\DetailsAmiPrint\DetailsAmiPrint.cs" />
     <Compile Include="Models\ViewModels\GreenPaths\DetailsAmiPrint\ItemRescueRoomConsultation.cs" />
     <Compile Include="Models\ViewModels\GreenPaths\DetailsAmiPrint\ItemRescueRoomDrugRecord.cs" />
@@ -259,6 +274,17 @@
     <Compile Include="Models\ViewModels\GreenPaths\IndexAmi\IndexAmi.cs" />
     <Compile Include="Models\ViewModels\GreenPaths\IndexAmi\Item.cs" />
     <Compile Include="Models\ViewModels\GreenPaths\IndexAmi\Route.cs" />
+    <Compile Include="Models\ViewModels\IntensiveCareRoomInfos\Index\Index.cs" />
+    <Compile Include="Models\ViewModels\IntensiveCareRoomInfos\Index\Item.cs" />
+    <Compile Include="Models\ViewModels\IntensiveCareRoomInfos\Index\Route.cs" />
+    <Compile Include="Models\ViewModels\IntensiveCareRoomInfos\Index\SelectionWorker.cs" />
+    <Compile Include="Models\ViewModels\ObserveRoomInfos2\Details\Details.cs" />
+    <Compile Include="Models\ViewModels\ObserveRoomInfos2\Edit\Edit.cs" />
+    <Compile Include="Models\ViewModels\ObserveRoomInfos2\Edit\SelectionWorker.cs" />
+    <Compile Include="Models\ViewModels\ObserveRoomInfos2\Index\Index.cs" />
+    <Compile Include="Models\ViewModels\ObserveRoomInfos2\Index\Item.cs" />
+    <Compile Include="Models\ViewModels\ObserveRoomInfos2\Index\Route.cs" />
+    <Compile Include="Models\ViewModels\ObserveRoomInfos2\Index\SelectionWorker.cs" />
     <Compile Include="Models\ViewModels\ObserveRoomInfos\Create\Create.cs" />
     <Compile Include="Models\ViewModels\ObserveRoomInfos\Create\Create2.cs" />
     <Compile Include="Models\ViewModels\ObserveRoomInfos\Create\Create3.cs" />
@@ -332,6 +358,24 @@
     <Compile Include="Models\ViewModels\RescueRoomDrugRecords\IndexPartial\ItemSecond.cs" />
     <Compile Include="Models\ViewModels\RescueRoomImageRecords\IndexPartial\IndexPartial.cs" />
     <Compile Include="Models\ViewModels\RescueRoomImageRecords\IndexPartial\Item.cs" />
+    <Compile Include="Models\ViewModels\RescueRoomInfos2\Create\Create.cs" />
+    <Compile Include="Models\ViewModels\RescueRoomInfos2\Create\Create2.cs" />
+    <Compile Include="Models\ViewModels\RescueRoomInfos2\Create\Create3.cs" />
+    <Compile Include="Models\ViewModels\RescueRoomInfos2\Create\ItemGhxx.cs" />
+    <Compile Include="Models\ViewModels\RescueRoomInfos2\Create\ItemJzjl.cs" />
+    <Compile Include="Models\ViewModels\RescueRoomInfos2\Details\Details.cs" />
+    <Compile Include="Models\ViewModels\RescueRoomInfos2\Details\RelateGeneralRoomInfo.cs" />
+    <Compile Include="Models\ViewModels\RescueRoomInfos2\Edit\Edit.cs" />
+    <Compile Include="Models\ViewModels\RescueRoomInfos2\Edit\SelectionWorker.cs" />
+    <Compile Include="Models\ViewModels\RescueRoomInfos2\Index\Index.cs" />
+    <Compile Include="Models\ViewModels\RescueRoomInfos2\Index\Item.cs" />
+    <Compile Include="Models\ViewModels\RescueRoomInfos2\Index\Route.cs" />
+    <Compile Include="Models\ViewModels\RescueRoomInfos2\Index\SelectionWorker.cs" />
+    <Compile Include="Models\ViewModels\RescueRoomInfos2\TransferRoom\ItemGhxx.cs" />
+    <Compile Include="Models\ViewModels\RescueRoomInfos2\TransferRoom\ItemJzjl.cs" />
+    <Compile Include="Models\ViewModels\RescueRoomInfos2\TransferRoom\SelectionWorker.cs" />
+    <Compile Include="Models\ViewModels\RescueRoomInfos2\TransferRoom\TransferRoom.cs" />
+    <Compile Include="Models\ViewModels\RescueRoomInfos2\TransferRoom\TransferRoom2.cs" />
     <Compile Include="Models\ViewModels\RescueRoomInfos\Create\Create.cs" />
     <Compile Include="Models\ViewModels\RescueRoomInfos\Create\Create2.cs" />
     <Compile Include="Models\ViewModels\RescueRoomInfos\Create\Create3.cs" />
@@ -350,6 +394,13 @@
     <Compile Include="Models\ViewModels\RescueRoomTreatmentRecords\IndexPartial\IndexPartial.cs" />
     <Compile Include="Models\ViewModels\RescueRoomTreatmentRecords\IndexPartial\ItemFirst.cs" />
     <Compile Include="Models\ViewModels\RescueRoomTreatmentRecords\IndexPartial\ItemSecond.cs" />
+    <Compile Include="Models\ViewModels\ResuscitateRoomInfos\Details\Details.cs" />
+    <Compile Include="Models\ViewModels\ResuscitateRoomInfos\Edit\Edit.cs" />
+    <Compile Include="Models\ViewModels\ResuscitateRoomInfos\Edit\SelectionWorker.cs" />
+    <Compile Include="Models\ViewModels\ResuscitateRoomInfos\Index\Index.cs" />
+    <Compile Include="Models\ViewModels\ResuscitateRoomInfos\Index\Item.cs" />
+    <Compile Include="Models\ViewModels\ResuscitateRoomInfos\Index\Route.cs" />
+    <Compile Include="Models\ViewModels\ResuscitateRoomInfos\Index\SelectionWorker.cs" />
     <Compile Include="Models\ViewModels\RouteBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -524,6 +575,45 @@
     <Content Include="Views\RescueRoomDrugRecords\IndexPartial_ListFirst.cshtml" />
     <Content Include="Views\RescueRoomTreatmentRecords\IndexPartial_ListFirst.cshtml" />
     <Content Include="Views\RescueRoomTreatmentRecords\IndexPartial_ListSecond.cshtml" />
+    <Content Include="Views\RescueRoomInfos2\Index.cshtml" />
+    <Content Include="Views\RescueRoomInfos2\IndexFilter.cshtml" />
+    <Content Include="Views\RescueRoomInfos2\IndexNavigator.cshtml" />
+    <Content Include="Views\RescueRoomInfos2\IndexList.cshtml" />
+    <Content Include="Views\RescueRoomInfos2\Details.cshtml" />
+    <Content Include="Views\RescueRoomInfos2\Edit.cshtml" />
+    <Content Include="Views\RescueRoomInfos2\Create.cshtml" />
+    <Content Include="Views\RescueRoomInfos2\Create2.cshtml" />
+    <Content Include="Views\RescueRoomInfos2\Create2ListGhxx.cshtml" />
+    <Content Include="Views\RescueRoomInfos2\Create2ListJzjl.cshtml" />
+    <Content Include="Views\RescueRoomInfos2\TransferRoom.cshtml" />
+    <Content Include="Views\RescueRoomInfos2\TransferRoomListGhxx.cshtml" />
+    <Content Include="Views\RescueRoomInfos2\TransferRoomListJzjl.cshtml" />
+    <Content Include="Views\RescueRoomInfos2\TransferRoom2.cshtml" />
+    <Content Include="Views\RescueRoomInfos2\Details_Relation.cshtml" />
+    <Content Include="Views\ObserveRoomInfos2\Index.cshtml" />
+    <Content Include="Views\ObserveRoomInfos2\IndexList.cshtml" />
+    <Content Include="Views\ObserveRoomInfos2\IndexNavigator.cshtml" />
+    <Content Include="Views\ObserveRoomInfos2\IndexFilter.cshtml" />
+    <Content Include="Views\GeneralInfos\RelatedIndex.cshtml" />
+    <Content Include="Views\GeneralInfos\RelatedIndex_List.cshtml" />
+    <Content Include="Views\ObserveRoomInfos2\Details.cshtml" />
+    <Content Include="Views\GeneralInfos\Create.cshtml" />
+    <Content Include="Views\GeneralInfos\Create2.cshtml" />
+    <Content Include="Views\GeneralInfos\Create2ListGhxx.cshtml" />
+    <Content Include="Views\GeneralInfos\Create2ListJzjl.cshtml" />
+    <Content Include="Views\ObserveRoomInfos2\Edit.cshtml" />
+    <Content Include="Views\GeneralInfos\TransferRoom.cshtml" />
+    <Content Include="Views\IntensiveCareRoomInfos\Index.cshtml" />
+    <Content Include="Views\IntensiveCareRoomInfos\IndexFilter.cshtml" />
+    <Content Include="Views\IntensiveCareRoomInfos\IndexList.cshtml" />
+    <Content Include="Views\IntensiveCareRoomInfos\IndexNavigator.cshtml" />
+    <Content Include="Views\ResuscitateRoomInfos\Index.cshtml" />
+    <Content Include="Views\ResuscitateRoomInfos\IndexFilter.cshtml" />
+    <Content Include="Views\ResuscitateRoomInfos\IndexList.cshtml" />
+    <Content Include="Views\ResuscitateRoomInfos\IndexNavigator.cshtml" />
+    <Content Include="Views\ResuscitateRoomInfos\Details.cshtml" />
+    <Content Include="Views\ResuscitateRoomInfos\Edit.cshtml" />
+    <Content Include="Views\GeneralInfos\Header.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -541,6 +631,16 @@
     <EmbeddedResource Include="Migrations\201801080320223_Initial.resx">
       <DependentUpon>201801080320223_Initial.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EmergencyInformationSystem.Models.Domains2\EmergencyInformationSystem.Models.Domains2.csproj">
+      <Project>{6029ee31-df7b-4062-b572-ebe4fcd7aaff}</Project>
+      <Name>EmergencyInformationSystem.Models.Domains2</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EmergencyInformationSystem.Models.Domains3\EmergencyInformationSystem.Models.Domains3.csproj">
+      <Project>{a15f9fe4-b066-4bb2-96c7-45d8bc088120}</Project>
+      <Name>EmergencyInformationSystem.Models.Domains3</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,0 +1,47 @@
+﻿@model IEnumerable<EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos2.Details.RelateGeneralRoomInfo>
+
+<table class="table table-bordered table-condensed table-hover">
+    <thead>
+        <tr>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.RoomName)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.InDepartmentTime)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.OutDepartmentTime)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.During)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="text-center">
+                    @if (item.IsCurrent)
+                    {
+                        @Html.DisplayFor(modeliItem => item.RoomName)
+                        <span>[当前]</span>
+                    }
+                    else
+                    {
+                        @Html.ActionLink(item.RoomName, "Details", new { id = item.GeneralRoomInfoId })
+                    }
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.InDepartmentTime)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.OutDepartmentTime)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.During)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

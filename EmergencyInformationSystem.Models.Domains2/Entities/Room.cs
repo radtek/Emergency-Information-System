@@ -14,7 +14,7 @@ namespace EmergencyInformationSystem.Models.Domains2.Entities
     {
         public Room()
         {
-
+            this.GeneralRoomInfos = new List<GeneralRoomInfo>();
         }
 
 
@@ -33,6 +33,10 @@ namespace EmergencyInformationSystem.Models.Domains2.Entities
         [MaxLength(30)]
         public virtual string RoomName { get; set; }
 
+        public virtual RoomCode RoomCode { get; set; }
+
+        public virtual string ControllerName { get; set; }
+
 
 
 
@@ -41,5 +45,11 @@ namespace EmergencyInformationSystem.Models.Domains2.Entities
         public virtual byte[] TimeStamp { get; set; }
 
         public virtual DateTime UpdateTime { get; set; }
+
+
+
+
+
+        public virtual IEnumerable<GeneralRoomInfo> GeneralRoomInfos { get; set; }
     }
 }

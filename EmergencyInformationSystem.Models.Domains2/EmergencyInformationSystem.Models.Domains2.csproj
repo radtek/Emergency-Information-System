@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>EmergencyInformationSystem.Models.Domains2</RootNamespace>
     <AssemblyName>EmergencyInformationSystem.Models.Domains2</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -66,11 +67,16 @@
     <Compile Include="Entities\InRoomWayCode.cs" />
     <Compile Include="Entities\RescueResult.cs" />
     <Compile Include="Entities\Room.cs" />
+    <Compile Include="Entities\RoomCode.cs" />
     <Compile Include="Entities\TransferReason.cs" />
     <Compile Include="Entities\TreatmentRecord.cs" />
-    <Compile Include="Migrations\201801220715002_Initial.cs" />
-    <Compile Include="Migrations\201801220715002_Initial.Designer.cs">
-      <DependentUpon>201801220715002_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201801270313228_Intial.cs" />
+    <Compile Include="Migrations\201801270313228_Intial.Designer.cs">
+      <DependentUpon>201801270313228_Intial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801291257327_RoomAddField.cs" />
+    <Compile Include="Migrations\201801291257327_RoomAddField.Designer.cs">
+      <DependentUpon>201801291257327_RoomAddField.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -80,8 +86,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201801220715002_Initial.resx">
-      <DependentUpon>201801220715002_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201801270313228_Intial.resx">
+      <DependentUpon>201801270313228_Intial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801291257327_RoomAddField.resx">
+      <DependentUpon>201801291257327_RoomAddField.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

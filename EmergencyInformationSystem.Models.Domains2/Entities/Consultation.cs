@@ -57,5 +57,17 @@ namespace EmergencyInformationSystem.Models.Domains2.Entities
         public virtual GeneralRoomInfo GeneralRoomInfo { get; set; }
 
         public virtual Destination ConsultationDepartment { get; set; }
+
+
+
+
+
+        public TimeSpan? DuringRequestToArrive
+        {
+            get
+            {
+                return this.ArriveTime - this.RequestTime;
+            }
+        }
     }
 }

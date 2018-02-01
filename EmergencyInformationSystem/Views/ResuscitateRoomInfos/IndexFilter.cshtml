@@ -1,0 +1,65 @@
+﻿@model EmergencyInformationSystem.Models.ViewModels.ResuscitateRoomInfos.Index.Route
+
+@using (Html.BeginForm())
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                @Html.DisplayNameFor(model => model.InDepartmentTimeStart)
+                <input type="datetime-local" name="InDepartmentTimeStart" class="form-control" value=@((Model.InDepartmentTimeStart)?.ToString("yyyy-MM-ddTHH:mm")) />
+            </div>
+            <div class="col-md-3">
+                @Html.DisplayNameFor(model => model.InDepartmentTimeEnd)
+                <input type="datetime-local" name="InDepartmentTimeEnd" class="form-control" value=@((Model.InDepartmentTimeEnd)?.ToString("yyyy-MM-ddTHH:mm")) />
+            </div>
+            <div class="col-md-3">
+                @Html.DisplayNameFor(model => model.OutDepartmentTimeStart)
+                <input type="datetime-local" name="OutDepartmentTimeStart" class="form-control" value=@((Model.OutDepartmentTimeStart)?.ToString("yyyy-MM-ddTHH:mm")) />
+            </div>
+            <div class="col-md-3">
+                @Html.DisplayNameFor(model => model.OutDepartmentTimeEnd)
+                <input type="datetime-local" name="OutDepartmentTimeEnd" class="form-control" value=@((Model.OutDepartmentTimeEnd)?.ToString("yyyy-MM-ddTHH:mm")) />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                @Html.DisplayNameFor(model => model.GreenPathCategoryId)
+                @Html.DropDownList("GreenPathCategoryId", null, "--", new { @class = "form-control" })
+            </div>
+            <div class="col-md-3">
+                @Html.DisplayNameFor(model => model.IsRescue)
+                @Html.DropDownList("IsRescue", null, "--", new { @class = "form-control" })
+            </div>
+            <div class="col-md-3">
+                @Html.DisplayNameFor(model => model.IsLeave)
+                @Html.DropDownList("IsLeave", null, "--", new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                @Html.DisplayNameFor(model => model.InRoomWayId)
+                @Html.DropDownList("InRoomWayId", null, "--", new { @class = "form-control" })
+            </div>
+            <div class="col-md-3">
+                @Html.DisplayNameFor(model => model.DestinationId)
+                @Html.DropDownList("DestinationId", null, "--", new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                @Html.DisplayNameFor(model => model.PatientName)
+                @Html.EditorFor(model => model.PatientName, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            <div class="col-md-3">
+                @Html.DisplayNameFor(model => model.OutPatientNumber)
+                @Html.EditorFor(model => model.OutPatientNumber, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="row" style="padding-top:10px">
+            <div class="col-md-6">
+                <input type="submit" formmethod="get" value="筛选" class="btn btn-default btn-show-modal" />
+                @Html.ActionLink("清空", "index", null, new { @class = "btn btn-default btn-show-modal" })
+            </div>
+        </div>
+    </div>
+}

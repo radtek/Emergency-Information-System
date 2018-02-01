@@ -1,0 +1,14 @@
+﻿@model IEnumerable<EmergencyInformationSystem.Models.ViewModels.GeneralInfos.Create.ItemGhxx>
+
+@foreach (var item in Model)
+{
+    <span>
+        @Html.DisplayNameFor(model => model.RegisterTime)
+        ：
+        @Html.DisplayFor(model => item.RegisterTime)
+    </span>
+
+    @Html.Partial("Create2ListJzjl", item.ListJzjl)
+
+    <hr />
+}

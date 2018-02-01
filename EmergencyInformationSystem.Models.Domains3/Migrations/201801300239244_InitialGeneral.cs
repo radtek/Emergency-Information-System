@@ -1,9 +1,9 @@
-namespace EmergencyInformationSystem.Models.Domains2.Migrations
+namespace EmergencyInformationSystem.Models.Domains3.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial : DbMigration
+    public partial class InitialGeneral : DbMigration
     {
         public override void Up()
         {
@@ -14,7 +14,9 @@ namespace EmergencyInformationSystem.Models.Domains2.Migrations
                         BedId = c.Guid(nullable: false),
                         BedName = c.String(nullable: false, maxLength: 30),
                         Priority = c.Int(nullable: false),
-                        Code = c.Int(nullable: false),
+                        IsUseForRescueRoom = c.Boolean(nullable: false),
+                        IsUseForObserveRoom = c.Boolean(nullable: false),
+                        IsUseForResuscitateRoom = c.Boolean(nullable: false),
                         TimeStamp = c.Binary(nullable: false, fixedLength: true, timestamp: true, storeType: "rowversion"),
                         UpdateTime = c.DateTime(nullable: false),
                     })
@@ -22,23 +24,16 @@ namespace EmergencyInformationSystem.Models.Domains2.Migrations
                 .Index(t => t.BedName, unique: true);
             
             CreateTable(
-                "dbo.Consultation",
+                "dbo.CriticalLevels",
                 c => new
                     {
-                        ConsultationId = c.Guid(nullable: false),
-                        GeneralRoomInfoId = c.Guid(nullable: false),
-                        RequestTime = c.DateTime(nullable: false),
-                        ArriveTime = c.DateTime(),
-                        ConsultationDoctorName = c.String(nullable: false),
-                        ConsultationDepartmentId = c.Guid(nullable: false),
+                        CriticalLevelId = c.Guid(nullable: false),
+                        CriticalLevelName = c.String(nullable: false, maxLength: 30),
                         TimeStamp = c.Binary(nullable: false, fixedLength: true, timestamp: true, storeType: "rowversion"),
                         UpdateTime = c.DateTime(nullable: false),
                     })
-                .PrimaryKey(t => t.ConsultationId)
-                .ForeignKey("dbo.Destinations", t => t.ConsultationDepartmentId, cascadeDelete: true)
-                .ForeignKey("dbo.GeneralRoomInfos", t => t.GeneralRoomInfoId, cascadeDelete: true)
-                .Index(t => t.GeneralRoomInfoId)
-                .Index(t => t.ConsultationDepartmentId);
+                .PrimaryKey(t => t.CriticalLevelId)
+                .Index(t => t.CriticalLevelName, unique: true);
             
             CreateTable(
                 "dbo.Destinations",
@@ -47,7 +42,19 @@ namespace EmergencyInformationSystem.Models.Domains2.Migrations
                         DestinationId = c.Guid(nullable: false),
                         DestinationName = c.String(nullable: false, maxLength: 30),
                         Priority2 = c.Int(nullable: false),
-                        DestinationCode = c.Int(nullable: false),
+                        IsUseForRescueRoom = c.Boolean(nullable: false),
+                        IsUseForObserveRoom = c.Boolean(nullable: false),
+                        IsUseForResuscitateRoom = c.Boolean(nullable: false),
+                        IsUseForSubscription = c.Boolean(nullable: false),
+                        IsUseForConsultation = c.Boolean(nullable: false),
+                        IsToInDepartment = c.Boolean(nullable: false),
+                        IsToOutDepartment = c.Boolean(nullable: false),
+                        IsToLeave = c.Boolean(nullable: false),
+                        IsToOther = c.Boolean(nullable: false),
+                        IsHasAdditionalInfo = c.Boolean(nullable: false),
+                        IsTransferHospital = c.Boolean(nullable: false),
+                        IsNeedProfessional = c.Boolean(nullable: false),
+                        IsTransferRoom = c.Boolean(nullable: false),
                         TimeStamp = c.Binary(nullable: false, fixedLength: true, timestamp: true, storeType: "rowversion"),
                         UpdateTime = c.DateTime(nullable: false),
                     })
@@ -60,6 +67,7 @@ namespace EmergencyInformationSystem.Models.Domains2.Migrations
                     {
                         GeneralRoomInfoId = c.Guid(nullable: false),
                         RoomId = c.Guid(nullable: false),
+                        PreGeneralRoomInfoId = c.Guid(),
                         PatientName = c.String(),
                         OutPatientNumber = c.String(nullable: false),
                         Sex = c.String(),
@@ -108,10 +116,12 @@ namespace EmergencyInformationSystem.Models.Domains2.Migrations
                 .ForeignKey("dbo.Destinations", t => t.DestinationSecondId)
                 .ForeignKey("dbo.GreenPathCategories", t => t.GreenPathCategoryId)
                 .ForeignKey("dbo.InRoomWays", t => t.InRoomWayId)
+                .ForeignKey("dbo.GeneralRoomInfos", t => t.PreGeneralRoomInfoId)
                 .ForeignKey("dbo.RescueResults", t => t.RescueResultId)
                 .ForeignKey("dbo.Rooms", t => t.RoomId, cascadeDelete: true)
                 .ForeignKey("dbo.TransferReasons", t => t.TransferReasonId)
                 .Index(t => t.RoomId)
+                .Index(t => t.PreGeneralRoomInfoId)
                 .Index(t => t.BedId)
                 .Index(t => t.InRoomWayId)
                 .Index(t => t.CriticalLevelId)
@@ -124,25 +134,13 @@ namespace EmergencyInformationSystem.Models.Domains2.Migrations
                 .Index(t => t.JZID, unique: true);
             
             CreateTable(
-                "dbo.CriticalLevels",
-                c => new
-                    {
-                        CriticalLevelId = c.Guid(nullable: false),
-                        CriticalLevelName = c.String(nullable: false, maxLength: 30),
-                        TimeStamp = c.Binary(nullable: false, fixedLength: true, timestamp: true, storeType: "rowversion"),
-                        UpdateTime = c.DateTime(nullable: false),
-                    })
-                .PrimaryKey(t => t.CriticalLevelId)
-                .Index(t => t.CriticalLevelName, unique: true);
-            
-            CreateTable(
                 "dbo.GreenPathCategories",
                 c => new
                     {
                         GreenPathCategoryId = c.Guid(nullable: false),
                         GreenPathCategoryName = c.String(nullable: false, maxLength: 30),
                         Priority = c.Int(nullable: false),
-                        GreenPathCategoryCode = c.Int(nullable: false),
+                        IsHasAdditionalInfo = c.Boolean(nullable: false),
                         TimeStamp = c.Binary(nullable: false, fixedLength: true, timestamp: true, storeType: "rowversion"),
                         UpdateTime = c.DateTime(nullable: false),
                     })
@@ -156,7 +154,11 @@ namespace EmergencyInformationSystem.Models.Domains2.Migrations
                         InRoomWayId = c.Guid(nullable: false),
                         InRoomWayName = c.String(nullable: false, maxLength: 30),
                         Priority = c.Int(nullable: false),
-                        InRoomWayCode = c.Int(nullable: false),
+                        IsUseForRescueRoom = c.Boolean(nullable: false),
+                        IsUseForObserveRoom = c.Boolean(nullable: false),
+                        IsUseForResuscitateRoom = c.Boolean(nullable: false),
+                        IsTransferRoom = c.Boolean(nullable: false),
+                        IsHasAdditionalInfo = c.Boolean(nullable: false),
                         TimeStamp = c.Binary(nullable: false, fixedLength: true, timestamp: true, storeType: "rowversion"),
                         UpdateTime = c.DateTime(nullable: false),
                     })
@@ -182,6 +184,10 @@ namespace EmergencyInformationSystem.Models.Domains2.Migrations
                     {
                         RoomId = c.Guid(nullable: false),
                         RoomName = c.String(nullable: false, maxLength: 30),
+                        ControllerName = c.String(),
+                        IsRescueRoom = c.Boolean(nullable: false),
+                        IsObserveRoom = c.Boolean(nullable: false),
+                        IsResuscitateRoom = c.Boolean(nullable: false),
                         TimeStamp = c.Binary(nullable: false, fixedLength: true, timestamp: true, storeType: "rowversion"),
                         UpdateTime = c.DateTime(nullable: false),
                     })
@@ -200,138 +206,14 @@ namespace EmergencyInformationSystem.Models.Domains2.Migrations
                 .PrimaryKey(t => t.TransferReasonId)
                 .Index(t => t.TransferReasonName, unique: true);
             
-            CreateTable(
-                "dbo.DrugRecordDefinitions",
-                c => new
-                    {
-                        DrugRecordDefinitionId = c.Guid(nullable: false),
-                        GreenPathCategoryId = c.Guid(nullable: false),
-                        DrugCode = c.String(),
-                        DrugName = c.String(),
-                        TimeStamp = c.Binary(nullable: false, fixedLength: true, timestamp: true, storeType: "rowversion"),
-                        UpdateTime = c.DateTime(nullable: false),
-                    })
-                .PrimaryKey(t => t.DrugRecordDefinitionId)
-                .ForeignKey("dbo.GreenPathCategories", t => t.GreenPathCategoryId, cascadeDelete: true)
-                .Index(t => t.GreenPathCategoryId);
-            
-            CreateTable(
-                "dbo.DrugRecords",
-                c => new
-                    {
-                        DrugRecordId = c.Guid(nullable: false),
-                        GeneralRoomInfoId = c.Guid(nullable: false),
-                        ProductCode = c.String(),
-                        ProductName = c.String(),
-                        GoodsName = c.String(),
-                        DosageQuantity = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        DosageUnit = c.String(),
-                        PrescriptionTime = c.DateTime(),
-                        Usage = c.String(),
-                        CFMXID = c.Guid(nullable: false),
-                        CFID = c.Guid(nullable: false),
-                        TimeStamp = c.Binary(nullable: false, fixedLength: true, timestamp: true, storeType: "rowversion"),
-                        UpdateTime = c.DateTime(nullable: false),
-                    })
-                .PrimaryKey(t => t.DrugRecordId)
-                .ForeignKey("dbo.GeneralRoomInfos", t => t.GeneralRoomInfoId, cascadeDelete: true)
-                .Index(t => t.GeneralRoomInfoId)
-                .Index(t => t.CFMXID, unique: true);
-            
-            CreateTable(
-                "dbo.GreenPathAmiInfoes",
-                c => new
-                    {
-                        GreenPathAmiId = c.Guid(nullable: false),
-                        GeneralRoomInfoId = c.Guid(nullable: false),
-                        OccurrenceTime = c.DateTime(),
-                        EcgFirstTime = c.DateTime(),
-                        EcgSecondTime = c.DateTime(),
-                        Remarks = c.String(),
-                        FinishPathTime = c.DateTime(),
-                        IsHeldUp = c.Boolean(nullable: false),
-                        Problem = c.String(),
-                        TimeStamp = c.Binary(nullable: false, fixedLength: true, timestamp: true, storeType: "rowversion"),
-                        UpdateTime = c.DateTime(nullable: false),
-                    })
-                .PrimaryKey(t => t.GreenPathAmiId)
-                .ForeignKey("dbo.GeneralRoomInfos", t => t.GeneralRoomInfoId, cascadeDelete: true)
-                .Index(t => t.GeneralRoomInfoId, unique: true);
-            
-            CreateTable(
-                "dbo.ImageCategories",
-                c => new
-                    {
-                        ImageCategoryId = c.Guid(nullable: false),
-                        ImageCategoryName = c.String(nullable: false, maxLength: 30),
-                        OriginCode = c.String(maxLength: 30),
-                        TimeStamp = c.Binary(nullable: false, fixedLength: true, timestamp: true, storeType: "rowversion"),
-                        UpdateTime = c.DateTime(nullable: false),
-                    })
-                .PrimaryKey(t => t.ImageCategoryId)
-                .Index(t => t.ImageCategoryName, unique: true)
-                .Index(t => t.OriginCode, unique: true);
-            
-            CreateTable(
-                "dbo.ImageRecords",
-                c => new
-                    {
-                        ImageRecordId = c.Guid(nullable: false),
-                        GeneralRoomInfoId = c.Guid(nullable: false),
-                        ImageCategoryId = c.Guid(nullable: false),
-                        BookTime = c.DateTime(),
-                        CheckTime = c.DateTime(),
-                        ReportTime = c.DateTime(),
-                        Part = c.String(),
-                        Category = c.String(),
-                        BOOKID = c.String(maxLength: 30),
-                        TimeStamp = c.Binary(nullable: false, fixedLength: true, timestamp: true, storeType: "rowversion"),
-                        UpdateTime = c.DateTime(nullable: false),
-                    })
-                .PrimaryKey(t => t.ImageRecordId)
-                .ForeignKey("dbo.GeneralRoomInfos", t => t.GeneralRoomInfoId, cascadeDelete: true)
-                .ForeignKey("dbo.ImageCategories", t => t.ImageCategoryId, cascadeDelete: true)
-                .Index(t => t.GeneralRoomInfoId)
-                .Index(t => t.ImageCategoryId)
-                .Index(t => t.BOOKID, unique: true);
-            
-            CreateTable(
-                "dbo.TreatmentRecords",
-                c => new
-                    {
-                        TreatmentRecordId = c.Guid(nullable: false),
-                        GeneralRoomInfoId = c.Guid(nullable: false),
-                        ProductCode = c.String(),
-                        ProductName = c.String(),
-                        GoodsName = c.String(),
-                        DosageQuantity = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        DosageUnit = c.String(),
-                        PrescriptionTime = c.DateTime(),
-                        Usage = c.String(),
-                        CFMXID = c.Guid(nullable: false),
-                        CFID = c.Guid(nullable: false),
-                        TimeStamp = c.Binary(nullable: false, fixedLength: true, timestamp: true, storeType: "rowversion"),
-                        UpdateTime = c.DateTime(nullable: false),
-                    })
-                .PrimaryKey(t => t.TreatmentRecordId)
-                .ForeignKey("dbo.GeneralRoomInfos", t => t.GeneralRoomInfoId, cascadeDelete: true)
-                .Index(t => t.GeneralRoomInfoId)
-                .Index(t => t.CFMXID, unique: true);
-            
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.TreatmentRecords", "GeneralRoomInfoId", "dbo.GeneralRoomInfos");
-            DropForeignKey("dbo.ImageRecords", "ImageCategoryId", "dbo.ImageCategories");
-            DropForeignKey("dbo.ImageRecords", "GeneralRoomInfoId", "dbo.GeneralRoomInfos");
-            DropForeignKey("dbo.GreenPathAmiInfoes", "GeneralRoomInfoId", "dbo.GeneralRoomInfos");
-            DropForeignKey("dbo.DrugRecords", "GeneralRoomInfoId", "dbo.GeneralRoomInfos");
-            DropForeignKey("dbo.DrugRecordDefinitions", "GreenPathCategoryId", "dbo.GreenPathCategories");
-            DropForeignKey("dbo.Consultation", "GeneralRoomInfoId", "dbo.GeneralRoomInfos");
             DropForeignKey("dbo.GeneralRoomInfos", "TransferReasonId", "dbo.TransferReasons");
             DropForeignKey("dbo.GeneralRoomInfos", "RoomId", "dbo.Rooms");
             DropForeignKey("dbo.GeneralRoomInfos", "RescueResultId", "dbo.RescueResults");
+            DropForeignKey("dbo.GeneralRoomInfos", "PreGeneralRoomInfoId", "dbo.GeneralRoomInfos");
             DropForeignKey("dbo.GeneralRoomInfos", "InRoomWayId", "dbo.InRoomWays");
             DropForeignKey("dbo.GeneralRoomInfos", "GreenPathCategoryId", "dbo.GreenPathCategories");
             DropForeignKey("dbo.GeneralRoomInfos", "DestinationSecondId", "dbo.Destinations");
@@ -339,24 +221,11 @@ namespace EmergencyInformationSystem.Models.Domains2.Migrations
             DropForeignKey("dbo.GeneralRoomInfos", "DestinationId", "dbo.Destinations");
             DropForeignKey("dbo.GeneralRoomInfos", "CriticalLevelId", "dbo.CriticalLevels");
             DropForeignKey("dbo.GeneralRoomInfos", "BedId", "dbo.Beds");
-            DropForeignKey("dbo.Consultation", "ConsultationDepartmentId", "dbo.Destinations");
-            DropIndex("dbo.TreatmentRecords", new[] { "CFMXID" });
-            DropIndex("dbo.TreatmentRecords", new[] { "GeneralRoomInfoId" });
-            DropIndex("dbo.ImageRecords", new[] { "BOOKID" });
-            DropIndex("dbo.ImageRecords", new[] { "ImageCategoryId" });
-            DropIndex("dbo.ImageRecords", new[] { "GeneralRoomInfoId" });
-            DropIndex("dbo.ImageCategories", new[] { "OriginCode" });
-            DropIndex("dbo.ImageCategories", new[] { "ImageCategoryName" });
-            DropIndex("dbo.GreenPathAmiInfoes", new[] { "GeneralRoomInfoId" });
-            DropIndex("dbo.DrugRecords", new[] { "CFMXID" });
-            DropIndex("dbo.DrugRecords", new[] { "GeneralRoomInfoId" });
-            DropIndex("dbo.DrugRecordDefinitions", new[] { "GreenPathCategoryId" });
             DropIndex("dbo.TransferReasons", new[] { "TransferReasonName" });
             DropIndex("dbo.Rooms", new[] { "RoomName" });
             DropIndex("dbo.RescueResults", new[] { "RescueResultName" });
             DropIndex("dbo.InRoomWays", new[] { "InRoomWayName" });
             DropIndex("dbo.GreenPathCategories", new[] { "GreenPathCategoryName" });
-            DropIndex("dbo.CriticalLevels", new[] { "CriticalLevelName" });
             DropIndex("dbo.GeneralRoomInfos", new[] { "JZID" });
             DropIndex("dbo.GeneralRoomInfos", new[] { "TransferReasonId" });
             DropIndex("dbo.GeneralRoomInfos", new[] { "DestinationId" });
@@ -367,26 +236,19 @@ namespace EmergencyInformationSystem.Models.Domains2.Migrations
             DropIndex("dbo.GeneralRoomInfos", new[] { "CriticalLevelId" });
             DropIndex("dbo.GeneralRoomInfos", new[] { "InRoomWayId" });
             DropIndex("dbo.GeneralRoomInfos", new[] { "BedId" });
+            DropIndex("dbo.GeneralRoomInfos", new[] { "PreGeneralRoomInfoId" });
             DropIndex("dbo.GeneralRoomInfos", new[] { "RoomId" });
             DropIndex("dbo.Destinations", new[] { "DestinationName" });
-            DropIndex("dbo.Consultation", new[] { "ConsultationDepartmentId" });
-            DropIndex("dbo.Consultation", new[] { "GeneralRoomInfoId" });
+            DropIndex("dbo.CriticalLevels", new[] { "CriticalLevelName" });
             DropIndex("dbo.Beds", new[] { "BedName" });
-            DropTable("dbo.TreatmentRecords");
-            DropTable("dbo.ImageRecords");
-            DropTable("dbo.ImageCategories");
-            DropTable("dbo.GreenPathAmiInfoes");
-            DropTable("dbo.DrugRecords");
-            DropTable("dbo.DrugRecordDefinitions");
             DropTable("dbo.TransferReasons");
             DropTable("dbo.Rooms");
             DropTable("dbo.RescueResults");
             DropTable("dbo.InRoomWays");
             DropTable("dbo.GreenPathCategories");
-            DropTable("dbo.CriticalLevels");
             DropTable("dbo.GeneralRoomInfos");
             DropTable("dbo.Destinations");
-            DropTable("dbo.Consultation");
+            DropTable("dbo.CriticalLevels");
             DropTable("dbo.Beds");
         }
     }

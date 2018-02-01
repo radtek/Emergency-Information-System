@@ -14,7 +14,7 @@ namespace EmergencyInformationSystem.Models.Domains2.Entities
     {
         public GeneralRoomInfo()
         {
-
+            this.PostGeneralRoomInfos = new List<GeneralRoomInfo>();
         }
 
 
@@ -26,6 +26,9 @@ namespace EmergencyInformationSystem.Models.Domains2.Entities
 
         [ForeignKey("Room")]
         public virtual Guid RoomId { get; set; }
+
+        [ForeignKey("PreGeneralRoomInfo")]
+        public virtual Guid? PreGeneralRoomInfoId { get; set; }
 
 
 
@@ -168,5 +171,262 @@ namespace EmergencyInformationSystem.Models.Domains2.Entities
         public virtual Destination Destination { get; set; }
 
         public virtual TransferReason TransferReason { get; set; }
+
+
+
+
+
+        public virtual GeneralRoomInfo PreGeneralRoomInfo { get; set; }
+
+
+
+
+
+        [ForeignKey("PreGeneralRoomInfoId")]
+        public virtual IEnumerable<GeneralRoomInfo> PostGeneralRoomInfos { get; set; }
+
+
+
+
+
+        public string ReceiveAgeName
+        {
+            get
+            {
+                if (!this.BirthDate.HasValue || !this.ReceiveTime.HasValue)
+                    return null;
+                else
+                {
+                    int ageYears;
+                    int ageMonths;
+
+                    DateTime upperBound = this.ReceiveTime.Value;
+
+                    ageYears = upperBound.Year - this.BirthDate.Value.Year;
+                    ageMonths = upperBound.Month - this.BirthDate.Value.Month;
+
+                    if (ageMonths < 0)
+                    {
+                        ageMonths += 12;
+                        ageYears -= 1;
+                    }
+
+                    if (ageYears >= 1)
+                    {
+                        return ageYears + "岁";
+                    }
+                    else
+                    {
+                        return ageMonths + "个月";
+                    }
+                }
+            }
+        }
+
+        public string BedNameFull
+        {
+            get
+            {
+                return this.BedId == null ? this.BedNumber : this.Bed.BedName;
+            }
+        }
+
+        public string InRoomWayNameFull
+        {
+            get
+            {
+                if (this.InRoomWayId == null)
+                    return null;
+                else if ((this.InRoomWay.InRoomWayCode & InRoomWayCode.HasAdditionalInfo) == 0)
+                    return this.InRoomWay.InRoomWayName;
+                else
+                    return this.InRoomWay.InRoomWayName + " - " + this.InRoomWayRemarks;
+            }
+        }
+
+        public string IsGreenPathName
+        {
+            get
+            {
+                return this.GreenPathCategoryId.HasValue ? "是" : "否";
+            }
+        }
+
+        public string GreenPathCategoryNameFull
+        {
+            get
+            {
+                if (this.GreenPathCategoryId == null)
+                    return null;
+                if ((this.GreenPathCategory.GreenPathCategoryCode & GreenPathCategoryCode.HasAdditionalInfo) == 0)
+                    return this.GreenPathCategory.GreenPathCategoryName;
+                else
+                    return this.GreenPathCategory.GreenPathCategoryName + " - " + this.GreenPathCategoryRemarks;
+            }
+        }
+
+        public string IsRescueName
+        {
+            get
+            {
+                return this.IsRescue ? "是" : "否";
+            }
+        }
+
+        public string RescueResultNameFull
+        {
+            get
+            {
+                if (!this.IsRescue)
+                    return this.IsRescueName;
+                else
+                    return this.IsRescueName + " - " + this.RescueResult?.RescueResultName;
+            }
+        }
+
+        public string IsLeaveName
+        {
+            get
+            {
+                return this.OutDepartmentTime.HasValue ? "是" : "否";
+            }
+        }
+
+        public TimeSpan? During
+        {
+            get
+            {
+                return this.OutDepartmentTime - this.InDepartmentTime;
+            }
+        }
+
+        public DateTime InDepartmentTimeActual
+        {
+            get
+            {
+                if (this.PreGeneralRoomInfo == null)
+                    return this.InDepartmentTime;
+                else
+                    return this.PreGeneralRoomInfo.InDepartmentTimeActual;
+            }
+        }
+
+        public TimeSpan DuringDetained
+        {
+            get
+            {
+                if (this.OutDepartmentTime.HasValue)
+                    return this.OutDepartmentTime.Value - this.InDepartmentTimeActual;
+                else
+                    return DateTime.Now - this.InDepartmentTimeActual;
+            }
+        }
+
+        public int? DuringHours
+        {
+            get
+            {
+                return this.During?.Hours + this.During?.Days * 24;
+            }
+        }
+
+        public string DuringGroupName
+        {
+            get
+            {
+                if (!this.DuringHours.HasValue)
+                    return "未离室";
+                else if (this.DuringHours.Value > 72)
+                    return "大于72小时";
+                else if (this.DuringHours.Value > 48)
+                    return "48至72小时";
+                else if (this.DuringHours.Value > 24)
+                    return "24至48小时";
+                else
+                    return "小于等于24小时";
+            }
+        }
+
+        public string DestinationNameFull
+        {
+            get
+            {
+                if (this.DestinationId == null)
+                    return null;
+                if ((this.Destination.DestinationCode & DestinationCode.HasAdditionalInfo) == DestinationCode.HasAdditionalInfo)
+                    return this.Destination.DestinationName + " - " + this.DestinationRemarks;
+                else if ((this.Destination.DestinationCode & DestinationCode.TransferHospital) == DestinationCode.TransferHospital)
+                    return this.Destination.DestinationName + " - " + this.TransferTarget;
+                else
+                    return this.Destination.DestinationName;
+            }
+        }
+
+        public bool? IsGotoFirstSubscription
+        {
+            get
+            {
+                if (this.DestinationId == null || this.DestinationFirstId == null)
+                    return null;
+
+                if (this.DestinationId == this.DestinationFirstId)
+                    return true;
+
+                return false;
+            }
+        }
+
+        public bool? IsGotoSecondSubscription
+        {
+            get
+            {
+                if (this.DestinationId == null || this.DestinationSecondId == null)
+                    return null;
+
+                if (this.DestinationId == this.DestinationSecondId)
+                    return true;
+
+                return false;
+            }
+        }
+
+        public bool? IsGotoSubscription
+        {
+            get
+            {
+                if (!this.IsGotoFirstSubscription.HasValue || !this.IsGotoSecondSubscription.HasValue)
+                    return null;
+
+                return this.IsGotoFirstSubscription.Value || this.IsGotoSecondSubscription.Value;
+            }
+        }
+
+        public bool IsTransferRoom
+        {
+            get
+            {
+                if (this.DestinationId == null)
+                    return false;
+                if ((this.Destination.DestinationCode & DestinationCode.TransferRoom) == DestinationCode.TransferRoom)
+                    return true;
+                return false;
+            }
+        }
+
+        public string GreenPathActionName
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public Guid? GreenPathId
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }

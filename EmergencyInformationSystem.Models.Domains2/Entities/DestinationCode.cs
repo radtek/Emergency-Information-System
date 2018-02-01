@@ -17,5 +17,7 @@ namespace EmergencyInformationSystem.Models.Domains2.Entities
         HasAdditionalInfo = 256,
         TransferHospital = 512,
         NeedProfessional = 1024,
+        TransferRoom = 2048,
+        UseForIntensiveCareRoom = 4096,
     }
 }

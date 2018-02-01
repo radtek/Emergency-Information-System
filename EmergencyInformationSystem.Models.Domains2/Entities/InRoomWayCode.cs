@@ -9,5 +9,7 @@ namespace EmergencyInformationSystem.Models.Domains2.Entities
         RescueRoom = 1,
         ObserveRoom = 2,
         HasAdditionalInfo = 4,
+        TransferRoom = 8,
+        IntensiveCareRoom = 16,
     }
 }

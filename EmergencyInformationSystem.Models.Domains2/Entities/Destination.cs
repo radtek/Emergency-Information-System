@@ -45,5 +45,17 @@ namespace EmergencyInformationSystem.Models.Domains2.Entities
         public virtual byte[] TimeStamp { get; set; }
 
         public virtual DateTime UpdateTime { get; set; }
+
+
+
+
+
+        public string DestinationCategoryNameConcat
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }

@@ -1,0 +1,34 @@
+﻿@model EmergencyInformationSystem.Models.ViewModels.IntensiveCareRoomInfos.Index.Index
+
+@{
+    ViewBag.Title = "重症监护单元室病例信息一览表";
+}
+
+@*面包屑区*@
+<div class="container">
+    <ol class="breadcrumb">
+        <li>@Html.ActionLink("主界面", "Index", "Home", null, new { @class = "btn-show-modal" })</li>
+        <li class="active">@ViewBag.Title</li>
+    </ol>
+</div>
+
+@*标题区*@
+<h2 class="RescueRoomMainTitleCell">@(ViewBag.Title)</h2>
+
+@*筛选区*@
+@Html.Partial("IndexFilter", Model.Route)
+
+<hr />
+
+@*导航区*@
+@Html.Partial("IndexNavigator", Model.Route)
+
+@*列表区*@
+@Html.Partial("IndexList", Model.List)
+
+@*导航区*@
+@Html.Partial("IndexNavigator", Model.Route)
+
+@section scripts{
+    @Scripts.Render("~/bundles/EisNormal")
+}

@@ -7,13 +7,13 @@ namespace EmergencyInformationSystem.Models.Domains2.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class Initial : IMigrationMetadata
+    public sealed partial class RoomAddField : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(RoomAddField));
         
         string IMigrationMetadata.Id
         {
-            get { return "201801220715002_Initial"; }
+            get { return "201801291257327_RoomAddField"; }
         }
         
         string IMigrationMetadata.Source

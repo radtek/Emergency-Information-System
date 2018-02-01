@@ -67,5 +67,88 @@ namespace EmergencyInformationSystem.Models.Domains2.Entities
 
 
         public virtual GeneralRoomInfo GeneralRoomInfo { get; set; }
+
+
+
+
+
+        public TimeSpan? DuringOccurrenceToInDepartment
+        {
+            get
+            {
+                if (this.OccurrenceTime.HasValue)
+                    return this.GeneralRoomInfo.InDepartmentTime - this.OccurrenceTime;
+                else
+                    return null;
+            }
+        }
+
+        public TimeSpan? DuringInDepartmentToReceive
+        {
+            get
+            {
+                if (this.GeneralRoomInfo.ReceiveTime.HasValue)
+                    return this.GeneralRoomInfo.ReceiveTime - this.GeneralRoomInfo.InDepartmentTime;
+                else
+                    return null;
+            }
+        }
+
+        public TimeSpan? DuringInDepartmentToEcgFirst
+        {
+            get
+            {
+                if (this.EcgFirstTime.HasValue)
+                    return this.EcgFirstTime - this.GeneralRoomInfo.InDepartmentTime;
+                else
+                    return null;
+            }
+        }
+
+        public TimeSpan? DuringInDepartmentToEcgSecond
+        {
+            get
+            {
+                if (this.EcgSecondTime.HasValue)
+                    return this.EcgSecondTime - this.GeneralRoomInfo.InDepartmentTime;
+                else
+                    return null;
+            }
+        }
+
+        public TimeSpan? During
+        {
+            get
+            {
+                if (this.FinishPathTime != null)
+                    return this.FinishPathTime - this.GeneralRoomInfo.InDepartmentTime;
+                else
+                    return null;
+            }
+        }
+
+        public bool IsFinished
+        {
+            get
+            {
+                return this.FinishPathTime.HasValue;
+            }
+        }
+
+        public string IsHeldUpString
+        {
+            get
+            {
+                return this.IsHeldUp ? "是" : "否";
+            }
+        }
+
+        public TimeSpan? DuringPathHeldUp
+        {
+            get
+            {
+                return this.GeneralRoomInfo.OutDepartmentTime - this.FinishPathTime;
+            }
+        }
     }
 }
