@@ -19,39 +19,14 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos2.Details
         public Details(Domains3.Entities.GeneralRoomInfo target)
         {
             this.Initial(target);
-
-            //RelateGeneralRoomInfos
-            //this.RelateGeneralRoomInfos = new List<RelateGeneralRoomInfo>();
-            //Domains2.Entities.GeneralRoomInfo targetTemp;
-
-            //targetTemp = target.PreGeneralRoomInfo;
-            //while (targetTemp != null)
-            //{
-            //    this.RelateGeneralRoomInfos.Add(new RelateGeneralRoomInfo(targetTemp));
-            //    targetTemp = targetTemp.PreGeneralRoomInfo;
-            //}
-
-            //this.RelateGeneralRoomInfos.Add(new RelateGeneralRoomInfo(target, true));
-
-            //var db2 = new Domains2.Entities.EiSDbContext();
-            //targetTemp = target;
-            //do
-            //{
-            //    targetTemp = db2.GeneralRoomInfos.FirstOrDefault(c => c.PreGeneralRoomInfoId == targetTemp.GeneralRoomInfoId);
-
-            //    if (targetTemp != null)
-            //        this.RelateGeneralRoomInfos.Add(new RelateGeneralRoomInfo(targetTemp));
-            //    else
-            //        break;
-            //} while (true);
-
-            //this.RelateGeneralRoomInfos = this.RelateGeneralRoomInfos.OrderBy(c => c.InDepartmentTime).ToList();
         }
 
         private void Initial(Domains3.Entities.GeneralRoomInfo target)
         {
             this.GeneralRoomInfoId = target.GeneralRoomInfoId;
             this.IsTransferRoom = target.IsTransferRoom;
+            this.GreenPathId = target.GreenPathInfos.FirstOrDefault()?.GrennPathId;
+            this.IsGreenPathHasForm = target.GreenPathCategory == null ? false : target.GreenPathCategory.IsHasForm;
 
             this.InDepartmentTime = target.InDepartmentTime;
             this.BedNameFull = target.BedNameFull;
@@ -87,9 +62,15 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos2.Details
 
         public bool IsTransferRoom { get; set; }
 
-        //public string GreenPathActionName { get; set; }
+        /// <summary>
+        /// 绿色通道实际记录ID。
+        /// </summary>
+        public Guid? GreenPathId { get; set; }
 
-        //public Guid? GreenPathId { get; set; }
+        /// <summary>
+        /// 是否存在专用绿色通道表单。
+        /// </summary>
+        public bool IsGreenPathHasForm { get; set; }
 
 
 
@@ -172,11 +153,5 @@ namespace EmergencyInformationSystem.Models.ViewModels.RescueRoomInfos2.Details
 
         [Display(Name = "离室")]
         public string IsLeaveName { get; set; }
-
-
-
-
-
-        //public List<RelateGeneralRoomInfo> RelateGeneralRoomInfos { get; set; }
     }
 }

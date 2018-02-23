@@ -364,7 +364,6 @@
     <Compile Include="Models\ViewModels\RescueRoomInfos2\Create\ItemGhxx.cs" />
     <Compile Include="Models\ViewModels\RescueRoomInfos2\Create\ItemJzjl.cs" />
     <Compile Include="Models\ViewModels\RescueRoomInfos2\Details\Details.cs" />
-    <Compile Include="Models\ViewModels\RescueRoomInfos2\Details\RelateGeneralRoomInfo.cs" />
     <Compile Include="Models\ViewModels\RescueRoomInfos2\Edit\Edit.cs" />
     <Compile Include="Models\ViewModels\RescueRoomInfos2\Edit\SelectionWorker.cs" />
     <Compile Include="Models\ViewModels\RescueRoomInfos2\Index\Index.cs" />
@@ -589,7 +588,6 @@
     <Content Include="Views\RescueRoomInfos2\TransferRoomListGhxx.cshtml" />
     <Content Include="Views\RescueRoomInfos2\TransferRoomListJzjl.cshtml" />
     <Content Include="Views\RescueRoomInfos2\TransferRoom2.cshtml" />
-    <Content Include="Views\RescueRoomInfos2\Details_Relation.cshtml" />
     <Content Include="Views\ObserveRoomInfos2\Index.cshtml" />
     <Content Include="Views\ObserveRoomInfos2\IndexList.cshtml" />
     <Content Include="Views\ObserveRoomInfos2\IndexNavigator.cshtml" />

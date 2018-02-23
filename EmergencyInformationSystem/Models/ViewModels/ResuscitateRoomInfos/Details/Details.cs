@@ -25,6 +25,8 @@ namespace EmergencyInformationSystem.Models.ViewModels.ResuscitateRoomInfos.Deta
         {
             this.GeneralRoomInfoId = target.GeneralRoomInfoId;
             this.IsTransferRoom = target.IsTransferRoom;
+            this.GreenPathId = target.GreenPathInfos.FirstOrDefault()?.GrennPathId;
+            this.IsGreenPathHasForm = target.GreenPathCategory == null ? false : target.GreenPathCategory.IsHasForm;
 
             this.InDepartmentTime = target.InDepartmentTime;
             this.BedNameFull = target.BedNameFull;
@@ -60,9 +62,15 @@ namespace EmergencyInformationSystem.Models.ViewModels.ResuscitateRoomInfos.Deta
 
         public bool IsTransferRoom { get; set; }
 
-        //public string GreenPathActionName { get; set; }
+        /// <summary>
+        /// 绿色通道实际记录ID。
+        /// </summary>
+        public Guid? GreenPathId { get; set; }
 
-        //public Guid? GreenPathId { get; set; }
+        /// <summary>
+        /// 是否存在专用绿色通道表单。
+        /// </summary>
+        public bool IsGreenPathHasForm { get; set; }
 
 
 

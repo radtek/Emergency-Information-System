@@ -91,21 +91,21 @@
             @Html.DisplayFor(model => model.GreenPathCategoryNameFull)
 
             @* 绿色通道表单 *@
-            @*@{
-                    if (!string.IsNullOrEmpty(Model.GreenPathActionName))
-                    {
-                        <span>&nbsp;&nbsp;</span>
+            @{
+                if (Model.IsGreenPathHasForm)
+                {
+                    <span>&nbsp;&nbsp;</span>
 
-                        if (Model.GreenPathId != null)
-                        {
-                            @Html.ActionLink("打开", Model.GreenPathActionName, "GreenPaths", new { id = Model.GreenPathId }, new { @class = "label label-info btn-show-modal" })
-                        }
-                        else
-                        {
-                            @Html.ActionLink("创建", Model.GreenPathActionName, "GreenPaths", new { rescueRoomInfoId = Model.RescueRoomInfoId }, new { @class = "label label-info btn-show-modal" })
-                        }
+                    if (Model.GreenPathId != null)
+                    {
+                        @Html.ActionLink("打开", "Details", "GreenPaths", new { Model.GreenPathId }, new { @class = "label label-info btn-show-modal" })
                     }
-                }*@
+                    else
+                    {
+                        @Html.ActionLink("创建", "Create", "GreenPaths", new { Model.GeneralRoomInfoId }, new { @class = "label label-info btn-show-modal" })
+                    }
+                }
+            }
         </div>
 
         <div class="col-md-3 RescueRoomSecondTitleCell">
