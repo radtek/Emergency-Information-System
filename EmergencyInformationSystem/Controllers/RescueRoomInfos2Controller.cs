@@ -64,7 +64,7 @@ namespace EmergencyInformationSystem.Controllers
 
                 targetV.GetReturn(target);
 
-                //Models.BusinessModels.TrasenInformationConvertor.FromEmployeeNumberToName(target);
+                Models.BusinessModels.TrasenInformationConvertor.FromEmployeeNumberToName(target);
 
                 db3.SaveChanges();
 
