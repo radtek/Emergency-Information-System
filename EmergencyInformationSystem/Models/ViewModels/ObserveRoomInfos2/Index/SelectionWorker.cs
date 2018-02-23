@@ -20,19 +20,6 @@ namespace EmergencyInformationSystem.Models.ViewModels.ObserveRoomInfos2.Index
                     new System.Web.Mvc.SelectListItem {Text="否",Value="false" }
                 }, "Value", "Text");
         }
-        //public SelectionWorker(Route route)
-        //{
-        //    var db2 = new Models.Domains2.Entities.EiSDbContext();
-
-        //    this.InRoomWays = new System.Web.Mvc.SelectList(db2.InRoomWays.Where(c => (c.InRoomWayCode & Domains2.Entities.InRoomWayCode.ObserveRoom) == Domains2.Entities.InRoomWayCode.ObserveRoom).OrderBy(c => c.Priority), "InRoomWayId", "InRoomWayName", route.InRoomWayId);
-        //    this.Destinations = new System.Web.Mvc.SelectList(db2.Destinations.Where(c => (c.DestinationCode & Domains2.Entities.DestinationCode.UseForObserveRoom) == Domains2.Entities.DestinationCode.UseForObserveRoom).OrderBy(c => c.Priority2), "DestinationId", "DestinationName", route.DestinationId);
-        //    this.IsLeaves = new System.Web.Mvc.SelectList(
-        //        new List<System.Web.Mvc.SelectListItem>
-        //        {
-        //            new System.Web.Mvc.SelectListItem {Text="是",Value="true" },
-        //            new System.Web.Mvc.SelectListItem {Text="否",Value="false" }
-        //        }, "Value", "Text");
-        //}
 
 
 
