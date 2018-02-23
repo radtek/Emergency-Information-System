@@ -9,6 +9,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EmergencyInformationSystem.Models.Domains3.Entities
 {
+    /// <summary>
+    /// 入室方式。
+    /// </summary>
     [Table("InRoomWays")]
     public class InRoomWay
     {
@@ -49,6 +52,9 @@ namespace EmergencyInformationSystem.Models.Domains3.Entities
 
 
 
+        /// <summary>
+        /// 是否转室。
+        /// </summary>
         public virtual bool IsTransferRoom { get; set; }
 
 

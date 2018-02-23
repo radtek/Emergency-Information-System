@@ -63,5 +63,13 @@ namespace EmergencyInformationSystem.Models.Domains3.Entities
         //public virtual DbSet<ImageRecord> ImageRecords { get; set; }
 
         //public virtual DbSet<TreatmentRecord> TreatmentRecords { get; set; }
+
+
+
+
+
+        public virtual DbSet<GreenPathInfo> GreenPathInfos { get; set; }
+
+        public virtual DbSet<GreenPathAmiInfo> GreenPathAmiInfos { get; set; }
     }
 }

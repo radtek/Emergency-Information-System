@@ -9,6 +9,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EmergencyInformationSystem.Models.Domains3.Entities
 {
+    /// <summary>
+    /// 转室原因。
+    /// </summary>
     [Table("TransferReasons")]
     public class TransferReason
     {

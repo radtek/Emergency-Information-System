@@ -64,6 +64,14 @@
     <Compile Include="Migrations\201801300239244_InitialGeneral.Designer.cs">
       <DependentUpon>201801300239244_InitialGeneral.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201802011424318_AddAmi.cs" />
+    <Compile Include="Migrations\201802011424318_AddAmi.Designer.cs">
+      <DependentUpon>201802011424318_AddAmi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802070205088_GreenPathCategoryAddField.cs" />
+    <Compile Include="Migrations\201802070205088_GreenPathCategoryAddField.Designer.cs">
+      <DependentUpon>201802070205088_GreenPathCategoryAddField.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -74,6 +82,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201801300239244_InitialGeneral.resx">
       <DependentUpon>201801300239244_InitialGeneral.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802011424318_AddAmi.resx">
+      <DependentUpon>201802011424318_AddAmi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802070205088_GreenPathCategoryAddField.resx">
+      <DependentUpon>201802070205088_GreenPathCategoryAddField.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

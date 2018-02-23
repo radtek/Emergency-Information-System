@@ -9,6 +9,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EmergencyInformationSystem.Models.Domains3.Entities
 {
+    /// <summary>
+    /// 绿色通道类型。
+    /// </summary>
     [Table("GreenPathCategories")]
     public class GreenPathCategory
     {
@@ -40,6 +43,21 @@ namespace EmergencyInformationSystem.Models.Domains3.Entities
 
 
         public virtual bool IsHasAdditionalInfo { get; set; }
+
+        /// <summary>
+        /// 是否拥有独立表格。
+        /// </summary>
+        public virtual bool IsHasForm { get; set; }
+
+
+
+
+
+        /// <summary>
+        /// 编码名称。
+        /// </summary>
+        /// <remarks>程序内使用。</remarks>
+        public virtual string CodeName { get; set; }
 
 
 

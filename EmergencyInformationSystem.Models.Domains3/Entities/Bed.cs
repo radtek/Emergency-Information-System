@@ -9,6 +9,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EmergencyInformationSystem.Models.Domains3.Entities
 {
+    /// <summary>
+    /// 床位。
+    /// </summary>
+    /// <remarks>
+    /// 表示各室的床位。各室通用。通过指定字段标识可使用室。
+    /// </remarks>
     [Table("Beds")]
     public class Bed
     {
@@ -28,6 +34,9 @@ namespace EmergencyInformationSystem.Models.Domains3.Entities
 
 
 
+        /// <summary>
+        /// 床位名称。
+        /// </summary>
         [Required(AllowEmptyStrings = false)]
         [Index(IsUnique = true)]
         [MaxLength(30)]

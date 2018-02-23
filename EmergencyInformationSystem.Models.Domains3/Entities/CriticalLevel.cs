@@ -9,6 +9,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EmergencyInformationSystem.Models.Domains3.Entities
 {
+    /// <summary>
+    /// 危重等级。
+    /// </summary>
+    /// <remarks>表示在门诊分诊时所划分的等级，即入室时的危重等级。</remarks>
     [Table("CriticalLevels")]
     public class CriticalLevel
     {
@@ -28,6 +32,9 @@ namespace EmergencyInformationSystem.Models.Domains3.Entities
 
 
 
+        /// <summary>
+        /// 危重等级名称。
+        /// </summary>
         [Required(AllowEmptyStrings = false)]
         [Index(IsUnique = true)]
         [MaxLength(30)]

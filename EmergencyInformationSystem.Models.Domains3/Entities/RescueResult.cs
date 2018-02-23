@@ -9,6 +9,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EmergencyInformationSystem.Models.Domains3.Entities
 {
+    /// <summary>
+    /// 抢救结果。
+    /// </summary>
     [Table("RescueResults")]
     public class RescueResult
     {

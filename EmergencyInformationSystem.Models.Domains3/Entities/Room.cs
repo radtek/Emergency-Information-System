@@ -9,6 +9,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EmergencyInformationSystem.Models.Domains3.Entities
 {
+    /// <summary>
+    /// 室。
+    /// </summary>
     [Table("Rooms")]
     public class Room
     {
@@ -33,6 +36,10 @@ namespace EmergencyInformationSystem.Models.Domains3.Entities
         [MaxLength(30)]
         public virtual string RoomName { get; set; }
 
+        /// <summary>
+        /// 控制器名称。
+        /// </summary>
+        /// <remarks>程序内逻辑用。</remarks>
         public virtual string ControllerName { get; set; }
 
 

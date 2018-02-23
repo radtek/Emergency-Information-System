@@ -15,12 +15,10 @@ namespace EmergencyInformationSystem.Models.Domains3.Entities
     [Table("GeneralRoomInfos")]
     public class GeneralRoomInfo
     {
-        /// <summary>
-        /// 初始化。
-        /// </summary>
         public GeneralRoomInfo()
         {
             this.PostGeneralRoomInfos = new List<GeneralRoomInfo>();
+            this.GreenPathInfos = new List<GreenPathInfo>();
         }
 
 
@@ -307,7 +305,7 @@ namespace EmergencyInformationSystem.Models.Domains3.Entities
         [ForeignKey("PreGeneralRoomInfoId")]
         public virtual IEnumerable<GeneralRoomInfo> PostGeneralRoomInfos { get; set; }
 
-        public virtual IEnumerable<GreenPathInfo> GreenPathInfos { get; set; }
+        public virtual List<GreenPathInfo> GreenPathInfos { get; set; }
 
 
 
@@ -398,7 +396,7 @@ namespace EmergencyInformationSystem.Models.Domains3.Entities
             {
                 if (this.GreenPathCategoryId == null)
                     return null;
-                if (this.GreenPathCategory.IsHasAdditionalInfo)
+                if (!this.GreenPathCategory.IsHasAdditionalInfo)
                     return this.GreenPathCategory.GreenPathCategoryName;
                 else
                     return this.GreenPathCategory.GreenPathCategoryName + " - " + this.GreenPathCategoryRemarks;

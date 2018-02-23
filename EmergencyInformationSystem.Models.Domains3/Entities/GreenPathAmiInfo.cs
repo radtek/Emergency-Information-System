@@ -15,9 +15,6 @@ namespace EmergencyInformationSystem.Models.Domains3.Entities
     [Table("GreenPathAmiInfos")]
     public class GreenPathAmiInfo
     {
-        /// <summary>
-        /// 初始化。
-        /// </summary>
         public GreenPathAmiInfo()
         {
 
