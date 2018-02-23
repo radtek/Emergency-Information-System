@@ -16,6 +16,10 @@ namespace EmergencyInformationSystem.Controllers
             return PartialView(targetV);
         }
 
+
+
+
+
         public ActionResult Create(Guid roomId)
         {
             var targetV = new Models.ViewModels.GeneralInfos.Create.Create();

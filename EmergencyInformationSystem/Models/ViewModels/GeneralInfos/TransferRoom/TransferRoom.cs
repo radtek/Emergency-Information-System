@@ -23,12 +23,18 @@ namespace EmergencyInformationSystem.Models.ViewModels.GeneralInfos.TransferRoom
 
 
 
+        /// <summary>
+        /// 原记录ID。
+        /// </summary>
         public Guid GeneralRoomInfoId { get; set; }
 
 
 
 
 
+        /// <summary>
+        /// 目标室ID。
+        /// </summary>
         [Display(Name = "室")]
         public Guid RoomId { get; set; }
     }

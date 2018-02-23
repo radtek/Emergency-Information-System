@@ -43,7 +43,7 @@ namespace EmergencyInformationSystem.Models.ViewModels.GeneralInfos.Create
 
 
 
-        public void GetData()
+        private void GetData()
         {
             var db3 = new Domains3.Entities.EiSDbContext();
             var room = db3.Rooms.Find(this.RoomId);
