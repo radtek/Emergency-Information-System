@@ -49,5 +49,12 @@ namespace EmergencyInformationSystem.Models.BusinessModels
         {
             rescueRoomConsultation.ConsultationDoctorName = FromEmployeeNumberToName(rescueRoomConsultation.ConsultationDoctorName);
         }
+
+        public static void FromEmployeeNumberToName(Models.Domains3.Entities.GeneralRoomInfo target)
+        {
+            target.FirstNurseName = FromEmployeeNumberToName(target.FirstNurseName);
+            target.DestinationFirstContact = FromEmployeeNumberToName(target.DestinationFirstContact);
+            target.HandleNurse = FromEmployeeNumberToName(target.HandleNurse);
+        }
     }
 }

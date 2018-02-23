@@ -32,44 +32,6 @@ namespace EmergencyInformationSystem.Controllers
             return View(targetV);
         }
 
-        //public ActionResult Create()
-        //{
-        //    return View();
-        //}
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create([Bind()]Models.ViewModels.RescueRoomInfos2.Create.Create targetV)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        return RedirectToAction("Create2", new { targetV.OutPatientNumber });
-        //    }
-
-        //    return View(targetV);
-        //}
-
-        //public ActionResult Create2(string outPatientNumber)
-        //{
-        //    var targetV = new Models.ViewModels.RescueRoomInfos2.Create.Create2(outPatientNumber);
-
-        //    return View(targetV);
-        //}
-
-        //public ActionResult Create3(Guid JZID, Guid? preGeneralRoomInfoId)
-        //{
-        //    var db2 = new Models.Domains2.Entities.EiSDbContext();
-
-        //    var targetV = new Models.ViewModels.RescueRoomInfos2.Create.Create3(JZID, preGeneralRoomInfoId);
-
-        //    var target = targetV.GetReturn();
-
-        //    db2.GeneralRoomInfos.Add(target);
-        //    db2.SaveChanges();
-
-        //    return RedirectToAction("Edit", new { id = target.GeneralRoomInfoId });
-        //}
-
         public ActionResult Edit(Guid id)
         {
             var targetV = new Models.ViewModels.RescueRoomInfos2.Edit.Edit(id);
